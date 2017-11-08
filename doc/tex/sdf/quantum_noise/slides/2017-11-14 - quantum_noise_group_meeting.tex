@@ -146,7 +146,7 @@ The objective of this work is to model quantum noise in a double homodyne detect
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Quantum Noise - Theoretical xxxxx}\large
+\mysection{Quantum Noise - Theoretical Introduction}\large
 \vspace{0cm}
 
 The studied communication system is based on the transmission of coherent states. Coherent states can be defined in the number state basis $\{\ket{n}\}$ as
@@ -169,7 +169,7 @@ in which $\hat{n} = \hat{a}^\dagger \hat{a}$, is the number operator.
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Quantum Noise - Theoretical xxxxx}\large
+\mysection{Quantum Noise - Theoretical Introduction}\large
 \vspace{0cm}
 
 \noindent
@@ -196,7 +196,7 @@ This result show us that for both quadratures, the variance of measurement is th
 \mysection{Homodyne Detection}\large
 \vspace{0cm}
 
-The measurement of quadratures is made by the homodyne technique. The quantum description of the detection is described by the following illustration:
+The measurement of quadratures is made by the homodyne technique. The quantum description of the detection is described by the following diagram
 
 \begin{figure}[h]
 \label{fig:scheme_homodyne}
@@ -205,54 +205,7 @@ The measurement of quadratures is made by the homodyne technique. The quantum de
 %\caption{Balanced double homodyne detection.}
 \end{figure}
 
-This technique basically measures the phase difference between a input signal $S$ and a local oscillator $LO$. Figure xx shows the quantum mechanical description of the technique, in which $\hat{m}$ is the operator of the output difference between the photocurrents.\\
-
-
-%--------------------------------------------------------------------------------------------------
-%------------ SLIDE-------
-\mysection{Homodyne Detection}\large
-\vspace{0cm}
-
-Given the input signal given by the state $\ket{\alpha}$ ($\alpha = |\alpha| e^{i\theta_\alpha}$) and the local oscillator given by state  $\ket{\beta}$ ($\beta = |\beta| e^{i\theta_\beta}$), the expected value of $\hat{m}$ and it's variance will be
-%
-\vspace{1em}
-\begin{center}
-	\begin{minipage}{85mm}
-		\noindent
-		\begin{equation}
-			\braket{m} = 2|\alpha||\beta|\cos({\theta_\alpha - \theta_\beta})
-		\end{equation}
-	\end{minipage}
-	$,\quad$
-	\begin{minipage}{70mm}
-		\noindent
-		\begin{equation}
-			\textrm{Var}(m) = |\alpha|^2 + |\beta|^2
-		\end{equation}
-	\end{minipage}
-\end{center}
-\vspace{1em}
-%
-If we normalize the units of $m$ by $2|\beta|$ and knowing that $\alpha \ll \beta$, then it can be simplified to
-%
-\vspace{1em}
-\begin{center}
-	\begin{minipage}{75mm}
-		\noindent
-		\begin{equation}
-			\braket{m} = |\alpha|\cos({\theta_\alpha - \theta_\beta})
-		\end{equation}
-	\end{minipage}
-	$,\quad$
-	\begin{minipage}{45mm}
-		\noindent
-		\begin{equation}
-			\textrm{Var}(m) \approx \frac{1}{4}
-		\end{equation}
-	\end{minipage}
-\end{center}
-%
-
+This technique basically measures the phase difference between a input signal (S) and a local oscillator (LO). The figure shows the quantum mechanical description of this technique, based in annhihilation operators, in which $\hat{m}$ is the operator of the output difference between the photocurrents.\\
 
 
 %--------------------------------------------------------------------------------------------------
@@ -260,42 +213,20 @@ If we normalize the units of $m$ by $2|\beta|$ and knowing that $\alpha \ll \bet
 \mysection{Double Homodyne Detection}\large
 \vspace{0cm}
 
-
-In fact, we can measure the two quadratures $X$ and $Y$ at the same time, using the double homodyne detection. This tecnique consists in simply divide the signal in two beams with half the power of the original one and one of them is measure in-phase with the local oscillator, and the other is measured with a phase difference of $\pi/2$ relative to the first one???????
+\noindent
+The used technique is the double homodyne technique which starts by dividing S in two beams of equal power. One the beams is measures in-phase with the local oscillator, and the other is measured with a phase difference of $\pi/2$ relative to the local oscillator.\\
+Given the input signal state $\ket{\alpha}$ ($\alpha = |\alpha| e^{i\theta_\alpha}$) and the local oscillator state  $\ket{\beta}$ ($\beta = |\beta| e^{i\theta_\beta}$), the expected value for the two quadratures operators $\hat{m_X}$ and $\hat{m_Y}$ is\\
 %
-\begin{center}
-	\begin{minipage}{85mm}
-		\noindent
-		\begin{equation}
-			\braket{m_X} = \left|\frac{\alpha}{\sqrt{2}}\right| \cos({\theta_\alpha - \theta_\beta})
-		\end{equation}
-	\end{minipage}
-	$,\quad$
-	\begin{minipage}{50mm}
-		\noindent
-		\begin{equation}
-			\textrm{Var}(m_X) \approx \frac{1}{4}
-		\end{equation}
-	\end{minipage}
-\end{center}
-%
-%
-\begin{center}
-	\begin{minipage}{80mm}
-		\noindent
-		\begin{equation}
-			\braket{m_Y} =  \left|\frac{\alpha}{\sqrt{2}}\right| \sin({\theta_\alpha - \theta_\beta})
-		\end{equation}
-	\end{minipage}
-	$,\quad$
-	\begin{minipage}{50mm}
-		\noindent
-		\begin{equation}
-			\textrm{Var}(m_Y) \approx \frac{1}{4}
-		\end{equation}
-	\end{minipage}
-\end{center}
-%
+$$
+	\braket{\hat{m}_X} = \left|\frac{\alpha}{\sqrt{2}}\right| \cos({\theta_\alpha - \theta_\beta}),
+	\qquad
+	\textrm{Var}(\hat{m}_X) \approx \frac{1}{4}
+$$
+$$
+	\braket{\hat{m}_Y} =  \left|\frac{\alpha}{\sqrt{2}}\right| \sin({\theta_\alpha - \theta_\beta}),
+	\qquad
+	\textrm{Var}(\hat{m}_Y) \approx \frac{1}{4}
+$$
 
 
 
@@ -312,14 +243,14 @@ In fact, we can measure the two quadratures $X$ and $Y$ at the same time, using 
 %\caption{Balanced double homodyne detection.}
 \end{figure}
 
-A state is generated in the MQAM which is then mixed in the Optical hybrid with a local oscillator. The 2 pairs of output optical signals are then converted to photocurrents. The difference between the signals of each pair is obtained and then is sampled.
+A state is generated in the MQAM which is then mixed in the Optical hybrid with a local oscillator. The 2 pairs of output optical signals are then converted to photocurrents. The difference between the currents of each pair is obtained and then sampled. Finally the two signals are combined in a complex number which will be the final output.
 
 
 
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Simulation results}\large
+\mysection{Simulation results - REVIEW}\large
 \vspace{0cm}
 
 \begin{figure}[h]
@@ -357,7 +288,7 @@ Given that there is no implementation of noise, these plots show only fluctuatio
 %\caption{Balanced double homodyne detection.}
 \end{figure}
 
-A signal is produced by the mopulation of a laser beam and attenuated. The Coherent Receiver uses this signal and a vacuum signal as input, outputing a voltage proportional to the homodyne detection????
+A signal is produced by modulating and attenuating a laser beam. This signal and a vacuum signal are used as inputs of the Coherent Receiver, outputing a voltage proportional to the homodyne detection.
 
 
 
