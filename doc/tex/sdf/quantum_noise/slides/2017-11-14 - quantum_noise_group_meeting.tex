@@ -327,18 +327,20 @@ A state is generated in the MQAM which is then mixed in the Optical hybrid with 
 	\begin{subfigure}
 %		\label{fig:scheme_homodyne}
 		\centering
-		\includegraphics[height=65mm]{../figures/plot_var_vs_n1.png}
+		\includegraphics[height=65mm]{../figures/var_Pout_PS_no_noise.png}
 		%\caption{Balanced double homodyne detection.}
 	\end{subfigure}
 	\begin{subfigure}
 %		\label{fig:scheme_homodyne}
 		\centering
-		\includegraphics[height=65mm]{../figures/power_plot.png}
+		\includegraphics[height=65mm]{../figures/var_Pout_PLO_no_noise.png}
 		%\caption{Balanced double homodyne detection.}
 	\end{subfigure}
 \end{figure}
-
+%
 These plots show the variance of $\hat{m}$ in function of signal power (left) and local oscillator power (right).
+Given that there is no implementation of noise, these plots show only fluctuations of numerical errors. We see that these values are very close to 0.\\
+
 
 
 
@@ -351,9 +353,11 @@ These plots show the variance of $\hat{m}$ in function of signal power (left) an
 \begin{figure}[h]
 \label{fig:scheme_homodyne}
 \centering
-\includegraphics[width=\textwidth]{../figures/scheme_setup.pdf}
+\includegraphics[width=\textwidth]{../figures/scheme_experimental.pdf}
 %\caption{Balanced double homodyne detection.}
 \end{figure}
+
+A signal is produced by the mopulation of a laser beam and attenuated. The Coherent Receiver uses this signal and a vacuum signal as input, outputing a voltage proportional to the homodyne detection????
 
 
 
@@ -379,7 +383,7 @@ These plots show the variance of $\hat{m}$ in function of signal power (left) an
 	\end{subfigure}
 \end{figure}
 
-These plots show the experimental variance of a homodyne detection only with local oscillator, for two different quadratures and a degree 2 polynomial fitting.
+These plots of the variance of $\hat{m}$ plots, for two quadratures, show a constant value for low power of LO, and a growth proportional to the square of the power of LO for higher power. This is not in conformity with the theory and simulation.
 
 
 

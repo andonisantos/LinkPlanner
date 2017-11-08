@@ -23,8 +23,11 @@
 
 
 
-int main()
+//int main(int argc, char* argv[])
+int main(int argc, char* argv[])
 {	
+
+	
 
 	// #########################################################################
 	// ######################## System Input Parameters ########################
@@ -45,6 +48,8 @@ int main()
 	double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (samplePeriod*wavelength);
 	// Correcção da potência. Quem é que está correcto?
 	//double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod*wavelength);
+
+	//double photonNumber2 = atof(argv[1]);
 
 	double photonNumber1 = 10;
 	double photonNumber2 = 1e4;
@@ -73,13 +78,13 @@ int main()
 	// Escolha da constelação
 	
 	// Constelação sempre com o mesmo estado
-	//vector<t_iqValues> iqAmplitudeValues = { { 1, 1 },{ 1, 1 } };
+	vector<t_iqValues> iqAmplitudeValues = { { 1, 1 },{ 1, 1 } };
 	
 	// Constelação com 2 estados
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
 	
 	// Constelação com 4 estados
-	vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
+	//vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
 
 	double SNR = 0;
 
