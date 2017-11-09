@@ -1,10 +1,10 @@
 dataS  = load('Pout_PS.txt');
 dataLO = load('Pout_PLO.txt');
 
-pS  = dataS(:,1);
+nS  = dataS(:,1);
 vS  = dataS(:,2);
 
-pLO = dataLO(:,1);
+nLO = dataLO(:,1);
 vLO = dataLO(:,2);
 
 % Constantes
@@ -22,10 +22,12 @@ n1_default = 10;
 n2_default = 1e4;
 amp = 1e6;
 
-% Normalização da potência
+% Cálculo das potências em função do número de fotões
+pLO = nLO * P
+p2_default = n2_default * P
 
 figure
-loglog(pS, vS/(2*P), 'o');
+loglog(nS, vS/(2*P.^2), 'o');
 grid
 xlabel('Signal photons');
 ylabel('Variance');
@@ -33,7 +35,7 @@ ylabel('Variance');
 %%
 
 figure
-loglog(pLO, vLO./(2*pLO), 'o');
+loglog(nLO, vLO./(2*pLO), 'o');
 grid
 xlabel('Local Oscillator photons');
 ylabel('Variance');
