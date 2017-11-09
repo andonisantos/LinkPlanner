@@ -1,112 +1,355 @@
 \clearpage
-\section{Simplified Coherent Receiver}
+\section{Kramers-Kronig Transceiver  with Stokes PolDemux}
 
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 \textbf{Student Name}  &:& Romil Patel\\
 \textbf{Starting Date} &:& August 16, 2017\\
-\textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent receiver, that can be used in coherent PON, inter-data center connections, or metropolitan networks (optical path lengths < 100 km).
+\textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent transceiver, that can be used in coherent PON, inter-data center connections, or metropolitan networks (optical path lengths < 100 km) We are going to explore a Kramers-Kronig transceiver with Stokes based PolDemux.
 \end{tabular}
 \end{tcolorbox}
 
-%In recent days, homodyne detection has been discussed and investigated a lot due to the advancement in the DSP in the electrical domain. However, a major drawback of homodyne detection is the incoming signal should be separated into inphase and quadrature (I/Q) signals in the optical domain. Therefore, it demands more hardware to accommodate the requirement of the signal separation  in the optical domain. For instance, 4 balanced photodetectors with double hybrid structures and 4-channel ADCs are required.
-%On the other hand, heterodyne receiver simplifies the detection scheme to some extent with the requirement of having only half of photodetectors and ADC.\\
-In the optical communication, coherent detection scheme constitute the solution for the medium-to-long-reach application; however, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications, metropolitan network etc. In order to get rid of higher cost and to make the transceiver applicable in short-reach links, a new architecture of optical receiver has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the receiver is based on the famous Kramers-Kronig(KK) relationship. 
-\subsection{Concept of Kramers-Kronig receiver }
-The key concept behind the Kramers-Kronig self coherent receiver is to aquire "\textit{minimum phase single sideband signal}". The proposed receiver scheme allows the full reconstruction of the complex-valued signal from the amplitude data. The following few questions would give a comprehensive overview of the Kramers-Kronig receiver.
+Coherent optical transmission schemes are spectrally efficient since they allow the encoding of information in both quadrature of sinusoid signal. However, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications and metropolitan network. In order to make the transceiver applicable in short-reach links, an architecture has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the proposed transceiver is based on the Kramers-Kronig (KK) relationship. The KK transceiver scheme allows digital compensation of propagation impairment because both amplitude and phase of the electrical field can be retrieved at the receiver. 
+\subsection{Kramers-Kronig transceiver}
+The Kramers-Kronig relations are bidirectional mathematical relations, connecting the real and imaginary parts of any complex function that is analytic in the upper half-plane. For instance, a signal $x(t)=x_r(t) + i x_i(t)$ satisfies the Kramers-Kronig relationship if,
+\begin{equation*}
+\begin{split}
+x_{r}(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{x_{i}(t')}{t-t'} dt' \\ \\
+x_{i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{x_{r}(t')}{t-t'} dt' \\
+\end{split}
+\label{KK}
+\end{equation*}
+The relationship displays that the real and the imaginary parts of the signal are related to each other though Hilbert transform. Therefore, if we have the real part of the signal then the imaginary part can be calculated by its Hilbert transform. \\For a signal that satisfies the Kramers-Kronig relationship, the real and imaginary part can be obtained only from the module. The following questions would give a comprehensive overview of Kramers-Kroning relation and the detailed mathematical calculation which depicts how phase can be extracted from the amplitude information.
 
-\subsubsection{1. What are the requirements for the KK receiver scheme?}
-The Kramers-Kronig receiver based communication scheme relies on identifying a condition which ensures that \textbf{the received signal is minimum phase}, in such a case its phase can be uniquely extracted from its intensity.\\ In order to facilitate the extraction of phase information from the intensity of the received minimum phase signal, it is prerequisite that the transmitted signal should be \textbf{analytical signal} in which real and imaginary parts are related to each other by means of Hilbert transform of each other.
+\subsubsection{1. What is Hilbert transform?}
+If we consider a filter $H(\omega)$, described in Figure \ref{Hilbert_Transformer}, that has a unity magnitude response for all frequencies and the phase response is $-\pi/2$ for all positive frequencies and $\pi/2$ for negative frequencies. The transfer function of this filter is given by
+\begin{equation}
+\begin{split}
+H(i\omega)=-isgn(\omega)
+\end{split}
+\label{}
+\end{equation}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/HT.pdf}
+	\caption{Magnitude and phase of Hilbert transformer}\label{Hilbert_Transformer}
+\end{figure}
+Therefore, we can term it as a wideband phase shift network. The inpulse response of this filter can be given as,
+\begin{equation}
+\begin{split}
+h(t)&=\mathcal{F}^{-1}[H(i\omega)]\\
+&=-i\mathcal{F}^{-1}[sgn(\omega)]\\
+&=-i\bigg(\frac{i}{\pi t}\bigg)\\
+&=\frac{1}{\pi t}
+\end{split}
+\label{}
+\end{equation}
+When this filter driven by an arbitrary signal $s(t)$, the filter produces the output as,
+\begin{equation}
+\begin{split}
+\hat{s}(t)&=s(t) * h(t)\\
+&=\int_{-\infty}^{\infty} \dfrac{s(u)}{\pi(t-u)}du\\
+\end{split}
+\label{}
+\end{equation}
+The function $\hat{s}(t)$ is called the Hilbert transform if $s(t)$. Note that
+\begin{equation}
+\begin{split}
+\mathcal{F}[\hat{h}(t)]=H(\omega)S(\omega)=-isgn(\omega)S(\omega)
+\end{split}
+\label{}
+\end{equation}
+In conclusion, if we convolve any time domain signal with $\frac{1}{\pi t}$ then it will give us Hilbert transformed signal in time domain. Similarly, from the convolution property of the Fourier transform, if we multiply $-isgn(\omega)$ with any frequency domain signal $S(\omega)$ then it'll give us Hilbert transformed signal in frequency domain.
+
 
 \subsubsection{2. What is minimum phase signal?}
-A necessary and sufficient condition for a signal $E(t)$ to be minimum phase is that the curve described by $E(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}.
+%The Kramers-Kronig receiver based communication scheme relies on identifying a condition which ensures that the received signal is \textbf{minimum phase}, in such a case its phase can be uniquely extracted from its intensity[2].\\ 
+%In order to achieve minimum phase condition at the receiver end, it is prerequisite that the transmitted signal should be \textbf{analytical signal} in which real and imaginary parts are related to each other by means of Hilbert transform of each other.\\ \\
+%\textbf{Minimum phase signal:}\\
+A necessary and sufficient condition for a complex signal $A(t)$ to be minimum phase is that the curve described in a complex plane by $A(t)$ when $t\rightarrow -\infty$ to $t\rightarrow \infty$ \textbf{does not encircle the origin}. A minimum-phase signal, whether discrete-time or continuous-time, has an useful property that the natural logarithm of the magnitude of the frequency response is related to the phase angle of the frequency response by the Hilbert transform.
 
-\subsubsection{3. what is Analytical Signal?}
-An analytic signal is a complex-valued signal that has no negative frequency components, and its real and imaginary parts are related to each other by the Hilbert transform(See Appendix A for what is Hilbert transform?).
+
+\subsubsection{3. What is analytical signal?}
+An analytic signal is a complex-valued signal that has no negative frequency components, and its real and imaginary parts are related to each other by the Hilbert transform.
 \begin{equation}
 s_a(t)=s(t)+i\hat{s}(t)
 \label{Analytical signal}
 \end{equation}
-where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate Single Sideband Signal (SSB) signal(See the Appendix B).
+where, $s_a(t)$ is an analytical signal and $\hat{s}(t)$ is the Hilbert transform of the signal ${s}(t)$. Such analytical signal can be used to generate Single Sideband Signal (SSB) signal.
 
-\subsubsection{4. How we can use these signals and profit from them?}
-This section represents the justification that why we need to use these signals into our proposed transceiver system.\\
+
+\subsubsection{4. What is SSB signal and how it can be generated?}
+This section will represent the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $s(t)$ as a summation of the two complex-valued functions.
+\begin{equation}
+\begin{split}
+s(t)&=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-i\hat{s}(t)]\\
+\end{split}
+\label{}
+\end{equation}
+From Equation \ref{Analytical signal},
+\begin{equation}
+\begin{split}
+	s(t)&=s_a(t)+i{s_a^*}(t)
+\end{split}
+\label{}
+\end{equation}
+%where, the term $\dfrac{1}{2}[s(t)+i\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-i\hat{s}(t)]$ of this analytical signal.
+Such representation of ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Considering only non-negative frequency ${s_a}(t)$ part, we can write it as
+\begin{equation}
+\dfrac{1}{2}{S_a}(f) = \begin{cases}
+S(f) &\text{for $f>0$}\\
+0    &\text{for $f<0$}\\
+\end{cases}
+\end{equation}
+where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
+\begin{equation}
+{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{i2\pi f_0 t}={s_{ssb}}(t)+i{\hat{s}_{ssb}(t)}
+\end{equation}
+Therefore, from the Euler's formula,
+\begin{equation}
+\begin{split}
+{s}_{ssb}(t)&=Re\{s_a(t)  e^{i2\pi f_0 t}\}\\
+&=Re\{[s(t)+i\hat{s}(t)] [cos(2\pi f_0t)+isin(2\pi f_0t)]\}\\
+&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
+\end{split}
+\label{USB_SSB}
+\end{equation}
+This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
+\begin{equation}
+{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
+\label{LSB_SSB}
+\end{equation}
+
+
+\subsubsection{5. How we can use these signals and profit from them?}
+This section represents the justification that why we need to use these signals into our proposed transceiver system.\\ \\
 \textbf{Analytical Signal:}\\
-Analytical signal used for generating single sidebnad (SSB) signal. In the case of a SSB signal $E_s(t)$ described as,
+If we denote an analytic signal $A_s(t)$ as, 
 \begin{equation}
-E_s(t)=E_{s,r}(t)+iE_{s,i}(t)
-\label{5.15}
+A_s(t)=A_{s,r}(t)+iA_{s,i}(t)
+\label{Eq:5.31}
 \end{equation}
-the real part $E_{s,r}(t)$  and the imaginary parts $E_{s,i}(t)$ are Hilbert transform of each other as(See Appendix C),
+then in the equation \ref{Eq:5.31}, the real and imaginary parts $A_{s,r}(t)$ and $A_{s,i}(t)$ are related through the Kramers-Kronig relation with each other. An intuitive way to analyze the relation is based on expressing its Fourier transform $A_s(\omega)$ as follows,
+\begin{equation}
+A_s(\omega)=\dfrac{1}{2}[1+sgn(\omega)]A_s(\omega)
+\label{Eq:A}
+\end{equation}
+The equation \ref{Eq:A} follows the SSB signal condition $A_s(\omega)=0$ for $\omega<0$. Further, simplification0n of the signal can be summarized as follows:
 \begin{equation}
 \begin{split}
-E_{s,r}(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,i}(t')}{t-t'} dt' \\
-E_{s,i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,r}(t')}{t-t'} dt' \\
+A_s(\omega)&=\dfrac{1}{2}[1+sgn(\omega)]A_s(\omega)\\
+&=\dfrac{1}{2}A_s(\omega)+\dfrac{1}{2}sgn(\omega)A_s(\omega)
 \end{split}
-\label{E}
+\label{Eq:B}
 \end{equation}
-These relations are known as Kramers-Kronig relation. We can define this Kramers-Kronig relationship into the following simplified form,
+Taking inverse Fourier transform of the equation \ref{Eq:B},
 \begin{equation}
 \begin{split}
-E_{s}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s}(t')}{t-t'} dt' 
+{A_s}(t)&=IFT\{A_s(\omega)\}\\
+&=\dfrac{1}{2}{A_s}(t)+\underline{\dfrac{1}{2}[IFT\{sgn(\omega)\} \circledast {A_s}(t)]}
 \end{split}
-\label{Eq:5.17}
+\label{Eq:C}
+\end{equation}
+The underlined term in Equation \ref{Eq:C} displays that multiplication in frequency domain converted into the convolution in the time domain. Further, IFT of the function $sgn(\omega)$ given as $(-i/\pi t)$. As a consequences, we can further simplify our equation as,
+\begin{equation}
+\begin{split}
+{A_s}(t)&=\dfrac{1}{2}{A_s}(t)+\frac{1}{2}\bigg[\frac{i}{\pi t} \circledast {A_s}(t) \bigg]\\
+\frac{{A_s}(t)}{2} &=\frac{1}{2}\bigg[\frac{i}{\pi t} \circledast {A_s}(t) \bigg]\\
+{A_s}(t) &=i\bigg[\frac{1}{\pi t} \circledast {A_s}(t) \bigg]\\
+{A_s}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_s(t')}{t-t'} dt' 
+\end{split}
+\label{Eq:D}
+\end{equation}
+Using Equation \ref{Eq:5.31} into Equation \ref{Eq:D},
+\begin{equation}
+\begin{split}
+A_{s,r}(t)+iA_{s,i}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_s(t')}{t-t'} dt' 
+\end{split}
+\label{Eq:5.36}
+\end{equation}
+Therefore,
+\begin{equation}
+\begin{split}
+A_{s,r}(t)+iA_{s,i}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,r}(t')+iA_{s,r}(t')}{t-t'} dt' \\
+A_{s,r}(t)+iA_{s,i}(t)&=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,i}(t')}{t-t'} dt' + \frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,r}(t')}{t-t'} dt'
+\end{split}
+\label{Eq:5.37}
+\end{equation}
+which leads to,
+\begin{equation}
+\begin{split}
+A_{s,r}(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,i}(t')}{t-t'} dt' \\
+A_{s,i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,r}(t')}{t-t'} dt' \\
+\end{split}
+\label{Eq:5.38}
 \end{equation}\\
 \textbf{Minimum Phase signal:}\\
-If the trajectory of the received SSB signal $E(t)=E_{s}(t)+\bar{E}$ never encircles the origin for $t\in(-\infty,\infty)$ then its phase can be reconstructed by a logarithmaic Hilbert transform of its amplitude(See Appendix D),
+Given function $A(t)=A_{s}(t)+\bar{E}$ never encircles the origin for $t\in(-\infty,\infty)$. if we define,
 \begin{equation}
-\phi(t) = \bar{\phi} + \dfrac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \dfrac{log[|E(t')|^2]}{t-t'} dt'
-\end{equation}\\
-where the $E(t)=|E(t)|exp(i\phi(t))$ and $\bar{E}=|\bar{E}|exp(i\bar{\phi})$.
-
-%The communication scheme discussed here relies on the identifying a specific condition that ensures the received signal is minimum phase. This condition facilitates the unique way to extract the phase of the received signal from its intensity. If we denote s(t) as a complex data-carrying signals whose spectrum is contained between -B/2 to B/2, and consider a single sideband signal of the form,
-%\begin{equation}
-%h(t)=A+s(t)exp(i\pi Bt)
-%\end{equation}
-%Where $A$ is a constant. Here, Nyquist stability criterion can be used to ensure that $s(t)$ is a minimum phase signal. The condition of minimum phase signal is satisfied when $|A|>|s(t)|$ by guaranteeing Nyquist stability of the received signal.
-%When $h(t)$ is a minimum-phase signal, its phase $\phi(t)$ and absolute value $|h(t)|$ are uniquely related by Hilbert transform:
-%\begin{equation}
-%	\phi(t)=\frac{1}{\pi}  p.v. \int_{-\infty}^{\infty} dt' \frac{log[|h(t')|]}{t-t'}
-%	\label{Eq:5.15}
-%\end{equation}
-%where \textit{p.v.} stands for \textit{principal value}. The relationship depicted in Equation \ref{Eq:5.15} can also be conveniently implemented in frequency domain as,
-%\begin{equation}
-%\tilde{\phi}(\omega)=i sign(\omega) \mathcal{F} \{log[|h(t)|]\}
-%\label{Eq:5.16}
-%\end{equation}
-%where $sign(\omega)$ is the sign function which is equal to 1 when $\omega>0$, to 0 when $\omega=0$ and to -1 when $\omega<0$. Symbol $\mathcal{F}$ denotes the Fourier transform.
+G(t)=log\bigg[\dfrac{A(t)}{\bar{A}}\bigg]
+\label{Eq:A1}
+\end{equation} 
+then $G(\omega)$, the spectrum of $G(t)$, is such that $G(\omega)=0$ for $\omega<0$. Under the hypothesis stated by Equation \ref{Eq:5.36}, we can write $G(t)$ as,
+\begin{equation}
+\begin{split}
+G(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{G(t')}{t-t'} dt' 
+\end{split}
+\label{Eq:B1}
+\end{equation}
+From the equations \ref{Eq:A1} and \ref{Eq:B1},
+\begin{equation}
+\begin{split}
+log|A(t)|-log|\bar{A}|+i[\phi(t)-\bar{\phi}] &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|A(t)|-log|\bar{A}|}{t-t'} dt' + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{\phi(t)-\bar{\phi}}{t-t'} dt' 
+\end{split}
+\label{Eq:C1}
+\end{equation}
+Comparing Imaginary part of Equation \ref{Eq:C1},
+\begin{equation}
+\begin{split}
+\phi(t)-\bar{\phi} &= + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|A(t)|-log|\bar{A}|}{t-t'} dt'\\
+\end{split}
+\label{Eq:D1}
+\end{equation}
+In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\bar{A}|}{t-t'} dt'=0$ which leads to,
+\begin{equation}.
+\begin{split}
+\phi(t) &= \bar{\phi} + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|A(t)|}{t-t'} dt'\\
+\phi(t) &= \bar{\phi} + \frac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \frac{log|A(t)|^2}{t-t'} dt'\\
+\end{split}
+\label{Eq:E1}
+\end{equation}
+\newpage
+\subsection{Simulation set-up}
+\subsubsection{Transmitter set-up}
+\begin{center}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Single_Polarization_Tx.pdf}
-	\caption{Transmitter}\label{Transmitter}
+	\includegraphics[width=1\textwidth, height=9cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Tx.pdf}
+	\caption{Transmitter simulation setup}\label{Simulation_setup_Tx}
 \end{figure}
+\end{center}
+\subsubsection{System input parameters:}
+\begin{center}
+	\begin{tabular}{ |p{5cm}||p{4.5cm}|p{4.5cm}|  }
+		\hline
+		%\multicolumn{3}{|c|}{\textbf{System Input Parameters }} \\
+		%\hline
+		\textbf{Parameter} &  \textbf{Default Value} & \textbf{Description}\\
+		\hline
+		sourceMode    & PseudoRandom &\\
+		\hline
+		patternLength & 5      & \\
+		\hline
+		bitPeriod     & 1/50e9 & \\
+		\hline
+		iqAmplitudes  &\{\{1,1\},\{-1,1\},\{-1,-1\},\{1,-1\}\} &\\
+		\hline
+		numberOfBits  &   1000 & \\
+		\hline
+		numberOfSamplesPerSymbol& 8  &\\
+		\hline
+		filterType& RaisedCosine  &\\
+		\hline
+		rollOffFactor & 0.3    & \\
+		\hline
+		impulseResponseTimeLength&16&\\
+		\hline
+		outputOpticalPower&1e-3&\\
+		\hline
+		outputOpticalWavelength&1550e-9&\\
+		\hline
+	\end{tabular}
+\end{center}
+\vspace{0cm}
+\subsubsection{Transmitter setup description:}
+\begin{center}
+	\begin{tabular}{ |p{5.5cm}||p{7.5cm}|p{1cm}|   }
+		\hline
+		\multicolumn{3}{|c|}{\textbf{Header Files}} \\
+		\hline
+		\textbf{File name} & \textbf{Description}&\textbf{Status}\\
+		\hline
+		binary\_source.h    				&  &\checkmark\\
+		\hline
+		m\_qam\_mapper.h 					&  &\\
+		\hline
+		discrete\_to\_continuous\_time.h    &  &\checkmark\\
+		\hline
+		pulse\_shaper.h 					&  &\checkmark\\
+		\hline
+		local\_oscillator.h					&  &\checkmark\\
+		\hline
+		mixer.h		 						&  &\\
+		\hline
+		fork.h								&  &\\
+		\hline
+		hilbert\_transform.h				&  &\\
+		\hline
+		iq\_modulator.h						&  &\checkmark\\
+		\hline
+		sink.h								&  &\checkmark\\
+		\hline
+		netxpto.h							&  &\checkmark\\
+		\hline
+	\end{tabular}
+\end{center}
+\vspace{0.4cm}
+\begin{center}
+	\begin{tabular}{ |p{5.5cm}||p{7.5cm}|p{1cm}|   }
+		\hline
+		\multicolumn{3}{|c|}{\textbf{Source Files}} \\
+		\hline
+		\textbf{File name} & \textbf{Description}&\textbf{Status}\\
+		\hline
+		binary\_source.c    				&  &\checkmark\\
+		\hline
+		m\_qam\_mapper.c 					&  &\\
+		\hline
+		discrete\_to\_continuous\_time.c    &  &\checkmark\\
+		\hline
+		pulse\_shaper.c 					&  &\checkmark\\
+		\hline
+		local\_oscillator.c					&  &\checkmark\\
+		\hline
+		mixer.c		 						&  &\\
+		\hline
+		fork.c								&  &\\
+		\hline
+		hilbert\_transform.c				&  &\\
+		\hline
+		iq\_modulator.c						&  &\checkmark\\
+		\hline
+		sink.c								&  &\checkmark\\
+		\hline
+		netxpto.c							&  &\checkmark\\
+		\hline
+		kramers\_kronig\_tx.c				&  &\\
+		\hline
+	\end{tabular}
+\end{center}
 
-\subsection{KK Scheme}
-If we consider the complex envelope of the incoming electric field by $E_s(t)$ confined within the optical bandwidth denoted by B. The LO assumed to be a continuous wave (CW) signal whose amplitude is $E_0$ whose frequency coincides with the left edge of the information-carrying signal spectrum. Here, we assumed that $E_0$ is real-valued and positive, which is equivalent to referring all phase value to that of LO.\\
-The complex envelope of the field striking upon the photo-diode can be given as,
-\begin{equation}
-E(t)=E_s(t)+E_0 exp(i\pi Bt)
-\end{equation}
-The photo current $I$ produced by the photo-diode is proportional to the field intensity $I=|E(t)|^2$, here proportionality constant considered as 1 for the sake of simplicity. If $E_0$ is large enough to ensure that the signal $E(t)exp(-i\pi Bt)=E_0+E_s(t)exp(-i\pi Bt)$ is minimum phase. The discussed hypothesis can be used to reconstruct the signal $E_s(t)$ as follows:
-\begin{equation}
-E_s(t)=\{\sqrt{I(t)} exp[i\phi_E(t)]-E_0\} exp(i\pi Bt)
-\end{equation}
-\begin{equation}
-\phi_E(t)=\dfrac{1}{2\pi} p.v. \int_{-\infty}^{\infty} dt' \frac{log[|I(t')|]}{t-t'}
-\label{Eq:5.19}
-\end{equation}
-%Here, the average value of the phase returned by Equation \ref{Eq:5.19} is zero, which implies the need for an additional phase-recovery procedure. 
+
+\subsubsection{Receiver set-up}
+%At the receiver end (Figure \ref{Simulation_setup_Rx}), to ensure minimum phase condition, an LO $A_0exp(i\pi Bt)$ added to the information carrying signal $A_s(t)$ using the frequency selective coupler to avoid signal and LO loss. This implementation accommodates polarization multiplexing and eliminates the need of optical hybrid. The minimum phase signal $A(t)$ applied to the single photo-detector for direct-detection which will generate photo current proportional to its intensity $I(t)=|A(t)|^2$ (assuming proportionality constant to be 1). From the amplitude data generated by single photo-detector, full reconstruction of the complex envelope carried out by the Kramers-Kronig algorithm. The availability of the complex signal at the end of reconstruction makes KK-PAM scheme equivalent to a coherent receiver which allows compensation of chromatic dispersion digitally. 
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/detailed_subsystem.pdf}
-	\caption{Tx/Rx DSP main subsystem}\label{DSP_main_subsystem}
+	\includegraphics[width=1.0\textwidth, height=10cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Rx.pdf}
+	\caption{Receiver simulation setup}\label{Simulation_setup_Rx}
 \end{figure}
 
-\subsection{Tx side}
-Single polarization 4PAM signals to be generated at the transmitter side (Figure \ref{Transmitter}). The 4PAM modulated signal is then applied to the Hilbert transformer which generates the imaginary part for our analytical signal. In analytical signal, real and imaginary parts are related to each other by Hilbert transform and it has no negative frequency contents. Such analytical signal can be used for generating bandwidth efficient single sideband (SSB) signal.  
 
-\subsection{Rx side}
-At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
+
+\subsection{Experimental set-up}
+If an optical signal received together with a CW tone at the band edge such that it satisfies the minimum phase condition, then its full complex signal can be recovered after direct-detection by using KK algorithm. The principle can be extended to the dual-polarization signals through a polarization diversity transceiver set-up. As shown in the Figure \ref{Practical_setup_TxRx}, the PDM received signal first spitted by a polarization beam splitter (PBS). Each polarization is combined with an LO tapped from the transmit laser. The laser's wavelength and power are set to ensure that the received signal should satisfy the minimum phase condition. After direct-detection, Kramers-Kronig algorithm is performed on each polarization separately to recover full complex signal. After compensation of the chromatic dispersion, stokes parameter based polarization demux. algrithm can be applied to recover PDM signals.     
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Practical_setup_TxRx.pdf}
+	\caption{PDM Kramers-Kronig receiver experimental setup}\label{Practical_setup_TxRx}
+\end{figure}
+
+
 
 \begin{thebibliography}{9}
 	\bibitem{latexcompanion}
@@ -123,195 +366,9 @@ At the receiver side, signal is coherently detected using a simplified coherent 
 	\textit{A necessary and sufficient condition for minimum phase and implication of phase retrieval}. arXiv:1606.04861.
 \end{thebibliography}
 
-
-
-
-
-
-
-
-
-
 \subsubsection{\textbf{APPENDICES}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Appendix A : Hilbert Transform}\\
-If we consider a filter $H(\omega)$, described in Figure \ref{Hilbert_Transformer}, that has a unity magnitude response for all frequencies. Also, the phase response is $-\pi/2$ for all positive frequencies and $\pi/2$ for negative frequencies. The transfer function of this filter is,
-\begin{equation}
-\begin{split}
-H(j\omega)=-jsgn(\omega)
-\end{split}
-\label{}
-\end{equation}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/HT.pdf}
-	\caption{Magnitude and phase of Hilbert transformer}\label{Hilbert_Transformer}
-\end{figure}
-Therefore, we can term it as a wideband phase shift network. The inpulse response of this filter can be given as,
-\begin{equation}
-\begin{split}
-h(t)&=\mathcal{F}^{-1}[H(j\omega)]\\
-	&=-j\mathcal{F}^{-1}[sgn(\omega)]\\
-	&=-j\bigg(\frac{j}{\pi t}\bigg)\\
-	&=\frac{1}{\pi t}
-\end{split}
-\label{}
-\end{equation}
-When this filter driven by an arbitrary signal $s(t)$, the filter produces the output as,
-\begin{equation}
-\begin{split}
-\hat{s}(t)&=s(t) * h(t)\\
-		  &=\int_{-\infty}^{\infty} \dfrac{s(u)}{\pi(t-u)}du\\
-\end{split}
-\label{}
-\end{equation}
-The function $\hat{s}(t)$ is called the Hilbert transform if $s(t)$. Note that
-\begin{equation}
-\begin{split}
-\mathcal{F}[\hat{h}(t)]=H(\omega)S(\omega)=-jsgn(\omega)S(\omega)
-\end{split}
-\label{}
-\end{equation}
-In conclusion, if we convolve any time domain signal with $\frac{1}{\pi t}$ then it will give us Hilbert transformed signal in time domain. Similarly, from the convolution property of the Fourier transform, if we multiply $-jsgn(\omega)$ with any frequency domain signal $S(\omega)$ then it'll give us Hilbert transformed signal in frequency domain.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\\
-\\
-\textbf{Appendix B : Single Sideband Signal (SSB) generation}\\
-In this section, we'll discuss the brief idea of generating SSB signal using Hilbert transform method. To understand this, we may express signal $u(t)$ as a summation of the two complex-valued functions.
-\begin{equation}
-s(t)=\dfrac{1}{2}[s(t)+j\hat{s}(t)]+\dfrac{1}{2}[s(t)-j\hat{s}(t)]
-\label{}
-\end{equation}
-where, the term $\dfrac{1}{2}[s(t)+j\hat{s}(t)]$ is the analytical representation of the signal $s(t)$ (from Equation \ref{Analytical signal}). Another term represents the complex conjugate $\dfrac{1}{2}[s(t)-j\hat{s}(t)]$ of this analytical signal. Such representation of the signal ${s_a}(t)$ and ${s_a^*}(t)$ divide the signal into non-negative frequency component and non-positive frequency component respectively. Alternatively, we can write it as,
-\begin{equation}
-\dfrac{1}{2}{S_a}(f) = \begin{cases}
-S(f) &\text{for $f>0$}\\
-0    &\text{for $f<0$}\\
-\end{cases}
-\end{equation}
-where ${S_a}(f)$ and ${S}(f)$ are the Fourier transform of ${t_a}(t)$ and ${s}(t)$ respectively. The frequency translated version of ${S_a}(f-f_0)$ contains only one side (positive) of ${S}(f)$ and hence it is called single sideband signal ${s_ssb}(t)$,
-\begin{equation}
-{F}^{-1}\{S_a(f-f_0)\}={s_a}(t) e^{j2\pi f_0 t}={s_{ssb}}(t)+j{\hat{s}_{ssb}(t)}
-\end{equation}
-Therefore, from the Euler's formula,
-\begin{equation}
-\begin{split}
-{s}_{ssb}(t)&=Re\{s_a(t)  e^{j2\pi f_0 t}\}\\
-&=Re\{[s(t)+j\hat{s}(t)] [cos(2\pi f_0t)+jsin(2\pi f_0t)]\}\\
-&=s(t)cos(2\pi f_0t)-\hat{s}(t)sin(2\pi f_0t)
-\end{split}
-\label{USB_SSB}
-\end{equation}
-This Equation \ref{USB_SSB} displays the mathematical modeling of the upper sideband SSB signal. Similarly, we can generate lower sideband SSB signal by,
-\begin{equation}
-{s}_{ssb}(t)=s(t)cos(2\pi f_0t)+\hat{s}(t)sin(2\pi f_0t)
-\label{LSB_SSB}
-\end{equation}\\
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\\
-\textbf{Appendix C : Kramers-Kronig relationship}\\
-%\subsubsection{Kramers Kronig Relation}
-Suppose we have a SSB signal $u(t)$ described as,
-\begin{equation}
-E_s(t)=E_{s,r}(t)+iE_{s,i}(t)
-\label{Eq:5.31}
-\end{equation}
-In the equation \ref{Eq:5.22}, the real and imaginary parts $E_{s,r}(t)$ and $E_{s,i}(t)$ are related through the Kramers-Kronig relation with each other. An intuitive way to analyze the relation is based on expressing its Fourier transform $E_s(\omega)$ as follows,
-\begin{equation}
-E_s(\omega)=\dfrac{1}{2}[1+sgn(\omega)]E_s(\omega)
-\label{Eq:5.23}
-\end{equation}
-The equation \ref{Eq:5.23} follows the SSB signal condition $E_s(\omega)=0$ for $\omega<0$. Further, simplification0n of the signal can be summarized as follows:
-\begin{equation}
-\begin{split}
-E_s(\omega)&=\dfrac{1}{2}[1+sgn(\omega)]E_s(\omega)\\
-&=\dfrac{1}{2}E_s(\omega)+\dfrac{1}{2}sgn(\omega)E_s(\omega)
-\end{split}
-\label{Eq:5.33}
-\end{equation}
-Taking inverse Fourier transform of the equation \ref{Eq:5.33},
-\begin{equation}
-\begin{split}
-{E_s}(t)&=IFT\{E_s(\omega)\}\\
-&=\dfrac{1}{2}{E_s}(t)+\underline{\dfrac{1}{2}[IFT\{sgn(\omega)\} \circledast {E_s}(t)]}
-\end{split}
-\label{Eq:5.34}
-\end{equation}
-The underlined term in Equation \ref{Eq:5.34} displays that multiplication in frequency domain converted into the convolution in the time domain. Further, IFT of the function $sgn(\omega)$ given as $(-i/\pi t)$. As a consequences, we can further simplify our equation as,
-\begin{equation}
-\begin{split}
-{E_s}(t)&=\dfrac{1}{2}{E_s}(t)+\frac{1}{2}\bigg[\frac{i}{\pi t} \circledast {E_s}(t) \bigg]\\
-\frac{{E_s}(t)}{2} &=\frac{1}{2}\bigg[\frac{i}{\pi t} \circledast {E_s}(t) \bigg]\\
-{E_s}(t) &=i\bigg[\frac{1}{\pi t} \circledast {E_s}(t) \bigg]\\
-{E_s}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_s(t')}{t-t'} dt' 
-\end{split}
-\label{Eq:5.35}
-\end{equation}
-Using Equation \ref{Eq:5.31} into Equation \ref{Eq:5.35},
-\begin{equation}
-\begin{split}
-E_{s,r}(t)+iE_{s,i}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_s(t')}{t-t'} dt' 
-\end{split}
-\label{Eq:5.36}
-\end{equation}
-Therefore,
-\begin{equation}
-\begin{split}
-E_{s,r}(t)+iE_{s,i}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,r}(t')+iE_{s,r}(t')}{t-t'} dt' \\
-E_{s,r}(t)+iE_{s,i}(t)&=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,i}(t')}{t-t'} dt' + \frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,r}(t')}{t-t'} dt'
-\end{split}
-\label{Eq:5.37}
-\end{equation}
-which leads to,
-\begin{equation}
-\begin{split}
-E_{s,r}(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,i}(t')}{t-t'} dt' \\
-E_{s,i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{E_{s,r}(t')}{t-t'} dt' \\
-\end{split}
-\label{Eq:5.38}
-\end{equation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\\
-\\
-\textbf{Appendix D : Phase reconstruction from minimum phase SSB signal}\\
-Given function $E(t)=E_{s}(t)+\bar{E}$ never encircles the origin for $t\in(-\infty,\infty)$. if we define,
-\begin{equation}
-G(t)=log\bigg[\dfrac{E(t)}{\bar{E}}\bigg]
-\label{Eq 5.39}
-\end{equation} 
-then $G(\omega)$, the spectrum of $G(t)$, is such that $G(\omega)=0$ for $\omega<0$. Under the hypothesis stated by Equation \ref{Eq:5.17},we can write $G(t)$ as,
-\begin{equation}
-\begin{split}
-G(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{G(t')}{t-t'} dt' 
-\end{split}
-\label{Eq 5.40}
-\end{equation}
-From the equations \ref{Eq 5.39} and \ref{Eq 5.40},
-\begin{equation}
-\begin{split}
-log|E(t)|-log|\bar{E}|+i[\phi(t)-\bar{\phi}] &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|E(t)|-log|\bar{E}|}{t-t'} dt' + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{\phi(t)-\bar{\phi}}{t-t'} dt' 
-\end{split}
-\label{Eq 5.41}
-\end{equation}
-Comparing Imaginary part of Equation \ref{Eq 5.41},
-\begin{equation}
-\begin{split}
-\phi(t)-\bar{\phi} &= + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|E(t)|-log|\bar{E}|}{t-t'} dt'\\
-\end{split}
-\label{Eq 5.42}
-\end{equation}
-In equation \ref{Eq 5.42}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\bar{E}|}{t-t'} dt'=0$ which leads to,
-\begin{equation}.
-\begin{split}
-\phi(t) &= \bar{\phi} + \frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|E(t)|}{t-t'} dt'\\
-\phi(t) &= \bar{\phi} + \frac{1}{2\pi} p.v. \int_{-\infty}^{\infty} \frac{log|E(t)|^2}{t-t'} dt'\\
-\end{split}
-\label{Eq 5.43}
-\end{equation}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\\
-\textbf{Appendix E : SSB with graphical explanation}\\
+\textbf{Appendix A : SSB with graphical explanation}\\
 This section describes the SSB signal generation using Hilbert transformation method (Phase Shift Method). Consider a message signal $m(t)$ with its frequency domain spectrum $M(F)$ as shown in Figure\ref{Original_baseband_signal}. From the Figure \ref{Original_baseband_signal}, we can see that both the side are scaled by factor '1' which means it represents the original signal.
 \begin{figure}[h]
 	\centering
@@ -379,92 +436,18 @@ u(t)={m(t)} cos(2\pi f_c t)+{\hat{m}(t)} sin(2\pi f_c t)
 	\includegraphics[width=1.0\textwidth, height=8cm]{./sdf/simplified_coherent_receiver/figures/SSB6.pdf}
 	\caption{SSB signal spectrum}\label{SSB_signal_spectrum}
 \end{figure}
-
-\subsubsection{Kramers Kronig Relation}
-Suppose we have a SSB signal $u(t)$ described as,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Appendix B : Kramers-Kronig scheme}\\
+If we consider the complex envelope of the incoming electric field by $A_s(t)$ confined within the optical bandwidth denoted by B. The LO assumed to be a continuous wave (CW) signal whose amplitude is $A_0$ whose frequency coincides with the left edge of the information-carrying signal spectrum. Here, we assumed that $A_0$ is real-valued and positive, which is equivalent to referring all phase value to that of LO.\\
+The complex envelope of the field striking upon the photo-diode can be given as,
 \begin{equation}
-u(t)=u_r(t)+iu_i(t)
-\label{Eq:5.22}
+A(t)=A_s(t)+A_0 exp(i\pi Bt)
 \end{equation}
-In the equation \ref{Eq:5.22}, the real and imaginary parts $U_r(t)$ and $U_i(t)$ are related through the Kramers-Kronig relation with each other. An intuitive way to analyze the relation is based on expressing its Fourier transform $\tilde{U}(\omega)$ as follows,
+The photo current $I$ produced by the photo-diode is proportional to the field intensity $I=|A(t)|^2$, here proportionality constant considered as 1 for the sake of simplicity. If $A_0$ is large enough to ensure that the signal $A(t)exp(-i\pi Bt)=A_0+A_s(t)exp(-i\pi Bt)$ is minimum phase. The discussed hypothesis can be used to reconstruct the signal $E_s(t)$ as follows[1]:
 \begin{equation}
-\tilde{U}(\omega)=\dfrac{1}{2}[1+sgn(\omega)]\tilde{U}(\omega)
-\label{Eq:5.23}
+A_s(t)=\{\sqrt{I(t)} exp[i\phi_E(t)]-A_0\} exp(i\pi Bt)
 \end{equation}
-The equation \ref{Eq:5.23} follows the SSB signal condition $\tilde{U}(\omega)=0$ for $\omega<0$. Further, simplification0n of the signal can be summarized as follows:
 \begin{equation}
-\begin{split}
-\tilde{U}(\omega)&=\dfrac{1}{2}[1+sgn(\omega)]\tilde{U}(\omega)\\
-				 &=\dfrac{1}{2}\tilde{U}(\omega)+\dfrac{1}{2}sgn(\omega)\tilde{U}(\omega)
-\end{split}
-\label{Eq:5.23}
+\phi_A(t)=\dfrac{1}{2\pi} p.v. \int_{-\infty}^{\infty} dt' \frac{log[|I(t')|]}{t-t'}
+\label{Eq:5.19}
 \end{equation}
-Taking inverse Fourier transform of the equation \ref{Eq:5.23},
-\begin{equation}
-\begin{split}
-	{u}(t)&=IFT\{\tilde{}(\omega)\}\\
-	      &=\dfrac{1}{2}{u}(t)+\underline{\dfrac{1}{2}[IFT\{sgn(\omega)\} \circledast {u}(t)]}
-\end{split}
-\label{Eq:5.23}
-\end{equation}
-The underlined term in Equation \ref{Eq:5.23} displays that multiplication in frequency domain converted into the convolution in the time domain. Further, IFT of the function $sgn(\omega)$ given as $(-i/\pi t)$. As a consequences, we can further simplify our equation as,
-\begin{equation}
-\begin{split}
-{u}(t)&=\dfrac{1}{2}{U}(t)+\frac{1}{2}\bigg[\frac{i}{\pi t} \circledast {u}(t) \bigg]\\
-\frac{{u}(t)}{2} &=\frac{1}{2}\bigg[\frac{i}{\pi t} \circledast {u}(t) \bigg]\\
-{u}(t) &=i\bigg[\frac{1}{\pi t} \circledast {u}(t) \bigg]\\
-{u}(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(t')}{t-t'} dt' 
-\end{split}
-\label{Eq:5.24}
-\end{equation}
-Using Equation \ref{Eq:5.23} into Equation \ref{Eq:5.24},
-\begin{equation}
-\begin{split}
-u_r(t)+iu_i(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u(t')}{t-t'} dt' 
-\end{split}
-\label{Eq:5.24}
-\end{equation}
-Therefore,
-\begin{equation}
-\begin{split}
-u_r(t)+iu_i(t) &=\frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')+iu_i(t')}{t-t'} dt' \\
-u_r(t)+iu_i(t)&=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_i(t')}{t-t'} dt' + \frac{i}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')}{t-t'} dt'
-\end{split}
-\label{Eq:5.24}
-\end{equation}
-which leads to,
-\begin{equation}
-\begin{split}
-u_r(t) &=-\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_i(t')}{t-t'} dt' \\
-u_i(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{u_r(t')}{t-t'} dt' \\
-\end{split}
-\label{Eq:5.24}
-\end{equation}
-
-
-
-
-
-  
-
-
-
-\subsection{Rx side}
-At the receiver side, signal is coherently detected using a simplified coherent receiver and a local oscillator. The optical signal is then converted into the electrical domain using two balanced photodetector (BPD), or alternatively four photodetector, and amplified by a transimpedance amplifier (TIA). Following that, the signals are sampled by two 8-bit 2.5 GSa/s ADC and the this digitized signal sent to the FPGA (Virtex-7) where all post-detection DSP implemented in real-time.
-
-\begin{thebibliography}{9}
-	\bibitem{latexcompanion}
-	Antonio Mecozzi, Cristian Antonelli, and Mark Shtaif.
-	\textit{Kramers-Kronig Coherent Receiver}.
-	Optica, vol.3, no.11, 2016, p.1220., doi:10.1364/optica.3.001220.
-	
-	\bibitem{latexcompanion}
-	Antonio Mecozzi.
-	\textit{Retrieving the full optical response from amplitude data by Hilbert transform}. Opt. Comm. 282, 4183-4187.
-	
-	\bibitem{latexcompanion}
-	Antonio Mecozzi.
-	\textit{A necessary and sufficient condition for minimum phase and implication of phase retrieval}. arXiv:1606.04861.
-\end{thebibliography}
-
-

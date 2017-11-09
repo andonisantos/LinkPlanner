@@ -1,0 +1,135 @@
+\clearpage
+\section{Quantum Noise}
+
+\begin{tcolorbox}	
+\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}}
+\textbf{Student Name}  &:& Diamantino Silva\\
+\textbf{Starting Date} &:& October 19, 2017\\
+\textbf{Goal}          &:& Simulate a photodiode's behaviour
+\end{tabular}
+\end{tcolorbox}
+
+
+\subsection*{Introduction}\label{sec:intro}
+
+
+This document....
+
+
+\subsubsection{Homodyne detection}
+%
+\subsubsection{Noise sources in homodyne detection}
+\subsubsection{Quantum Noise}
+\subsubsection{Thermal noise}
+\subsection*{Simulation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{./sdf/photodiode_study/figures/scheme_setup.pdf}
+\caption{Overview of the simulated optical system.}
+\label{fig:setup}
+\end{figure}
+%
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c}
+System Blocks     & netxpto Blocks\\
+\hline
+Local Oscillator  & LocalOscillator\\
+Photodiode        & Photodiode\\
+Sampler           & Sampler\\
+Sink			  & ????\\ 
+\end{tabular}
+\end{table}
+
+
+\subsection*{Required files}\label{Required files}
+
+Header Files
+\begin{table}[H]
+\centering
+\begin{tabulary}{1.0\textwidth}{|L|L|}
+\hline
+\textbf{File}           & \textbf{Description}\\
+\hline
+netxpto.h               & Generic purpose simulator definitions.\\
+\hline
+local\_oscillator.h     & Generates continuous coherent signal.\\
+\hline
+photodiode.h            & Converts an optical signal to a current.\\
+\hline
+sink.h                  & Closes any unused signals.\\
+\hline
+\end{tabulary}
+\end{table}
+%
+%
+Source Files
+\begin{table}[H]
+\centering
+\begin{tabulary}{1.0\textwidth}{|L|L|}
+\hline
+\textbf{File}                   & \textbf{Description}\\
+\hline
+netxpto.cpp                     & Generic purpose simulator definitions.\\
+\hline
+local\_oscillator.cpp           & Generates continuous coherent signal.\\
+\hline
+photodiode.h                    & Converts an optical signal to a current.\\
+\hline
+sink.cpp                        & Empties the signal buffer.\\
+\hline
+\end{tabulary}
+\end{table}
+
+
+\subsection*{System Input Parameters}
+
+This system takes into account the following input parameters:
+\begin{table}[H]
+\centering
+\begin{tabulary}{1.0\textwidth}{|C|L|}
+\hline
+\textbf{System Parameters} & \textbf{Description}\\
+\hline
+numberOfBitsGenerated   & Gives the number of bits to be simulated\\
+\hline
+bitPeriod               & Sets the time between adjacent bits\\
+\hline
+samplesPerSymbol        & Establishes the number of samples each bit in the string is given\\
+\hline
+localOscillatorPower    & Sets the optical power, in units of W, of the local oscillator\\
+\hline
+localOscillatorPhase    & Sets the initial phase of the local oscillator\\
+\hline
+bufferLength            & Sets the length of the buffer used in the signals\\
+\hline
+\end{tabulary}
+\end{table}        
+
+\subsection*{Inputs}
+
+This system takes no inputs.
+
+\pagebreak
+\subsection*{Outputs}
+
+The system outputs the following objects:
+\begin{itemize}
+\item Signals:
+\begin{itemize}
+\item Local Oscillator; (S$_{0}$)
+\item Photodiode; (S$_{1}$)
+\end{itemize}
+\end{itemize}    
+
+
+
+
+
+\subsection*{Simulation Results}\label{subsec:SHresults}
+
+
+
+
+%\bibliography{./sdf/quantum_noise/quantum_noise}
