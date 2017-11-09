@@ -1,3 +1,10 @@
+2017-10-18
+TO BE DONE
+	- concluir o doc do BPSK
+
+	- concluir o código do bloco homodyne receiver	
+
+
 2017-10-12
 TO BE DONE
 	concluir o documento

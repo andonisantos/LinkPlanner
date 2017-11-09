@@ -1,0 +1,27 @@
+\clearpage
+ 
+\begin{tcolorbox}	
+\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+\textbf{Student Name}  &:& Celestino Martins\\
+\textbf{Starting Date} &:& September 25, 2017\\
+\textbf{Goal}          &:& Radio Over Fiber.
+\end{tabular}
+\end{tcolorbox}
+
+Radio over fiber (RoF) technology comprises the transmission over fiber technology, where light is modulated by a radio signal and transmitted over an optical fiber link to provide broadband wireless services. The connection is established between a base station (BS) and central processing units (CPUs) as shown in the Figure~\ref{fig_RoFdiagram}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{./sdf/radio_over_fiber/figures/block_diagram.pdf}
+    \caption{RoF transmission system block diagram.}
+    \label{fig_RoFdiagram}
+\end{figure}
+
+In RoF systems, radio frequency (RF) signals are transported in optical form between a CPU and a set of BS before being radiated through the air. Each base station is adapted to communicate over a radio link with at least one user's mobile terminal located within the radio range of said BS.
+Considering an uplink connection in the Figure~\ref{fig_RoFdiagram}, the RF signals received from a mobile terminal are modulated using a laser and a mach-zehnder modulator (MZM) and then transmitted over optical link to CPU. In the CPU the optical signal is detected by a PIN, amplified and followed with an electrical filter. After these operations, digital signal processing techniques can be applied.
+
+
+\subsection{Simulation}
+
+
+\subsection{Experimental}

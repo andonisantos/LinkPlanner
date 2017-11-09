@@ -1,3 +1,19 @@
+2017-10-26
+TO BE DONE
+	- RoF
+		avançar com descrição da simulação
+			diagrama de blocos concluido
+			identificação dos blocos disponiveis e dos blocos que é necessário construir
+
+	- artigo RSS-DBP-TD-SSFM
+		- finalizar o abstract 
+		- finalizar os gráficos + legendas
+		- melhorar a introdução, ser mais objetivo
+
+Next meeting: 31/10 (terça), 9h30m 	
+
+
+
 2017-10-06
 TO BE DONE
   - artigo RSS-DBP-TD-SSFM

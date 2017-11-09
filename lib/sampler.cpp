@@ -55,4 +55,8 @@ bool Sampler::runBlock(void) {
 		}
 		return true;
 	}
+	else {
+		cout << "ERRO: sampler.cpp - invalide number of input signals" << "\n";
+		return false;
+	}
 }

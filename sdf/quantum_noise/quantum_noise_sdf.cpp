@@ -3,31 +3,32 @@
 # include "netxpto.h"
 
 # include "m_qam_transmitter.h"
-# include "i_homodyne_receiver.h"
-# include "sink.h"
-# include "bit_error_rate.h"
 # include "local_oscillator.h"
-# include "balanced_beam_splitter.h"
-# include "photodiode.h"
-# include "ti_amplifier.h"
-# include "sampler.h"
 # include "optical_hybrid.h"
-# include "testblock.h"
+# include "photodiode.h"
+# include "difference.h"
 # include "sampler.h"
-# include "bit_decider.h"
+# include "sink.h"
 
 
-int main(int argc, char* argv[])
+
+//# include "i_homodyne_receiver.h"
+//# include "bit_error_rate.h"
+//# include "balanced_beam_splitter.h"
+//# include "ti_amplifier.h"
+//# include "testblock.h"
+//# include "bit_decider.h"
+
+
+
+int main()
 {	
-	
-	// Leitura de input.
-	double n_in = atof(argv[1]);
 
 	// #########################################################################
 	// ######################## System Input Parameters ########################
 	// #########################################################################
 
-	int numberOfBitsGenerated(500);
+	int numberOfBitsGenerated(100);
 
 	int samplesPerSymbol(16);
 	double bitPeriod = 1.0E-9;
@@ -46,9 +47,7 @@ int main(int argc, char* argv[])
 	double photonNumber1 = 100;
 	double photonNumber2 = 1e4;
 
-	// Override do numero de fotões
-	photonNumber1 = n_in;
-
+	
 	double localOscillatorPower1 = powerUnit * photonNumber1;
 	double localOscillatorPower2 = powerUnit * photonNumber2;
 
@@ -72,13 +71,13 @@ int main(int argc, char* argv[])
 	// Escolha da constelação
 	
 	// Constelação sempre com o mesmo estado
-	vector<t_iqValues> iqAmplitudeValues = { { 1, 1 },{ 1, 1 } };
+	//vector<t_iqValues> iqAmplitudeValues = { { 1, 1 },{ 1, 1 } };
 	
 	// Constelação com 2 estados
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
 	
 	// Constelação com 4 estados
-	//vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
+	vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
 
 	double SNR = 0;
 
@@ -131,14 +130,26 @@ int main(int argc, char* argv[])
 	TimeContinuousAmplitudeContinuousReal S8("S8.sgn");
 	S8.setBufferLength(bufferLength);
 
-	TimeDiscreteAmplitudeContinuousReal S9("S9.sgn");
+	TimeContinuousAmplitudeContinuousReal S9("S9.sgn");
 	S9.setBufferLength(bufferLength);
 
-	TimeDiscreteAmplitudeContinuousReal S10("S10.sgn");
+	TimeContinuousAmplitudeContinuousReal S10("S10.sgn");
 	S10.setBufferLength(bufferLength);
 
-	OpticalSignal S11("S11.sgn");
+	TimeContinuousAmplitudeContinuousReal S11("S11.sgn");
 	S11.setBufferLength(bufferLength);
+
+	TimeContinuousAmplitudeContinuousReal S12("S12.sgn");
+	S12.setBufferLength(bufferLength);
+
+	TimeDiscreteAmplitudeContinuousReal S13("S13.sgn");
+	S13.setBufferLength(bufferLength);
+
+	TimeDiscreteAmplitudeContinuousReal S14("S14.sgn");
+	S14.setBufferLength(bufferLength);
+
+	OpticalSignal S15("S15.sgn");
+	S15.setBufferLength(bufferLength);
 
 
 
@@ -177,30 +188,48 @@ int main(int argc, char* argv[])
 	B2.setSymbolPeriod(bitPeriod);
 	B2.setSignaltoNoiseRatio(SNR);
 
-	OpticalHybrid B3{ vector<Signal*> {&S1, &S2},
-		vector<Signal*> {&S3, &S4, &S5, &S6} };
+	OpticalHybrid B3{ vector<Signal*> {&S1, &S2}, vector<Signal*> {&S3, &S4, &S5, &S6} };
 
-	Photodiode B4{ vector<Signal*> { &S3, &S4 }, vector<Signal*> {&S7} };
-	B4.useNoise(shotNoise);
+	Photodiode B4{ vector<Signal*> {&S3}, vector<Signal*> {&S7} };
+	/*B4.useNoise(shotNoise);
 	B4.useThermalNoise(thermalNoise);
-	B4.setThermalNoiseAmplitude(thermalNoiseAmplitude);
+	B4.setThermalNoiseAmplitude(thermalNoiseAmplitude);*/
 	B4.setResponsivity(responsivity);
 
-	Photodiode B5{ vector<Signal*> { &S5, &S6 }, vector<Signal*> {&S8} };
-	B5.useNoise(shotNoise);
+	//Sink B100{ vector<Signal*> {&S7}, vector<Signal*> {} };
+
+	Photodiode B5{ vector<Signal*> {&S4}, vector<Signal*> {&S8} };
+	/*B5.useNoise(shotNoise);
 	B5.useThermalNoise(thermalNoise);
-	B5.setThermalNoiseAmplitude(thermalNoiseAmplitude);
+	B5.setThermalNoiseAmplitude(thermalNoiseAmplitude);*/
 	B5.setResponsivity(responsivity);
 
-	Sampler B6{ vector<Signal*> { &S7 }, vector<Signal*> { &S9 } };
-	B6.setSamplesToSkip(samplesToSkip);
+	Photodiode B6{ vector<Signal*> {&S5}, vector<Signal*> {&S9} };
+	/*B6.useNoise(shotNoise);
+	B6.useThermalNoise(thermalNoise);
+	B6.setThermalNoiseAmplitude(thermalNoiseAmplitude);*/
+	B6.setResponsivity(responsivity);
 
-	Sampler B7{ vector<Signal*> { &S8 }, vector<Signal*> { &S10 } };
-	B7.setSamplesToSkip(samplesToSkip);
+	Photodiode B7{ vector<Signal*> {&S6}, vector<Signal*> {&S10} };
+	/*B7.useNoise(shotNoise);
+	B7.useThermalNoise(thermalNoise);
+	B7.setThermalNoiseAmplitude(thermalNoiseAmplitude);*/
+	B7.setResponsivity(responsivity);
+
+	Difference B8{ vector<Signal*> {&S7, &S8}, vector<Signal*> {&S11} };
+
+	Difference B9{ vector<Signal*> {&S9, &S10}, vector<Signal*> {&S12} };
+
+
+	Sampler B10{ vector<Signal*> { &S11 }, vector<Signal*> { &S13 } };
+	B10.setSamplesToSkip(samplesToSkip);
+
+	Sampler B11{ vector<Signal*> { &S12 }, vector<Signal*> { &S14 } };
+	B11.setSamplesToSkip(samplesToSkip);
 
 	// Conjugação dos dois sinais vindos dos samplers para criar um sinal complexo
 	// de modo a poder ver-se a constelação.
-	IqModulator B8{ vector<Signal*> { &S9, &S10 }, vector<Signal*> { &S11 } };
+	IqModulator B12{ vector<Signal*> { &S13, &S14 }, vector<Signal*> { &S15 } };
 
 	// END BOB
 
@@ -211,15 +240,15 @@ int main(int argc, char* argv[])
 	//B8.setDisplayNumberOfSamples(true);
 
 
-	Sink B9{ vector<Signal*> {&S11}, vector<Signal*> {} };
-	B9.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B9.setDisplayNumberOfSamples(true);
+	Sink B13{ vector<Signal*> {&S15}, vector<Signal*> {} };
+	B13.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B13.setDisplayNumberOfSamples(true);
 
 
 
-	Sink B10{ vector<Signal*> {&S0}, vector<Signal*> {} };
-	B10.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B10.setDisplayNumberOfSamples(true);
+	Sink B14{ vector<Signal*> {&S0}, vector<Signal*> {} };
+	B14.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B14.setDisplayNumberOfSamples(true);
 
 
 
@@ -228,9 +257,9 @@ int main(int argc, char* argv[])
 	// ################# System Declaration and Inicialization #################
 	// #########################################################################
 
-	System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7,
-		&B8, &B9, &B10} };
-
+	System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14} };
+	//System MainSystem{ vector<Block*> {&B1, &B2, &B3}};  // FUNCIONA ATE AQUI
+	//System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B100} };
 
 
 
