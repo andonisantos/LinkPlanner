@@ -1,0 +1,294 @@
+\documentclass[5pt]{article}
+\usepackage{mathptmx,amsmath}
+\usepackage{pdfslide2,pause}
+\usepackage{eurosym}
+\usepackage[portuguese,english]{babel}
+\usepackage{kerkis}
+\usepackage{colortbl} % used to highlight row or columns of tables. http://www.tug.org/pracjourn/2007-1/mori/mori.pdf
+\usepackage[small]{caption} % more option on http://www.dd.chalmers.se/latex/Docs/PDF/caption.pdf
+\usepackage[tight,scriptsize]{subfigure}
+\usepackage{lastpage}
+\usepackage{chngcntr}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tabto}
+\usepackage{animate}
+%\usepackage{listings}
+\captionsetup{labelformat=empty,skip=-0.8cm}
+
+%\lstset{
+%    language=Matlab,                % choose the language of the code
+%    basicstyle=\ttfamily\tiny,       % the size of the fonts that are used for the code
+%    numbers=none,                   % where to put the line-numbers
+%    numberstyle=\tiny,              % the size of the fonts that are used for the line-numbers
+%    stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
+%    numbersep=5pt,                  % how far the line-numbers are from the code
+%    backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+%    showspaces=false,               % show spaces adding particular underscores
+%    showstringspaces=false,         % underline spaces within strings
+%    showtabs=false,                 % show tabs within strings adding particular underscores
+%    tab=\rightarrowfill,
+%    frame=none,	                    % adds a frame around the code
+%    tabsize=2,	                    % sets default tabsize to 2 spaces
+%    captionpos=b,                   % sets the caption-position to bottom
+%    breaklines=true,                % sets automatic line breaking
+%    breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+%    title=\lstname,                 % show the filename of files included with \lstinputlisting; also try caption instead of title
+%    escapeinside={\%*}{*)},          % if you want to add a comment within your code
+%    morekeywords={ifftshift,fftshift},
+%    keywordstyle=\bfseries\color[rgb]{0,0,0.3},
+%    commentstyle=\color[rgb]{0.133,0.5,0.133}
+%}
+%\lstset{
+%    emph={function,end,for,if,while},
+%    emphstyle=\bfseries\color[rgb]{0.6,0,0},
+%}
+
+\definecolor{itblue}{rgb}{0.0,0.0,0.5}
+\definecolor{itred}{rgb}{0.82,0.18,0.24}
+\newcommand{\pageNum}{
+    \begin{picture}(0,0)(0,0)
+        \put(-15,-390){
+            \begin{minipage}{1.8cm}
+            \end{minipage}
+        }
+    \end{picture}
+}
+\newcommand{\cb}[1]{{\color{itblue} #1}}%
+\newcommand{\cred}[1]{{\color{itred} #1}}%
+\newcommand{\bb}[1]{{\textbf{\color{itblue} #1}}}%
+\newcommand{\br}[1]{{\textbf{\color{itred} #1}}}%
+\renewcommand{\labelitemi}{\textcolor{itred}{\normalsize $\bullet$}}
+\renewcommand{\labelitemii}{\textcolor{itblue}{$\bullet$}}
+\newcommand{\mysection}[1]{\section*{\pageNum\color{itred}\sffamily #1}\vspace*{0.5cm}\overlay{it_1.png}\sffamily}%
+\newcommand{\ITfootnote}[1]{\hspace{1.8cm}\begin{minipage}{13cm}\tiny{#1}\end{minipage}}
+\newcommand{\edfaGain}{$G=\exp\left(\frac{\alpha}{2}L_{span}\right)$}
+\newenvironment{reference}{
+    \begin{textblock*}{0.7\textwidth}(32mm,137mm)\tiny\noindent\bgroup\color{black}
+}
+{
+    \egroup\end{textblock*}
+}
+
+
+\graphicspath{{./figures/}}
+\pagestyle{title}
+
+\hyphenpenalty=50000
+\tolerance=10000
+
+\setlength{\textheight}{1.5\textheight}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%************************************************************************************************
+%                                          SLIDE
+%************************************************************************************************
+\pagenumbering{roman}
+\begin{titlepage}  \overlay{it_0.png}
+
+\color{itblue} \sffamily \noindent \small
+\hspace*{1cm}  Universidade de Aveiro\\ %Instituto\\ Superior T�cnico, Instituto de Telecomunica��es\\
+\hspace*{1cm}  2017-2018\\ %Lisboa, 14th of February, 2013\\
+
+\vspace*{1cm}
+\begin{center}
+    \color{black} \sffamily \noindent \Large
+    \br{Nearest private query based on quantum oblivious key distribution\\}
+\end{center}
+\vspace{6mm}
+\begin{center}
+    \color{black}
+    \textbf{Mariana Ferreira Ramos\\}
+    {(marianaferreiraramos@ua.pt)}
+\end{center}
+
+\vspace{0.0mm}
+\scriptsize
+\begin{center}
+Department of Electronics, Telecommunications and Informatics,\\
+University of Aveiro, Aveiro, Portugal\\
+Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
+\end{center}
+
+\vspace{1.0cm}
+\hspace*{13.2cm}\tiny \copyright 2005, it - instituto de telecomunica\c{c}\~{o}es\hfill
+
+\end{titlepage}
+
+
+\renewcommand{\headsep}{-25pt}
+\pagenumbering{arabic}
+
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Nearest private query based on quantum oblivious key distribution}\large
+\vspace{0cm}
+\begin{itemize}
+  \item Nearest private query (\textbf{NPQ}) involves two parties, a user (Alice) and a data owner (Bob).
+
+  Alice has a secret input, \textit{x}, and Bob has a private data set $B=\{x_1,x_2,...,x_m \}$, where $x_i \epsilon \{ 0,1,..., N-1\}$ and $1 \leq i \leq m,$ and $N=2^{n}$.
+  \item Alice wants to know which element $x_i$ in Bob's private data set (\textbf{B}) is the closest to $x$ without revealing it.
+  \item Bob cannot learn any secret information about the secret $x$ (\textbf{Alice privacy}).
+  \item Alice cannot know any other secret information about the private data set B except the nearest to $x_i$ (\textbf{Bob privacy}).
+  \item They use a QOKD which is the base of the quantum protocol for nearest private query.
+\end{itemize}
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{NPQ protocol}\large
+\vspace{0cm}
+Lets assume,
+\begin{itemize}
+  \item Alice secrete parameter $x=8$.
+  \item Bob private data set $B=\{ 1,2,3,6,7,10,11,14\}$, being $m=8$, $n=4$ and $N=16$.
+\end{itemize}
+\begin{description}
+  \item[Step 1] Bob generates a 16-element data set $D= \{ D(0),...,D(15)\}$ where $D(j)=x_l$, being $x_l$ the closest element to \textbf{j} in Bob data set \textbf{B}.
+\end{description}
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{NPQ protocol}
+
+
+\begin{table}[hbt]
+\centering
+\begin{tabular}{c|c|c}
+j  & D(j)&  \\ \hline
+0  & 1   & 0 0 0 1 \\
+1  & 1   & 0 0 0 1 \\
+2  & 2   & 0 0 1 0 \\
+3  & 3   & 0 0 1 1 \\
+4  & 3   & 0 0 1 1\\
+5  & 6   & 0 1 1 0 \\
+6  & 6   & 0 1 1 0 \\
+7  & 7   & 0 1 1 1 \\
+8  & 7   & 0 1 1 1 \\
+9  & 10  & 1 0 1 0 \\
+10 & 10  & 1 0 1 0 \\
+11 & 11  & 1 0 1 1 \\
+12 & 11  & 1 0 1 1 \\
+13 & 14  & 1 1 1 0 \\
+14 & 14  & 1 1 1 0 \\
+15 & 14  & 1 1 1 0
+\end{tabular}
+\end{table}
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{QOKD procedure}\large
+\vspace{0cm}
+
+Bob and Alice will apply QOKD procedure $n$ times in order to establish $n$ keys.
+
+\begin{itemize}
+  \item Bob keys are denoted as $K_1,K_2,...,K_n$ and he knows all bits of each $K_i$.
+  \item Alice keys are denoted as $K_1^{*}, K_2^{*},...,K_n^{*}$, but she only knows $K_i(x)^{*}$ (xth bit of the key $K_i^{*}$).
+\end{itemize}
+
+Lets describe how the first key is generated. The following keys are generated in the same way.
+
+\begin{description}
+  \item[1] - Bob prepares a long set of encoded photons (18) with $a=3$. $a$ represents the maximum number of bits that Alice should know. Bob sends the photons one by one to Alice.
+  \item[2] - Alice measures the photons in a random basis and announces with measurements she performed successfully.
+
+\end{description}
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{QOKD procedure}\large
+\vspace{0cm}
+
+\begin{description}
+  \item[3] - For each photon that Alice measured successfully Bob announces 1 or 0, depending on the original state of the photon.
+  \item[4] - Based on her measurements and Bob's declaration, Alice can obtain the sent bit with certain probability.
+\end{description}
+
+Alice and Bob share a raw key string with length $N+a-1$ equals to $18$ in this case.
+\begin{itemize}
+  \item Bob fully knows all bits, $$ROK_{B}= 001001110001110101.$$
+  \item Alice only knows a quarter of bits theoretically, $$ROK_{A}=0?????110????????1.$$
+\end{itemize}
+
+
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{QOKD procedure}\large
+\vspace{0cm}
+
+In order to control the number of bits known by Alice in the final oblivious key $FOK_{A}$ Bob calculates the security parameter $k$ which is equal to $2$ in this case, and then the obtain:
+
+$$FOK_B=011010010010011111$$
+$$FOK_A=??????01?????????1.$$
+
+Now, from $a$ bits known, Alice randomly chooses $a-1$ bits to check Bob's honesty by requesting him to announce this bit values. If these bits are the same recorded by Alice she knows he is being honest. Otherwise, she stops the protocol.
+
+Lets assume Bob is honest, this way Bob discarded the checked $a-1$ bits from their FOKs.
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{QOKD procedure}\large
+\vspace{0cm}
+
+At this time, they have:
+
+$$FCOK_{B}=0110100001001111$$
+$$FCOK_{A}=??????0?????????.$$
+
+Then, according to Alice private parameter, $x=8$ and known bit position in $FCOK_{A}$ in at position $y=6$, Alice gets $s=y-x=-2$ and sends it to Bob. Now, they right shift the respective FCOKs 2 bits and obtain the first key $$K_1=1101101000010011$$ $$K_1^*=????????0???????.$$
+
+They repeat this procedure 4 times to found the four keys.
+ 
+ %--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{QOKD procedure}\large
+\vspace{0cm}
+
+\begin{table}[hbt]
+\centering
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
+j  & D(j)&          & $K_1$       & $K_2$   & $K_3$   & $K_4$   & $K_1^{*}$     & $K_2^{*}$     & $K_3^{*}$   & $K_4^{*}$   \\ \hline
+0  & 1   & 0 0 0 1  &   1         & 1       &   1     & 0       &   ?           &   ?           &   ?           &   ?\\
+1  & 1   & 0 0 0 1  &   1         & 0       &   1     & 1       &   ?           &   ?           &   ?           &   ?\\
+2  & 2   & 0 0 1 0  &   0         & 0       &   0     & 1       &   ?           &   ?           &   ?           &   ?\\
+3  & 3   & 0 0 1 1  &   1         & 1       &   0     & 0       &   ?           &   ?           &   ?           &   ?\\
+4  & 3   & 0 0 1 1  &   1         & 1       &   1     & 0       &   ?           &   ?           &   ?           &   ?\\
+5  & 6   & 0 1 1 0  &   0         & 0       &   1     & 0       &   ?           &   ?           &   ?           &   ?\\
+6  & 6   & 0 1 1 0  &   1         & 0       &   0     & 1       &   ?           &   ?           &   ?           &   ?\\
+7  & 7   & 0 1 1 1  &   0         & 0       &   1     & 1       &   ?           &   ?           &   ?           &   ?\\
+8  & 7   & 0 1 1 1  &   0         & 1       &   1     & 0       &   0           &   1           &   1           &   0\\
+9  & 10  & 1 0 1 0  &   0         & 1       &   1     & 1       &   ?           &   ?           &   ?           &   ?\\
+10 & 10  & 1 0 1 0  &   0         & 0       &   0     & 1       &   ?           &   ?           &   ?           &   ?\\
+11 & 11  & 1 0 1 1  &   1         & 0       &   1     & 1       &   ?           &   ?           &   ?           &   ?\\
+12 & 11  & 1 0 1 1  &   0         & 0       &   1     & 1       &   ?           &   ?           &   ?           &   ?\\
+13 & 14  & 1 1 1 0  &   0         & 1       &   0     & 0       &   ?           &   ?           &   ?           &   ?\\
+14 & 14  & 1 1 1 0  &   1         & 0       &   0     & 0       &   ?           &   ?           &   ?           &   ?\\
+15 & 14  & 1 1 1 0  &   1         & 0       &   1     & 0       &   ?           &   ?           &   ?           &   ?
+\end{tabular}
+\end{table}
+
+ %--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{NPQ Protocol}\large
+\vspace{0cm}
+
+At this time Bob is able to encode all numbers with correspondent keys but Alice only will cable of decode position 8.
+
+Alice rightly gets the query result $x_5$ in Bob's data set, i.e $7$, which is the closest result to $x$ in the private data set B. 
+%-------------------------------------------------------------------
+%------------ SLIDE ------------------------------------------------
+\mysection{} \sffamily
+\vspace{-10mm}
+\large\centerline{E-mail: marianaferreiraramos@ua.pt}
+
+
+\end{document}
