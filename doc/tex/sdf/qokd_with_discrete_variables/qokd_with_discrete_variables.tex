@@ -379,7 +379,7 @@ S\_B2                 &  Real continuous Time&                 \\ \hline
 \textbf{Parameter} & \textbf{Default Value} & \textbf{Description}                   \\ \hline
 messageSize                              & 4                                           & Size of the message Alice must send to Bob.\\ \hline
 blockLenght                              & 16                                          & Block length.                                                  \\ \hline
-systemRate                               &                                             &                                                 \\ \hline
+symbolRate                               & 100K                                        &                                                 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -391,16 +391,12 @@ systemRate                               &                                      
 \hline
 \textbf{File name}           & \textbf{Description}  & \textbf{Status}       \\ \hline
 random\_number\_generator.h  &                       &                       \\ \hline
-real\_continuous\_time.h     &                       &                       \\ \hline
-real\_discrete\_time.h       &                       &                       \\ \hline
 single\_photons\_generator.h &                       &                       \\ \hline
 single\_photons\_detector.h  &                       &                       \\ \hline
 encorder.h                   &                       &                       \\ \hline
 decoder.h                    &                       &                       \\ \hline
 message\_toSend.h              &                       &                       \\ \hline
 message\_toReceive.h           &                       &                       \\ \hline
-alice\_tasks.h               &                       &                       \\ \hline
-Bob\_tasks.h                 &                       &                       \\ \hline
 mutual\_information.h        &                       &                       \\ \hline
 cascade\_truth.h               &                       &                       \\ \hline
 cascade\_fake.h                &                       &                       \\ \hline
@@ -416,16 +412,12 @@ Sha256.h                     &                       &                       \\ 
 \hline
 \textbf{File name}           & \textbf{Description}  & \textbf{Status}       \\ \hline
 random\_number\_generator.c  &                       &                       \\ \hline
-real\_continuous\_time.c     &                       &                       \\ \hline
-real\_discrete\_time.c       &                       &                       \\ \hline
 single\_photons\_generator.c &                       &                       \\ \hline
 single\_photons\_detector.c  &                       &                       \\ \hline
 encorder.c                   &                       &                       \\ \hline
 decoder.c                    &                       &                       \\ \hline
 message\_toSend.c              &                       &                       \\ \hline
 message\_toReceive.c           &                       &                       \\ \hline
-alice\_tasks.c               &                       &                       \\ \hline
-Bob\_tasks.c                 &                       &                       \\ \hline
 mutual\_information.c        &                       &                       \\ \hline
 QOKD\_main.c                 &                       &                       \\ \hline
 cascade\_truth.c               &                       &                       \\ \hline
@@ -434,7 +426,7 @@ Sha256.c                     &                       &                       \\ 
 \end{tabular}
 \end{table}
 
-\subsection{Experimental}
+\subsection{Experimental Setup}
 
 In figure \ref{experimental_setup} are presented the experimental setup to be performed in the lab. The main goal is to build an experimental setup in with Alice and Bob communicate through two classical channels and one quantum channel that will have only one direction (Alice to Bob).
 
