@@ -1,3 +1,20 @@
+2017-11-07
+TO BE DONE
+        Apresentação
+		- finalizar
+
+	Simulação
+		- criar o bloco real_to_complex, e inserir na simulação
+		- inserir o Ti Amplifier + Filtro
+		- verificar valores da constelação sem ruído (de forma quantitativa, corrente = potência ótica)
+		- incluir na simulation results, os resultados sem ruído
+
+	Setup experimental
+		- incluir a descrição do setup experimental
+		
+
+next meeting: quinta-feira, 9/11, 9h
+
 2017-10-31
 TO BE DONE
         Apresentação
