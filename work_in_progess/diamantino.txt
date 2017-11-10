@@ -1,3 +1,11 @@
+2017-11-09
+TO BE DONE
+	- tornar consistente a teoria com a simulação e com a parte experimental;
+	- fixar o setup experimental (usar uma referência), adaptar a teoria e a simulação a parte experimental;
+
+	setup experimental
+		montar o setup experimental, e detalhar na apresentação
+
 2017-11-07
 TO BE DONE
         Apresentação
