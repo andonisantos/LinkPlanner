@@ -20,9 +20,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="qokd_with_discrete_variables.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
