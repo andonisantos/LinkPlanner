@@ -1,0 +1,8 @@
+Faraday Rotator mirror:
+	-https://www.thorlabs.de/newgrouppage9.cfm?objectgroup_id=3365
+
+Faraday mirror:
+	-https://www.go4fiber.com/fiber-optic-mirror-reflector-1550nm-singlmode-900um-loose-tube-1-0m-without-connector
+
+Optical circulator:
+	-https://www.thorlabs.de/thorproduct.cfm?partnumber=6015-3-FC
