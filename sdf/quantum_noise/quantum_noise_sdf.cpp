@@ -1,21 +1,23 @@
 // Transmissão de um sinal binário usando apenas 1 base.
 
-# include "netxpto.h"
+#include "netxpto.h"
 
-# include "m_qam_transmitter.h"
-# include "local_oscillator.h"
-# include "optical_hybrid.h"
-# include "photodiode.h"
-# include "difference.h"
-# include "sampler.h"
-# include "sink.h"
+#include "m_qam_transmitter.h"
+#include "local_oscillator.h"
+#include "optical_hybrid.h"
+#include "photodiode.h"
+#include "difference.h"
+#include "sampler.h"
+#include "real_to_complex.h"
+//#include "ti_amplifier.h"
+#include "ideal_amplifier.h"
+#include "sink.h"
 
 
 
 //# include "i_homodyne_receiver.h"
 //# include "bit_error_rate.h"
 //# include "balanced_beam_splitter.h"
-//# include "ti_amplifier.h"
 //# include "testblock.h"
 //# include "bit_decider.h"
 
@@ -44,7 +46,7 @@ int main()
 	// Correcção da potência. Quem é que está correcto?
 	//double powerUnit = PLANCK_CONSTANT*SPEED_OF_LIGHT / (bitPeriod*wavelength);
 
-	double photonNumber1 = 100;
+	double photonNumber1 = 10;
 	double photonNumber2 = 1e4;
 
 	
@@ -55,7 +57,7 @@ int main()
 	//double localOscillatorPower2 = powerUnit * n2_in;
 
 	double localOscillatorPhase = 0;
-	array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2) } };
+	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2) } };
 	double responsivity = 1;
 
 	//double amplification = 1e6;
@@ -83,6 +85,9 @@ int main()
 
 	// Number of samples to avoid the delay created in the MQAM
 	int samplesToSkip = samplesPerSymbol * 8;
+
+	// Amplification after detection
+	double amplifierGain = 1.0e6;
 
 
 
@@ -142,14 +147,20 @@ int main()
 	TimeContinuousAmplitudeContinuousReal S12("S12.sgn");
 	S12.setBufferLength(bufferLength);
 
-	TimeDiscreteAmplitudeContinuousReal S13("S13.sgn");
+	TimeContinuousAmplitudeContinuousReal S13("S13.sgn");
 	S13.setBufferLength(bufferLength);
 
-	TimeDiscreteAmplitudeContinuousReal S14("S14.sgn");
+	TimeContinuousAmplitudeContinuousReal S14("S14.sgn");
 	S14.setBufferLength(bufferLength);
 
-	OpticalSignal S15("S15.sgn");
+	TimeDiscreteAmplitudeContinuousReal S15("S15.sgn");
 	S15.setBufferLength(bufferLength);
+
+	TimeDiscreteAmplitudeContinuousReal S16("S16.sgn");
+	S16.setBufferLength(bufferLength);
+
+	OpticalSignal S17("S17.sgn");
+	S17.setBufferLength(bufferLength);
 
 
 
@@ -221,34 +232,38 @@ int main()
 	Difference B9{ vector<Signal*> {&S9, &S10}, vector<Signal*> {&S12} };
 
 
-	Sampler B10{ vector<Signal*> { &S11 }, vector<Signal*> { &S13 } };
-	B10.setSamplesToSkip(samplesToSkip);
 
-	Sampler B11{ vector<Signal*> { &S12 }, vector<Signal*> { &S14 } };
-	B11.setSamplesToSkip(samplesToSkip);
+	IdealAmplifier B10{ vector<Signal*> {&S11}, vector<Signal*> {&S13} };
+	B10.setGain(amplifierGain);
+
+	IdealAmplifier B11{ vector<Signal*> {&S12}, vector<Signal*> {&S14} };
+	B11.setGain(amplifierGain);
+
+
+
+	Sampler B12{ vector<Signal*> { &S13 }, vector<Signal*> { &S15 } };
+	B12.setSamplesToSkip(samplesToSkip);
+
+	Sampler B13{ vector<Signal*> { &S14 }, vector<Signal*> { &S16 } };
+	B13.setSamplesToSkip(samplesToSkip);
 
 	// Conjugação dos dois sinais vindos dos samplers para criar um sinal complexo
 	// de modo a poder ver-se a constelação.
-	IqModulator B12{ vector<Signal*> { &S13, &S14 }, vector<Signal*> { &S15 } };
+	// Estou a usar a função RealToComplex2, para evitar um conflito com uma função
+	// RealToComplex existente no netxpto.
+	RealToComplex2 B14{ vector<Signal*> { &S15, &S16 }, vector<Signal*> { &S17 } };
 
 	// END BOB
 
 
 
-	//Sink B8{ vector<Signal*> {&S9}, vector<Signal*> {} };
-	//B8.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	//B8.setDisplayNumberOfSamples(true);
+	Sink B15{ vector<Signal*> {&S17}, vector<Signal*> {} };
+	B15.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B15.setDisplayNumberOfSamples(true);
 
-
-	Sink B13{ vector<Signal*> {&S15}, vector<Signal*> {} };
-	B13.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B13.setDisplayNumberOfSamples(true);
-
-
-
-	Sink B14{ vector<Signal*> {&S0}, vector<Signal*> {} };
-	B14.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
-	B14.setDisplayNumberOfSamples(true);
+	Sink B16{ vector<Signal*> {&S0}, vector<Signal*> {} };
+	B16.setNumberOfSamples(samplesPerSymbol*numberOfBitsGenerated);
+	B16.setDisplayNumberOfSamples(true);
 
 
 
@@ -257,9 +272,9 @@ int main()
 	// ################# System Declaration and Inicialization #################
 	// #########################################################################
 
-	System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B9, &B10, &B11, &B12, &B13, &B14} };
-	//System MainSystem{ vector<Block*> {&B1, &B2, &B3}};  // FUNCIONA ATE AQUI
-	//System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B100} };
+	System MainSystem{ vector<Block*> {&B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8,
+		&B9, &B10, &B11, &B12, &B13, &B14, &B15, &B16} };
+
 
 
 
