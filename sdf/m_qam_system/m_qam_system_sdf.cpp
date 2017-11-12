@@ -11,7 +11,7 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsGenerated(1000);
+	t_integer numberOfBitsGenerated(100);
 	t_integer samplesPerSymbol(32);
 	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
