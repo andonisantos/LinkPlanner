@@ -24,42 +24,61 @@ using namespace std;
 void Signal::close() {
 
 	if (saveSignal && (inPosition >= firstValueToBeSaved)) {
-		char *ptr = (char *)buffer;
-
-
-		ofstream fileHandler;
-		fileHandler.open("./signals/" + fileName, ios::out | ios::binary | ios::app);
 		
-		if (type == "Binary") {
-			ptr = ptr + (firstValueToBeSaved - 1)*sizeof(t_binary);
-			fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1))*sizeof(t_binary));
+		if (!(type == "Message")) {
+			char *ptr = (char *)buffer;
+
+			ofstream fileHandler;
+			fileHandler.open("./signals/" + fileName, ios::out | ios::binary | ios::app);
+
+			if (type == "Binary") {
+				ptr = ptr + (firstValueToBeSaved - 1) * sizeof(t_binary);
+				fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1)) * sizeof(t_binary));
+			}
+			else if (type == "TimeContinuousAmplitudeContinuousComplex" || type == "BandpassSignal") {
+				ptr = ptr + (firstValueToBeSaved - 1) * sizeof(t_complex);
+				fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1)) * sizeof(t_complex));
+			}
+			else {
+				ptr = ptr + (firstValueToBeSaved - 1) * sizeof(t_real);
+				fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1)) * sizeof(t_real));
+			}
+			inPosition = 0;
+			fileHandler.close();
 		}
-		else if (type == "TimeContinuousAmplitudeContinuousComplex" || type == "BandpassSignal") {
-			ptr = ptr + (firstValueToBeSaved - 1)*sizeof(t_complex);
-			fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1))*sizeof(t_complex));
+		else if (type == "Message") {
+			int fValueToBeSaved = getFirstValueToBeSaved();
+			int bLength = getBufferLength();
+			
+			if (fValueToBeSaved < (inPosition+1)) {
+				t_message *ptr = (t_message *)buffer;
+				ptr = ptr + (fValueToBeSaved - 1);
+
+				ofstream fileHandler("./" + folderName + "/" + fileName, ios::out | ios::app);
+
+				for (int msg = fValueToBeSaved; msg < (inPosition+1); msg++) {
+					for (unsigned int fld = 0; fld < (*ptr).size(); fld++) {
+						fileHandler << ptr->at(fld).fieldName + "\t" + ptr->at(fld).fieldValue + "\t";
+					}
+					fileHandler << "\n";
+					ptr++;
+				}
+				fileHandler.close();
+				setFirstValueToBeSaved(1);
+			}
 		}
-		else {
-			ptr = ptr + (firstValueToBeSaved - 1)*sizeof(t_real);
-			fileHandler.write((char *)ptr, (inPosition - (firstValueToBeSaved - 1))*sizeof(t_real));
-		}
-		inPosition = 0;
-		fileHandler.close();
 	}
 };
 
 int Signal::space() {
 
 	if (bufferFull) return 0;
-
 	if (inPosition == outPosition) return bufferLength;
-
 	if (inPosition < outPosition) return (outPosition - inPosition);
-
 	if (outPosition >= 0) return (bufferLength - inPosition + outPosition);
-
 	if (outPosition == -1) return (bufferLength - inPosition);
-
 	return -1;
+
 };
 
 int Signal::ready() {
@@ -92,13 +111,12 @@ void Signal::writeHeader(){
 		headerFile << "Signal type: " << type << "\n";
 		headerFile << "Symbol Period (s): " << symbolPeriod << "\n";
 		headerFile << "Sampling Period (s): " << samplingPeriod << "\n";
+		headerFile << "Samples per Symbol (s): " << samplesPerSymbol << "\n";
 
 		headerFile << "// ### HEADER TERMINATOR ###\n";
 
 		headerFile.close();
 	}
-
-
 };
 
 void Signal::writeHeader(string signalPath){
@@ -112,13 +130,12 @@ void Signal::writeHeader(string signalPath){
 		headerFile << "Signal type: " << type << "\n";
 		headerFile << "Symbol Period (s): " << symbolPeriod << "\n";
 		headerFile << "Sampling Period (s): " << samplingPeriod << "\n";
+		headerFile << "Samples per Symbol (s): " << samplesPerSymbol << "\n";
 
 		headerFile << "// ### HEADER TERMINATOR ###\n";
 
 		headerFile.close();
 	}
-
-
 };
 
 void Signal::bufferGet() {
@@ -190,6 +207,46 @@ void Signal::bufferGet(t_photon_mp *valueAddr) {
 	if (outPosition == bufferLength) outPosition = 0;
 	if (outPosition == inPosition) bufferEmpty = true;
 	return;
+};
+
+void Signal::bufferGet(t_message *valueAddr) {
+	*valueAddr = static_cast<t_message *>(buffer)[outPosition];
+	if (bufferFull) bufferFull = false;
+	outPosition++;
+	if (outPosition == bufferLength) outPosition = 0;
+	if (outPosition == inPosition) bufferEmpty = true;
+	return;
+};
+
+void Messages::bufferPut(t_message value) {
+	(static_cast<t_message*>(buffer))[inPosition] = value;
+	if (bufferEmpty) bufferEmpty = false;
+	inPosition++;
+	if (inPosition == bufferLength) {
+		inPosition = 0;
+		if (getSaveSignal()) {
+			int fValueToBeSaved = getFirstValueToBeSaved();
+			int bLength = getBufferLength();
+			if (fValueToBeSaved <= bufferLength) {
+				t_message *ptr = (t_message *)buffer;
+				ptr = ptr + (fValueToBeSaved - 1);
+				ofstream fileHandler("./" + folderName + "/" + fileName, ios::out | ios::app);
+				for (int msg = fValueToBeSaved; msg <= bLength; msg++) {
+						for (unsigned int fld = 0; fld < value.size(); fld++) {
+							fileHandler << ptr->at(fld).fieldName + "\t" + ptr->at(fld).fieldValue + "\t";
+						}
+						fileHandler << "\n";
+						ptr++;
+				}
+				fileHandler.close();
+				setFirstValueToBeSaved(1);
+			}
+			else {
+				setFirstValueToBeSaved(fValueToBeSaved - bLength);
+			}
+		}
+	}
+	if (inPosition == outPosition) bufferFull = true;
 };
 
 //########################################################################################################################################################
