@@ -2,6 +2,7 @@
 #include <complex>
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include "netxpto.h"
 #include "sampler.h"
@@ -59,26 +60,15 @@ bool Sampler::runBlock(void) {
 	else {
 
 		int ready = inputSignals[0]->ready();
-		if (samplesToSkip > 0) {
-			int process = min(ready, samplesToSkip);
-			for (int k = 0; k < process; k++) {
-				t_real in;
-				inputSignals[0]->bufferGet(&in);
-			}
-			samplesToSkip = samplesToSkip - process;
-			if (samplesToSkip > 0) return true;
-			if (samplesToSkip == 0) return false;
-		}
-		ready = inputSignals[0]->ready();
 		int space = outputSignals[0]->space();
 		int process = min(ready, space);
 
 		if (process <= 0) return false;
 
-		for (int k = 0; k < process; k++) {
+		t_real inClock;
+		t_real inSignal;
 
-			t_real inClock;
-			t_real inSignal;
+		for (int k = 0; k < process; k++) {
 
 			inputSignals[1]->bufferGet(&inClock);
 			inputSignals[0]->bufferGet(&inSignal);
