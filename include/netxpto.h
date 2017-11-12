@@ -30,8 +30,10 @@ typedef struct { t_complex x; t_complex y; } t_complex_xy;
 typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
 typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
 typedef complex<t_real> t_iqValues;
+typedef struct { string fieldName; string fieldValue; } t_message_field;
+typedef vector<t_message_field> t_message;
 
-enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP};
+enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP, Message};
 
 
 //########################################################################################################################################################
@@ -85,7 +87,7 @@ public:
 
 	// Signal constructor
 
-	~Signal(){ delete buffer; };					// Signal destructor
+	~Signal() { if (!(valueType == Message)) { delete buffer; }; };					// Signal destructor
 
 	void close();									// Empty the signal buffer and close the signal file
 	int space();									// Returns the signal buffer space
@@ -94,7 +96,7 @@ public:
 	void writeHeader(string signalPath);			// Opens the signal file in the signalPath directory, and writes the signal header
 
 
-		template<typename T>							// Puts a value in the buffer
+	template<typename T>							// Puts a value in the buffer
 	void bufferPut(T value) {
 		(static_cast<T *>(buffer))[inPosition] = value;
 		if (bufferEmpty) bufferEmpty = false;
@@ -127,6 +129,7 @@ public:
 	void virtual bufferGet(t_complex_xy *valueAddr);
 	void virtual bufferGet(t_photon *valueAddr);
 	void virtual bufferGet(t_photon_mp *valueAddr);
+	void virtual bufferGet(t_message *valueAdr);
 	
 	void setSaveSignal(bool sSignal){ saveSignal = sSignal; };
 	bool const getSaveSignal(){ return saveSignal; };
@@ -346,9 +349,7 @@ public:
 	OpticalSignal() { setType("BandpassSignal", ComplexValue); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
 
 	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_complex[bLength]; };
-
 };
-
 
 class OpticalSignalXY : public Signal {
 public:
@@ -372,6 +373,18 @@ private:
 	vector<double> centralWavelengths;
 	vector<double> centralFrequencies;
 };*/
+
+class Messages : public Signal {
+public:
+	Messages(string fName) { setType("Message", Message); setFileName(fName); if (buffer == nullptr) buffer = new t_message[bufferLength]; }
+	Messages(string fName, int bLength) { setType("Message", Message); setFileName(fName); setBufferLength(bLength); }
+	Messages(int bLength) { setType("Message", Message); setBufferLength(bLength); }
+	Messages() { setType("Message", Message); if (buffer == nullptr) buffer = new t_message[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_message[bLength]; };
+	
+	void bufferPut(t_message);
+};
 
 //########################################################################################################################################################
 //########################################################## GENERIC BLOCK DECLARATIONS AND DEFINITIONS ##################################################
