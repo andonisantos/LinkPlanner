@@ -1,3 +1,12 @@
+2017-11-10
+TO BE DONE
+	Experimental
+		perceber bem a geração dos 4 estados
+		verificar se com os estados 45, -45, cd, ce funciona
+		comprar o FM + OC	
+
+
+
 2017-11-07
 TO BE DONE
 	Experimental
