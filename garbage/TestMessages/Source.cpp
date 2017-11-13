@@ -3,7 +3,7 @@
 
 void main() {
 	Messages S1("M1.sgn");
-	S1.setFirstValueToBeSaved(1000);
+	//S1.setFirstValueToBeSaved(1);
 
 	S1.writeHeader();
 
@@ -11,10 +11,6 @@ void main() {
 	t_message m2(4);
 
 	for (int aux = 1; aux <= 1000; aux++) {
-
-/*		ostringstream convert;
-		convert << aux;
-		string result = convert.str();*/
 
 		string result = to_string(aux);
 
