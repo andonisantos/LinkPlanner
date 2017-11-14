@@ -1,6 +1,6 @@
 \documentclass[5pt]{article}
 \usepackage{mathptmx,amsmath}
-%\usepackage{pdfslide2,pause}
+\usepackage{pdfslide2,pause}
 \usepackage{eurosym}
 \usepackage[portuguese,english]{babel}
 \usepackage{kerkis}
@@ -12,7 +12,7 @@
 \usepackage[absolute,overlay]{textpos}
 \usepackage{tabto}
 \usepackage{animate}
-%\usepackage{listings}
+\usepackage{listings}
 \captionsetup{labelformat=empty,skip=-0.8cm}
 
 %\lstset{
@@ -123,81 +123,61 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 \pagenumbering{arabic}
 
 
-
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
 \mysection{Quantum Oblivious Key Distribution System (QOKD)}\large
-\vspace{0cm}
+
 
     The QOKD system enables two parties (Alice and Bob) to share a set of keys. These keys have the particularity of being half right and half wrong. Only Bob knows which are right and wrong bits. Alice only knows that at some tabs there are the same number of right and wrong measurements.
 
     \begin{figure}[hbt]
     	\centering
-    	\includegraphics[width=0.6\textwidth, height=7cm]{./figures/alicebobkeys.png}
+    	\includegraphics[width=0.5\textwidth, height=5cm]{./figures/alicebobkeys.png}
         	\label{alicebobkeys}
     \end{figure}
+    This can be used for guarantee security in communication protocols between two parties.
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE -------------------------------------------------------------------------------
 
-\mysection{ \\[-5mm]1-out-of-2 OT Protocol: starting conditions}\large
-\vspace*{0mm}
+\mysection{ Oblivious Transfer}\large
+
 \begin{itemize}
-    \item {Alice has two messages $m_1$ and $m_2$ and Bob wants to know one of them, $m_b$, without Alice knowing which one, i.e. without Alice knowing $b$, and Alice wants to keep the other message private, i.e. without Bob knowing $m_{\bar{b}}$.}\\[-5mm]
-    \item {In order to implement OT between two parties (Alice and Bob) they must be able to exchange continuously oblivious keys, i.e a QOKD system must exist between them.}
-    \item {Two basis are required: $'+'$ rectilinear basis and $'\times'$ diagonal basis. Lets assume,}
+    \item {Alice has two messages $m_0$ and $m_1$ and Bob wants to know one of them, $m_b$, without Alice knowing which one, i.e. without Alice knowing $b$, and Alice wants to keep the other message private, i.e. without Bob knowing $m_{\bar{b}}$.} Lets assume  $m_{0} = \{0 0 1 1\}$ and $m_{1} = \{0 0 0 1\}$.
+    \item Bob defines two sub-sets with size $s=4$:
+  $$I_{w}=\{3,4,7,9 \},$$
+  and $$I_{r}= \{1,2,6,8 \},$$ where $I_{w}$ is the sequence of positions in which Bob was wrong about basis measurement and $I_{r}$ is the sequence of positions in which Bob was right about basis measurement.
 
-    \begin{center}
-    \begin{tabular}{c|c}
-            & Basis "+" \\ \hline
-         0 & $\to (0^{\circ})$ \\
-         1 & $\uparrow (90^{\circ})$ \\
-    \end{tabular}
-    \quad
-    \begin{tabular}{c|c}
-          & Basis "$\times$" \\ \hline
-         0 & $\searrow (-45^{\circ})$ \\
-         1 & $\nearrow (45^{\circ})$ \\
-    \end{tabular}
-
-\end{center}
 \end{itemize}
 
 
-%--------------------------------------------------------------------------------------------------
-%------------ SLIDE--------------------------------------------------------------------------------
-\mysection{1-out-of-2 OT Protocol with QOKD system}\large
-\vspace{0cm}
-Lets assume Alice sends the following two messages with size $s=4$, $m_{0} = \{0 0 1 1\}$ and $m_{1} = \{0 0 0 1\}$. At $t=8$ Alice does not need to eliminate any bits.
-\begin{description}
-  \item[Step 1] Bob defines two sub-sets with size $s=4$:
-  $$I_{0}=\{3,4,7,9 \},$$
-  and $$I_{1}= \{1,2,6,8 \},$$ where $I_{0}$ is the sequence of positions in which Bob was wrong about basis measurement and $I_{1}$ is the sequence of positions in which Bob was right about basis measurement.
 
 
-\end{description}
+
+
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE--------------------------------------------------------------------------------
-\mysection{1-out-of-2 OT Protocol with QOKD system}\large
-\vspace{0.4cm}
-\begin{description}
-  \item[Step 2] Bob sends to Alice the set $S_{b}$. Lets assume he wants to know $m_{0}$, therefore he sends $S_{0}=\{I_{1},I_{0} \}$. Alice is sure about Bob's honesty, since she knows he only has $4$ right basis to measure the photons. In addition, Alice cannot know which message Bob chose because she did not know the order that he sent the sets.
-  \item[Step 3] Alice defines two encryption keys $K_{0}$ and $K_{1}$ using the values in positions defined by Bob in the set sent by him. Lets assume, $$K_{0}=\{1,1,1,0\}$$ $$K_{1}=\{0,0,0,1\}.$$ Alice does the following operations:
+\mysection{Oblivious Transfer}\large
+
+\begin{itemize}
+  \item Alice defines two encryption keys $K_{0}$ and $K_{1}$ using the values in positions defined by Bob in the set sent by him. Lets assume, $$K_{0}=\{1,1,1,0\}$$ $$K_{1}=\{0,0,0,1\}.$$ Alice does the following operations:
    $$m = \{m_{0}\oplus K_{0}, m_{1} \oplus K_{1} \}.$$
 
-\end{description}
+   \item Alice sends to Bob through a classical channel $$m=\{1,1,0,1,0,0,0,0\}.$$
+
+
+\end{itemize}
 
 
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE--------------------------------------------------------------------------------
-\mysection{1-out-of-2 OT Protocol with QOKD system}\large
-\vspace{0.4cm}
-\begin{description}
-  \item[Step 3 -cont ] Alice sends to Bob through a classical channel $$m=\{1,1,0,1,0,0,0,0\}.$$
+\mysection{Oblivious Transfer}\large
 
-  \item[Step 4] Bob uses $S_{B1\prime}$ values of positions given by $I_{1}$ and $I_{0}$ and does the decrypted operation.
+\begin{itemize}
+
+  \item Bob uses $S_{B1\prime}$ values of positions given by $I_{r}$ and $I_{w}$ and does the decrypted operation.
 
    \begin{table}[hbt]
         \centering
@@ -207,17 +187,56 @@ Lets assume Alice sends the following two messages with size $s=4$, $m_{0} = \{0
          $\oplus$ & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
         \end{tabular}
         \end{table}
-    The first four bits corresponds to message 1 and he received $\{0,0,1,1\}$, which is the right message $m_{0}$ and $\{0,1,1,0\}$ which is a wrong message for $m_{1}$.
-\end{description}
+    The first four bits corresponds to message 0 and he received $\{0,0,1,1\}$, which is the right message $m_{0}$ and $\{0,1,1,0\}$ which is a wrong message for $m_{1}$.
+\end{itemize}
 
 %--------------------------------------------------------------------------------------------------
-%------------ SLIDE-------
-\mysection{Quantum Oblivious Key Distribution System (QOKD)}\large
-\vspace{0cm}
+%------------ SLIDE--------------------------------------------------------------------------------
+\mysection{Nearest Private Query}\large
+
+
+\begin{itemize}
+  \item Assuming two parties, a user (Bob) and a data owner (Alice).
+  \item Bob has an input secrete parameter $x$. Lets assume $x=8$.
+  \item Alice has a private data set, $A=\{ 1,2,3,6,7,10,11,14\}$.
+  \item Bob wants to know which element ($x_{i}$) is the closest to $x$ in Alice data set $A$, without revealing his secrete $x$.
+  \item Alice cannot know anything about the secrete information $x$, and Bob cannot know secrete information about the private data set $A$ except the near parameter, $x_{i}$.
+  \item Alice generates a new set with $N=2^{n}$ elements, $D(j)$ for $j=0,1,...N-1$ in which $D(j)=x_{l}$ being $x(l)$ the closest element to $j$ in $A$. $n$ is the number of bits that Alice needs to represent each element of her data set.
+\end{itemize}
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE--------------------------------------------------------------------------------
+\mysection{Nearest Private Query}\large
 
 \begin{itemize}
 
-  \item Alice randomly generates the following sets $S_{A1'}$ (for basis) and $S_{A2'}$ (for keys) in order to encode photons.
+  \begin{table}[hbt]
+        \centering
+        \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+        \textbf{$j$}    & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  & 10 & 11 & 12 & 13 & 14 & 15 \\ \hline
+        \textbf{$D(j)$} & 1 & 1 & 2 & 3 & 3 & 6 & 6 & 7 & 7 & 10 & 10 & 11 & 11 & 14 & 14 & 14 \\ \hline
+                        & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1  & 1  & 1  & 1  & 1  & 1  & 1  \\
+                        & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0  & 0  & 0  & 0  & 1  & 1  & 1  \\
+                        & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1  & 1  & 1  & 1  & 1  & 1  & 1  \\
+                        & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0  & 0  & 1  & 1  & 0  & 0  & 0
+        \end{tabular}
+  \end{table}
+
+  \item Bob and Alice have a set of keys $K_{i}^*$ and $K_{i}$, respectively, with $64$ elements where $60$ are bits resulted from wrong basis measurement and $4$ resulted from correct basis measurement. This allows Alice to know that Bob is being honest.
+  \item Bob sends to Alice the set $S$ with wrong bits position except in position $i=8$.
+  \item Alice gets the closest number to $x=8$ which is $7$ and she remains know nothing about the other elements.
+
+\end{itemize}
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{QOKD with discrete variables}\large
+
+
+\begin{itemize}
+
+  \item Alice randomly generates the sets $S_{A1'}$ (for basis) and $S_{A2'}$ (for keys) in order to encode photons.
   \item  Alice sends to Bob throughout a quantum channel $l$ photons encoded using the previous values,
 
    $$S_{AB} = \{\uparrow ,\uparrow ,\nearrow ,\searrow,\searrow, \to , \to, \searrow,\nearrow,\uparrow , \to ,\searrow,\nearrow,\searrow ,\uparrow ,\nearrow \}$$
@@ -228,8 +247,8 @@ Lets assume Alice sends the following two messages with size $s=4$, $m_{0} = \{0
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Quantum Oblivious Key Distribution System (QOKD)}\large
-\vspace{0cm}
+\mysection{QOKD with discrete variables}\large
+
 \begin{itemize}
 
   \item After measure the photons using the basis generated in $S_{B1'}$ , he got $S_{B2'}$:
@@ -249,8 +268,8 @@ Lets assume Alice sends the following two messages with size $s=4$, $m_{0} = \{0
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Quantum Oblivious Key Distribution System (QOKD)}\large
-\vspace{0cm}
+\mysection{QOKD with discrete variables}\large
+
 \begin{itemize}
 \item Bob sends to Alice, $$S_{BH1}=\{{S}_{1},-1,{S}_{2},{S}_{3}, -1,{S}_{4},{S}_{5},-1,{S}_{6},-1,{S}_{7},{S}_{8},{S}_{9},{S}_{10},{S}_{11},{S}_{12} \},$$ where "$-1$" correspond to no clicks at the detector and the other values are Hash values calculated using SHA256.
   \item After Alice has received $S_{BH1}$, she sends throughout a classical channel the basis which she has used to codify the photons updated with the information about the no received photons.
@@ -264,8 +283,8 @@ Lets assume Alice sends the following two messages with size $s=4$, $m_{0} = \{0
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Quantum Oblivious Key Distribution System (QOKD)}\large
-\vspace{0cm}
+\mysection{QOKD with discrete variables}\large
+
 
 \begin{itemize}
 
@@ -279,8 +298,8 @@ Lets assume Alice sends the following two messages with size $s=4$, $m_{0} = \{0
 \end{itemize}
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Quantum Oblivious Key Distribution System (QOKD)}\large
-\vspace{0cm}
+\mysection{QOKD with discrete variables}\large
+
 \begin{itemize}
 
   \item  By the end, Bob has four sets in order to have the capability of decode messages sent by Alice:
@@ -291,6 +310,27 @@ Lets assume Alice sends the following two messages with size $s=4$, $m_{0} = \{0
         S_{B_{wb}} & = \{0,1,1,0 \}
       \end{align*}
 \end{itemize}
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Simulation Setup}\large
+
+\begin{figure}[hbt]
+    	\centering
+    	\includegraphics[width=1\textwidth, height=10cm]{./figures/Simulation_diagram_top.png}
+        	\label{alicebobkeys}
+    \end{figure}
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Experimental Setup}\large
+
+\begin{figure}[hbt]
+    	\centering
+    	\includegraphics[width=0.9\textwidth, height=9cm]{./figures/experimental_setup.png}
+        	\label{alicebobkeys}
+    \end{figure}
 
 %-------------------------------------------------------------------
 %------------ SLIDE ------------------------------------------------

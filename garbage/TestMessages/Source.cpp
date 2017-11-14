@@ -3,7 +3,11 @@
 
 void main() {
 	Messages S1("M1.sgn");
+<<<<<<< HEAD
 	S1.setFirstValueToBeSaved(1000);
+=======
+	//S1.setFirstValueToBeSaved(1);
+>>>>>>> Develop.Mariana
 
 	S1.writeHeader();
 
@@ -12,10 +16,13 @@ void main() {
 
 	for (int aux = 1; aux <= 1000; aux++) {
 
+<<<<<<< HEAD
 /*		ostringstream convert;
 		convert << aux;
 		string result = convert.str();*/
 
+=======
+>>>>>>> Develop.Mariana
 		string result = to_string(aux);
 
 		m1[0].fieldName = "Campo1";

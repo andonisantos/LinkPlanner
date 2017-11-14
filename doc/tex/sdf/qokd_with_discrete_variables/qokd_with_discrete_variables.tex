@@ -435,10 +435,27 @@ In figure \ref{experimental_setup} are presented the experimental setup to be pe
 	\caption{QOKD Experimental setup}\label{experimental_setup}
 \end{figure}
 
+The laser \textbf{LD} emits light with a wavelength of $1550$ nm and then the light passes throughout a Mach-Zenhder Modulator (\textbf{MZM}) in order to have pulsed light. The light is polarized with a polarizer controller and gets a linear polarization of $45^{\circ}$. When the light reaches the polarization beam splitter, \textbf{PBS1}, single photon pulses in $45^{\circ}$ linearly polarization state $$|in\rangle=|45\rangle=\frac{\sqrt{2}}{2}(|H\rangle+|V\rangle)$$ and each pulse is divided in PBS1 into two orthogonal components $P_x$ and $P_y$. $P_x$ is directly transmitted in \textbf{FM2} direction and it is reflected by it with its stated rotated, which means it has a new direction $|V\rangle$. This way, when it reaches again \textbf{PBS1} is reflected to \textbf{FM3} direction and it happens the same being the $P_x$ component transmitted through the \textbf{PBS1} in \textbf{FM1} direction passing through the phase modulator and suffers a certain phase shift. Relatively to vertical component which reaches the \textbf{PBS1} and was reflected to \textbf{FM1} direction and passes through the phase modulator,\textbf{PM}, that applies a phase shift to it, than it follows to the \textbf{FM1} and is reflected rotated by $90^{\circ}$, meaning that it follows to \textbf{FM3} and it is reflected at its original state. At the end, the two components recombine in \textbf{PSB1} and the single photon pulse follows its path with a polarization state defined by the phase shift applied in \textbf{PM}.
 
-We will use a experimental setup which has already been used in BB84 protocol implementation \cite{Wang16}. In figure \ref{experimental_setup} there are at Alice's side a Laser Semiconductor (\textbf{LD}), a Mach-Zenhder Modulator (\textbf{MZM}), three Faraday Mirrors (\textbf{FM1, FM2, FM3}), a four-port polarization beam splitter (\textbf{PBS1}), a polarization-insensitive phase modulator (\textbf{PM1}), a optical circulator (\textbf{OC1}) to allows the input and output optical pulses to be separated and finally a variable optical attenuator (\textbf{VOA}) in order to achieve the single-photon regime.
-At Bob's side there is first a polarizer controller (\textbf{PC}) to correct the birefringence effects introduced by the quantum channel, a optical circulator (\textbf{OC2}) to separate the input and output optical pulses, the photons received are decoded by using the same system which were used to encode them, and then the photon are recorded by two single photon detectors \textbf{D1, D2}) after a half-wave plate and a three-port polarization beam splitter (\textbf{PBS3}).
-Furthermore, the two processors (Alice and Bob) must be able to communicate in a bi-directional classical channel to exchange all information that they need.
+In table \ref{tb:shiftphases} is present the phases shifts that must be applied at Phase Modulator in order to get the polarized photons chose by Alice.
+
+
+\begin{table}[hbt]
+\centering
+\caption{Different Alice's output polarization states based on shift phases applied in Phase Modulator.}
+\label{tb:shiftphases}
+\begin{tabular}{c|c}
+\hline 
+\textbf{Alice:($\phi_{1}$,$\phi_{2}$)}        & \textbf{Output Polarization} \\ \hline 
+($\frac{\pi}{2}$,$0$)               &   Vertical          \\
+($\frac{\pi}{2}$,$\frac{3\pi}{2}$)  &   Horizontal        \\
+($0$,$0$)                           &   $-45^{\circ}$     \\
+($0$,$\frac{\pi}{2}$)               &   $45^{\circ}$      \\ \hline
+\end{tabular}
+\end{table}
+
+
+
 
 In table \ref{tb:mat} are described all components needed to build the experimental setup.
 
