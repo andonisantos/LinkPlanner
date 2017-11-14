@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 	// ######################## System Input Parameters ########################
 	// #########################################################################
 
-	int numberOfBitsGenerated(100);
+	int numberOfBitsGenerated(30);
 
 	int samplesPerSymbol(16);
 	double bitPeriod = 1.0E-9;
@@ -78,13 +78,13 @@ int main(int argc, char* argv[])
 	// Escolha da constelação
 	
 	// Constelação sempre com o mesmo estado
-	vector<t_iqValues> iqAmplitudeValues = { { 1, 1 },{ 1, 1 } };
+	//vector<t_iqValues> iqAmplitudeValues = { { 1, 1 },{ 1, 1 } };
 	
 	// Constelação com 2 estados
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
 	
 	// Constelação com 4 estados
-	//vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
+	vector<t_iqValues> iqAmplitudeValues = { { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
 
 	double SNR = 0;
 
