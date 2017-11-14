@@ -1,3 +1,41 @@
+2017-11-14
+TO BE DONE
+	documentation
+		include the fork in the library, follow Bit Error Rate style
+
+		algorithms section, write a section about DFFT (discrete fft and discrete ifft) (go to netxpto.cpp file and see which algorithm are, try to understand them)
+	
+
+	theoretical part
+		check which is the RF frequency that you need
+
+
+		
+2017-11-09
+TO BE DONE
+	presentation
+		finalize the presentation
+		include results from simulation
+
+	simulation
+		finish the fork
+		think about how to implement the Hilbert transform
+
+	- solve the optical networks dimensioning problem
+
+NEXT METTING: Next Thursday, 16/11, 10 am
+
+2017-11-07
+TO BE DONE
+   - simulation part
+	put the mixer and rf_oscillator in the setup
+
+   - presentation
+
+   - start by reviewing the netxpto - NetPlanner software, install
+
+next meeting: Thursday, 10 am
+
 2017-11-03
 TO BE DONE
    - simulation part
@@ -5,7 +43,7 @@ TO BE DONE
 
    - start by reviewing the netxpto - NetPlanner software, install
 
-
+######################################## October 2017 ##############################################
 2017-10-26
 TO BE DONE
   - go to the lab and setup a proper place to conduct the experiment (put a sheet with the experimental setup and a short description + student and supervisor name)
@@ -51,7 +89,7 @@ Later
 Hilbert Transform
 How to generate?
 
-
+########################################## September 2017 #############################################
 2017-09-14
 TO BE DONE
 - study two papers (Mecozzi16, Mecozzi17)

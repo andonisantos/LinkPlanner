@@ -54,7 +54,11 @@ t_complexr = 'double';
 samplingFrequency = 1/samplingPeriod;
 
 %% Number of samples per period
-samplesPerSymbol = (symbolPeriod/samplingPeriod);
+if (symbolPeriod==1)
+    samplesPerSymbol = 1;
+else
+    samplesPerSymbol = (symbolPeriod/samplingPeriod);
+end
 
 %% Read data
 if strcmp(type, tb) % Binary signals

@@ -36,7 +36,11 @@ valueXY=struct('x',complex(0+1i*0),'y',complex(0+1i*0));
 samplingFrequency = 1/samplingPeriod;
 
 %% Number of samples per period
-samplesPerSymbol = int64(symbolPeriod/samplingPeriod);
+if (symbolPeriod==1)
+    samplesPerSymbol = 1;
+else
+    samplesPerSymbol = int64(symbolPeriod/samplingPeriod);
+end
 
 %% Read data
 if strcmp(type, tb) % Binary signals

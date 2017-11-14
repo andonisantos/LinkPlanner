@@ -21,9 +21,6 @@
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\iq_modulator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,7 +39,19 @@
     <ClCompile Include="kramers_kronig_transceiver_sdf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="m_pam_mapper.cpp">
+    <ClCompile Include="..\..\lib\fork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\mixer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\rf_oscillator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\iq_modulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\hilbert_transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,7 +80,16 @@
     <ClInclude Include="..\..\include\local_oscillator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="m_pam_mapper.h">
+    <ClInclude Include="..\..\include\fork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mixer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rf_oscillator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\hilbert_transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

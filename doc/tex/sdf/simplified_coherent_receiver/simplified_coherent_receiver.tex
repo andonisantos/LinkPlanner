@@ -5,13 +5,13 @@
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 \textbf{Student Name}  &:& Romil Patel\\
 \textbf{Starting Date} &:& August 16, 2017\\
-\textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent transceiver, that can be used in coherent PON, inter-data center connections, or metropolitan networks (optical path lengths < 100 km) We are going to explore a Kramers-Kronig transceiver with Stokes based PolDemux.\\
-\textbf{Directory} 	   &:& 
+\textbf{Goal}          &:& Develop a simplified structure (low cost) for a coherent transceiver, that can be used in coherent PON, inter-data center connections, or metropolitan networks (optical path lengths < 100 km). We are going to explore a Kramers-Kronig transceiver with Stokes based PolDemux.\\
+\textbf{Directory} 	   &:&LinkPlanner\textbackslash doc\textbackslash tex\textbackslash sdf\textbackslash simplified\_coherent\_receiver 
 \end{tabular}
 \end{tcolorbox}
 
 Coherent optical transmission schemes are spectrally efficient since they allow the encoding of information in both quadrature of sinusoid signal. However, the cost of coherent receiver becomes a major obstacle in the case of short-reach links applications like PON, inter-data-center communications and metropolitan network. In order to make the transceiver applicable in short-reach links, an architecture has been proposed which combines the advantages of coherent transmission and cost effectiveness of direct detection. The working principle of the proposed transceiver is based on the Kramers-Kronig (KK) relationship. The KK transceiver scheme allows digital compensation of propagation impairment because both amplitude and phase of the electrical field can be retrieved at the receiver. 
-\subsection{Kramers-Kronig transceiver}
+\subsection{Theoretical Analysis}
 The Kramers-Kronig relations are bidirectional mathematical relations, connecting the real and imaginary parts of any complex function that is analytic in the upper half-plane. For instance, a signal $x(t)=x_r(t) + i x_i(t)$ satisfies the Kramers-Kronig relationship if,
 \begin{equation*}
 \begin{split}
@@ -195,9 +195,9 @@ A_{s,i}(t) &=\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{A_{s,r}(t')}{t-t'}
 \label{Eq:5.38}
 \end{equation}\\
 \textbf{Minimum Phase signal:}\\
-Given function $A(t)=A_{s}(t)+\bar{E}$ never encircles the origin for $t\in(-\infty,\infty)$. if we define,
+Given function $A(t)=A_{s}(t)+\bar{A}$ never encircles the origin for $t\in(-\infty,\infty)$. if we define,
 \begin{equation}
-G(t)=log\bigg[\dfrac{A(t)}{\bar{A}}\bigg]
+G(t)=log\bigg[\dfrac{A(t)}{\bar{A}}\bigg]\\
 \label{Eq:A1}
 \end{equation} 
 then $G(\omega)$, the spectrum of $G(t)$, is such that $G(\omega)=0$ for $\omega<0$. Under the hypothesis stated by Equation \ref{Eq:5.36}, we can write $G(t)$ as,
@@ -230,7 +230,7 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 \label{Eq:E1}
 \end{equation}
 \newpage
-\subsection{Simulation setup}
+\subsection{Simulation Analysis}
 \subsubsection{Transmitter setup}
 \begin{center}
 \begin{figure}[h]
@@ -245,13 +245,13 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 		\hline
 		%\multicolumn{3}{|c|}{\textbf{System Input Parameters }} \\
 		%\hline
-		\textbf{Parameter} &  \textbf{Default Value} & \textbf{Comments}\\
+		\textbf{Parameter} &  \textbf{Default Value} & \textbf{Description}\\
 		\hline
 		sourceMode    & PseudoRandom &\\
 		\hline
 		patternLength & 5      & \\
 		\hline
-		bitPeriod     & 1/50e9 & \\
+		bitPeriod     & 1/1.25e9 & \\
 		\hline
 		iqAmplitudes  &\{\{0,0\},\{1,0\},\{2,0\},\{3,0\}\} &\\
 		\hline
@@ -282,17 +282,17 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 		\hline
 		binary\_source.h    				&  &\checkmark\\
 		\hline
-		m\_qam\_mapper.h 					& Needs improvement &\\
+		m\_qam\_mapper.h 					& DONE! &\checkmark\\
 		\hline
-		discrete\_to\_continuous\_time.h    &  &\checkmark\\
+		discrete\_to\_continuous\_time.h    &  		&\checkmark\\
 		\hline
-		pulse\_shaper.h 					&  &\checkmark\\
+		pulse\_shaper.h 					& 		&\checkmark\\
 		\hline
-		local\_oscillator.h					&  &\\
+		RF\_Oscillator.h					& DONE! &\checkmark\\
 		\hline
-		mixer.h		 						&  &\\
+		mixer.h		 						& DONE! &\checkmark\\
 		\hline
-		fork.h								&  &\\
+		fork.h								& DONE! &\checkmark\\
 		\hline
 		hilbert\_transform.h				&  &\\
 		\hline
@@ -314,17 +314,17 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 		\hline
 		binary\_source.cpp    				&  &\checkmark\\
 		\hline
-		m\_qam\_mapper.cpp 					&  &\\
+		m\_qam\_mapper.cpp 					& DONE! &\checkmark\\
 		\hline
 		discrete\_to\_continuous\_time.cpp  &  &\checkmark\\
 		\hline
 		pulse\_shaper.cpp 					&  &\checkmark\\
 		\hline
-		local\_oscillator.cpp				&  &\\
+		RF\_Oscillator.cpp					& DONE! &\checkmark\\
 		\hline
-		mixer.cpp		 					&  &\\
+		mixer.cpp		 					& DONE! &\checkmark\\
 		\hline
-		fork.cpp							&  &\\
+		fork.cpp							& DONE! &\checkmark\\
 		\hline
 		hilbert\_transform.cpp				&  &\\
 		\hline
@@ -338,15 +338,41 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 		\hline
 	\end{tabular}
 \end{center}
-
 \newpage
+\subsubsection{Simulation results:}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth, height=9cm]{./sdf/simplified_coherent_receiver/figures/S2S2b.png}
+	\caption{S2 and S2b}\label{}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth, height=9cm]{./sdf/simplified_coherent_receiver/figures/S3S4.png}
+	\caption{S3 and S4}\label{}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth, height=9cm]{./sdf/simplified_coherent_receiver/figures/S5.png}
+	\caption{S5}\label{}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth, height=9cm]{./sdf/simplified_coherent_receiver/figures/S6S7S8.png}
+	\caption{S6, S7 and S8}\label{}
+\end{figure}
+
 \subsubsection{Receiver setup}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=10cm]{./sdf/simplified_coherent_receiver/figures/Simulation_setup_Rx.pdf}
 	\caption{Receiver simulation setup}\label{Simulation_setup_Rx}
 \end{figure}
-\subsection{Experimental setup}
+\newpage
+\subsection{Experimental Analysis}
  As shown in the Figure \ref{Practical_setup_TxRx}, at the transmitter end, analytical signal generated with the help of netxpto and applied to the AWG. Waveform generated by AWG applied dual polarization IQ modulator which generates SSB signal in optical domain. SSB optical signal generated by both the IQ modulator is then combined using polarization beam combiner (PBC) and launched into the optical fiber.\\
  At the receiver end, the PDM received signal first spitted by a polarization beam splitter (PBS). Each polarization is combined with an LO tapped from the transmit laser. The laser's wavelength and power are set to ensure that the received signal should satisfy the minimum phase condition. After direct-detection, Kramers-Kronig algorithm is performed on each polarization separately to recover full complex signal. After compensation of the chromatic dispersion, stokes parameter based poldemux algrithm can be applied to recover PDM signals.     
 \begin{figure}[h]
@@ -354,6 +380,55 @@ In equation \ref{Eq:D1}, $\frac{1}{\pi} p.v. \int_{-\infty}^{\infty} \frac{log|\
 	\includegraphics[width=1.0\textwidth, height=7cm]{./sdf/simplified_coherent_receiver/figures/Practical_setup_TxRx.pdf}
 	\caption{PDM Kramers-Kronig receiver experimental setup}\label{Practical_setup_TxRx}
 \end{figure}
+
+\subsubsection{Status of equipment}
+\begin{center}
+	\begin{tabular}{ |p{6cm}||p{7cm}|p{1cm}|   }
+		\hline
+		%\multicolumn{3}{|c|}{\textbf{Source Files}} \\
+		%\hline
+		\textbf{Equipment name} & \textbf{Description}&\textbf{Status}\\
+		\hline
+		LASER				   				&  &\checkmark\\
+		\hline
+		PC	 								&  &\checkmark\\
+		\hline
+		Coupler							    &  &\checkmark\\
+		\hline
+		AWG									&  &\checkmark\\
+		\hline
+		Dual polarization IQ mod			&  &\checkmark\\
+		\hline
+		PBS				 					&  &\checkmark\\
+		\hline
+		PLC									&  &\checkmark\\
+		\hline
+		Delay								&  &\checkmark\\
+		\hline
+		Fiber loop							&  &\checkmark\\
+		\hline
+		Single photodetector				& APD+TIA Optical Receiver:\newline
+											  - Maximum bit rate: 10 Gb/s\newline
+											  - Sensitivity: -26 dBm &\checkmark\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Comparative Analysis}
+
+\subsection{Know Problems}
+
+\begin{center}
+	\begin{tabular}{ |p{6cm}||p{7cm}|p{1cm}|   }
+		\hline
+		%\multicolumn{3}{|c|}{\textbf{Source Files}} \\
+		%\hline
+		\textbf{Problem type} & \textbf{Description}&\textbf{Note}\\
+		\hline
+		Simulator			& Require a generalized block for FFT  &\\
+		\hline
+	\end{tabular}
+\end{center}
 
 
 \begin{thebibliography}{9}

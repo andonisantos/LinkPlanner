@@ -349,7 +349,9 @@ public:
 	OpticalSignal() { setType("BandpassSignal", ComplexValue); if (buffer == nullptr) buffer = new t_complex[bufferLength]; }
 
 	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_complex[bLength]; };
+
 };
+
 
 class OpticalSignalXY : public Signal {
 public:
