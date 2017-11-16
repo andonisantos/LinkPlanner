@@ -513,28 +513,29 @@ We see that for low LO power, the dominant noise is the thermal contribution, bu
 \subsection{Experimental setup}
 %
 WARNING: UNDER CONSTRUCTION\\
-To study the behaviour of quantum noise, an experimental setup will be prepared to this effect??? (THIS IS AWFUL)\\
+As we have seen earlier, the detection output will manifest noise even in the absence of input signal (eq \ref{eq:noise}).\\
 \\
-This setup is based in the paper (xxx) by (yyyy).
-In our setup we will test the noise response for various data points of $(P_{S}, P_{LO})$.\\
+To study the behaviour of quantum noise, an experimental setup was prepared to this effect...\\
 \\
-The setup diagram is as follows:
+This setup is based in the paper (xxx) by (yyyy).\\
+\\
+In our setup we will test the noise response for various configurations of  $(P_{S}, P_{LO})$.\\
+\\
+The setup diagram is as follows
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{./sdf/quantum_noise/figures/scheme_experimental.pdf}
 	\caption{Experimental setup}
 \end{figure}
 %
-LIST OF CENAS????\\
-\\
-The je ne sais pas
 %
+The experimental procedure for this measurement consisted in just inputing the local oscillator laser and no signal. MAYBE WE COULD CHANGE FOR INPUTING SIGNAL \\
+\\
+For each value of  $P_{LO}$, the local oscillator was pulsed, and for each pulse, the variance of the plateau of the maximum was calculated. The final variance was simply the mean of the variances of all pulses.
+
 %
 \subsection{Comparative analysis}
 %
-%
-{\bf Comparison to experimental results}\\
-As we have seen earlier, the system will manifest noise even in the absence of input signal (eq \ref{eq:noise}). The experimental procedure for this measurement consisted in just inputing the local oscillator laser and no signal. For each value of  $P_{LO}$, the local oscillator was pulsed, and for each pulse, the variance of the plateau of the maximum was calculated. The final variance was simply the mean of the variances of all pulses.
 %
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
@@ -566,7 +567,7 @@ The expected growth should be proportional to $P_{LO}$, but the RIN noise, origi
 We see that both the simulation and experimental data display a similar behaviour, but the quadratic growth of noise for large $P_{LO}$ was not predicted in the simulations.\\
 %
 %
-
-
-
+\subsection{Known problems}
+%
+%
 \bibliography{./sdf/quantum_noise/quantum_noise}
