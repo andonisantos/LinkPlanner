@@ -88,7 +88,7 @@
     <ClCompile Include="..\..\lib\optical_hybrid.cpp" />
     <ClCompile Include="..\..\lib\photodiode.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
-    <ClCompile Include="..\..\lib\sampler.cpp" />
+    <ClCompile Include="..\..\lib\sampler_20171116.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
     <ClCompile Include="m_qam_system_sdf.cpp" />
@@ -108,7 +108,7 @@
     <ClInclude Include="..\..\include\optical_hybrid.h" />
     <ClInclude Include="..\..\include\photodiode.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
-    <ClInclude Include="..\..\include\sampler.h" />
+    <ClInclude Include="..\..\include\sampler_20171116.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\super_block_interface.h" />
   </ItemGroup>

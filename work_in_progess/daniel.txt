@@ -1,3 +1,20 @@
+2017-11-07
+TO BE DONE
+	- Finalizar BPSK (última revisão)
+
+	- Finalizar apresentação (última revisão)
+
+	- Atualizar a secção do CV Quantum Transmission System
+
+2017-11-02
+TO BE DONE
+	- concluir doc BPSK (o que está no pdf, nomeadamente o BER em unidades log10)
+	- alterar o bloco BER, de modo a adicionar um parametro de entrada que com o nome, lowestMinorante{1E-10}
+	- alterar o bloco do BER para verificar se o BER estimado é inferior ao lowestMinorante se for inferior devolver uma mensagem de erro.
+
+	Apresentação reunião de grupo
+		- como se fosse a defesa da dissertação
+
 2017-10-18
 TO BE DONE
 	- concluir o doc do BPSK
