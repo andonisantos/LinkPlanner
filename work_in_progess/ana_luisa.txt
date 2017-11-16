@@ -1,3 +1,25 @@
+2017-11-16
+TO BE DONE
+	work in the documentation
+		descrição teórica
+			rever e melhor e incluir um gráfico final
+		simulação
+			organiza-se a forma de apresentar a informação
+			incluir gráfico da simulação
+
+		library
+			melhorar a library
+				MQAM Transmitter (versão)
+				MQAM Receiver
+				Bit Error Rate
+				Sink
+
+		codigo
+			testar o sampler com o samplesToSkip != 0
+		
+		trabalho futuro
+			incluir um relógio externo samples
+
 2017-10-30
 TO BE DONE
 - documentar devidamente, MQAM Transmitter, colocar na library

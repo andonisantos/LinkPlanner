@@ -135,6 +135,12 @@ public:
 	void setType(string sType) { type = sType; };
 	string getType(){ return type; };
 
+	void setInPosition(int iPosition) { inPosition = iPosition; };
+	int getInPosition() { return inPosition; };
+
+	void setOutPosition(int oPosition) { outPosition = oPosition; };
+	int getOutPosition() { return outPosition; };
+
 	void setValueType(signal_value_type vType) { valueType = vType; };
 	signal_value_type getValueType(){ return valueType; };
 
