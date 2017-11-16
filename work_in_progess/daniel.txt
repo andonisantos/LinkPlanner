@@ -1,3 +1,13 @@
+2017-11-16
+TO BE DONE
+
+	- ultimos detalhes BPSK (última revisão)
+
+	- trabalhar no CV Quantum transmission System
+		descrição do setup experimental e preparar a bancada para o dia 25/11
+
+Next meeting: 22/11, 14h
+
 2017-11-07
 TO BE DONE
 	- Finalizar BPSK (última revisão)
