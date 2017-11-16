@@ -5,11 +5,11 @@
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 \textbf{Student Name}  &:& Celestino Martins\\
 \textbf{Starting Date} &:& September 25, 2017\\
-\textbf{Goal}          &:& Radio Over Fiber.
+\textbf{Goal}          &:& Simulation of Radio over fiber Transmission considering the uplink of base station cooperation systems.
 \end{tabular}
 \end{tcolorbox}
 
-Radio over fiber (RoF) technology comprises the transmission over fiber technology, where radio signal is modulated onto optical carrier and transmitted over an optical fiber link to provide a simple antenna front ends with increased capacity and broadband wireless services.  In this network a central processing units (CPU) is connected to numerous base stations (BSs) via optic fibers. A BS can be designed for simple operations, like optical-to-electrical (O-E) convertor, electrical-to-optical (E-O) convertor,  amplification, etc, such that the significant processing burden is performed at the CPU. That means, RoF networks use highly linear optic fiber links to distribute radio frequency (RF) signals between the CPU and BSs. The downlink RF signals are distributed from a CPU to many BSs through the fibres, while the uplink signals received at BSs are sent back to the CPU for any signal processing. Figure~\ref{fig_RoFarch} shows a general RoF architecture, where the wireless signals are transported over the optical fiber between a CPU and a set of base stations before being radiated through the air. RoF transmission systems are usually classified into two main categories, depending on the frequency range of the radio signal to be transported: i) RF-over-Fiber; ii) intermediate frequency (IF)-over-Fiber.
+Radio over fiber (RoF) technology comprises the transmission over fiber technology, where radio signal is modulated onto optical carrier and transmitted over an optical fiber link to provide a simple antenna front ends with increased capacity and broadband wireless services.  In this network a central processing units (CPU) is connected to numerous base stations (BSs) via optic fibers. That means, RoF networks use optic fiber links to distribute radio frequency (RF) signals between the CPU and BSs. The downlink RF signals are distributed from a CPU to many BSs through the fibres, while the uplink signals received at BSs are sent back to the CPU for any signal processing. Figure~\ref{fig_RoFarch} shows a general RoF architecture, where the wireless signals are transported over the optical fiber between a CPU and a set of base stations before being radiated through the air. RoF transmission systems are usually classified into two main categories, depending on the frequency range of the radio signal to be transported: i) RF-over-Fiber; ii) intermediate frequency (IF)-over-Fiber.
 
 \begin{figure}[h!]
     \centering
@@ -32,12 +32,14 @@ In addition, the RoF technology can be implemented as analog RoF or digital RoF:
 \subsection{Simulation}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{./sdf/radio_over_fiber/figures/block_diagram.pdf}
-    \caption{Simulation setup for the uplink of RoF transmission system.}
+    \includegraphics[width=\linewidth]{./sdf/radio_over_fiber/figures/block_diagram_flow.pdf}
+    \caption{Simulation setup for the uplink of RoF transmission system. Complex Gaussian (CG); }
     \label{fig_RoFdiagram}
 \end{figure}
 
- Figure~\ref{fig_RoFdiagram} depicts the simulation setup for an uplink of RoF, providing the connection between BS to CPU. At BS, the RF signal received from a mobile terminal modulates optical carrier by utilizing a laser and a mach-zehnder modulator (MZM). The optical signal is then transmitted to CPU using optical fiber. In CPU, the optical signal is detected by a PIN, amplified and followed with an electrical filter. After these operations, digital signal processing techniques can be applied to recover the transmitted signal.
+ Figure~\ref{fig_RoFdiagram} depicts the simulation setup for an uplink of RoF, providing the connection between BS to CPU. At BS, we model the RF signal received from a mobile terminal, as zero mean complex gaussian (CG) signal with a given bandwidth imposed by the low pass filter, Filter-1. The generated baseband signal is then up-converted to RF carrier frequency by utilizing an oscillator and a mixer. In this simulation we consider the RF carrier frequency between 2 to 5 GHz, according to the 5G technologies specifications. The generated RF passband signal modulates optical carrier by utilizing a laser and a mach-zehnder modulator (MZM). The optical signal is then transmitted to CPU using optical fiber. In CPU, the optical signal is detected by a PIN, amplified and followed with an electrical filter. After these operations, digital signal processing techniques can be applied to recover the transmitted signal.
 
-
+\input{./sdf/radio_over_fiber/tables/system_input_parameters}
+\input{./sdf/radio_over_fiber/tables/header_files}
+\input{./sdf/radio_over_fiber/tables/source_files}
 \subsection{Experimental}

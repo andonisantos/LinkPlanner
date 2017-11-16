@@ -24,9 +24,14 @@ public:
 
 	void setMidReportSize(int M) { m = M; }
 	int const getMidReportSize(void) { return m; }
+    
+    void setLowestMinorant(double lMinorant) { lowestMinorant=lMinorant; }
+    double getLowestMinorant(void) { return lowestMinorant; }
 
 private:
-
+    
+    double lowestMinorant = 1e-10;
+    
 	int firstPass = 1;
 
 	double alpha = 0.05;

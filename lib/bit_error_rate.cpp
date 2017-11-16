@@ -51,10 +51,18 @@ bool BitErrorRate::runBlock(void){
 		/* Calculating BER and bounds */
 
 		double BER = (receivedBits - coincidences) / receivedBits;
+        
+        if (BER==0) {
+            cout << "ERRO: bit_error_rate.cpp (null BER, not enough samples)" << "\n";
+        }
 
 		double UpperBound = BER + 1 / sqrt(receivedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * receivedBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
 		double LowerBound = BER - 1 / sqrt(receivedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * receivedBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
 
+        if (LowerBound<lowestMinorant) {
+            LowerBound=lowestMinorant;
+        }
+        
 		/* Outputting a .txt report*/
 		ofstream myfile;
 		myfile.open("BER.txt");
