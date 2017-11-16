@@ -101,8 +101,8 @@
 \vspace{6mm}
 \begin{center}
     \color{black}
-    \textbf{Mariana Ferreira Ramos\\}
-    {(marianaferreiraramos@ua.pt)}
+    \textbf{Mariana F. Ramos, Nuno A. Silva, Armando N. Pinto\\}
+    {}
 \end{center}
 
 \vspace{0.0mm}
@@ -125,17 +125,31 @@ Instituto de Telecomunica\c{c}\~{o}es, Aveiro, Portugal\\
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE-------
-\mysection{Quantum Oblivious Key Distribution System (QOKD)}\large
+\mysection{Quantum Oblivious Key Distribution System (QOKD)}
+    The QOKD system enables two parties (Alice and Bob) to share a set of keys. 
 
-
-    The QOKD system enables two parties (Alice and Bob) to share a set of keys. These keys have the particularity of being half right and half wrong. Only Bob knows which are right and wrong bits. Alice only knows that at some tabs there are the same number of right and wrong measurements.
-
-    \begin{figure}[hbt]
+    \begin{figure}[h]
     	\centering
-    	\includegraphics[width=0.5\textwidth, height=5cm]{./figures/alicebobkeys.png}
+    	\includegraphics[width=0.7\textwidth, height=8cm]{./figures/alicebobkeys.png}
         	\label{alicebobkeys}
     \end{figure}
-    This can be used for guarantee security in communication protocols between two parties.
+    Only Bob knows all information about the keys, i.e. which correspond to right or random bits. QOKD can be used in cryptography and secure multi party computation.
+    
+%------------ SLIDE -------------------------------------------------------------------------------
+
+\mysection{}\large
+\vspace{4.0cm}
+
+\begin{center}
+    \color{black}\sffamily \noindent \Large
+    \br{1-ou-of-2 Oblivious Transfer\\}
+    
+\end{center}
+
+\begin{center}
+  The oblivious keys must be symmetric, i.e. the number of right and random bits should be the same.
+\end{center}
+
 
 %--------------------------------------------------------------------------------------------------
 %------------ SLIDE -------------------------------------------------------------------------------
