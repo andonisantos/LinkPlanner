@@ -47,7 +47,9 @@ class HomodyneReceiver : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; //Filtered
 
-	TimeContinuousAmplitudeContinuousReal HMD12{ "HMD12.sgn" }; //Clock
+	TimeContinuousAmplitudeContinuousReal HMD12A{ "HMD12A.sgn" }; //Clock
+
+	TimeContinuousAmplitudeContinuousReal HMD12B{ "HMD12B.sgn" }; //Clock
 
 	TimeDiscreteAmplitudeContinuousReal HMD13{ "HMD13.sgn" }; // Sampled 
 
@@ -76,7 +78,9 @@ class HomodyneReceiver : public SuperBlock {
 
 	PulseShaper B8;
 
-	Clock B9;
+	Clock B9A;
+
+	Clock B9B;
 
 	Sampler B10;
 
@@ -114,7 +118,8 @@ public:
 	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
 	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
 
-	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); B9.setSamplingPeriod(sPeriod); };
+	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); B9A.setSamplingPeriod(sPeriod); B9B.setSamplingPeriod(sPeriod);
+	};
 
 	void  setResponsivity(t_real Responsivity) { B3.setResponsivity(Responsivity); B4.setResponsivity(Responsivity); };
 
@@ -125,7 +130,7 @@ public:
 	void setFilterType(PulseShaperFilter fType) { B7.setFilterType(fType); B8.setFilterType(fType); };
 	void setRollOffFactor(double rOffFactor) { B7.setRollOffFactor(rOffFactor); B8.setRollOffFactor(rOffFactor); };
 
-	void setClockPeriod(double per) { B9.setClockPeriod(per); };
+	void setClockPeriod(double per) { B9A.setClockPeriod(per); B9B.setClockPeriod(per); };
 
 	void setSamplesToSkip(int sToSkip) { B10.setSamplesToSkip(sToSkip); B11.setSamplesToSkip(sToSkip); };
 

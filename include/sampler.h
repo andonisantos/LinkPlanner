@@ -16,6 +16,7 @@ class Sampler : public Block {
 	int count = 0;
 	bool aux1{ false };
 
+
 public:
 
 	double outputOpticalPower{ 1e-3 };
