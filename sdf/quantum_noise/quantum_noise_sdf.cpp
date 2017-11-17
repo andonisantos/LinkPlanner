@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 	// ######################## System Input Parameters ########################
 	// #########################################################################
 
-	int numberOfBitsGenerated(30);
+	int numberOfBitsGenerated(200);
 
 	int samplesPerSymbol(16);
 	double bitPeriod = 1.0E-9;
