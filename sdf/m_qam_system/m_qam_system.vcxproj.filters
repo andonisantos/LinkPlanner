@@ -69,7 +69,7 @@
     <ClCompile Include="..\..\lib\m_qam_homodyne_receiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\sampler_20171116.cpp">
+    <ClCompile Include="..\..\lib\sampler_20171119.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,7 +122,7 @@
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\sampler_20171116.h">
+    <ClInclude Include="..\..\include\sampler_20171119.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,7 +9,7 @@
 # include "ideal_amplifier.h"
 # include "decoder.h"
 # include "local_oscillator.h"
-# include "sampler.h"
+# include "sampler_20171119.h"
 # include "super_block_interface.h"
 # include "pulse_shaper.h"
 # include "clock.h"

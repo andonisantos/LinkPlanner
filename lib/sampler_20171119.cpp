@@ -5,8 +5,9 @@
 #include <string>
 
 #include "netxpto.h"
-#include "sampler_20171116.h"
+#include "sampler_20171119.h"
 
+using namespace std;
 
 void Sampler::initialize(void){
 
@@ -28,10 +29,25 @@ bool Sampler::runBlock(void) {
 	if (numberOfInputSignals == 1) {
 		int ready = inputSignals[0]->ready();
 		if (getSamplesToSkip() > 0) {
-			if (getSamplesToSkip() > inputSignals[0]->getBufferLength()) {
+			if (getSamplesToSkip() > ready) {
+
 				cout << "samplesPerSymbol>bufferLength" << endl;
-				inputSignals[0]->setInPosition(inputSignals[0]->getOutPosition());
-				setSamplesToSkip(getSamplesToSkip() % inputSignals[0]->getBufferLength());
+
+				int aux3 = inputSignals[0]->getInPosition();
+				int aux4 = inputSignals[0]->getOutPosition();
+
+				cout << "inPos=" << aux3 << endl;
+				cout << "outPos=" << aux4 << endl;
+
+				inputSignals[0]->setOutPosition(inputSignals[0]->getInPosition());
+
+				int aux2 = inputSignals[0]->getOutPosition();
+				cout << "outPos_corr=" << aux2 << endl;
+
+				setSamplesToSkip(getSamplesToSkip() % ready);
+				int aux = getSamplesToSkip();
+				cout << aux << endl;
+
 			}
 			else {
 				int process = min(ready, getSamplesToSkip());
@@ -40,52 +56,64 @@ bool Sampler::runBlock(void) {
 					inputSignals[0]->bufferGet(&in);
 				}
 				setSamplesToSkip(0);
-				alive = true;
-			}
+				cout << aux1 << endl;
 
+				int aux5 = inputSignals[0]->getOutPosition();
+				cout << aux5 << endl;
+
+				alive = true;
+
+			}
 		}
+
+		int aux6 = inputSignals[0]->getOutPosition();
+		cout << "out position for sampling=" << aux6 << endl;
 
 		ready = inputSignals[0]->ready();
 		int space = outputSignals[0]->space();
 		int process = min(ready, space);
 
-		if (process == 0) return alive;
+		if (process == 0) return false;
 
 		int samplesPerSymbol = (int)inputSignals[0]->getSamplesPerSymbol();
 		for (int k = 0; k < process; k++) {
 			t_real in;
 			inputSignals[0]->bufferGet(&in);
+			cout << in << endl;
+			cout << inputSignals[0]->getOutPosition() << endl;
 			if (count % samplesPerSymbol == 0) {
 				outputSignals[0]->bufferPut((t_real)in);
 			}
 			count++;
 		}
+
 	}
-	/*	//Sampler with external clock
-		else {
+	//Sampler with external clock
+	/*else {
 
-			int ready = inputSignals[0]->ready();
-			int space = outputSignals[0]->space();
-			int process = min(ready, space);
+		int ready = inputSignals[0]->ready();
+		int space = outputSignals[0]->space();
+		int process = min(ready, space);
 
-			if (process <= 0) return false;
+		if (process <= 0) return false;
 
-			t_real inClock;
-			t_real inSignal;
+		t_real inClock;
+		t_real inSignal;
 
-			for (int k = 0; k < process; k++) {
+		for (int k = 0; k < process; k++) {
 
-				inputSignals[1]->bufferGet(&inClock);
-				inputSignals[0]->bufferGet(&inSignal);
+			inputSignals[1]->bufferGet(&inClock);
+			inputSignals[0]->bufferGet(&inSignal);
 
-				if (inClock == 1.0) {
+			if (inClock == 1.0) {
 
-					outputSignals[0]->bufferPut((t_real)inSignal);
-				}
-
+				outputSignals[0]->bufferPut((t_real)inSignal);
 			}
 
-			return true;
-		}*/
+		}
+		
+		return true;
+	}*/
+
 	return alive;
 }
