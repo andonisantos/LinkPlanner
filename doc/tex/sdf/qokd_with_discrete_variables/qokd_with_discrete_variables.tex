@@ -18,7 +18,8 @@ Oblivious Transfer (OT) is a fundamental primitive in multi-party computation. T
 
 In order to implement OT between two parties (Alice and Bob) they must be able to exchange continuously oblivious keys, i.e a QOKD system must exist between them.
 
-\subsection{Quantum Oblivious Key Distribution System (QOKD)}
+\subsection{Theoretical Description}
+\subsubsection{Quantum Oblivious Key Distribution System (QOKD)}
 
 In this section we are going to describe the Quantum Oblivious Key Distribution system (QOKD).
 The QOKD system enables two parties (Alice and Bob) to share a set of keys. These keys have the particularity of being half right and half wrong. Only Bob knows which are right and wrong keys.
@@ -235,7 +236,7 @@ and for \textit{Diagonal Basis}, "$\times$",
      They have been building these sets during all protocol.
 \end{enumerate}
 
-\subsection{OT Protocol with QOKD system}
+\subsubsection{1-out-of-2 Oblivious Transfer Protocol with QOKD system}
     At this time, we are going to describe the oblivious transfer protocol with detail. As it was referred at the beginning, Alice sends two messages to Bob and he wants to know one of them. Alice does not know which message Bob wants and Bob only know the message he wants, i.e he does not know anything about the other message.
     Furthermore, only Alice knows information about messages $m_{0}$ and $m_{1}$.
     In this case, lets assume the following two messages with size $s=4$, $m_{0} = \{0 0 1 1\}$ and $m_{1} = \{0 0 0 1\}$.
@@ -299,7 +300,51 @@ and for \textit{Diagonal Basis}, "$\times$",
 
 \end{enumerate}
 
-\subsection{Simulation}
+\subsubsection{Nearest Private Query}
+
+The Nearest Private Query is another example of QOKD application \cite{Xu2017}. In this case, there are also two parties: a user (who we called Bob) and a data owner (who we called Alice). Bob has an input secrete parameter $x$ and Alice has a private data set $A$.
+
+Lets assume Bob's secret input parameter$x=8$ and Alice's data set $A = \{ 1,2,3,6,7,10,11,14\}$.
+
+Bob wants to know which element ($x_{i}$) is the closest to $x$ in Alice data set $A$, without revealing his secrete $x$. Alice does not know which is the Bob's secret parameter, and Bob does not know any information about Alice's set except the closest element $x_{i}$ to his $x$.
+
+\begin{description}
+  \item[Step 1] Alice generates a new set with $N=2^{n}$ elements, $D(j)$ for $j=0,1,...N-1$, in which $D(j)=x_{l}$ being $x(l)$ the closest element to $j$ in $A$. $n$ is the number of bits that Alice needs to represent each element of her data set.
+      
+       \begin{table}[hbt]
+        \centering
+        \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+        \textbf{$j$}    & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  & 10 & 11 & 12 & 13 & 14 & 15 \\ \hline
+        \textbf{$D(j)$} & 1 & 1 & 2 & 3 & 3 & 6 & 6 & 7 & 7 & 10 & 10 & 11 & 11 & 14 & 14 & 14 \\ \hline
+                        & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1  & 1  & 1  & 1  & 1  & 1  & 1  \\
+                        & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0  & 0  & 0  & 0  & 1  & 1  & 1  \\
+                        & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1  & 1  & 1  & 1  & 1  & 1  & 1  \\
+                        & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0  & 0  & 1  & 1  & 0  & 0  & 0
+        \end{tabular}
+  \end{table}
+  
+  \item[Step 2]  Bob and Alice have a set of keys $K_{i}^*$ and $K_{i}$, respectively, with $64$ elements where $60$ are bits resulted from wrong basis measurement and $4$ resulted from correct basis measurement. This allows Alice to know that Bob is being honest. They start from QOKD with symmetric keys and then Alice is being asking Bob to destroy pairs of keys until they have a set with the characteristics above.
+      
+  \item[Step 3] Bob sends to Alice the set $S$ with all positions referred random measurements except the position bits at $j=8$.
+  
+  \item[Step 4] Alice encoded all bits with the corresponding bit keys at the positions sent by Bob, and then she sends the encoded message to Bob.
+  
+  \item[Step 5] Bob receives the encoded message and apply an operation XOR based on the correspondent bits to the positions the he sent two Alice above.
+  
+  \item[Step 6] At the end, Bob gets the message he wanted, the closest element to $8$, which corresponds to message ${0,1,1,1}$ or $7$ and he remains know nothing about the other elements of Alice's data set. In the same way, Alice does not know which element Bob wants to know.
+\end{description}
+
+
+\subsubsection{QKD from QOKD}
+
+All Quantum Key Distribution systems can be obtained from the QOKD system presented in this report. The Quantum Oblivious Key Distribution system allows to obtain symmetric secret keys and symmetric or asymmetric oblivious keys.
+
+In fact, since Alice and Bob has the same set of keys and at some tab Alice knows that there are the same number of right and random bits, she can obtain any combination from this set by asking Bob to destroy some pairs. 
+
+QOKD has a big advantage over other QKD systems because of its versatility. However, the biggest disadvantage is related with a large number of photons consumption which can became the communication rate slower.
+
+
+\subsection{Simulation Analysis}
 
 First of all, the protocol will be simulated and then a experimental setup will be built in the laboratory.
 
@@ -358,12 +403,15 @@ CLK\_A                &  Real continuous Time&                 \\ \hline
 CLK\_B                &  Real continuous Time&                 \\ \hline
 C\_A\_B                &  Message             &                 \\ \hline
 C\_B\_A                &  Message             &                 \\ \hline
-S\_A1                 &  Real continuous Time&                 \\ \hline
-S\_A2                 &  Real discrete   Time&                 \\ \hline
-S\_A3                 &  Photon Stream       &                 \\ \hline
+SA\_1                 &  Real Continuous Time&                 \\ \hline
+SA\_2                 &  Real Continuous   Time&                 \\ \hline
+SA\_3                 &  Real Discrete Time       &                 \\ \hline
+SA\_3                 &  Real Continuous Time       &                 \\ \hline
+Q\_A\_1                &  Photon Stream       &                 \\ \hline
+Q\_A\_2                &  Photon Stream       &                 \\ \hline
 Q\_A\_B                &  Photon Stream       &                 \\ \hline
-Ms\_A                 &  Message             &                 \\ \hline
-Ms\_B                 &  Message             &                 \\ \hline
+Ms\_A                 &  Binary             &                 \\ \hline
+Ms\_B                 &  Binary             &                 \\ \hline
 S\_B1                 &  Real continuous Time&                 \\ \hline
 S\_B2                 &  Real continuous Time&                 \\ \hline
 
@@ -445,8 +493,8 @@ In table \ref{tb:shiftphases} is present the phases shifts that must be applied 
 \caption{Different Alice's output polarization states based on shift phases applied in Phase Modulator.}
 \label{tb:shiftphases}
 \begin{tabular}{c|c}
-\hline 
-\textbf{Alice:($\phi_{1}$,$\phi_{2}$)}        & \textbf{Output Polarization} \\ \hline 
+\hline
+\textbf{Alice:($\phi_{1}$,$\phi_{2}$)}        & \textbf{Output Polarization} \\ \hline
 ($\frac{\pi}{2}$,$0$)               &   Vertical          \\
 ($\frac{\pi}{2}$,$\frac{3\pi}{2}$)  &   Horizontal        \\
 ($0$,$0$)                           &   $-45^{\circ}$     \\
@@ -481,6 +529,7 @@ Computer                                        & 1                 &     \\ \hl
 \end{tabular}
 \end{table}
 
+\subsection{Comparative Analysis}
 
 
 \bibliographystyle{unsrt}
