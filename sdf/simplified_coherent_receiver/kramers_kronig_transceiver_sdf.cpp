@@ -22,10 +22,10 @@ int main() {
 	double bitPeriod{ 1.0 / 1.25e9 };
 	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
 	int numberOfBits{ 1000 };				                                        // For value of {-1}, it'll generate long bit sequence.
-	int numberOfSamplesPerSymbol{ 8 };
+	int numberOfSamplesPerSymbol{ 32 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
-	double rfFrequency{100E6};
+	double rfFrequency{500E6};														// It depends on the bandwidth of the signal
 	double rfAmplitude{ 1.0 };
 	double rfInitialPhase{ 0.0 };
 	double samplingPeriod{ bitPeriod / numberOfSamplesPerSymbol };
@@ -101,7 +101,7 @@ int main() {
 	// #####################################################################################################
 
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B78, &B9, &B10, &B11 } };
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B_7, &B_8} };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8,  &B_7, &B_8} };
 	//System MainSystem{ vector<Block*> { &B5, &B11} };
 
 	// #####################################################################################################

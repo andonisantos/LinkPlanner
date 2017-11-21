@@ -1,6 +1,8 @@
 #include "netxpto.h"
 #include "hilbert_transform.h"
 
+
+
 using namespace std;
 
 void HilbertTransform::initialize(void)
@@ -19,41 +21,49 @@ bool HilbertTransform::runBlock(void)
 	int process = min(ready, space);
 
 	if (process <= 0) return false;
-	
-	t_complex imaginary = (0, 1);
-	t_complex inputSignalsFreq[1];
-	t_complex outputSignalsFreq[1];
-	t_real S8;
-	t_real S9;
 
+	vector <complex<double>> inputSignalsFreq;
+	t_real S8;
+	vector<double> S9;
+	vector<double> inputBufferTimeDomain;
+
+	vector <double> outputSignalsFreq;
 	/*
+
 	for (int i = 0; i < process; i++)
 	{
 		inputSignals[0]->bufferGet(&S8);
-		inputSignalsFreq[0] = fft(S8);									// Frequeny domain input signal
+		inputBufferTimeDomain[i] = S8;
+	}
 
-		/////////// Hilbert Tranformation  //////////////
+	inputSignalsFreq = fft(inputBufferTimeDomain);						// Frequeny domain input signal
 
-		if (i << process / 2)
+	/////////// Hilbert Tranformation  //////////////
+	// Negative frequency components multiplied by "i" 
+	// Positive frequency components multiplied by "-i" 
+	// For DC, it's multiplied by "0" 
+	// Frequency to time domain conversion
+
+	/*int n = inputSignalsFreq.size();
+
+	for ()
+	{
+		if ()
 		{
-			outputSignalsFreq[0] = inputSignalsFreq[0]*imaginary;		// Negative frequency components multiplied by "i" 
+
 		}
-		else if (i >> process / 2)
-		{
-			outputSignalsFreq[0] = inputSignalsFreq[0]*(-imaginary);	// Positive frequency components multiplied by "-i" 
-		}
-		else
-			outputSignalsFreq[0] = 0;									// For DC, it's multiplied by "0"
-				 
 
-		S9 = ifft(outputSignalsFreq[0]);								// Frequency to time domain conversion
+	}
 
 
-		outputSignals[0]->bufferPut(S9);								
 
-	}*/
-	
-	return true;
+
+	}
+
+	return true;*/
 
 }
+
+
+
 

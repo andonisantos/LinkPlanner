@@ -151,6 +151,7 @@
     <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
+    <ClCompile Include="..\..\lib\real_to_complex.cpp" />
     <ClCompile Include="..\..\lib\rf_oscillator.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="kramers_kronig_transceiver_sdf.cpp" />

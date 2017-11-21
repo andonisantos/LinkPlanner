@@ -5,7 +5,6 @@ TO BE DONE
 
 		algorithms section, write a section about DFFT (discrete fft and discrete ifft) (go to netxpto.cpp file and see which algorithm are, try to understand them)
 	
-
 	theoretical part
 		check which is the RF frequency that you need
 
