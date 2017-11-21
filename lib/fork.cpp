@@ -26,24 +26,33 @@ bool Fork::runBlock(void)
 	int space2 = outputSignals[1]->space();
 
 	int space = min(space1, space2);
-	int process = min(ready,space);
-
-	/* The following is an alternative way of finding minimum:
-	int space = (space1 <= space2) ? space1 : space2;													
-	int process = (ready <= (2 * space)) ? ready : space; // equivalent to min(ready, 2 * space);*/
+	int process = min(ready, space);
 
 	if (process <= 0) return false;
-	
 
-	for (int i = 0; i < process; i++)
-	{
-		t_real inSignal;
-		inputSignals[0]->bufferGet(&inSignal);
-		outputSignals[0]->bufferPut((t_real)(inSignal));
-		outputSignals[1]->bufferPut((t_real)(inSignal));
+	signal_value_type type = inputSignals[0]->getType();
+
+	switch(type) {
+		case BinaryValue:
+			for (int i = 0; i < process; i++)
+			{
+				t_binary inSignal;
+				inputSignals[0]->bufferGet(&inSignal);
+				outputSignals[0]->bufferPut((t_real)(inSignal));
+				outputSignals[1]->bufferPut((t_real)(inSignal));
+			}
+			break;
+		case RealValue:
+			for (int i = 0; i < process; i++)
+			{
+				t_real inSignal;
+				inputSignals[0]->bufferGet(&inSignal);
+				outputSignals[0]->bufferPut((t_real)(inSignal));
+				outputSignals[1]->bufferPut((t_real)(inSignal));
+			}
+			break;
+		default: std::cout << "Fork: Invalid Input Signal\n";
 	}
-
 	return true;
-
 }
 

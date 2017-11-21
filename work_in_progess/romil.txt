@@ -1,3 +1,14 @@
+2017-11-21
+TO BE DONE
+	finalize the fork
+		documentation + code (for all types)
+
+	change the sgnToWfm function to force decimation if sampling rate is gretaer than 16 GS/s
+
+	work in the FFT algorithm fft( , -1) or fft( , 1)
+
+NEXT Meeting: Friday, 8h30m
+
 2017-11-14
 TO BE DONE
 	documentation
