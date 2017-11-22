@@ -520,9 +520,9 @@ We see that for low LO power, the dominant noise is the thermal contribution, bu
 \\
 \subsection{Experimental setup}
 %
-The main objective of this experiment is to measure the magnitude of quantum noise, by studying it's relation with the power of the input signals in a homodyne detection.\\
-This experiment will be divided in two stages: a first stage for homodyne detection, measuring a single quadrature and second stage for double homodyne detection where two quadratures will be measured simultaneously.\\
-Our experiment will follow some settings from the paper XXX, such as the timing between\\
+The main objective of this experimental setup is to obtain the relation of the magnitude of quantum noise with the power of the inputs of a homodyne detection.\\
+This experiment will be divided in two stages: a first stage for homodyne detection, measuring the noise in a single quadrature and a second stage measureing noise in a double homodyne detection where two quadratures will be measured simultaneously.\\
+Our experiment will follow some settings from the paper \cite{chi2011balanced}, such as the timing between pulses and the pulse width.\\
 To keep the experiment simple and avoid extra sources of noise, a simple setup was devised, as shown in fig. \ref{fig:experimental_homodyne_setup}:
 %To minimize various sources of noise and to avoid using "black boxes", we will simply read the photocurrents comming from the photodiodes directly (or with some amplification).\\
 %We will start by measuring the phodiodes quantum efficiency with various pulse 
@@ -562,6 +562,8 @@ Material list
 \end{table}
 %
 A single laser is splitted and used as the source for the signal (S) and the local oscillator (LO). The signal beam is pulsed and highly attenuated. The local oscillator is also attenuaded, but not pulsed. The signal and local oscillator interfere in a Beam Splitter originating two beams which are then converted to voltages in the PIN. These voltages are read in the ADC and collect in the computer. In the post processing phase, the quantum noise is measured by applying a difference between the two beams and measuring it's variance.
+\\
+The second stage of the experiment will be very similar to the first one, in which the signal and local oscillator branches will be divided. One of the new branches of the local oscilator will suffer a phase delay of $\pi/2$, in order to measure the quadrature component of the incoming signal.\\
 %
 %
 \subsubsection{Data analysis}
@@ -570,7 +572,10 @@ For each combination of the expected number of photons present in the signal and
 %
 \subsection{Comparative analysis}
 %
-Given the theoretical, simulated and experimental frameworks, we will compare the results between them.
+WARNING -- OLD DATA --\\
+\\
+Given the theoretical, simulated and experimental frameworks, we will now compare the results given by them.
+\\
 %
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
