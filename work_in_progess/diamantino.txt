@@ -1,58 +1,68 @@
+2017-11-22
+TO BE DONE
+	setup experimental single homodine detection
+		detalhar o setup experimental
+		descrever os sinais retirados do osciloscÃ³pio
+		detalhar a anÃ¡lise de dados
+		mostrar os resultados finais
+
+Next Meeting: 28/11, 14h
+
 2017-11-16
 TO BE DONE
-	- tornar consistente a teoria com a simulação e com a parte experimental;
-	- fixar o setup experimental (usar uma referência), adaptar a teoria e a simulação a parte experimental;
+	- tornar consistente a teoria com a simulaÃ§Ã£o e com a parte experimental;
+	- fixar o setup experimental (usar uma referÃªncia), adaptar a teoria e a simulaÃ§Ã£o a parte experimental;
 
 	setup experimental
-		montar o setup experimental, e detalhar na apresentação
+		montar o setup experimental, e detalhar na apresentaÃ§Ã£o
 
 Next Meeting: quarta-feira, 22/11, 14h30m
 
 
 2017-11-09
 TO BE DONE
-	- tornar consistente a teoria com a simulação e com a parte experimental;
-	- fixar o setup experimental (usar uma referência), adaptar a teoria e a simulação a parte experimental;
+	- tornar consistente a teoria com a simulaÃ§Ã£o e com a parte experimental;
+	- fixar o setup experimental (usar uma referÃªncia), adaptar a teoria e a simulaÃ§Ã£o a parte experimental;
 
 	setup experimental
-		montar o setup experimental, e detalhar na apresentação
+		montar o setup experimental, e detalhar na apresentaÃ§Ã£o
 
 2017-11-07
 TO BE DONE
-        Apresentação
+        ApresentaÃ§Ã£o
 		- finalizar
 
-	Simulação
-		- criar o bloco real_to_complex, e inserir na simulação
+	SimulaÃ§Ã£o
+		- criar o bloco real_to_complex, e inserir na simulaÃ§Ã£o
 		- inserir o Ti Amplifier + Filtro
-		- verificar valores da constelação sem ruído (de forma quantitativa, corrente = potência ótica)
-		- incluir na simulation results, os resultados sem ruído
+		- verificar valores da constelaÃ§Ã£o sem ruÃ­do (de forma quantitativa, corrente = potÃªncia Ã³tica)
+		- incluir na simulation results, os resultados sem ruÃ­do
 
 	Setup experimental
-		- incluir a descrição do setup experimental
+		- incluir a descriÃ§Ã£o do setup experimental
 		
 
 next meeting: quinta-feira, 9/11, 9h
 
 2017-10-31
 TO BE DONE
-        Apresentação
-		- preparar apresentação, reunião de grupo (doc/sdf/ot_with_discrete_variables/slides)
+        ApresentaÃ§Ã£o
+		- preparar apresentaÃ§Ã£o, reuniÃ£o de grupo (doc/sdf/ot_with_discrete_variables/slides)
 
-	Simulação
-		- criar o bloco real_to_complex, e inserir na simulação
+	SimulaÃ§Ã£o
+		- criar o bloco real_to_complex, e inserir na simulaÃ§Ã£o
 		- inserir o Ti Amplifier + Filtro
-		- verificar valores da constelação sem ruído (de forma quantitativa, corrente = potência ótica)
-		- incluir na simulation results, os resultados sem ruído
+		- verificar valores da constelaÃ§Ã£o sem ruÃ­do (de forma quantitativa, corrente = potÃªncia Ã³tica)
+		- incluir na simulation results, os resultados sem ruÃ­do
 
 	Setup experimental
-		- incluir a descrição do setup experimental
+		- incluir a descriÃ§Ã£o do setup experimental
 		
 
 2017-10-20
 TO BE DONE
-	- melhorar a descrição teórica (medium priority)
-        - concluir a descrição do setup a simular
+	- melhorar a descriÃ§Ã£o teÃ³rica (medium priority)
+        - concluir a descriÃ§Ã£o do setup a simular
         - identificar os blocos que criaste novos no simulador (*.cpp)
 		- diff
 		- photodiode
@@ -61,9 +71,9 @@ TO BE DONE
 2017-09-28
 TO BE DONE
      - photodiode.cpp 
-	- sem ruído térmico, e sem ruído quântico, largura de banda infinita
-	- com ruído térmico,  largura de banda infinita
-	- com ruído quântico, largura de banda infinita
+	- sem ruÃ­do tÃ©rmico, e sem ruÃ­do quÃ¢ntico, largura de banda infinita
+	- com ruÃ­do tÃ©rmico,  largura de banda infinita
+	- com ruÃ­do quÃ¢ntico, largura de banda infinita
 	- com largura de banda finita (LATER)
 
      - concluir o doc
@@ -72,16 +82,16 @@ TO BE DONE
 			- photodiode
 				criar um sistema 
 					laser -> photodiode -> sink
-					representação passa baixo de sinais passa-banda
+					representaÃ§Ã£o passa baixo de sinais passa-banda
 					emissor otico (optical power 1 mW)
-     - resolver os warnings do código
+     - resolver os warnings do cÃ³digo
 
 2017-09-28
 TO BE DONE
   - photodiode.cpp 
-	- sem ruído térmico, e sem ruído quântico, largura de banda infinita
-	- com ruído térmico,  largura de banda infinita
-	- com ruído quântico, largura de banda infinita
+	- sem ruÃ­do tÃ©rmico, e sem ruÃ­do quÃ¢ntico, largura de banda infinita
+	- com ruÃ­do tÃ©rmico,  largura de banda infinita
+	- com ruÃ­do quÃ¢ntico, largura de banda infinita
 	- com largura de banda finita (LATER)
   - photodiode.h
   - photodiode.tex
