@@ -40,7 +40,7 @@ bool Sampler::runBlock(void) {
 				cout << "outPos=" << aux4 << endl;
 
 				inputSignals[0]->setOutPosition(inputSignals[0]->getInPosition());
-				inputSignals[0]->bufferEmpty = true;
+				inputSignals[0]->bufferEmpty = true; //declare that the buffer is empty
 
 				int aux2 = inputSignals[0]->getOutPosition();
 				cout << "outPos_corr=" << aux2 << endl;

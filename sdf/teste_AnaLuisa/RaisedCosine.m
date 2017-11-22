@@ -37,6 +37,6 @@ plot(to, yo, 'b-');
 
 %Run the raised cosine through the filter again
 figure
-yo2=step(rctFilt,1.5*yo+3);
+yo2=step(rctFilt,10*yo+3);
 grid on
 plot(yo2)
