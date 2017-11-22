@@ -1,3 +1,9 @@
+2017-11-22
+TO BE DONE
+	Simulation
+		Alice com o setup do BB84 (TQ)
+
+
 2017-11-17
 TO BE DONE
 	Simulation
