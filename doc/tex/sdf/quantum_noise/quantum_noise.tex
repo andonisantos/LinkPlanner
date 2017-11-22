@@ -520,54 +520,57 @@ We see that for low LO power, the dominant noise is the thermal contribution, bu
 \\
 \subsection{Experimental setup}
 %
-WARNING: UNDER CONSTRUCTION\\
-\\
-The main drive of this experimental setup is the measurement of quantum noise present in a light source. Therefore one of the main factors is to minimize other noise sources in order to measure this one.
-\\
-The objective of this setup is to have a simple and objective way of measuring quantum noise.
-\\
-The experimental setup should be very simple, in order to avoid further noise sources.
-\\
-The experimental setup objective is to obtain the quantum noise measurement as easy and simple as possible. Therefore, we will simplify the montage
-\\
-The experiment will consist in pulsing a signal, interfering with a local oscilator in a beam splitter and read the power of the two resulting beams in two photodiodes. This signal will amplified and measured. In the post processing we will recover the quantum noise by applyind a difference between the two beams.
-\\
-A series of problems are associated to this experiment, such as noise from the equipement and ...
-To minimize various sources of noise and to avoid using "black boxes", we will simply read the photocurrents comming from the photodiodes directly (or with some amplification).\\
-\\
-Given the many factors in the process of preparing and measuring the states and interesting parameters, 
-\\
-We will have two experimental settings: simple balanced homodyne detection and double balanced homodyne detection.\\
-\\
-Our experiment will follow some settings from the paper XXX\\
-\\
-We will start by measuring noise in the simple balanced homodyne arrangement.\\
-\\
-We will start by measuring the phodiodes quantum efficiency with various pulse 
-\\
-As we have seen earlier, the detection output will manifest noise even in the absence of input signal (eq \ref{eq:noise}).\\
-\\
-To study the behaviour of quantum noise, an experimental setup was prepared to this effect...\\
-\\
-This setup is based in the paper (xxx) by (yyyy).\\
-\\
-In our setup we will test the noise response for various configurations of  $(P_{S}, P_{LO})$.\\
-\\
-The setup diagram is as follows
+The main objective of this experiment is to measure the magnitude of quantum noise, by studying it's relation with the power of the input signals in a homodyne detection.\\
+This experiment will be divided in two stages: a first stage for homodyne detection, measuring a single quadrature and second stage for double homodyne detection where two quadratures will be measured simultaneously.\\
+Our experiment will follow some settings from the paper XXX, such as the timing between\\
+To keep the experiment simple and avoid extra sources of noise, a simple setup was devised, as shown in fig. \ref{fig:experimental_homodyne_setup}:
+%To minimize various sources of noise and to avoid using "black boxes", we will simply read the photocurrents comming from the photodiodes directly (or with some amplification).\\
+%We will start by measuring the phodiodes quantum efficiency with various pulse 
+%In our setup we will test the noise response for various configurations of  $(P_{S}, P_{LO})$.\\
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{./sdf/quantum_noise/figures/scheme_experimental.pdf}
+	\includegraphics{./sdf/quantum_noise/figures/scheme_experimental.pdf}
 	\caption{Experimental setup}
+	\label{fig:experimental_homodyne_setup}
 \end{figure}
 %
 %
-The experimental procedure for this measurement consisted in just inputing the local oscillator laser and no signal. MAYBE WE COULD CHANGE FOR INPUTING SIGNAL \\
-\\
-For each value of  $P_{LO}$, the local oscillator was pulsed, and for each pulse, the variance of the plateau of the maximum was calculated. The final variance was simply the mean of the variances of all pulses.
-
+Material list
+\begin{table}[H]
+	\centering
+	\begin{tabulary}{1.0\textwidth}{|L|L|l|}
+		\hline
+		\textbf{Device}		& \textbf{Description}\\
+		\hline
+		Local Oscillator	& Yenista OSICS Band C/AG\\
+		\hline
+		BS					& Beam Splitter\\
+		\hline
+		Pulse Generator		& HP 8116A Pulse Generator\\
+		\hline
+		Amplitude Modulator	& Mach Zehnder SDL OC 48\\
+		\hline
+		VOA					& Eigenlicht Power Meter 420\\
+		\hline
+		VOA					& Thorlabs VOA 45-APC\\
+		\hline
+		PIN					& Thorlabs PDB 450C\\
+		\hline
+		ADC					& Picoscope 6403D\\
+		\hline
+	\end{tabulary}
+\end{table}
+%
+A single laser is splitted and used as the source for the signal (S) and the local oscillator (LO). The signal beam is pulsed and highly attenuated. The local oscillator is also attenuaded, but not pulsed. The signal and local oscillator interfere in a Beam Splitter originating two beams which are then converted to voltages in the PIN. These voltages are read in the ADC and collect in the computer. In the post processing phase, the quantum noise is measured by applying a difference between the two beams and measuring it's variance.
+%
+%
+\subsubsection{Data analysis}
+%
+For each combination of the expected number of photons present in the signal and the local oscillator, we will obtain the variance in the plateau of the pulse. The final variance is simply the mean of the variances of all pulses.
 %
 \subsection{Comparative analysis}
 %
+Given the theoretical, simulated and experimental frameworks, we will compare the results between them.
 %
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
