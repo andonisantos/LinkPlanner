@@ -3,7 +3,7 @@
 
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
-\textbf{Student Name}  &:& Daniel Pereira (2017/09/01 - )\\
+\textbf{Student Name}  &:& Daniel Pereira (2017/09/01 - 2017/11/16)\\
 \textbf{Goal}          &:& Estimate the BER in a Binary Phase Shift Keying optical transmission system with additive white Gaussian noise. Comparison with theoretical results.\\
 \textbf{Directory}              &:& sdf/bpsk\_system  
 \end{tabular}
@@ -48,6 +48,13 @@ given the symmetry of the system, this can be simplified to,
 BER=\int_0^{+\infty}f(x|\Delta\theta=\pi)\text{d}x=\frac{1}{2}\text{erfc}\left(\frac{-m_0}{\sqrt{2}\sigma}\right)
 \end{equation}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{BER_Evolution_theo.pdf}
+\caption{Bit Error Rate in function of the signal power in dBm at a constant local oscillator power level of 0~dBm.}
+\label{fig:berevolution}
+\end{figure}
+
 \subsection{Simulation Analysis}
 
 A diagram of the system being simulated is presented in the Figure~\ref{fig:homodynesystem}. A random binary sequence is generated and encoded in an optical signal using BPSK modulation. The decoding of the optical signal is accomplished by an homodyne receiver, which combines the signal with a local oscillator. The received binary signal is compared with the transmitted binary signal in order to estimate the Bit Error Rate (BER). The simulation is repeated for multiple signal power levels, each corresponding BER is recorded and plotted against the expectation value.
@@ -68,26 +75,26 @@ A diagram of the system being simulated is presented in the Figure~\ref{fig:homo
 \hline
 \multicolumn{3}{|c|}{ \textbf{Header Files} } \\
 \hline
-\textbf{File}                    & \textbf{Comments}          & \textbf{Status} \\ \hline
-add.h                            &                            & \checkmark \\ \hline
-balanced\_beam\_splitter.h       &                            & \checkmark \\ \hline
-binary\_source.h                 &                            & \checkmark \\ \hline
-bit\_decider.h                   &                            & \checkmark \\ \hline
-bit\_error\_rate.h               &                            & \checkmark \\ \hline
-discrete\_to\_continuous\_time.h &                            & \checkmark \\ \hline
-netxpto.h                        &                            & \checkmark \\ \hline
-m\_qam\_mapper.h                 &                            & \checkmark \\ \hline
-m\_qam\_transmitter.h            &                            & \checkmark \\ \hline
-local\_oscillator.h              &                            & \checkmark \\ \hline
-i\_homodyne\_reciever.h          & Working, but bootstrapped. & \checkmark \\ \hline
-ideal\_amplififer.h              &                            & \checkmark \\ \hline
-iq\_modulator.h                  &                            & \checkmark \\ \hline
-photodiode.h                     & Currently being rewritten. &  \\ \hline
-pulse\_shaper.h                  &                            & \checkmark \\ \hline
-sampler.h                        &                            & \checkmark \\ \hline
-sink.h                           &                            & \checkmark \\ \hline
-super\_block\_interface.h        &                            & \checkmark \\ \hline
-white\_noise.h                   &                            & \checkmark \\ \hline
+\textbf{File}                    & \textbf{Comments} & \textbf{Status} \\ \hline
+add.h                            &                   & \checkmark \\ \hline
+balanced\_beam\_splitter.h       &                   & \checkmark \\ \hline
+binary\_source.h                 &                   & \checkmark \\ \hline
+bit\_decider.h                   &                   & \checkmark \\ \hline
+bit\_error\_rate.h               &                   & \checkmark \\ \hline
+discrete\_to\_continuous\_time.h &                   & \checkmark \\ \hline
+netxpto.h                        &                   & \checkmark \\ \hline
+m\_qam\_mapper.h                 &                   & \checkmark \\ \hline
+m\_qam\_transmitter.h            &                   & \checkmark \\ \hline
+local\_oscillator.h              &                   & \checkmark \\ \hline
+i\_homodyne\_reciever.h          &                   & \checkmark \\ \hline
+ideal\_amplififer.h              &                   & \checkmark \\ \hline
+iq\_modulator.h                  &                   & \checkmark \\ \hline
+photodiode.h                     &                   & \checkmark \\ \hline
+pulse\_shaper.h                  &                   & \checkmark \\ \hline
+sampler.h                        &                   & \checkmark \\ \hline
+sink.h                           &                   & \checkmark \\ \hline
+super\_block\_interface.h        &                   & \checkmark \\ \hline
+white\_noise.h                   &                   & \checkmark \\ \hline
 \end{tabulary}
 \end{table}		
 %
@@ -97,26 +104,26 @@ white\_noise.h                   &                            & \checkmark \\ \h
 \hline
 \multicolumn{3}{|c|}{ \textbf{Source Files} } \\
 \hline
-\textbf{File}                      & \textbf{Comments}          & \textbf{Status} \\ \hline
-add.cpp                            &                            & \checkmark\\ \hline
-balanced\_beam\_splitter.cpp       &                            & \checkmark\\ \hline
-binary\_source.cpp                 &                            & \checkmark \\ \hline
-bit\_decider.cpp                   &                            & \checkmark   \\ \hline
-bit\_error\_rate.cpp               &                            & \checkmark \\ \hline
-discrete\_to\_continuous\_time.cpp &                            & \checkmark \\ \hline
-netxpto.cpp                        &                            & \checkmark \\ \hline
-m\_qam\_mapper.cpp                 &                            & \checkmark\\ \hline
-m\_qam\_transmitter.cpp            &                            & \checkmark \\ \hline
-local\_oscillator.cpp              &                            & \checkmark\\ \hline
-i\_homodyne\_reciever.cpp          & Working, but bootstrapped. & \checkmark \\ \hline
-ideal\_amplififer.cpp              &                            & \checkmark \\ \hline
-iq\_modulator.cpp                  &                            & \checkmark \\ \hline
-photodiode.cpp                     & Currently being rewritten. & \\ \hline
-pulse\_shaper.cpp                  &                            & \checkmark \\ \hline
-sampler.cpp                        &                            & \checkmark \\ \hline
-sink.cpp                           &                            & \checkmark \\ \hline
-super\_block\_interface.cpp        &                            & \checkmark \\ \hline
-white\_noise.cpp                   &                            & \checkmark \\ \hline
+\textbf{File}                      & \textbf{Comments} & \textbf{Status} \\ \hline
+add.cpp                            &                   & \checkmark \\ \hline
+balanced\_beam\_splitter.cpp       &                   & \checkmark \\ \hline
+binary\_source.cpp                 &                   & \checkmark \\ \hline
+bit\_decider.cpp                   &                   & \checkmark \\ \hline
+bit\_error\_rate.cpp               &                   & \checkmark \\ \hline
+discrete\_to\_continuous\_time.cpp &                   & \checkmark \\ \hline
+netxpto.cpp                        &                   & \checkmark \\ \hline
+m\_qam\_mapper.cpp                 &                   & \checkmark \\ \hline
+m\_qam\_transmitter.cpp            &                   & \checkmark \\ \hline
+local\_oscillator.cpp              &                   & \checkmark \\ \hline
+i\_homodyne\_reciever.cpp          &                   & \checkmark \\ \hline
+ideal\_amplififer.cpp              &                   & \checkmark \\ \hline
+iq\_modulator.cpp                  &                   & \checkmark \\ \hline
+photodiode.cpp                     &                   & \checkmark \\ \hline
+pulse\_shaper.cpp                  &                   & \checkmark \\ \hline
+sampler.cpp                        &                   & \checkmark \\ \hline
+sink.cpp                           &                   & \checkmark \\ \hline
+super\_block\_interface.cpp        &                   & \checkmark \\ \hline
+white\_noise.cpp                   &                   & \checkmark \\ \hline
 \end{tabulary}
 \end{table}		
 
@@ -131,12 +138,12 @@ This system takes into account the following input parameters:
 \multicolumn{3}{|c|}{ \textbf{System Input Parameters} } \\
 \hline
 \textbf{Parameter}     & \textbf{Default Value}                                     & \textbf{Comments} \\ \hline
-numberOfBitsGenerated  & $40000$	                                                   &                     \\ \hline
-bitPeriod              & $20\times10^{-12}$                                         &\\ \hline
-samplesPerSymbol       & $16$                                                       &\\ \hline
-pLength                & $5$                                                        &\\ \hline
+numberOfBitsGenerated  & $40000$	                                                   & \\ \hline
+bitPeriod              & $20\times10^{-12}$                                         & \\ \hline
+samplesPerSymbol       & $16$                                                       & \\ \hline
+pLength                & $5$                                                        & \\ \hline
 iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ & \\ \hline
-outOpticalPower\_dBm   & Variable                                                   & Value varied for presented study\\ \hline
+outOpticalPower\_dBm   & Variable                                                   & Value varied from -75~dBm to -25~dBm with intervals of 5~dBm \\ \hline
 loOutOpticalPower\_dBm & $0$                                                        & \\ \hline
 localOscillatorPhase   & $0$                                                        & \\ \hline
 transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
@@ -171,6 +178,13 @@ This system outputs the following objects:
 \item Bit Error Rate report in the form of a .txt file. (BER.txt)
 \end{itemize}
 \end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{BER_Evolution_simu.pdf}
+\caption{Bit Error Rate in function of the signal power in dBm at a constant local oscillator power level of 0~dBm.}
+\label{fig:berevolution}
+\end{figure}
 
 \subsection{Comparative Analysis}
 
