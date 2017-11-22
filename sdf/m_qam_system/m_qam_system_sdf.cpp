@@ -11,8 +11,8 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsGenerated(1000);
-	t_integer samplesPerSymbol(32);
+	t_integer numberOfBitsGenerated(200);
+	t_integer samplesPerSymbol(16);
 	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
 	t_real rollOffFactor = 0.9;
@@ -45,12 +45,12 @@ int main(){
 	t_real amplification = 1;
 	t_real noiseAmplitude = 1*pow(10,-6);
 	//t_integer samplesToSkip = 0;
-	t_integer samplesToSkip = 100;
+	t_integer samplesToSkip = 2*8*samplesPerSymbol+ floor(samplesPerSymbol / 2);
 	//t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; //+ floor(samplesPerSymbol / 2);
 	//8 is the number of samples used by the filter
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
-	t_integer bufferLength = 50;
+	t_integer bufferLength = 10;
 	
 	//double clockPeriod = symbolPeriod;
 	//double samplingPeriod = 16;

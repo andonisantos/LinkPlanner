@@ -40,11 +40,12 @@ bool Sampler::runBlock(void) {
 				cout << "outPos=" << aux4 << endl;
 
 				inputSignals[0]->setOutPosition(inputSignals[0]->getInPosition());
+				inputSignals[0]->bufferEmpty = true;
 
 				int aux2 = inputSignals[0]->getOutPosition();
 				cout << "outPos_corr=" << aux2 << endl;
 
-				setSamplesToSkip(getSamplesToSkip() % ready);
+				setSamplesToSkip(getSamplesToSkip() - ready);
 				int aux = getSamplesToSkip();
 				cout << aux << endl;
 
