@@ -310,7 +310,7 @@ Bob wants to know which element ($x_{i}$) is the closest to $x$ in Alice data se
 
 \begin{description}
   \item[Step 1] Alice generates a new set with $N=2^{n}$ elements, $D(j)$ for $j=0,1,...N-1$, in which $D(j)=x_{l}$ being $x(l)$ the closest element to $j$ in $A$. $n$ is the number of bits that Alice needs to represent each element of her data set.
-      
+
        \begin{table}[hbt]
         \centering
         \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
@@ -322,15 +322,15 @@ Bob wants to know which element ($x_{i}$) is the closest to $x$ in Alice data se
                         & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0  & 0  & 1  & 1  & 0  & 0  & 0
         \end{tabular}
   \end{table}
-  
+
   \item[Step 2]  Bob and Alice have a set of keys $K_{i}^*$ and $K_{i}$, respectively, with $64$ elements where $60$ are bits resulted from wrong basis measurement and $4$ resulted from correct basis measurement. This allows Alice to know that Bob is being honest. They start from QOKD with symmetric keys and then Alice is being asking Bob to destroy pairs of keys until they have a set with the characteristics above.
-      
+
   \item[Step 3] Bob sends to Alice the set $S$ with all positions referred random measurements except the position bits at $j=8$.
-  
+
   \item[Step 4] Alice encoded all bits with the corresponding bit keys at the positions sent by Bob, and then she sends the encoded message to Bob.
-  
+
   \item[Step 5] Bob receives the encoded message and apply an operation XOR based on the correspondent bits to the positions the he sent two Alice above.
-  
+
   \item[Step 6] At the end, Bob gets the message he wanted, the closest element to $8$, which corresponds to message ${0,1,1,1}$ or $7$ and he remains know nothing about the other elements of Alice's data set. In the same way, Alice does not know which element Bob wants to know.
 \end{description}
 
@@ -339,7 +339,7 @@ Bob wants to know which element ($x_{i}$) is the closest to $x$ in Alice data se
 
 All Quantum Key Distribution systems can be obtained from the QOKD system presented in this report. The Quantum Oblivious Key Distribution system allows to obtain symmetric secret keys and symmetric or asymmetric oblivious keys.
 
-In fact, since Alice and Bob has the same set of keys and at some tab Alice knows that there are the same number of right and random bits, she can obtain any combination from this set by asking Bob to destroy some pairs. 
+In fact, since Alice and Bob has the same set of keys and at some tab Alice knows that there are the same number of right and random bits, she can obtain any combination from this set by asking Bob to destroy some pairs.
 
 QOKD has a big advantage over other QKD systems because of its versatility. However, the biggest disadvantage is related with a large number of photons consumption which can became the communication rate slower.
 
@@ -350,7 +350,7 @@ First of all, the protocol will be simulated and then a experimental setup will 
 
 The main goal of this simulation is to demonstrate that Bob was able to learn correctly message $m_{b}$ and he does not know the message $m_{\overline{b}}$.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth, height=9cm]{./sdf/qokd_with_discrete_variables/figures/Simulation_diagram_top.png}
 	\caption{Simulation diagram at a top level}\label{toplevelsimulation}
@@ -364,7 +364,7 @@ As one may see in figure \ref{toplevelsimulation} this simulation will have thre
 
   \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.1\textwidth, height=9cm]{./sdf/qokd_with_discrete_variables/figures/Simulation_Alice.png}
+	\includegraphics[width=1.3\textwidth, height=20cm]{./sdf/qokd_with_discrete_variables/figures/Simulation_Alice.png}
 	\caption{Simulation diagram - Alice's side}\label{simulationalice}
 \end{figure}
 
