@@ -4,7 +4,7 @@
 # include "netxpto.h"
 
 # include "optical_hybrid.h"
-# include "photodiode.h"
+# include "photodiode_old.h"
 # include "subtractor.h"
 # include "ideal_amplifier.h"
 # include "decoder.h"

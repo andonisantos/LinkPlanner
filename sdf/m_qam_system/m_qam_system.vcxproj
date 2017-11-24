@@ -86,7 +86,7 @@
     <ClCompile Include="..\..\lib\m_qam_transmitter.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\optical_hybrid.cpp" />
-    <ClCompile Include="..\..\lib\photodiode.cpp" />
+    <ClCompile Include="..\..\lib\photodiode_old.cpp" />
     <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\sampler_20171119.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
@@ -106,7 +106,7 @@
     <ClInclude Include="..\..\include\m_qam_transmitter.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
     <ClInclude Include="..\..\include\optical_hybrid.h" />
-    <ClInclude Include="..\..\include\photodiode.h" />
+    <ClInclude Include="..\..\include\photodiode_old.h" />
     <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\sampler_20171119.h" />
     <ClInclude Include="..\..\include\sink.h" />
