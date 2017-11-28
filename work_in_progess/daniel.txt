@@ -9,6 +9,7 @@ TO BE DONE
 
 	teórica, explicas em detalhe o protocolo usado para gerar as chaves (análogo aquilo que está feito na secção 5.7.1)
 
+Next meeting: 5/12, 15h
 
 2017-11-22
 TO BE DONE
