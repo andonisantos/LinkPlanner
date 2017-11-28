@@ -6,7 +6,7 @@
 # include "pulse_shaper.h"
 # include "rf_oscillator.h"								
 # include "mixer.h"
-# include "fork.h"
+# include "fork_20171119.h"
 # include "hilbert_transform.h"
 # include "iq_modulator.h"
 # include "sink.h"
@@ -19,10 +19,11 @@ int main() {
 
 	BinarySourceMode sourceMode{ PseudoRandom };
 	int patternLength{ 5 };
-	double bitPeriod{ 1.0 / 1.25e9 };
-	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
+	double bitPeriod{ 1.0 / 10e9 };
+	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 } } };
+	//vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 },{ 5,0 },{ 6,0 },{ 7,0 },{ 8,0 },{ 9,0 },{ 10,0 },{ 11,0 },{ 12,0 },{ 13,0 },{ 14,0 },{ 15,0 } } };
 	int numberOfBits{ 1000 };				                                        // For value of {-1}, it'll generate long bit sequence.
-	int numberOfSamplesPerSymbol{ 32 };
+	int numberOfSamplesPerSymbol{ 16 };
 	double rollOffFactor{ 0.3 };
 	int impulseResponseTimeLength{ 16 };
 	double rfFrequency{500E6};														// It depends on the bandwidth of the signal

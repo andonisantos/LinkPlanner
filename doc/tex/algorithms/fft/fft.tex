@@ -16,17 +16,60 @@
 \clearpage
 \section{FFT}
 
+\subsubsection{Definitions of DFT and IDFT}
+The discrete Fourier transform of a sequence of N complex number $x_0, x_1, x_2,...,x_{N-1}$ into another sequance of complex number $X_0, X_1, X_2,...,X_{N-1}$ defined by,
+\begin{equation}
+X_k = \sum\limits_{n=0}^{N-1} x_n \cdot e^{-i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+\end{equation}
+Similarly, inverse discrete Fourier transform can be given as,
+\begin{equation}
+x_n = \frac{1}{N} \sum\limits_{n=0}^{N-1} X_k \cdot e^{i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+\end{equation}
+Using these equation, it requires $N^2$ calculation for the transformation from time domain to frequency domain and vice-versa. Therefore, it is not efficient for the practical implementation purpose. Radix-2 based FFT calculation reduces the number of computation to $Nlog n$.
+
+\subsubsection{Algorithm}
+An alternate representation of the Fourier transform can give a flexibility to utilize the same code for the FFT and IFFT with appropriate input arguments. The algorithm for the FFT will follow the following formula,
+\begin{equation}
+X_k =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} x_n \cdot e^{-i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+\label{FFT}
+\end{equation}
+Similarly, for IFFT,
+\begin{equation}
+x_n =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} X_k \cdot e^{i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+\label{IFFT}
+\end{equation}
+From the above manipulation discussed in equations \ref{FFT} and \ref{IFFT}, we can write only one script for the implementations Fourier algorithm and manipulate its functionality as a FFT or IFFT by applying an appropriate input arguments. \\
+The generalized form for the algorithm can be given as,
+\begin{equation}
+OUTPUT =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} INPUT \cdot e^{sign \cdot i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+\label{FT}
+\end{equation}
+where,\\
+$INPUT \rightarrow$ {Input complex signal}\\
+$OUTPUT \rightarrow$ {Output complex signal} \& $sign \rightarrow$ {'-1' for FFT and '1' for IFFT}\\
+
+\subsubsection{Function description}
+To perform FFT operation, the input argument to the function can be given as follows,
+\begin{equation*}
+OUTPUT = transform(INPUT,-1)
+\end{equation*}
+in a similar way, IFFT can be manipulated as,
+\begin{equation*}
+OUTPUT = transform(INPUT,1)
+\end{equation*}
+
+\newpage
 % Define block styles
-\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+\tikzstyle{decision} = [diamond, draw, fill=white!20, 
 text width=9em, text badly centered, node distance=3cm, inner sep=0pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+\tikzstyle{block} = [rectangle, draw, fill=white!20, 
 text width=15em, text centered, rounded corners, minimum height=4em]
 \tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+\tikzstyle{cloud} = [draw, ellipse,fill=white!20, node distance=3cm,
 minimum height=3em]
 
-
-This is the generalized FFT algorithm which facilitates time domain to frequency domain conversion for both real and complex signal. In case of real signal, we have to manipulate imaginary part to be zero for the execution of algorithm.
+\subsubsection{Flowchart}
+This algorithm converts time domain signal to frequency domain for both real and complex signal type. In case of real signal, we have to manipulate imaginary part to be zero for the execution of algorithm.
 The figure \ref{Top_level_FFT } displays top level architecture of the FFT algorithm.  If the length of the input signal is $2^N$, then it'll execute Radix-2 algorithm otherwise it'll execute Bluestein algorithm.
 
 \begin{center}
@@ -35,12 +78,12 @@ The figure \ref{Top_level_FFT } displays top level architecture of the FFT algor
 \begin{center}
 \begin{tikzpicture}[node distance = 2cm, auto]
 %Place nodes
-\node [block] (input) { Input signal\\$Time$ $Domain$ \\$Real$ or $Complex$};
-\node [block, below of=input, node distance=3cm] (n) {n = Length of the \\ input signal};
+\node [block] (input) { INPUT $(Real$ or $Complex)$\\sign $(-1$ or $1)$};
+\node [block, below of=input, node distance=3cm] (n) {n = Length of INPUT};
 \node [decision, below of=n, node distance=4cm] (decide) {Check if $n=2^N$ };
 \node [block, right of=decide, node distance=6cm] (Bluestein) {Execute Bluestein algorithm};
 \node [block, below of=decide, node distance=4cm] (Radix-2) {Execute Radix-2 algorithm};
-\node [block, below of=Radix-2, node distance=3cm] (output) {Output signal\\$Frequency$ $Domain$ \\$Complex$};
+\node [block, below of=Radix-2, node distance=3cm] (output)  { OUTPUT $(Complex)$};
 %% Draw edges
 \path [line] (input) -- (n);
 \path [line] (n) -- (decide);
@@ -66,7 +109,7 @@ The architecture of the algorithm is to accept time domain complex signal and ge
 	\begin{center}
 		\begin{tikzpicture}[node distance = 2cm, auto]
 		%Place nodes
-		\node [block] (input) {Input signal\\$Time$ $Domain$ \\$Complex$};
+		\node [block] (input) { INPUT $(Complex)$};
 		\node [block, below of=input, node distance=2.5cm] (levels) { Compute levels N \\ $N=floor(log2(n))$};
 		\node [cloud, right of=levels, node distance=7cm] (length) {n = length of input signal};
 		
@@ -75,7 +118,7 @@ The architecture of the algorithm is to accept time domain complex signal and ge
 			
 		\node [block, below of=TrignometricTable, node distance=2.5cm] (sequencing) {Bit-reversed permutation\\$Even-Odd$ $seperation$};
 		\node [block, below of=sequencing, node distance=2.5cm] (CT) {Cooley-Tukey algorithm\\$DIT$ $Radix-2$ $FFT$};
-		\node [block,below of=CT, node distance=2.5cm] (output) { Output signal\\$Frequency$ $Domain$ \\$Complex$};
+		\node [block,below of=CT, node distance=2.5cm] (output) { OUTPUT $(Complex)$};
 %		\node [block, below of=input, node distance=3cm] (n) {n = Length of the input signal};
 %		\node [decision, below of=n, node distance=4cm] (decide) {Check if $n=2^N$ };
 %		\node [block, right of=decide, node distance=6cm] (Bluestein) {Execute Bluestein algorithm};
@@ -108,7 +151,7 @@ The architecture of the algorithm is to accept time domain complex signal and ge
 		\begin{center}
 			\begin{tikzpicture}[node distance = 2cm, auto]
 			%Place nodes
-			\node [block] (input) {Input signal\\$Time$ $Domain$ \\$Complex$};
+			\node [block] (input) {INPUT $Complex$};
 			\node [block, below of=input, node distance=2.5cm] (length) {Calculate a power-of-2 convolution length $m$};
 				\node [cloud, right of=length, node distance=7cm] (m) {$m\geq2n+1$};	
 			\node [block, below of=length, node distance=2.5cm] (TrignometricTable) { Generate Trignometric Tables
@@ -118,7 +161,7 @@ The architecture of the algorithm is to accept time domain complex signal and ge
 			\node [block, below of=preprocessing, node distance=2.5cm] (convolution) {Convolution};
 			\node [block, below of=convolution, node distance=2.5cm] (postprocessing) {Postprocessing}; 
 			
-			\node [block,below of=postprocessing, node distance=2.5cm] (output) { Output signal\\$Frequency$ $Domain$ \\$Complex$};
+			\node [block,below of=postprocessing, node distance=2.5cm] (output) { OUTPUT $Complex$};
 			 
 %			% Draw edges
 			\path [line] (input) -- (length);
@@ -173,6 +216,7 @@ The architecture of the algorithm is to accept time domain complex signal and ge
 %\end{tikzpicture}
 %%%%%%%%%%% Example flowchart END %%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %\end{document}
 

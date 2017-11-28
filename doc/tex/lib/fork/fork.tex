@@ -5,33 +5,34 @@
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 \textbf{Header File}   &:& fork.h \\
-\textbf{Source File}   &:& fork.cpp \\
-\textbf{Version}       &:& 201711119 (Responsible: Romil Patel)
+\textbf{Source File}   &:& fork\_20171119.cpp \\
+\textbf{Version}       &:& 20171119 (\textbf{Student Name}: Romil Patel)
 \end{tabular}
 \end{tcolorbox}
 
 \subsection*{Input Parameters}
 
----- NA ----
+--- NA ---
 
 \subsection*{Input Signals}
 
-\textbf{Number}: 1
-
-\textbf{Type}: t\_real (TimeContinuousAmplitudeContinuousReal)
+\textbf{Number}: 1\\
+\textbf{Type}: Any type (BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP)
 
 \subsection*{Output Signals}
 
-\textbf{Number}: 2
-
-\textbf{Type}: t\_real (TimeContinuousAmplitudeContinuousReal)
+\textbf{Number}: 2\\
+\textbf{Type}: Same as applied to the input.\\
+\\
+\textbf{Number}: 3\\
+\textbf{Type}: Same as applied to the input.
 
 \subsection*{Functional Description}
 
-This block accepts a time domain signal and outputs two replicas of the input signal.
+This block accepts any type signal and outputs two replicas of the input signal.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth, height=8cm]{./lib/fork/figures/fork.pdf}
+	\includegraphics[width=0.6\textwidth, height=4.5cm]{./lib/fork/figures/fork.pdf}
 	\caption{Fork}\label{}
 \end{figure}

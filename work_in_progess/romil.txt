@@ -1,3 +1,14 @@
+2017-11-28
+TO BE DONE
+	finalize the documentation of the fork (minor details)
+
+	conclude the sgnToWfm without changing the readsignal_20170930.m
+		warning('The sampling frequency was XX and the signal was decimated to obtain a sampling frequency of YY (< 16 GHz).')
+
+	work in the FFT algorithm fft( , -1) or fft( , 1)
+
+Next Meeting: 2017/11/05
+
 2017-11-21
 TO BE DONE
 	finalize the fork

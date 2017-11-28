@@ -10,7 +10,7 @@ function [ data, symbolPeriod, samplingPeriod, type, numberOfSymbols ] = readSig
 
 fid = fopen(fname,'r');
 
-type = fscanf(fid,'Signal type: %s\n',1);
+type = fscanf(fid,'Signal type: %s\n',1);                   
 symbolPeriod = fscanf(fid,'Symbol Period (s): %f\n',1);
 samplingPeriod = fscanf(fid,'Sampling Period (s): %f\n',1);
 fscanf(fid,'// ### HEADER TERMINATOR ###\n',1);
@@ -34,6 +34,7 @@ end
 % 
 % %% Get global variable "t_binary"
 % t_binaryr = getGlobalt_binary;
+clc
 t_binaryr = 'int';
 % 
 % %% Get global variable "t_real"
