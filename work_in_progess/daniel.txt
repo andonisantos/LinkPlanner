@@ -1,3 +1,16 @@
+2017-11-28
+TO BE DONE
+	colocar as figuras com aspeto consistente com as outras
+	colcocar as figuras nos diretórios figures e figures_raw
+
+	colocas o setup a funcionar com os recetores da Thorlabs e com uma frequencia que seja compativel e back-to-back e só com um laser
+	colocar resultaods experimentais
+	BER vs número de fotões dos impulsos quânticos (explicar como é que estimas o número de fotões dos impulsos quânticos)
+
+	teórica, explicas em detalhe o protocolo usado para gerar as chaves (análogo aquilo que está feito na secção 5.7.1)
+
+Next meeting: 5/12, 15h
+
 2017-11-22
 TO BE DONE
 	- CV Quantum Transmission System
