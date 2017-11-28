@@ -144,7 +144,6 @@
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
     <ClCompile Include="..\..\lib\fork.cpp" />
-    <ClCompile Include="..\..\lib\hilbert_transform.cpp" />
     <ClCompile Include="..\..\lib\iq_modulator.cpp" />
     <ClCompile Include="..\..\lib\local_oscillator.cpp" />
     <ClCompile Include="..\..\lib\mixer.cpp" />
@@ -160,7 +159,6 @@
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
     <ClInclude Include="..\..\include\fork.h" />
-    <ClInclude Include="..\..\include\hilbert_transform.h" />
     <ClInclude Include="..\..\include\iq_modulator.h" />
     <ClInclude Include="..\..\include\local_oscillator.h" />
     <ClInclude Include="..\..\include\mixer.h" />
