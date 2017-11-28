@@ -486,7 +486,7 @@ iqAmplitudeValues			& $\{ \{ 1, 1 \}, \{ -1, 1 \},$ $ \{ -1, -1 \}, \{ 1, -1 \} 
 %\hline
 %transferMatrix				&
 %							$\frac{1}{\sqrt{2}}\{1,1,1,1\}$	
-%														& Sets the transfer matrix of the beam splitter used in the homodyne detector\\
+%							& Sets the transfer matrix of the beam splitter used in the homodyne detector\\
 %\hline
 %shotNoise (FUTURE)      & Chooses if quantum shot noise is used in the simulation\\
 %\hline
@@ -525,7 +525,7 @@ Header Files
 \centering
 \begin{tabulary}{1.0\textwidth}{|L|L|l|}
 \hline
-\textbf{File}           & \textbf{Description}									& {\bf Status}\\
+\textbf{File}			& \textbf{Description}									& {\bf Status}\\
 \hline
 netxpto.h               & Generic purpose simulator definitions.				& check\\
 \hline
@@ -556,27 +556,27 @@ Source Files
 \centering
 \begin{tabulary}{1.0\textwidth}{|L|L|l|}
 \hline
-\textbf{File}                   & \textbf{Description}									& {\bf Status}\\
+\textbf{File}			& \textbf{Description}									& {\bf Status}\\
 \hline
-netxpto.cpp                     & Generic purpose simulator definitions.				& check\\
+netxpto.cpp				& Generic purpose simulator definitions.				& check\\
 \hline
-m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.				& check\\
+m\_qam\_transmitter.cpp	& Outputs a QPSK modulated optical signal.				& check\\
 \hline
-local\_oscillator.cpp           & Generates continuous coherent signal.					& check\\
+local\_oscillator.cpp	& Generates continuous coherent signal.					& check\\
 \hline
-optical\_hybrid.cpp             & Mixes the two input signals into four outputs.		& check\\
+optical\_hybrid.cpp		& Mixes the two input signals into four outputs.		& check\\
 \hline
-photodiode.h                    & Converts an optical signal to a current.				& check\\
+photodiode.h			& Converts an optical signal to a current.				& check\\
 \hline
-difference.h                    & Ouputs the difference between two input signals.		& check\\
+difference.h			& Ouputs the difference between two input signals.		& check\\
 \hline
-ideal\_amplifier.h				& Performs a perfect amplification of the input sinal	& check\\
+ideal\_amplifier.h		& Performs a perfect amplification of the input sinal	& check\\
 \hline
-sampler.cpp                     & Samples the input signal.								& check\\
+sampler.cpp				& Samples the input signal.								& check\\
 \hline
-real\_to\_complex.cpp			& Combines two real input signals into a complex signal	& check\\
+real\_to\_complex.cpp	& Combines two real input signals into a complex signal	& check\\
 \hline
-sink.cpp                        & Empties the signal buffer.							& check\\
+sink.cpp				& Empties the signal buffer.							& check\\
 \hline
 \end{tabulary}
 \end{table}
@@ -649,15 +649,20 @@ The following plot shows the behavior of current noise variance $\braket{(\Delta
 We see that for low LO power, the dominant noise is the thermal contribution, but for higher power, quantum noise dominates, growing proportionally to $P_{LO}$. This in accordance with equation \ref{eq:approx_noise}\\
 \\
 \\
+%
+%
+%
+%
 \subsection{Experimental setup}
 %
-The main objective of this experimental setup is to obtain the relation of the magnitude of quantum noise with the power of the inputs of a homodyne detection.\\
-This experiment will be divided in two stages: a first stage for homodyne detection, measuring the noise in a single quadrature and a second stage measureing noise in a double homodyne detection where two quadratures will be measured simultaneously.\\
-Our experiment will follow some settings from the paper \cite{chi2011balanced}, such as the timing between pulses and the pulse width.\\
-To keep the experiment simple and avoid extra sources of noise, a simple setup was devised, as shown in fig. \ref{fig:experimental_homodyne_setup}:
-%To minimize various sources of noise and to avoid using "black boxes", we will simply read the photocurrents comming from the photodiodes directly (or with some amplification).\\
-%We will start by measuring the phodiodes quantum efficiency with various pulse
-%In our setup we will test the noise response for various configurations of  $(P_{S}, P_{LO})$.\\
+To confirm the theoretical results obtained in section \ref{subsec:intro}, two experimental setups will be created.\\
+In the first experiement, we will study quantum noise in the single homodyne detection. The experimental setup will be based on the paper \ref{chi2011balanced}.\\
+In the second experiment, we will study quantum noise in the double homodyne detection setup, which will be basically an extension of the single homodyne detection setup.\\
+\\
+\subsubsection{Single homodyne detection}
+%
+To keep the experiment simple and avoid extra sources of noise, we will avoid using black boxes wich have complicated inner workings, having a preference in using simple components, as shown in fig. \ref{fig:experimental_homodyne_setup}:
+\\
 \begin{figure}[H]
 	\centering
 	\includegraphics{./sdf/quantum_noise/figures/scheme_experimental.pdf}
@@ -692,15 +697,29 @@ Material list
 	\end{tabulary}
 \end{table}
 %
-A single laser is splitted and used as the source for the signal (S) and the local oscillator (LO). The signal beam is pulsed and highly attenuated. The local oscillator is also attenuaded, but not pulsed. The signal and local oscillator interfere in a Beam Splitter originating two beams which are then converted to voltages in the PIN. These voltages are read in the ADC and collect in the computer. In the post processing phase, the quantum noise is measured by applying a difference between the two beams and measuring it's variance.
+A single laser is splitted and used as the source for the signal (S) and the local oscillator (LO). The signal beam is pulsed and highly attenuated. The local oscillator is also attenuaded, but not pulsed. The signal and local oscillator interfere in a Beam Splitter originating two beams which are then converted to voltages in the PIN. These voltages are read in the Digital Oscilator (OSC) and collect in the computer. In the post processing phase, the quantum noise is measured by applying a difference between the two beams and measuring it's variance.
 \\
 The second stage of the experiment will be very similar to the first one, in which the signal and local oscillator branches will be divided. One of the new branches of the local oscilator will suffer a phase delay of $\pi/2$, in order to measure the quadrature component of the incoming signal.\\
 %
 %
 \subsubsection{Data analysis}
 %
+Using the data collected in the Digital Oscilloscope, we process each sample for each power level (which???).
+This data analysis will consist in the following steps:
+1) Subtract the data coming from MONITOR- from the data from MONITOR+.\\
+2) Calculate the average impulse and the variance of the impulse. (VALE A PENA ESPECIFICAR A EQUIVALÊNCIA DE FASE?)\\
+3) The representative variance will be the variance of the pulse maximum.\\\
+%
 For each combination of the expected number of photons present in the signal and the local oscillator, we will obtain the variance in the plateau of the pulse. The final variance is simply the mean of the variances of all pulses.
 %
+
+\subsubsection{Double homodyne detection}
+%
+-- UNDER CONSTRUCTION --\\
+\\
+The experiemental setup for this experiment is a simple extension of the single homodyne detection. To implement this experiment, the signal beam will be divided in two beams, in which one of them will be detect in phase with local oscillator and the other in phase with a an oscillator with a $pi/2$ phase relative to the first one.????
+%
+
 \subsection{Comparative analysis}
 %
 WARNING -- OLD DATA --\\
