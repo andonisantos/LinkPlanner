@@ -356,7 +356,7 @@ iqAmplitudeValues			& $\{ \{ 1, 1 \}, \{ -1, 1 \},$ $ \{ -1, -1 \}, \{ 1, -1 \} 
 %\hline
 %transferMatrix				&
 %							$\frac{1}{\sqrt{2}}\{1,1,1,1\}$	
-%														& Sets the transfer matrix of the beam splitter used in the homodyne detector\\
+%							& Sets the transfer matrix of the beam splitter used in the homodyne detector\\
 %\hline
 %shotNoise (FUTURE)      & Chooses if quantum shot noise is used in the simulation\\
 %\hline
@@ -519,6 +519,10 @@ The following plot shows the behavior of current noise variance $\braket{(\Delta
 We see that for low LO power, the dominant noise is the thermal contribution, but for higher power, quantum noise dominates, growing proportionally to $P_{LO}$. This in accordance with equation \ref{eq:approx_noise}\\
 \\
 \\
+%
+%
+%
+%
 \subsection{Experimental setup}
 %
 To confirm the theoretical results obtained in section \ref{subsec:intro}, two experimental setups will be created.\\
@@ -563,15 +567,28 @@ Material list
 	\end{tabulary}
 \end{table}
 %
-A single laser is splitted and used as the source for the signal (S) and the local oscillator (LO). The signal beam is pulsed and highly attenuated. The local oscillator is also attenuaded, but not pulsed. The signal and local oscillator interfere in a Beam Splitter originating two beams which are then converted to voltages in the PIN. These voltages are read in the ADC and collect in the computer. In the post processing phase, the quantum noise is measured by applying a difference between the two beams and measuring it's variance.
+A single laser is splitted and used as the source for the signal (S) and the local oscillator (LO). The signal beam is pulsed and highly attenuated. The local oscillator is also attenuaded, but not pulsed. The signal and local oscillator interfere in a Beam Splitter originating two beams which are then converted to voltages in the PIN. These voltages are read in the Digital Oscilator (OSC) and collect in the computer. In the post processing phase, the quantum noise is measured by applying a difference between the two beams and measuring it's variance.
 \\
-The second stage of the experiment will be very similar to the first one, in which the signal and local oscillator branches will be divided. One of the new branches of the local oscilator will suffer a phase delay of $\pi/2$, in order to measure the quadrature component of the incoming signal.\\
 %
 %
 \subsubsection{Data analysis}
 %
+Using the data collected in the Digital Oscilloscope, we process each sample for each power level (which???).
+This data analysis will consist in the following steps:
+1) Subtract the data coming from MONITOR- from the data from MONITOR+.\\
+2) Calculate the average impulse and the variance of the impulse. (VALE A PENA ESPECIFICAR A EQUIVALÊNCIA DE FASE?)\\
+3) The representative variance will be the variance of the pulse maximum.\\\
+%
 For each combination of the expected number of photons present in the signal and the local oscillator, we will obtain the variance in the plateau of the pulse. The final variance is simply the mean of the variances of all pulses.
 %
+
+\subsubsection{Double homodyne detection}
+%
+-- UNDER CONSTRUCTION --\\
+\\
+The experiemental setup for this experiment is a simple extension of the single homodyne detection. To implement this experiment, the signal beam will be divided in two beams, in which one of them will be detect in phase with local oscillator and the other in phase with a an oscillator with a $pi/2$ phase relative to the first one.????
+%
+
 \subsection{Comparative analysis}
 %
 WARNING -- OLD DATA --\\
@@ -612,4 +629,5 @@ We see that both the simulation and experimental data display a similar behaviou
 \subsection{Known problems}
 %
 %
-\bibliography{./sdf/quantum_noise/quantum_noise}
+%\bibliography{./sdf/quantum_noise/quantum_noise}
+\bibliography{./bibliography}
