@@ -11,13 +11,13 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsGenerated(200);
+	t_integer numberOfBitsGenerated(1000);
 	t_integer samplesPerSymbol(16);
 	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
 	t_real rollOffFactor = 0.9;
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
-	t_real signalOutputPower_dBm = -20;
+	t_real signalOutputPower_dBm = -75;
 
 
 	// #####################################################################################################
@@ -37,13 +37,13 @@ int main(){
 	//int samplesPerSymbol = 16;
 	double symbolPeriod = bitPeriod / samplesPerSymbol;
 
-	//t_real signalOutputPower_dBm = -20; 
+	//t_real signalOutputPower_dBm = -80; 
 	t_real localOscillatorPower_dBm = 0; 
 	t_real localOscillatorPhase = 0;
 	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	t_real responsivity = 1;
-	t_real amplification = 1;
-	t_real noiseAmplitude = 1*pow(10,-6);
+	t_real amplification = pow(10,3);
+	t_real noiseAmplitude = pow(10,-6);
 	//t_integer samplesToSkip = 0;
 	t_integer samplesToSkip = (int)(2 * 8 * samplesPerSymbol);//+ floor(samplesPerSymbol / 2));
 	//t_integer samplesToSkip = 2 * 8 * samplesPerSymbol; //+ floor(samplesPerSymbol / 2);
@@ -96,15 +96,15 @@ int main(){
 	//B2.setSamplerOpticalPower_dBm(signalOutputPower_dBm);
 	//B2.setTransferMatrix(transferMatrix);
 	B2.setResponsivity(responsivity);
-	//B2.setAmplification(amplification);
-	//B2.setNoiseAmplitude(noiseAmplitude);
+	B2.setAmplification(amplification);
+	B2.setNoiseAmplitude(noiseAmplitude);
 	B2.setSamplesToSkip(samplesToSkip);
 	//B2.setPosReferenceValue(0);
 	//B2.setNegReferenceValue(0);
 	B2.setSaveInternalSignals(true);
 	//B2.setCutoffFrequency(cutoffFrequency);
 	B2.setSamplingPeriod(symbolPeriod/samplesPerSymbol);
-	B2.setClockPeriod(symbolPeriod);
+	//B2.setClockPeriod(symbolPeriod);
 
 	//With BER measurement
 	BitErrorRate B3{ vector<Signal*> { &S2, &S0 }, vector<Signal*> { &S3 } };

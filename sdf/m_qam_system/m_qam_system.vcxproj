@@ -73,6 +73,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lib\add.cpp" />
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\bit_error_rate.cpp" />
     <ClCompile Include="..\..\lib\clock.cpp" />
@@ -91,9 +92,12 @@
     <ClCompile Include="..\..\lib\sampler_20171119.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface.cpp" />
+    <ClCompile Include="..\..\lib\ti_amplifier.cpp" />
+    <ClCompile Include="..\..\lib\white_noise.cpp" />
     <ClCompile Include="m_qam_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\add.h" />
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\bit_error_rate.h" />
     <ClInclude Include="..\..\include\clock.h" />
@@ -111,6 +115,8 @@
     <ClInclude Include="..\..\include\sampler_20171119.h" />
     <ClInclude Include="..\..\include\sink.h" />
     <ClInclude Include="..\..\include\super_block_interface.h" />
+    <ClInclude Include="..\..\include\ti_amplifier.h" />
+    <ClInclude Include="..\..\include\white_noise.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
