@@ -1,0 +1,24 @@
+2017-11-21
+TO BE DONE
+	diagramas de blocos da Alice, Bob, Eve (finalizar9
+
+	trabalhar no ficheiro  bb84_sdf.cpp, implementação da Alice
+
+Next meeting: 
+
+2017-11-14
+TO BE DONE
+Mariana
+	escrever os objetivos do trabalho (finalizar)
+	diagramas do sistema global (finalizar)
+	diagramas da Alice, Eve, Bob (finalizar)
+
+	comecar a escrever o ficheiro bb84_sdf.cpp
+
+
+2017-11-07
+TO BE DONE
+Mariana
+	escrever os objetivos do trabalho 
+	diagramas do sistema global
+	diagramas da Alice, Eve, Bob

@@ -11,11 +11,11 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsGenerated(1000);
+	t_integer numberOfBitsGenerated(200);
 	t_integer samplesPerSymbol(32);
 	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
-	t_real rollOffFactor = 0.3;
+	t_real rollOffFactor = 0.9;
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
 	t_real signalOutputPower_dBm = -20;
 
@@ -50,7 +50,7 @@ int main(){
 	//8 is the number of samples used by the filter
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
-	t_integer bufferLength = 13;
+	t_integer bufferLength = 10;
 	
 	//double clockPeriod = symbolPeriod;
 	//double samplingPeriod = 16;
@@ -80,7 +80,7 @@ int main(){
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
 	B1.setMode(DeterministicAppendZeros);
-	B1.setBitStream("01");
+	B1.setBitStream("011");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(prbsPatternLength);
 	B1.setIqAmplitudes(iqAmplitudeValues);
