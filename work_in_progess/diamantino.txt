@@ -1,3 +1,21 @@
+﻿2017-11-28
+TO BE DONE
+	solução para incluir a bibliografia em casa capítulo
+
+	criar uma secção relativa ao detetor da Thorlabs na parte experimental, para começar a sua caraterização
+		- responsividade
+		- ganho do meu amplificar OPAMP
+		- ruído térmico
+		- largura de banda
+		- formado filtro, espectro do filtro
+
+	uma figura + texto para o single field detection
+	uma figura + texto para o homodyne detection
+
+	ler e verificar a teoria para o single field detection e colocar texto 
+
+Next meeting: 5/12/2017, 14h
+
 2017-11-22
 TO BE DONE
 	setup experimental single homodine detection
