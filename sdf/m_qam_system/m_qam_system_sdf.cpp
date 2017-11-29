@@ -11,7 +11,7 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsGenerated(1000);
+	t_integer numberOfBitsGenerated(4000);
 	t_integer samplesPerSymbol(16);
 	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
@@ -50,7 +50,7 @@ int main(){
 	//8 is the number of samples used by the filter
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
-	t_integer bufferLength = 10;
+	t_integer bufferLength = 512;
 	
 	//double clockPeriod = symbolPeriod;
 	//double samplingPeriod = 16;
@@ -112,7 +112,7 @@ int main(){
 	B3.setMidReportSize(midReportSize);
 
 	Sink B4{ vector<Signal*> { &S3 }, vector<Signal*> {} };
-	B4.setNumberOfSamples(numberOfBitsReceived*samplesPerSymbol);
+	B4.setNumberOfSamples(numberOfBitsGenerated*samplesPerSymbol);
 	B4.setDisplayNumberOfSamples(true);
 
 	/*MQamTransmitter B1{ vector<Signal*> {}, vector<Signal*> { &S1, &S2 } };
