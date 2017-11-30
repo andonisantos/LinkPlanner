@@ -81,10 +81,24 @@ Complex notation
 	i(t) = \eta q \frac{P(t)}{\hbar \omega_0}
 \end{equation}
 
-
+--construction--\\
+--procurar referências para isto--\\
+--vou começar por explicar as variáveis e explicar porque é que elas existem nesta equação\\
+--(Mark Fox, p.94, eq. 5.58)\\
+\\
+%EFEITO FOTO-ELECTRICO\\
+The photocurrent $i(t)$ is proportional to the number of photons incident in the detector, given by optical power $P$ divided by the photon energy unit $\hbar \omega$. The eficiency coefficient $\eta$ represents the probability of an incident photon removing an electron from it's atom and $e$ is simply the unit of charge.\\
+\\
+Given the photo-electric effect, where each photon of a given energy will remove a electron at a certain energy level???? (and assuming perfect efficiency) we can obtain the current, which is the quantity of charge per unit of time, given by the number of electrons per second times the charge per electron. To obtain the number of electrons per time unit, we just obtain the number of photons per second, given by the power of the light beam divides per unit of energy of a photon.???\\ SIMPLIFICAR e MODULAR.\\
+\\
+\\
+\\
 \begin{equation}
 	E(t) = A(t) e^{-i \omega_0}
 \end{equation}
+
+--NO-REFERENCES--\\
+The 
 
 \begin{equation}
 	P(t) = |A(t)|^2
@@ -94,11 +108,11 @@ Complex notation
 	i(t) = \eta q \frac{|A(t)|^2}{\hbar \omega_0}
 \end{equation}
 
+++esta equacao esta repetida++
+
 \begin{equation}
 	\langle i^2(t) \rangle = \eta^2 q^2 \frac{\langle |A(t)|^4 \rangle }{\hbar^2 \omega_0^2}
 \end{equation}
-
-assuming, $A(t)$ constante,
 
 \begin{equation}
 	A(t) = |A| e^{i \theta}
@@ -164,6 +178,7 @@ Hans, p.
 
 
 
+
 -- Gain response
 (REFERENCE!!)
 
@@ -184,6 +199,9 @@ In most cases? the detection will be proportional to the intensity of the light 
 
 Therefore, the intensity of 
 A beam of light with a well defined frequency can be defined as:\\
+\\
+\\
+\\
 \\
 -- ISTO TÁ MAL --\\
 \begin{equation}
@@ -318,19 +336,19 @@ A phase of the local oscillator can be defined as the reference phase. A phase o
 \\
 %
 \begin{figure}[H]
-\label{fig:scheme_homodyne}
-\centering
-\includegraphics{./sdf/quantum_noise/figures/scheme_homodyne.pdf}
-\caption{Balanced homodyne detection.}
+	\label{fig:scheme_homodyne}
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/scheme_homodyne.pdf}
+	\caption{Balanced homodyne detection.}
 \end{figure}
 %
 In the lab and in our simulations, a more complex system is used, the double balanced homodyne detection, which allows the simultaneous measurement of the $\hat{X}$ and $\hat{Y}$ components. The signal is divided in two beam with half the power of the original. One of the beams is used in a balanced homodyne detection with a local oscillator. The other beam is used in another balanced homodyne detection, but using a local oscillator with a phase difference $\pi/2$ relative to the first one.
 %
 \begin{figure}[H]
-\label{fig:scheme_homodyne}
-\centering
-\includegraphics{./sdf/quantum_noise/figures/scheme_double_homodyne.pdf}
-\caption{Balanced double homodyne detection.}
+	\label{fig:scheme_homodyne}
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/scheme_double_homodyne.pdf}
+	\caption{Balanced double homodyne detection.}
 \end{figure}
 %
 %
