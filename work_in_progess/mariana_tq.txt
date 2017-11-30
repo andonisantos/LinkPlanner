@@ -1,3 +1,8 @@
+2017-11-30
+TO BE DONE
+	fazer o esqueleto dos blocos de modo a compilar, tudo o que não seja mexer no netxpto
+	fazer o help dos novos blocos
+
 2017-11-21
 TO BE DONE
 	diagramas de blocos da Alice, Bob, Eve (finalizar9
