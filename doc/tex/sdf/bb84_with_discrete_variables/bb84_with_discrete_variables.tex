@@ -12,54 +12,82 @@
 BB84 is a key distribution protocol which involves three parties, Alice, Bob and Eve. Alice and Bob exchange information between each other by using a quantum channel and a classical channel. The main goal is continuously build keys only known by Alice and Bob, and guarantee that eavesdropper, Eve, does not gain any information about the keys.
 
 
-
 \subsection{Theoretical Description}
 
-BB84 protocol was created by Charles Bennett and Gilles Brassard in 1984. This was the first created Quantum Key Distribution (QKD) protocol. A basic model is depicted in figure \ref{fig:qkd model}. It involves two parties sharing keys through a quantum channel to decipher the classical channel data with an eavesdropper, Eve, between them.
-
+BB84 protocol was created by Charles Bennett and Gilles Brassard in 1984 \cite{BB84}. This was the first created Quantum Key Distribution (QKD) protocol. A basic model is depicted in figure \ref{fig:qkd model}. It involves two parties sharing keys through a quantum channel to decipher the classical channel data. It is assumed that there is a eavesdropper, Eve to intercept the data.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\textwidth,height=7cm]{./sdf/bb84_with_discrete_variables/figures/QKD_Model.png}
-	\caption{Basic QKD Model.}\label{fig:qkd model}
+	\caption{Basic QKD Model.\cite{SURV}}\label{fig:qkd model}
 \end{figure}
 
-BB84 protocol encodes bits into photon state polarization. This either can have an angle of 0 or 45 degrees, to represent bit 0, or an angle of 90 or 135 degrees, to represent bit 1, in rectilinear or diagonal basis, respectively. Figure \ref{fig:bb84_encoding} shows this bit encoding and basis.
 
-\begin{figure}[H]
+BB84 protocol encodes bits into photon state polarization. This either can have an angle of 0 or 45 degrees, to represent bit 0, or an angle of 90 or 135 degrees, to represent bit 1, in rectilinear or diagonal basis, respectively. The following table shows this bit encoding and basis.
+
+\begin{table}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth,height=7cm]{./sdf/bb84_with_discrete_variables/figures/basis.png}
-	\caption{Bit Encoding and polarization basis.}\label{fig:bb84_encoding}
-\end{figure}
-The BB82 protocol is divided in different phases. For the first phase, by using the quantum communication channel,
+	\begin{tabular}{c|c|c}
+		\textbf{\textit{Basis}} &  \textbf{\textit{Rectilinear}} & \textbf{\textit{Diagonal}}\\ \hline
+		0 &  0$º$ & 45$º$ \\
+		1 & 90$º$ & 135$º$\\
+	\end{tabular}
+\end{table}
+
+The BB84 protocol is divided into different phases. For the first phase, by using the quantum communication channel,
 \begin{enumerate}
-	\item Alice chooses a random bit string and polarization, for each bit.
-	\item For each bit, a photon is transmitted, with an associated polarization, to Bob.
-	\item Bob receives, measure photon polarization by using a random basis.
-	\item If Bob chooses a matched polarization basis compared to the one encoded in the photon, then he can correctly deduce the right bit, otherwise deduced bit is randomly read.
+	\item Alice chooses a random bit string and random polarization bases.
+	
+	$$ \{0,1,1,0,1,0,0,1\}$$
+	
+	$$ \{+,+,\times,+,\times, \times, \times, +\}$$
+	
+
+	
+	\item Alice transmits a train of photons, in which, each photon represents a bit of the random string with the correspondent polarization regarding to the bit value.
+	
+		$$S_{AB} = \{\uparrow, \to, \searrow, \uparrow, \searrow, \nearrow, \nearrow, \to\}.$$
+	
+	\item Bob receives and measure photon polarization by using a random basis.
+	
+  	$$S_{AB} = \{ +,\times,\times,\times,+,\times,+,+\}.$$
+	
+	\item If Bob chooses a matched polarization basis compared to the one encoded in the photon, then he can correctly deduce the right bit, otherwise deduced bit is randomly read. This makes Bob to deduce only half of the data. 
+	
+	$$S_{AB} = \{\uparrow, \nearrow, \searrow, \nearrow, \to, \nearrow, \to, \to\}.$$
+	
+
 \end{enumerate}
 
-The second phase, uses the classical communication channel:
+Since only half of the data is deduced a second phase is needed so that Alice can announce to Bob which deduced bits are correct This second phase, uses the classical communication channel:
 \begin{enumerate}
-	\item Bob notifies Alice about what basis he used to deduce each bit.
+	\item Bob notifies Alice about what random basis he used to deduce each bit.
+	
+  	$$C_{BA} = \{ +,\times,\times,\times,+,\times,+,+\}.$$
+	
 	\item Alice announces, to Bob, if the deduced basis is correct for each photon, and so, discards the bits measured with different one.
+	
+	$$C_{AB} = \{Ok, Wrong, Ok, Wrong , Wrong , Ok, Wrong , Ok\}.$$
+	
 	\item If no errors occurred the secret key should be the same for Bob and Alice.
+	
+  	$$ \{ 0, 1, 0, 1\}.$$
+	
 \end{enumerate}
 
-This two phases are depicted in figure \ref{fig:bb84_share}.
+The presence of a eavesdropper will carry the risk of changing the bits. This will produce disagreement between Bob and Alice in the bits they should agree. When Eve measures and retransmits a photon she can deduce correctly with a probability of 50\%. So by learning the correct polarization of half of the photons, the induced error is 25\%. Alice and Bob can detect Eve presence by sacrifice the secrecy of some bits in order to test.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth,height=4cm]{./sdf/bb84_with_discrete_variables/figures/siftedKey.png}
-	\caption{Bit Encoding and polarization basis.}\label{fig:bb84_share}
-\end{figure}
+\begin{thebibliography}{2}
+\bibitem{BB84} 
+Bennett, C. H. and Brassard,
+G. Quantum Cryptography: Public key distribution and coin tossing.
+International Conference on Computers, Systems and Signal Processing, Bangalore, India, 10-12 December 1984, pp. 175-179.
 
-In the presence of Eve, error will be introduced, because for Eve to determine the key, she will have to measure the photons sent between Alice and send them to Bob. By doing so, errors will be introduced since its impossible to replicate a particle with an unknown state. Eve will try to guess and these guesses will increase the QBER.
---/--/--/--/
+\bibitem{SURV}
+Mart Haitjema, A Survey of the Prominent Quantum Key Distribution Protocols
 
-
-
-
+\end{thebibliography}
+\cleardoublepage
 
 \begin{table}[H]
 \centering

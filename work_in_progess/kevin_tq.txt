@@ -1,9 +1,0 @@
-2017-11-21
-TO BE DONE
-	detalhar o protocolo
-		Alice <->Bob (no error)
-		Alice<->Eve<->Bob (25 5 of errors)
-
-2017-11-07
-TO BE DONE
-	detalhar o protocolo

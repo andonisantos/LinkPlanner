@@ -1,0 +1,15 @@
+2017-11-30
+TO BE DONE
+	detalhar o protocolo considerando atenuação e falsas contagens até à estimativa do QBER
+
+Next meeting: 6/12, 14h
+
+2017-11-21
+TO BE DONE
+	detalhar o protocolo
+		Alice <->Bob (sem Eve => no error)
+		Alice<->Eve<->Bob (com a Eve a atacar todos os fotões => QBER = 25%)
+
+2017-11-07
+TO BE DONE
+	detalhar o protocolo
