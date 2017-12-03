@@ -17,7 +17,7 @@ int main(){
 	t_real bitPeriod = 1.0 / 50e9;
 	t_real rollOffFactor = 0.9;
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
-	t_real signalOutputPower_dBm = -75;
+	t_real signalOutputPower_dBm = -50;
 
 
 	// #####################################################################################################
@@ -30,7 +30,7 @@ int main(){
 
 	int prbsPatternLength = 5;
 
-	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
+	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ 1.0, -1.0 },{ -1.0, -1.0 } };
 	
 	//double rollOffFactor = 0.3;
 
@@ -79,7 +79,7 @@ int main(){
 	B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
-	B1.setMode(DeterministicAppendZeros);
+	B1.setMode(DeterministicCyclic);
 	B1.setBitStream("01");
 	B1.setBitPeriod(bitPeriod);
 	B1.setPatternLength(prbsPatternLength);
