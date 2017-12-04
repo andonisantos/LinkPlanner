@@ -2,14 +2,35 @@
 
 \section{Decoder}
 
+\begin{tcolorbox}	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+		\textbf{Header File}   &:& decoder.h \\
+		\textbf{Source File}   &:& decoder.cpp \\
+	\end{tabular}
+\end{tcolorbox}
+
+
 This block accepts a complex electrical signal and outputs a sequence of binary values (0's and 1's). Each point of the input signal corresponds to a pair of bits.
 
 \subsection*{Input Parameters}
 
-\begin{itemize}
-	\item\texttt{t\_integer} m\{ 4 \}
-	\item vector$<$\texttt{t\_complex}$>$ iqAmplitudes\{ \{ 1.0, 1.0 \},\{ -1.0, 1.0 \},\{ -1.0, -1.0 \},\{ 1.0, -1.0 \} \};
-\end{itemize}
+%\begin{itemize}
+%	\item\texttt{t\_integer} m\{ 4 \}
+%	\item vector$<$\texttt{t\_complex}$>$ iqAmplitudes\{ \{ 1.0, 1.0 \},\{ -1.0, 1.0 \},\{ -1.0, -1.0 \},\{ 1.0, -1.0 \} \};
+%\end{itemize}
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|p{60mm}|c|ccp{60mm}}
+		\cline{1-4}
+		\textbf{Parameter} & \textbf{Type} & \textbf{Values} &   \textbf{Default}& \\ \cline{1-4}
+		m & int & $\geq 4$ & $4$ \\ \cline{1-4}
+		iqAmplitudes & vector$<$\texttt{t\_complex}$>$ & \---- & \{ \{ 1.0, 1.0 \},\{ -1.0, 1.0 \},\{ -1.0, -1.0 \},\{ 1.0, -1.0 \} \} \\ \cline{1-4}
+	\end{tabular}
+	\caption{Binary source input parameters}
+	\label{table:decoder_in_par}
+\end{table}
 
 \subsection*{Methods}
 

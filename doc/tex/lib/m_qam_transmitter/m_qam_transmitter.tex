@@ -1,6 +1,13 @@
 \clearpage
 
-\section{MQAM transmitter}
+\section{MQAM Transmitter}
+
+\begin{tcolorbox}	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+		\textbf{Header File}   &:& m\_qam\_transmitter.h \\
+		\textbf{Source File}   &:& m\_qam\_transmitter.cpp \\
+	\end{tabular}
+\end{tcolorbox}
 
 This block generates a MQAM optical signal. It can also output the binary sequence. A schematic representation of this block is shown in figure \ref{MQAM_transmitter_block_diagram_simple}.
 
@@ -26,7 +33,7 @@ This block has a special set of functions that allow the user to change the basi
 
 \begin{table}[h]
 \begin{center}
-	\begin{tabular}{| m{3,5cm} | m{5,1cm} |  m{2,5cm} | m{4cm} | }
+	\begin{tabular}{| m{3,5cm} | m{6cm} |  m{2cm} | m{4cm} | }
 		\hline
 		\textbf{Input parameters} & \textbf{Function} & Type & \textbf{Accepted values} \\ \hline
 		Mode & setMode() & string & PseudoRandom \newline Random \newline DeterministicAppendZeros \newline DeterministicCyclic \\ \hline

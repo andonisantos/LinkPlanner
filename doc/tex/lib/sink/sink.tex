@@ -1,0 +1,37 @@
+\clearpage
+
+\section{Sink}
+
+\begin{tcolorbox}	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+		\textbf{Header File}   &:& sink.h \\
+		\textbf{Source File}   &:& sink.cpp \\
+	\end{tabular}
+\end{tcolorbox}
+
+This block accepts one input signal and it does not produce output signals. It takes samples out of the buffer until the buffer is empty. It has the option of displaying the number of samples still available. 
+
+\subsection*{Input Parameters}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|p{60mm}|c|ccp{60mm}}
+		\cline{1-4}
+		\textbf{Parameter} & \textbf{Type} & \textbf{Values} &   \textbf{Default}& \\ \cline{1-4}
+		numberOfSamples & long int & any & $-1$ \\ \cline{1-4}
+	\end{tabular}
+	\caption{Sampler input parameters}
+	\label{table:sink_in_par}
+\end{table}
+
+\subsection*{Methods}
+
+Sink(vector$<$Signal *$>$ \&InputSig, vector$<$Signal *$>$ \&OutputSig)
+\bigbreak
+bool runBlock(void)
+\bigbreak
+void setNumberOfSamples(long int nOfSamples)
+\bigbreak
+void setDisplayNumberOfSamples(bool opt)
+
+\subsection*{Functional Description}

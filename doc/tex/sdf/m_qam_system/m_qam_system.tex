@@ -223,6 +223,20 @@ The system can take several input parameters. These are described in table \ref{
 
 As output the system produces text files with all the signals (inputs and outputs of each block). These can be visualized using the visualization tool described in this document. It also produces a text file with the BER estimation. 
 
+\begin{table}[]
+	\centering
+	\begin{tabular}{|c|c|c|ccc}
+		\cline{1-3}
+		\textbf{Signal file} & \textbf{Output block} & \textbf{Input block}  &  \\ \cline{1-3}
+		S0 & MQAM Transmitter & BER &  \\ \cline{1-3}
+		S1 & MQAM Transmitter & MQAM Receiver &  \\ \cline{1-3}
+		S2 & MQAM Receiver & Sink &   \\ \cline{1-3}
+		S3 & BER & \--- &   \\ \cline{1-3}
+	\end{tabular}
+	\caption{System outpu files}
+	\label{table:mqam_out_files}
+\end{table}
+
 \subsection*{Simulation results}
 
 \subsection{Comparative Analysis}

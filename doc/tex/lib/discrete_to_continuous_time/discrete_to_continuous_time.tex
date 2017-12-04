@@ -1,15 +1,33 @@
 \clearpage
 
-\section{Discrete to continuous time}
+\section{Discrete To Continuous Time}
+
+\begin{tcolorbox}	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+		\textbf{Header File}   &:& discrete\_to\_continuous\_time.h \\
+		\textbf{Source File}   &:& discrete\_to\_continuous\_time.cpp \\
+	\end{tabular}
+\end{tcolorbox}
 
 This block converts a signal discrete in time to a signal continuous in time. It accepts one input signal that is a sequence of 1's and -1's and it produces one output signal that is a sequence of Dirac delta functions.
 
 \subsection*{Input Parameters}
 
-\begin{itemize}
-	\item numberOfSamplesPerSymbol\{8\} \linebreak
-	(int)
-\end{itemize}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|p{60mm}|c|ccp{60mm}}
+		\cline{1-4}
+		\textbf{Parameter} & \textbf{Type} & \textbf{Values} &   \textbf{Default}& \\ \cline{1-4}
+		numberOfSamplesPerSymbol & int & any & $8$ \\ \cline{1-4}
+	\end{tabular}
+	\caption{Binary source input parameters}
+	\label{table:disc2cont_in_par}
+\end{table}
+
+%\begin{itemize}
+%	\item numberOfSamplesPerSymbol\{8\} \linebreak
+%	(int)
+%\end{itemize}
 
 \subsection*{Methods}
 
