@@ -1,18 +1,38 @@
 \clearpage
 
-\section{IQ modulator}
+\section{IQ Modulator}
+
+\begin{tcolorbox}	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+		\textbf{Header File}   &:& iq\_modulator.h \\
+		\textbf{Source File}   &:& iq\_modulator.cpp \\
+	\end{tabular}
+\end{tcolorbox}
 
 This blocks accepts one inupt signal continuous in both time and amplitude and it can produce either one or two output signals. It generates an optical signal and it can also generate a binary signal.
 
 \subsection*{Input Parameters}
 
-\begin{itemize}
-	\item outputOpticalPower\{1e-3\} \linebreak
-	(double)
-	\item outputOpticalWavelength\{1550e-9\} \linebreak (double)
-	\item outputOpticalFrequency\{speed$\_$of$\_$light/outputOpticalWavelength\} \linebreak
-	(double)
-\end{itemize}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|p{60mm}|c|ccp{60mm}}
+		\cline{1-4}
+		\textbf{Parameter} & \textbf{Type} & \textbf{Values} &   \textbf{Default}& \\ \cline{1-4}
+		outputOpticalPower & double & any & $1e-3$ \\ \cline{1-4}
+		outputOpticalWavelength & double & any & $1550e-9$ \\ \cline{1-4}
+		outputOpticalFrequency & double & any & speed\_of\_light/outputOpticalWavelength \\ \cline{1-4}
+	\end{tabular}
+	\caption{Binary source input parameters}
+	\label{table:iqmod_in_par}
+\end{table}
+
+%\begin{itemize}
+%	\item outputOpticalPower\{1e-3\} \linebreak
+%	(double)
+%	\item outputOpticalWavelength\{1550e-9\} \linebreak (double)
+%	\item outputOpticalFrequency\{speed$\_$of$\_$light/outputOpticalWavelength\} \linebreak
+%	(double)
+%\end{itemize}
 
 \subsection*{Methods}
 

@@ -31,23 +31,23 @@ bool Sampler::runBlock(void) {
 		if (getSamplesToSkip() > 0) {
 			if (getSamplesToSkip() > ready) {
 
-				cout << "samplesPerSymbol>bufferLength" << endl;
+				//cout << "samplesPerSymbol>bufferLength" << endl;
 
 				int aux3 = inputSignals[0]->getInPosition();
 				int aux4 = inputSignals[0]->getOutPosition();
 
-				cout << "inPos=" << aux3 << endl;
-				cout << "outPos=" << aux4 << endl;
+				//cout << "inPos=" << aux3 << endl;
+				//cout << "outPos=" << aux4 << endl;
 
 				inputSignals[0]->setOutPosition(inputSignals[0]->getInPosition());
 				inputSignals[0]->bufferEmpty = true; //declare that the buffer is empty
 
 				int aux2 = inputSignals[0]->getOutPosition();
-				cout << "outPos_corr=" << aux2 << endl;
+				//cout << "outPos_corr=" << aux2 << endl;
 
 				setSamplesToSkip(getSamplesToSkip() - ready);
 				int aux = getSamplesToSkip();
-				cout << aux << endl;
+				//cout << aux << endl;
 
 			}
 			else {
@@ -57,10 +57,10 @@ bool Sampler::runBlock(void) {
 					inputSignals[0]->bufferGet(&in);
 				}
 				setSamplesToSkip(0);
-				cout << aux1 << endl;
+				//cout << aux1 << endl;
 
 				int aux5 = inputSignals[0]->getOutPosition();
-				cout << aux5 << endl;
+				//cout << aux5 << endl;
 
 				alive = true;
 
@@ -68,7 +68,7 @@ bool Sampler::runBlock(void) {
 		}
 
 		int aux6 = inputSignals[0]->getOutPosition();
-		cout << "out position for sampling=" << aux6 << endl;
+		//cout << "out position for sampling=" << aux6 << endl;
 
 		ready = inputSignals[0]->ready();
 		int space = outputSignals[0]->space();
@@ -80,8 +80,8 @@ bool Sampler::runBlock(void) {
 		for (int k = 0; k < process; k++) {
 			t_real in;
 			inputSignals[0]->bufferGet(&in);
-			cout << in << endl;
-			cout << inputSignals[0]->getOutPosition() << endl;
+			//cout << in << endl;
+			//cout << inputSignals[0]->getOutPosition() << endl;
 			if (count % samplesPerSymbol == 0) {
 				outputSignals[0]->bufferPut((t_real)in);
 			}
