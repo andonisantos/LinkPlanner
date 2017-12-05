@@ -1,3 +1,19 @@
+2017-12-05
+TO BE DONE
+	Montagem Experimental (PRIORITÁRIO)
+		obter um gráfico, BER versus número de fotões por impulso (back-to-back), utilizando os detetores da thorlabs, num regime clássico
+
+	Simulação
+		simular o setup experimental e obter um gráfico do BER versus número de fotões, num regime clássico
+
+	Teorica
+		Protocolo CV-QKD (descrever)
+		Pos-Prosseamenteo Digital
+
+
+Next meeting: 12/12, 15h
+
+
 2017-11-28
 TO BE DONE
 	colocar as figuras com aspeto consistente com as outras
