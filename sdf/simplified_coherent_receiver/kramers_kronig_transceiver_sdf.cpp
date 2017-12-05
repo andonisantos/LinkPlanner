@@ -18,9 +18,9 @@ int main() {
 	// #####################################################################################################
 
 	BinarySourceMode sourceMode{ PseudoRandom };
-	int patternLength{ 5 };
-	double bitPeriod{ 1.0 / 10e9 };
-	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 } } };
+	int patternLength{ 5 };	
+	double bitPeriod{ 1.0 / 5e9 };
+	vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 } } };
 	//vector<t_iqValues> iqAmplitudes{ { { 0,0 },{ 1,0 },{ 2,0 },{ 3,0 },{ 4,0 },{ 5,0 },{ 6,0 },{ 7,0 },{ 8,0 },{ 9,0 },{ 10,0 },{ 11,0 },{ 12,0 },{ 13,0 },{ 14,0 },{ 15,0 } } };
 	int numberOfBits{ 1000 };				                                        // For value of {-1}, it'll generate long bit sequence.
 	int numberOfSamplesPerSymbol{ 16 };
@@ -93,7 +93,7 @@ int main() {
 	Sink B_7{ vector<Signal*> { &S7 }, vector<Signal*> {} };			// Fork output S7
 	B_7.setDisplayNumberOfSamples(true);
 
-	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };			// Fork output S8
+	Sink B_8{ vector<Signal*> { &S8 }, vector<Signal*> {} };			// Fork output S8		
 
 	
 
@@ -102,7 +102,7 @@ int main() {
 	// #####################################################################################################
 
 	//System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B78, &B9, &B10, &B11 } };
-	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8,  &B_7, &B_8} };
+	System MainSystem{ vector<Block*> { &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, &B_7, &B_8} };
 	//System MainSystem{ vector<Block*> { &B5, &B11} };
 
 	// #####################################################################################################
@@ -110,7 +110,7 @@ int main() {
 	// #####################################################################################################
 
 	MainSystem.run();
+	cout << "\nExecution Finished, Please hit Enter to exit!";
 	getchar();
 	return 0;
-
 }

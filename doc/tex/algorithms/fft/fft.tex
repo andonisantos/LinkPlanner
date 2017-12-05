@@ -15,17 +15,16 @@
 %\maketitle
 \clearpage
 \section{FFT}
-
-\subsubsection{Definitions of DFT and IDFT}
-The discrete Fourier transform of a sequence of N complex number $x_0, x_1, x_2,...,x_{N-1}$ into another sequance of complex number $X_0, X_1, X_2,...,X_{N-1}$ defined by,
-\begin{equation}
-X_k = \sum\limits_{n=0}^{N-1} x_n \cdot e^{-i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
-\end{equation}
-Similarly, inverse discrete Fourier transform can be given as,
-\begin{equation}
-x_n = \frac{1}{N} \sum\limits_{n=0}^{N-1} X_k \cdot e^{i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
-\end{equation}
-Using these equation, it requires $N^2$ calculation for the transformation from time domain to frequency domain and vice-versa. Therefore, it is not efficient for the practical implementation purpose. Radix-2 based FFT calculation reduces the number of computation to $Nlog n$.
+%\subsubsection{Definitions of DFT and IDFT}
+%The discrete Fourier transform of a sequence of N complex number $x_0, x_1, x_2,...,x_{N-1}$ into another sequance of complex number $X_0, X_1, X_2,...,X_{N-1}$ defined by,
+%\begin{equation}
+%X_k = \sum\limits_{n=0}^{N-1} x_n \cdot e^{-i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+%\end{equation}
+%Similarly, inverse discrete Fourier transform can be given as,
+%\begin{equation}
+%x_n = \frac{1}{N} \sum\limits_{n=0}^{N-1} X_k \cdot e^{i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+%\end{equation}
+%Using these equation, it requires $N^2$ calculation for the transformation from time domain to frequency domain and vice-versa. Therefore, it is not efficient for the practical implementation purpose. Radix-2 based FFT calculation reduces the number of computation to $Nlog n$.
 
 \subsubsection{Algorithm}
 An alternate representation of the Fourier transform can give a flexibility to utilize the same code for the FFT and IFFT with appropriate input arguments. The algorithm for the FFT will follow the following formula,
@@ -41,21 +40,21 @@ x_n =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} X_k \cdot e^{i2\pi kn/N}		\hspac
 From the above manipulation discussed in equations \ref{FFT} and \ref{IFFT}, we can write only one script for the implementations Fourier algorithm and manipulate its functionality as a FFT or IFFT by applying an appropriate input arguments. \\
 The generalized form for the algorithm can be given as,
 \begin{equation}
-OUTPUT =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} INPUT \cdot e^{sign \cdot i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
+OUT =\frac{1}{\sqrt{N}} \sum\limits_{n=0}^{N-1} IN \cdot e^{s \cdot i2\pi kn/N}		\hspace{2cm}	0\leq k \leq N-1 
 \label{FT}
 \end{equation}
 where,\\
-$INPUT \rightarrow$ {Input complex signal}\\
-$OUTPUT \rightarrow$ {Output complex signal} \& $sign \rightarrow$ {'-1' for FFT and '1' for IFFT}\\
+$IN \rightarrow$ {Input complex signal}\\
+$OUT \rightarrow$ {Output complex signal} \& $s \rightarrow$ {'-1' for FFT and '1' for IFFT}\\
 
 \subsubsection{Function description}
 To perform FFT operation, the input argument to the function can be given as follows,
 \begin{equation*}
-OUTPUT = transform(INPUT,-1)
+OUT = transform(IN,-1)
 \end{equation*}
 in a similar way, IFFT can be manipulated as,
 \begin{equation*}
-OUTPUT = transform(INPUT,1)
+OUT = transform(IN,1)
 \end{equation*}
 
 \newpage
@@ -79,11 +78,11 @@ The figure \ref{Top_level_FFT } displays top level architecture of the FFT algor
 \begin{tikzpicture}[node distance = 2cm, auto]
 %Place nodes
 \node [block] (input) { INPUT $(Real$ or $Complex)$\\sign $(-1$ or $1)$};
-\node [block, below of=input, node distance=3cm] (n) {n = Length of INPUT};
-\node [decision, below of=n, node distance=4cm] (decide) {Check if $n=2^N$ };
-\node [block, right of=decide, node distance=6cm] (Bluestein) {Execute Bluestein algorithm};
-\node [block, below of=decide, node distance=4cm] (Radix-2) {Execute Radix-2 algorithm};
-\node [block, below of=Radix-2, node distance=3cm] (output)  { OUTPUT $(Complex)$};
+\node [block, below of=input, node distance=2.2cm] (n) {n = Length of INPUT};
+\node [decision, below of=n, node distance=3.25cm] (decide) {Check if $n=2^N$ };
+\node [block, right of=decide, node distance=5.5cm] (Bluestein) {Execute Bluestein algorithm};
+\node [block, below of=decide, node distance=3.25cm] (Radix-2) {Execute Radix-2 algorithm};
+\node [block, below of=Radix-2, node distance=2.2cm] (output)  { OUTPUT $(Complex)$};
 %% Draw edges
 \path [line] (input) -- (n);
 \path [line] (n) -- (decide);
@@ -110,15 +109,15 @@ The architecture of the algorithm is to accept time domain complex signal and ge
 		\begin{tikzpicture}[node distance = 2cm, auto]
 		%Place nodes
 		\node [block] (input) { INPUT $(Complex)$};
-		\node [block, below of=input, node distance=2.5cm] (levels) { Compute levels N \\ $N=floor(log2(n))$};
+		\node [block, below of=input, node distance=2.2cm] (levels) { Compute levels N \\ $N=floor(log2(n))$};
 		\node [cloud, right of=levels, node distance=7cm] (length) {n = length of input signal};
 		
-		\node [block, below of=levels, node distance=2.5cm] (TrignometricTable) {Generate Trignometric Tables\\$cos Table = cos(2\pi i/n)$ \\$sin Table = sin(2\pi i/n)$};
+		\node [block, below of=levels, node distance=2.2cm] (TrignometricTable) {Generate Trignometric Tables\\$cos Table = cos(2\pi i/n)$ \\$sin Table = sin(2\pi i/n)$};
 		\node [cloud, right of=TrignometricTable, node distance=7cm] (i) {where value of i=0 to n-1};
 			
-		\node [block, below of=TrignometricTable, node distance=2.5cm] (sequencing) {Bit-reversed permutation\\$Even-Odd$ $seperation$};
-		\node [block, below of=sequencing, node distance=2.5cm] (CT) {Cooley-Tukey algorithm\\$DIT$ $Radix-2$ $FFT$};
-		\node [block,below of=CT, node distance=2.5cm] (output) { OUTPUT $(Complex)$};
+		\node [block, below of=TrignometricTable, node distance=2.2cm] (sequencing) {Bit-reversed permutation\\$Even-Odd$ $seperation$};
+		\node [block, below of=sequencing, node distance=2.2cm] (CT) {Cooley-Tukey algorithm\\$DIT$ $Radix-2$ $FFT$};
+		\node [block,below of=CT, node distance=2.2cm] (output) { OUTPUT $(Complex)$};
 %		\node [block, below of=input, node distance=3cm] (n) {n = Length of the input signal};
 %		\node [decision, below of=n, node distance=4cm] (decide) {Check if $n=2^N$ };
 %		\node [block, right of=decide, node distance=6cm] (Bluestein) {Execute Bluestein algorithm};
@@ -152,16 +151,16 @@ The architecture of the algorithm is to accept time domain complex signal and ge
 			\begin{tikzpicture}[node distance = 2cm, auto]
 			%Place nodes
 			\node [block] (input) {INPUT $Complex$};
-			\node [block, below of=input, node distance=2.5cm] (length) {Calculate a power-of-2 convolution length $m$};
-				\node [cloud, right of=length, node distance=7cm] (m) {$m\geq2n+1$};	
-			\node [block, below of=length, node distance=2.5cm] (TrignometricTable) { Generate Trignometric Tables
+			\node [block, below of=input, node distance=2.2cm] (length) {Calculate a power-of-2 convolution length $m$};
+				\node [cloud, right of=length, node distance=5.35cm] (m) {$m\geq2n+1$};	
+			\node [block, below of=length, node distance=2.2cm] (TrignometricTable) { Generate Trignometric Tables
 			\\$cos Table = cos(\pi\cdot i\cdot i/n)$ \\$sin Table = sin(\pi\cdot i\cdot i/n)$};
 			 	\node [cloud, right of=TrignometricTable, node distance=7cm] (i) {where value of i=0 to n-1};
-			\node [block, below of=TrignometricTable, node distance=2.5cm] (preprocessing) {Temporary vectors and preprocessing}; 
-			\node [block, below of=preprocessing, node distance=2.5cm] (convolution) {Convolution};
-			\node [block, below of=convolution, node distance=2.5cm] (postprocessing) {Postprocessing}; 
+			\node [block, below of=TrignometricTable, node distance=2.2cm] (preprocessing) {Temporary vectors and preprocessing}; 
+			\node [block, below of=preprocessing, node distance=2.2cm] (convolution) {Convolution};
+			\node [block, below of=convolution, node distance=2.2cm] (postprocessing) {Postprocessing}; 
 			
-			\node [block,below of=postprocessing, node distance=2.5cm] (output) { OUTPUT $Complex$};
+			\node [block,below of=postprocessing, node distance=2.2cm] (output) { OUTPUT $Complex$};
 			 
 %			% Draw edges
 			\path [line] (input) -- (length);
