@@ -1,6 +1,7 @@
 \clearpage
 \section{Detection}
 
+
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}}
 \textbf{Student Name}  &:& Diamantino Silva\\
@@ -29,9 +30,6 @@ Calculates the signal to noise ratio at the input of the decision circuit
 
 \paragraph{Single Field Detection}
 
-%\footnote{REF?}\\
-%Single Field Detection consists on the detection of a single mode laser beam. This will only measure the instant power of the beam, or in the quantum case, will measure the number of photons per sampling interval.\\
-
 \paragraph{Homodyne Detection}
 
 \paragraph{Balanced Homodyne Detection}
@@ -44,144 +42,68 @@ Calculates the signal to noise ratio at the input of the decision circuit
 
 \paragraph{IQ Heterodyne Balanced Detection}
 
+
 \subsubsection{Classical Description}
 
-Single Field Detection\\
-Semi-Classical description\\
-\\
-\\
-"in the semiclassical theory, where the atom is treated quantum-mechanically but the electromagnetic field is treated classically, the phototube has the effect of converting the continuous cycle-averaged classical intensity <I(t)> of the beam into a succession of discrete photocounts."
-\footnote{Loundon, p. 117}\\
-
-The detection of light in a semi-classical approach assumes light as a classical wave? and atoms as ????
-\footnote{Procurar referencias}
-%%
-%%
 \paragraph{Single Field Detection}
-%%
-One of the most simple detection methods is the direct detection of light with a single detector and analysing the resulting photocurrent.
-\footnote{Hans, p.200}
-%%
-\begin{figure}[H]
-	\label{fig:detection_direct}
-	\centering
-	\includegraphics{./sdf/quantum_noise/figures/detection-direct.pdf}
-	\caption{Direct detection.}
-\end{figure}
-%%
-%%
-%(Quantum noise: Basic measurements and techniques)\\
-%(Loundon, p.200)\\
-%\\
-%(Loundon, p.180)\\
-%(Loundon, p.181)\\
-%"The electromagnetic field is assumed to excite a single travelling-wave mode with a given wavevector {\bf k} and a polarization direction specified by the label $\lambda$"\\
-%\\
-%(Loudon, p.35)\\
-%(Mark Fox, p.129)\\
-%(Mark Fox, p.11)\\
-%\\
-%(Mark Fox, p.78)\\
-%"A light beam which has constant angular frequency $\omega$, phase $\Phi$, and amplitude $\varepsilon_0$(...)"\\
-%"The beam emitted by a ideal single-mode laser operating well above thershold is a reasonably good approximation to such a field. The intensity {\em I} of the beam is proportional to the square of the amplitude (eq 2.28) (...)"\\
-%Electromagnetic field (real notation)\\ %prof
-%\\
-%(Hans, p. 13??)\\
-Classicaly, the electric field of an ideal single mode laser, modulated in amplitude and phase by a signal $A(t)$, incident in a photodiode is represented as
-%%
-%%
+
+Electromagnetic field (real notation)
 \begin{equation}
     E_R(t)=\sqrt{2} |A(t)| cos\left(-\omega t + \theta\right) \,\,\,\, \sqrt{W}
 \end{equation}
 with $A(t)=|A(t)|e^{-i\theta(t)}$.
 
-Measurable optical power, assuming that the detector bandwidth, $B$, is greater than the signal, $A(t)$, bandwidth but much small than $2 \omega_0$, %prof
-\\
-The calculation of power incident in the photodiode is given by the expected value of the square of the amplitude during a time interval $\Delta t = \frac{2 \pi}{\omega}$
-\footnote{REF?}\
-
+Measurable optical power, assuming that the detector bandwidth, $B$, is greater than the signal, $A(t)$, bandwidth but much small than $2 \omega_0$,
 \begin{align}
 	P(t) &= \overline{E_R^2(t)}\nonumber\\
          &= \overline{|A(t)|^2} + \overline{ |A(t)|^2 cos\left(-2 \omega t + 2\theta(t)\right)}\nonumber\\
          &= |A(t)|^2 \,\,\,\, W
 \end{align}
-%%
-++ A expressao seguinte esta fora do sitio/repetida ++
-%%
+
+
 \begin{align}
 	P(t) &= E^{*}(t) E(t)\nonumber\\
          &= |A(t)|^2 \,\,\,\, W
 \end{align}
-%%
-%%
-Complex notation\\
-\\
-To simplify calculations, the electric field can be expressed by using complex notation. The physically measurable quantities are obtained by taking the real part of the complex wave
-\footnote{Mark Fox, p.11}
-%%
+
+
+Complex notation
 \begin{equation}
 	E(t) = A(t) e^{-i \omega_0}
 \end{equation}
-%%
-++ Falta o tempo junto ao omega0 ++\\
-\\
-Using this notation, the beam power ($P(t)$) is obtained by multipliyng the electric field's conjugate by itself
-\footnote{REF?}
-%%
+
 \begin{align}
 	P(t) &= E^{*}(t) E(t)\nonumber\\
          &= |A(t)|^2
 \end{align}
-%%
-++ Nesta abordagem ainda nao posso falar de fotoes ++\\
-\\
-The photocurrent $i(t)$ is obtained by the removal of electrons from a material which have a bonding energy to the atom's nucleus of $\hbar \omega_0$. Therefore, the photocurrent in function of the optical power ($P(t)$) is expressed as
-\footnote{REF?}
-%\footnote{Hans, p.180}
-%%
+
 \begin{equation}
 	i(t) = \eta q \frac{P(t)}{\hbar \omega_0}
 \end{equation}
-%%
-++ Seria melhor trocar q por e ++\\
-\\
-in which $\eta$ is the photodiode's responsivity, q is the unit charge and $P(t)/\hbar \omega_0$ is the number of removed electrons.\\
-Given the previous definition of electric field (ref?) and power (ref?), we will obtain the optical power as
-%%
+
+
 \begin{equation}
 	E(t) = A(t) e^{-i \omega_0}
 \end{equation}
-%%
-++ Esta definicao e a do power tao repetidas ??++
-%%
+
 \begin{equation}
 	P(t) = |A(t)|^2
-	\label{eq:power}
 \end{equation}
-%%
-Therefore, we can rewrite the photocurrent $i(t)$ in function of the signal $A(t)$ as
-%%
+
 \begin{equation}
 	i(t) = \eta q \frac{|A(t)|^2}{\hbar \omega_0}
 \end{equation}
-%%
-The second moment of the photocurrent will be
-%%
+
 \begin{equation}
 	\langle i^2(t) \rangle = \eta^2 q^2 \frac{\langle |A(t)|^4 \rangle }{\hbar^2 \omega_0^2}
 \end{equation}
 
-
-++ AGORA ESTOU A ENTRAR NA SEGUNDA ABORDAGEM? ++\\
-\\
-++ Aqui o signal nao deveria ser $A_S$ ? ++
+assuming, $A(t)$ constante,
 
 \begin{equation}
 	A(t) = |A| e^{i \theta}
 \end{equation}
-%%
-++ Esta-se a considerar $A_S$ constante ? ++
-%%
+
 \begin{equation}
 	i(t) = I_0 = \eta q \frac{A_s^2}{\hbar \omega_0}
 \end{equation}
@@ -189,30 +111,12 @@ The second moment of the photocurrent will be
 \begin{equation}
 	\langle i^2(t) \rangle = I_0^2
 \end{equation}
-%%
-%%
-Shot-noise\\
-\\
-(Shot noise in photodiodes)\\
-\footnote{Mark Fox, p.94, eq. 5.58}
-%%
-%"These photon number fluctuations will be refletecd in the photocurrent fluctuations with a fidelity determined by $\eta$. The fluctuations manifest themselves as {\bf noise} in the photocurrent, as illustraded in (...) The time-varying photocurrent i(t) can be broken into time-independent average current <i> and time-varying fluctuations $\Delta i (t)$ according to: $i(t) = <i> + \Delta i(t)$."
-%(Mark Fox, p.95)\\
-%%
-\\
-Shot noise is a white noise??? which has a constant power independent of any frequency. Therefore, the variance of current will be proportional to the bandwith...\\
-\footnote{REF?}
+
+Shot-noise
 
 \begin{equation}
 	\langle i_n^2(t) \rangle = 2 q B I_0
 \end{equation}
-
-++ Porque e que se usam segundos momentos? Estamos a assumir que o valor esperado do shot noise seja 0? ++
-\\
-Using the second moment of the signal (porque?) and the second moment of the quantum noise, we can obtain the signal to noise ratio in function of the signal and bandwidth as 
-
-%Using the and ..., the signal-to-noise ratio is\\
-%Therefore, the signal to noise ratio will be proportional to the signal power and ...
 
 \begin{align}
 	\frac{S}{N} &= \frac{\langle i^2(t) \rangle}{\langle i_n^2(t) \rangle} \nonumber\\
@@ -222,20 +126,8 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 
 
 \paragraph{Homodyne Detection}
-%%
-\begin{figure}[H]
-	\centering
-	\includegraphics{./sdf/quantum_noise/figures/detection-homodyne.pdf}
-	\caption{Direct detection.}
-\end{figure}
-%%
-++ REFERENCIA: Loundon, p.272 ++\\
-++ Cuidado: Abordagem quantica! ++\\
-%%
-%%
+
 \paragraph{Balanced Homodyne Detection}
-\ \\
-"In a balanced homodyne detector (BHD), the signal to be measured is mixed with a local oscillator (LO) at a beam splitter. The interference signals from the two output ports of the beam splitter are sent to two photodiodes followed by a subtraction operation, and then, amplification may be applied. The output of a BHD can be made to be proportional to either the amplitude quadrature or the phase quadrature of the input signal depending on the relative phase between the signal and the LO". \footnote{Chi2010, p.2,3, arxiv:1006.1257v2}
 
 \paragraph{IQ Homodyne Balanced Detection}
 
@@ -260,42 +152,9 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 \paragraph{Balanced Heterodyne Detection}
 
 \paragraph{IQ Heterodyne Balanced Detection}
-\ \\
-\\
-\\
-%
-%
-{\bf Thorlabs detector}
-The detector used in the laboraty is the Thorlabs PDB 450C. This detector consists of two well-matched photodiodes and a transimpedance amplifier that generates an output voltage (RF OUTPUT) proportional to the difference between the photocurrents of the photodiodes.\\
-Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe the optical input power level on each photodiode separately.
-%%
-\begin{figure}[H]
-	\centering
-	\includegraphics{./sdf/quantum_noise/figures/thorlabs-circuit.pdf}
-	\caption{Thorlabs PDB 450 detection circuit.}
-\end{figure}
-%%
-\noindent
-{\bf Frequency response}\\
-\\
-The frequency response is obtained by generating a frequency sweep such as $V = A_0 \sin \left( \omega(t) t \right)$, in which $\omega(t) = b t$ for some constant $b$ regulating the change in frequency. (b exponencial)
-\footnote{REF?}
-\\
-\\
-{\bf Gain response}\\
-\\
-The gain response is obtained by generating a amplitude sweep such as $V = A(t) \sin \left( \omega_0 t \right)$, in which $A(t) = b t$ for some constant $b$ regulating the change in amplitude. (b linear).
-\footnote{REF?}
-%%
-%%
-%%
-%%
-\\
-\\
-\\
--- BEGIN MATHEMATICS --\\
-\\
-%%
+
+
+
 We start by defining number states $\ket{n}$ (or Fock states), which correspond to states with perfectly fixed number of photons
 %\footnote{Loundon, p.184}
 \cite{loudon2000}.
@@ -413,19 +272,19 @@ A phase of the local oscillator can be defined as the reference phase. A phase o
 \\
 %
 \begin{figure}[H]
-	\label{fig:scheme_homodyne}
-	\centering
-	\includegraphics{./sdf/quantum_noise/figures/scheme_homodyne.pdf}
-	\caption{Balanced homodyne detection.}
+\label{fig:scheme_homodyne}
+\centering
+\includegraphics{./sdf/quantum_noise/figures/scheme_homodyne.pdf}
+\caption{Balanced homodyne detection.}
 \end{figure}
 %
 In the lab and in our simulations, a more complex system is used, the double balanced homodyne detection, which allows the simultaneous measurement of the $\hat{X}$ and $\hat{Y}$ components. The signal is divided in two beam with half the power of the original. One of the beams is used in a balanced homodyne detection with a local oscillator. The other beam is used in another balanced homodyne detection, but using a local oscillator with a phase difference $\pi/2$ relative to the first one.
 %
 \begin{figure}[H]
-	\label{fig:scheme_homodyne}
-	\centering
-	\includegraphics{./sdf/quantum_noise/figures/scheme_double_homodyne.pdf}
-	\caption{Balanced double homodyne detection.}
+\label{fig:scheme_homodyne}
+\centering
+\includegraphics{./sdf/quantum_noise/figures/scheme_double_homodyne.pdf}
+\caption{Balanced double homodyne detection.}
 \end{figure}
 %
 %
