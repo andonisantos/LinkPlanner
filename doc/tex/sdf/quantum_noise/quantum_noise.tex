@@ -50,6 +50,18 @@ Calculates the signal to noise ratio at the input of the decision circuit
 (Semiclassical theory of optical detection)\\
 %%
 %%
+Single Field Detection\\
+Semi-Classical description\\
+(DIRECT DETECTION?)\\
+Loundon, p. 117\\
+\\
+
+"in the semiclassical theory, where the atom is treated quantum-mechanically but the electromagnetic field is treated classically, the phototube has the effect of converting the continuous cycle-averaged classical intensity <I(t)> of the beam into a succession of discrete photocounts."
+
+The detection of light in a semi-classical approach assumes light as a classical wave? and atoms as ????
+\footnote{Procurar referencias}
+%%
+%%
 \paragraph{Single Field Detection}
 %%
 One of the most simple detection methods is the direct detection of light with a single detector and analysing the resulting photocurrent.
@@ -98,23 +110,19 @@ The calculation of power incident in the photodiode is given by
          &= \overline{|A(t)|^2} + \overline{ |A(t)|^2 cos\left(-2 \omega t + 2\theta(t)\right)}\nonumber\\
          &= |A(t)|^2 \,\,\,\, W
 \end{align}
-
+%%
 ++ A expressao seguinte esta fora do sitio/repetida ++
-
+%%
 \begin{align}
 	P(t) &= E^{*}(t) E(t)\nonumber\\
          &= |A(t)|^2 \,\,\,\, W
 \end{align}
-
-
-
+%%
+%%
 Complex notation
 \\
-%\footnote{Mark Fox, p.130}
-"The use o complex notation simplifies the mathematics (...). Physically measurable quantities are obtained by taking the real part of the complex wave"
+To simplify calculations, the electric field can be expressedu by using complex notation. The physically measurable quantities are obtained by taking the real part of the complex wave
 \footnote{Mark Fox, p.11}
-\\
-Using real notation,the electric field is express as $E(t) = |A(t)|\cos(\omega t + \theta )$ A more compact way of expressing the electric field is the complex notation
 %%
 \begin{equation}
 	E(t) = A(t) e^{-i \omega_0}
@@ -122,25 +130,29 @@ Using real notation,the electric field is express as $E(t) = |A(t)|\cos(\omega t
 %%
 ++ Falta o tempo junto ao omega0 ++\\
 \\
-%To recover the real notation, we simply use $E(t) = \textrm{Re} \left[ A(t) e^{-i \omega0} \right] $.\\
--- REFERENCIAS --\\
-The beam power (P) can be recoverd using the product between the field conjugate and the field itself
-%
+Using this notation, the beam power $(P(t))$ can be obtained by multipliyng the electric field's conjugate by itself
+\footnote{REF?}
+%%
 \begin{align}
 	P(t) &= E^{*}(t) E(t)\nonumber\\
          &= |A(t)|^2
 \end{align}
-
-(Hans, p. 181)\\
-The photocurrent $i(t)$ is obtained by 
-
+%%
+++ Nesta abordagem ainda nao posso falar de fotoes ++\\
+The photocurrent $i(t)$ is obtained by the removal of electrons from a material which has a bonding?? energy of 
+\\
+the conversion of optical power into moving charges???. Considering the excitation energy needed to remove a electron from it's nucleus ($\hbar \omega_0$),
+\footnote{REF?}
+\footnote{Hans, p.180}
+%%
 \begin{equation}
 	i(t) = \eta q \frac{P(t)}{\hbar \omega_0}
 \end{equation}
-
+%%
 ++ Seria melhor trocar q por e ++\\
-in which $\eta$ is the photodiode's responsivity, q is the unit charge and $P(t)/\hbar \omega_0$ is the number of photons.\\
-
+in which $\eta$ is the photodiode's responsivity, q is the unit charge and $P(t)/\hbar \omega_0$ is the number of removed electrons.\\
+%%
+\\
 Shot noise in photodiodes\\
 \footnote{Mark Fox, p.94, eq. 5.58}
 \\
@@ -193,19 +205,19 @@ in which the complex amplitude $A(t)$ is defined as defined as
 \begin{equation}
 	\langle i^2(t) \rangle = I_0^2
 \end{equation}
-
+%%
+%%
 Shot-noise\\
 
-(REFERENCIAS)\\
 Shot noise is a white noise??? which has a constant power independent of any frequency. Therefore, the variance of current will be proportional to the bandwith...\\
-O QUE E I0\\
+\footnote{REF?}
 
 \begin{equation}
 	\langle i_n^2(t) \rangle = 2 q B I_0
 \end{equation}
 
-Using the ... and ..., the signal-to-noise ratio is\\
-Therefore, the signal to noise ratio will be proportional to the signal power and ...
+%Using the and ..., the signal-to-noise ratio is\\
+%Therefore, the signal to noise ratio will be proportional to the signal power and ...
 
 \begin{align}
 	\frac{S}{N} &= \frac{\langle i^2(t) \rangle}{\langle i_n^2(t) \rangle} \nonumber\\
@@ -249,61 +261,33 @@ Therefore, the signal to noise ratio will be proportional to the signal power an
 \paragraph{Balanced Heterodyne Detection}
 
 \paragraph{IQ Heterodyne Balanced Detection}
+\ \\
+\\
+\\
 %
 %
 {\bf Thorlabs detector}
 The detector used in the laboraty is the Thorlabs PDB 450C. This detector consists of two well-matched photodiodes and a transimpedance amplifier that generates an output voltage (RF OUTPUT) proportional to the difference between the photocurrents of the photodiodes.\\
 Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe the optical input power level on each photodiode separately.
-
--- METER ESQUEMA ELECTRONICO --\\
-
--- Frequency Response --
-Hans, p.
-(REFERENCE!!)
-
--- begin inventar --\\
+%%
+\begin{figure}[H]
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/thorlabs-circuit.pdf}
+	\caption{Thorlabs PDB 450 detection circuit.}
+\end{figure}
+%%
+\noindent
+{\bf Frequency response}\\
+\\
 The frequency response is obtained by generating a frequency sweep such as $V = A_0 \sin \left( \omega(t) t \right)$, in which $\omega(t) = b t$ for some constant $b$ regulating the change in frequency. (b exponencial)
--- end inventar --\\
-
-
-
--- Gain response
-(REFERENCE!!)
--- begin inventar --\\
+\footnote{REF?}
+\\
+\\
+{\bf Gain response}\\
+\\
 The gain response is obtained by generating a amplitude sweep such as $V = A(t) \sin \left( \omega_0 t \right)$, in which $A(t) = b t$ for some constant $b$ regulating the change in amplitude. (b linear).
--- end inventar --\\
-
-
+\footnote{REF?}
 %%
-%%
-Single Field Detection\\
-Semi-Classical description\\
-(DIRECT DETECTION?)\\
-Loundon, p. 117\\
-\\
-
-"in the semiclassical theory, where the atom is treated quantum-mechanically but the electromagnetic field is treated classically, the phototube has the effect of converting the continuous cycle-averaged classical intensity <I(t)> of the beam into a succession of discrete photocounts."
-
-The detection of light in a semi-classical approach assumes light as a classical wave? and atoms as ????
-
-In most cases? the detection will be proportional to the intensity of the light beam.\\
-
-Therefore, the intensity of 
-A beam of light with a well defined frequency can be defined as:\\
-\\
-\\
-\\
-\\
--- ESTA EQUACAO TA MAL --\\
-\begin{equation}
-E = E_0\left[ \exp(i\omega t + i\theta) + \exp(-i\omega t - i\theta) \right]
-\end{equation}
-\\
-\\
-Single Field Detection\\
-Quantum description\\
-(DIRECT DETECTION?)\\
-Loundon, p. 271\\
 %%
 %%
 %%
