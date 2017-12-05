@@ -1,5 +1,38 @@
 ﻿2017-11-28
 TO BE DONE
+	inserir bibliohrafia no capitulo tendo por base o ficheiro quantum_noise.bib
+	colocar as referências todos no final
+
+	figuras para todos os tipos de deteção
+		single field and single polarization detection
+			acrescentar um polarizador linear (está feito)
+		homodyne detection
+			acrescentar referência à frequência
+		heterodyne detection
+			falta fazer
+		balanced homodyne dectection
+			falta fazer
+		balanced heterodyne dectection
+			falta fazer
+		IQ balanced homodyne dectection
+			falta fazer
+		IQ balanced heterodyne dectection
+			falta fazer
+		
+	criar uma secção relativa ao detetor da Thorlabs na parte experimental, para começar a sua caraterização
+		- responsividade do pin1 e do pin2
+		- ganho do meu amplificar OPAMP
+		- largura de banda
+		- formado filtro, espectro do filtro		
+		- ruído térmico, no braço superior, no braço intermédio e no braço inferior
+		
+		- esclarecer a diferença entre o TIA e o OPAMP
+
+
+
+
+2017-11-28
+TO BE DONE
 	solução para incluir a bibliografia em casa capítulo
 
 	criar uma secção relativa ao detetor da Thorlabs na parte experimental, para começar a sua caraterização
