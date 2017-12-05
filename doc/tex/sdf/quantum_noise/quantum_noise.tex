@@ -46,17 +46,12 @@ Calculates the signal to noise ratio at the input of the decision circuit
 
 \subsubsection{Classical Description}
 
-(Loundon, p.117)\\
-(Semiclassical theory of optical detection)\\
-%%
-%%
 Single Field Detection\\
 Semi-Classical description\\
-(DIRECT DETECTION?)\\
-Loundon, p. 117\\
 \\
-
+\\
 "in the semiclassical theory, where the atom is treated quantum-mechanically but the electromagnetic field is treated classically, the phototube has the effect of converting the continuous cycle-averaged classical intensity <I(t)> of the beam into a succession of discrete photocounts."
+\footnote{Loundon, p. 117}\\
 
 The detection of light in a semi-classical approach assumes light as a classical wave? and atoms as ????
 \footnote{Procurar referencias}
@@ -92,7 +87,7 @@ One of the most simple detection methods is the direct detection of light with a
 %Electromagnetic field (real notation)\\ %prof
 %\\
 %(Hans, p. 13??)\\
-Classicaly, the electric field of an ideal single mode laser, modulated in amplitude and phase by a signal $A(t)$, incident in a photodiode can be represented as
+Classicaly, the electric field of an ideal single mode laser, modulated in amplitude and phase by a signal $A(t)$, incident in a photodiode is represented as
 %%
 %%
 \begin{equation}
@@ -102,7 +97,7 @@ with $A(t)=|A(t)|e^{-i\theta(t)}$.
 
 Measurable optical power, assuming that the detector bandwidth, $B$, is greater than the signal, $A(t)$, bandwidth but much small than $2 \omega_0$, %prof
 \\
-The calculation of power incident in the photodiode is given by
+The calculation of power incident in the photodiode is given by the expected value of the square of the amplitude during a time interval $\Delta t = \frac{2 \pi}{\omega}$
 \footnote{REF?}\
 
 \begin{align}
@@ -119,9 +114,9 @@ The calculation of power incident in the photodiode is given by
 \end{align}
 %%
 %%
-Complex notation
+Complex notation\\
 \\
-To simplify calculations, the electric field can be expressedu by using complex notation. The physically measurable quantities are obtained by taking the real part of the complex wave
+To simplify calculations, the electric field can be expressed by using complex notation. The physically measurable quantities are obtained by taking the real part of the complex wave
 \footnote{Mark Fox, p.11}
 %%
 \begin{equation}
@@ -130,7 +125,7 @@ To simplify calculations, the electric field can be expressedu by using complex 
 %%
 ++ Falta o tempo junto ao omega0 ++\\
 \\
-Using this notation, the beam power $(P(t))$ can be obtained by multipliyng the electric field's conjugate by itself
+Using this notation, the beam power ($P(t)$) is obtained by multipliyng the electric field's conjugate by itself
 \footnote{REF?}
 %%
 \begin{align}
@@ -139,65 +134,54 @@ Using this notation, the beam power $(P(t))$ can be obtained by multipliyng the 
 \end{align}
 %%
 ++ Nesta abordagem ainda nao posso falar de fotoes ++\\
-The photocurrent $i(t)$ is obtained by the removal of electrons from a material which has a bonding?? energy of 
 \\
-the conversion of optical power into moving charges???. Considering the excitation energy needed to remove a electron from it's nucleus ($\hbar \omega_0$),
+The photocurrent $i(t)$ is obtained by the removal of electrons from a material which have a bonding energy to the atom's nucleus of $\hbar \omega_0$. Therefore, the photocurrent in function of the optical power ($P(t)$) is expressed as
 \footnote{REF?}
-\footnote{Hans, p.180}
+%\footnote{Hans, p.180}
 %%
 \begin{equation}
 	i(t) = \eta q \frac{P(t)}{\hbar \omega_0}
 \end{equation}
 %%
 ++ Seria melhor trocar q por e ++\\
+\\
 in which $\eta$ is the photodiode's responsivity, q is the unit charge and $P(t)/\hbar \omega_0$ is the number of removed electrons.\\
+Given the previous definition of electric field (ref?) and power (ref?), we will obtain the optical power as
 %%
-\\
-Shot noise in photodiodes\\
-\footnote{Mark Fox, p.94, eq. 5.58}
-\\
-%EFEITO FOTO-ELECTRICO\\
-The photocurrent $i(t)$ is proportional to the number of photons incident in the detector, given by optical power $P$ divided by the photon energy unit $\hbar \omega$. The eficiency coefficient $\eta$ represents the probability of an incident photon removing an electron from it's atom and $e$ is simply the unit of charge.\\
-\\
-Given the photo-electric effect, where each photon of a given energy will remove a electron at a certain energy level???? (and assuming perfect efficiency) we can obtain the current, which is the quantity of charge per unit of time, given by the number of electrons per second times the charge per electron. To obtain the number of electrons per time unit, we just obtain the number of photons per second, given by the power of the light beam divides per unit of energy of a photon.???\\ SIMPLIFICAR e MODULAR.\\
-\\
-\\
 \begin{equation}
 	E(t) = A(t) e^{-i \omega_0}
 \end{equation}
-
-++ Esta definicao e a do power tao repetidas ++
-
-The electric field can be expressed a changing amplitude through time ???? assoc
-
-
+%%
+++ Esta definicao e a do power tao repetidas ??++
+%%
 \begin{equation}
 	P(t) = |A(t)|^2
 	\label{eq:power}
 \end{equation}
-
---NO-REFERENCES--\\
-Using the complex definition of the electromagnetic field, then optical power can be expressed as the 
-
+%%
+Therefore, we can rewrite the photocurrent $i(t)$ in function of the signal $A(t)$ as
+%%
 \begin{equation}
 	i(t) = \eta q \frac{|A(t)|^2}{\hbar \omega_0}
 \end{equation}
-
-We can express the photocurrent using using equation \ref{eq:power} ???\\
-\\
-(Mark Fox, p.95)\\
-"These photon number fluctuations will be refletecd in the photocurrent fluctuations with a fidelity determined by $\eta$. The fluctuations manifest themselves as {\bf noise} in the photocurrent, as illustraded in (...) The time-varying photocurrent i(t) can be broken into time-independent average current <i> and time-varying fluctuations $\Delta i (t)$ according to: $i(t) = <i> + \Delta i(t)$."
-\\
+%%
+The second moment of the photocurrent will be
+%%
 \begin{equation}
 	\langle i^2(t) \rangle = \eta^2 q^2 \frac{\langle |A(t)|^4 \rangle }{\hbar^2 \omega_0^2}
 \end{equation}
 
-in which the complex amplitude $A(t)$ is defined as defined as 
+
+++ AGORA ESTOU A ENTRAR NA SEGUNDA ABORDAGEM? ++\\
+\\
+++ Aqui o signal nao deveria ser $A_S$ ? ++
 
 \begin{equation}
 	A(t) = |A| e^{i \theta}
 \end{equation}
-
+%%
+++ Esta-se a considerar $A_S$ constante ? ++
+%%
 \begin{equation}
 	i(t) = I_0 = \eta q \frac{A_s^2}{\hbar \omega_0}
 \end{equation}
@@ -208,13 +192,24 @@ in which the complex amplitude $A(t)$ is defined as defined as
 %%
 %%
 Shot-noise\\
-
+\\
+(Shot noise in photodiodes)\\
+\footnote{Mark Fox, p.94, eq. 5.58}
+%%
+%"These photon number fluctuations will be refletecd in the photocurrent fluctuations with a fidelity determined by $\eta$. The fluctuations manifest themselves as {\bf noise} in the photocurrent, as illustraded in (...) The time-varying photocurrent i(t) can be broken into time-independent average current <i> and time-varying fluctuations $\Delta i (t)$ according to: $i(t) = <i> + \Delta i(t)$."
+%(Mark Fox, p.95)\\
+%%
+\\
 Shot noise is a white noise??? which has a constant power independent of any frequency. Therefore, the variance of current will be proportional to the bandwith...\\
 \footnote{REF?}
 
 \begin{equation}
 	\langle i_n^2(t) \rangle = 2 q B I_0
 \end{equation}
+
+++ Porque e que se usam segundos momentos? Estamos a assumir que o valor esperado do shot noise seja 0? ++
+\\
+Using the second moment of the signal (porque?) and the second moment of the quantum noise, we can obtain the signal to noise ratio in function of the signal and bandwidth as 
 
 %Using the and ..., the signal-to-noise ratio is\\
 %Therefore, the signal to noise ratio will be proportional to the signal power and ...
@@ -227,8 +222,6 @@ Shot noise is a white noise??? which has a constant power independent of any fre
 
 
 \paragraph{Homodyne Detection}
-
-(REFERENCIA: Ver aquele paper da experiencia do quantum noise)\\
 %%
 \begin{figure}[H]
 	\centering
@@ -236,7 +229,13 @@ Shot noise is a white noise??? which has a constant power independent of any fre
 	\caption{Direct detection.}
 \end{figure}
 %%
+++ REFERENCIA: Loundon, p.272 ++\\
+++ Cuidado: Abordagem quantica! ++\\
+%%
+%%
 \paragraph{Balanced Homodyne Detection}
+\ \\
+"In a balanced homodyne detector (BHD), the signal to be measured is mixed with a local oscillator (LO) at a beam splitter. The interference signals from the two output ports of the beam splitter are sent to two photodiodes followed by a subtraction operation, and then, amplification may be applied. The output of a BHD can be made to be proportional to either the amplitude quadrature or the phase quadrature of the input signal depending on the relative phase between the signal and the LO". \footnote{Chi2010, p.2,3, arxiv:1006.1257v2}
 
 \paragraph{IQ Homodyne Balanced Detection}
 
