@@ -1,10 +1,11 @@
 #include "netxpto.h"
 #include "alice_qkd.h"
 
-void alice_qkd::initialize(void) {
+void AliceQKD::initialize(void) {
 
 }
 
-bool alice_qkd::runBlock(void) {
+bool AliceQKD::runBlock(void) {
 
+	return 0;
 }

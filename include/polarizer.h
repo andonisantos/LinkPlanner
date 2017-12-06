@@ -3,14 +3,18 @@
 
 #include "netxpto.h"
 
-class polarizer: public Block{
+class Polarizer : public Block{
 
 public:
-	polarizer(vector <Signal*> &inputSignals, vector <Signal*> &outputSignals) : Block(inputSignals, outputSignals) {};
+	Polarizer (vector <Signal*> &inputSignals, vector <Signal*> &outputSignals) : Block(inputSignals, outputSignals) {};
 
 	void initialize(void);
 
 	bool runBlock(void);
+
+	void setM(int mValue);
+
+	void setAmplitudes(vector <t_iqValues> AmplitudeValues);
 };
 #endif // !POLARIZE_H_
 

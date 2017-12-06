@@ -4,16 +4,27 @@
 #include "netxpto.h"
 
 
-class alice_qkd : public Block {
+class AliceQKD : public Block {
+	
+public:
 	/* input parameters*/
 
+	double RateOfPhotons{1e3};
+	int StringPhotonsLength{ 12 };
 
-public:
-	alice_qkd(vector <Signal*> &inputSignals, vector <Signal*> &outputSignals) : Block(inputSignals, outputSignals) {};
+	// Methods
+	AliceQKD (vector <Signal*> &inputSignals, vector <Signal*> &outputSignals) : Block(inputSignals, outputSignals) {};
 
 	void initialize(void);
 
 	bool runBlock(void);
+
+	void setRateOfPhotons(double RPhotons) { RateOfPhotons = RPhotons; };
+	double const getRateOfPhotons(void) { return RateOfPhotons; };
+
+	void setStringPhotonsLength(int pLength) { StringPhotonsLength = pLength; };
+	int const getStringPhotonsLength(void) { return StringPhotonsLength; };
+
 
 };
 

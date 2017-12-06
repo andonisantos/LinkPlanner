@@ -287,7 +287,12 @@ public:
 
 class TimeContinuousAmplitudeContinuous : public Signal {
 public:
-	TimeContinuousAmplitudeContinuous(){}
+	TimeContinuousAmplitudeContinuous(string fName) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setFileName(fName); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
+	TimeContinuousAmplitudeContinuous(string fName, int bLength) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setFileName(fName); setBufferLength(bLength); }
+	TimeContinuousAmplitudeContinuous(int bLength) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setBufferLength(bLength); }
+	TimeContinuousAmplitudeContinuous() { setType("TimeContinuousAmplitudeContinuous", RealValue); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_real[bLength]; };
 };
 
 
