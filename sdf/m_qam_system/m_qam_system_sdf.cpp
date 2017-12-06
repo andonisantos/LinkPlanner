@@ -76,7 +76,7 @@ int main(){
 	// #####################################################################################################
 
 	MQamTransmitter B1{ vector<Signal*> { }, vector<Signal*> { &S1, &S0 } };
-	B1.setNumberOfBits(numberOfBitsGenerated);
+	//B1.setNumberOfBits(numberOfBitsGenerated);
 	B1.setOutputOpticalPower_dBm(signalOutputPower_dBm);
 	//B1.setMode(PseudoRandom);
 	B1.setMode(DeterministicCyclic);

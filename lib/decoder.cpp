@@ -25,7 +25,7 @@ void Decoder::setM(int mValue) {
 	switch (m) {
 	case 4:
 
-		iqAmplitudes = { { 1.0, 1.0 },{ -1.0, 1.0 },{ 1.0, -1.0 },{ -1.0, -1.0 } };
+		iqAmplitudes = { { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
 
 	case 16:
 
