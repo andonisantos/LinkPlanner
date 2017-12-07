@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    sodipodi:docname="detection-heterodyne.svg"
-   inkscape:version="0.92.2 (unknown)">
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
   <defs
      id="defs2">
     <marker
@@ -492,9 +492,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="287.76596"
-     inkscape:cy="-20.695623"
+     inkscape:zoom="2"
+     inkscape:cx="282.68783"
+     inkscape:cy="-10.793367"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -536,7 +536,7 @@
        style="fill:none;stroke:#000000;stroke-width:0.75590557;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6618-6-5-3-68-3)" />
     <g
        id="g8674"
-       transform="translate(37.322643,6.5533699)">
+       transform="translate(35.232969,6.5533699)">
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -568,7 +568,7 @@
          style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker6276)"
          sodipodi:nodetypes="cc" />
       <path
-         inkscape:transform-center-y="-5.2591898e-06"
+         inkscape:transform-center-y="-5.2591898e-006"
          transform="matrix(0.72633329,0,0,0.72996463,8.234871,71.492913)"
          inkscape:transform-center-x="-1.4374318"
          d="m 39.000363,278.49678 10e-7,-6.85554 -10e-7,-6.85555 5.937074,3.42777 5.937073,3.42778 -5.937074,3.42777 z"
@@ -680,33 +680,44 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         x="2.9049997"
+         x="2.9050007"
          y="251.12779"
          id="text15143"><tspan
            sodipodi:role="line"
            id="tspan15141"
-           x="2.9049997"
+           x="2.9050007"
            y="251.12779"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;font-family:Arial;-inkscape-font-specification:Arial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">A<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
-   id="tspan119">L</tspan>(ω<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
-   id="tspan121">1</tspan>)</tspan></text>
+   style="font-size:3.43958306px;baseline-shift:sub;stroke-width:0.26458332"
+   id="tspan119">L,ω1</tspan></tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         x="-24.496294"
+         x="-20.792124"
          y="271.1124"
          id="text15143-7"><tspan
            sodipodi:role="line"
            id="tspan15141-9"
-           x="-24.496294"
+           x="-20.792124"
            y="271.1124"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;font-family:Arial;-inkscape-font-specification:Arial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">A<tspan
    style="font-size:3.43958306px;baseline-shift:sub;stroke-width:0.26458332"
-   id="tspan119-0">S</tspan>(ω<tspan
-   style="font-size:3.43958306px;baseline-shift:sub;stroke-width:0.26458332"
-   id="tspan121-3">0</tspan>)</tspan></text>
+   id="tspan119-0">S,ω0<tspan
+   style="stroke-width:0.26458332"
+   id="tspan4782" /></tspan></tspan></text>
+      <text
+         id="text7804"
+         y="271.12949"
+         x="89.607719"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;font-family:arial;-inkscape-font-specification:arial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+           y="271.12949"
+           x="89.607719"
+           id="tspan7802"
+           sodipodi:role="line">V<tspan
+   id="tspan7806"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.43958306px;font-family:arial;-inkscape-font-specification:arial;baseline-shift:sub;stroke-width:0.26458332">OUT</tspan></tspan></text>
     </g>
     <rect
        style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker7268)"

@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    sodipodi:docname="detection-direct.svg"
-   inkscape:version="0.92.2 (unknown)">
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
   <defs
      id="defs2">
     <marker
@@ -297,17 +297,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7071068"
-     inkscape:cx="188.94972"
-     inkscape:cy="-38.000961"
+     inkscape:zoom="2.0000001"
+     inkscape:cx="272.65499"
+     inkscape:cy="10.159704"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1434"
-     inkscape:window-height="863"
-     inkscape:window-x="0"
-     inkscape:window-y="16"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
      inkscape:snap-center="true"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -317,9 +317,9 @@
      inkscape:measure-start="90.71,121.755"
      inkscape:measure-end="109.608,121.755">
     <sodipodi:guide
-       position="71.206645,21.58573"
+       position="116.33214,21.58573"
        orientation="0,1"
-       id="guide9726"
+       id="guide1010"
        inkscape:locked="false" />
   </sodipodi:namedview>
   <metadata
@@ -347,7 +347,7 @@
        style="fill:none;stroke:#000000;stroke-width:0.75590557;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6618-6-5-3-68-3)" />
     <g
        id="g8674"
-       transform="translate(29.287184,5.6285601)">
+       transform="translate(23.032947,5.6285601)">
       <path
          inkscape:connector-curvature="0"
          id="path396"
@@ -367,7 +367,7 @@
          style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker6276)"
          sodipodi:nodetypes="cc" />
       <path
-         inkscape:transform-center-y="-5.2591898e-06"
+         inkscape:transform-center-y="-5.2591898e-006"
          transform="matrix(0.72633329,0,0,0.72996463,8.234871,71.492913)"
          inkscape:transform-center-x="-1.4374318"
          d="m 39.000363,278.49678 10e-7,-6.85554 -10e-7,-6.85555 5.937074,3.42777 5.937073,3.42778 -5.937074,3.42777 z"
@@ -484,6 +484,19 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;font-family:Arial;-inkscape-font-specification:Arial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">A<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.43958306px;font-family:Arial;-inkscape-font-specification:Arial;baseline-shift:sub;stroke-width:0.26458332"
    id="tspan15147-8">S</tspan></tspan></text>
+      <text
+         id="text7804"
+         y="271.12949"
+         x="90.727211"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;font-family:arial;-inkscape-font-specification:arial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+           y="271.12949"
+           x="90.727211"
+           id="tspan7802"
+           sodipodi:role="line">V<tspan
+   id="tspan7806"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.43958306px;font-family:arial;-inkscape-font-specification:arial;baseline-shift:sub;stroke-width:0.26458332">OUT</tspan></tspan></text>
     </g>
     <rect
        style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker7268)"
