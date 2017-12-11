@@ -31,7 +31,7 @@ int main(){
 	//8 is the number of samples used by the filter
 	t_real confidence = 0.95;
 	t_integer midReportSize = 0;
-	t_integer bufferLength = 20;
+	t_integer bufferLength = 512;
 
 	//double clockPeriod = symbolPeriod;
 	//double samplingPeriod = 16;

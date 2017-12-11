@@ -20,7 +20,7 @@ For $M=4$ the M-QAM system reduces to a Quadrature Phase Shift Keying system (QP
 \begin{figure}[h]
 	\centering
 	\includegraphics[clip, trim=1cm 3cm 1cm 3cm, width=\textwidth]{./sdf/m_qam_system/figures/MQAM_constellation.pdf}
-	\caption{4-QAM constellation points,}
+	\caption{4-QAM constellation points.}
 	\label{fig:const}
 \end{figure}
 
@@ -112,9 +112,11 @@ This function is plotted in figure \ref{fig:QPSK_th_curve} for $n_0=10^{-6}$.
 \begin{figure}[h]
 		\centering
 		\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_theory.pdf}
-		\caption{QPSK theoretical BER}
+		\caption{QPSK theoretical BER values as a function of the output optical power in dBm.}
 		\label{fig:QPSK_th_curve}
 \end{figure}
+
+\pagebreak
 \subsection{Simulation Analysis}
 
 \begin{figure}[h]
@@ -148,14 +150,14 @@ The files corresponding to each of the system's blocks are summarized in table \
 \begin{table}[]
 	\centering
 	\caption{Main system files}
-	\begin{tabular}{|c|c|c|ccc}
-		\cline{1-3}
-		\textbf{System blocks} & \textbf{Source file} & \textbf{Header file}  &  \\ \cline{1-3}
-		Main & m\_qam\_system\_sdf.cpp & --- &  \\ \cline{1-3}
-		M-QAM transmitter & m\_qam\_transmitter.cpp & m\_qam\_transmitter.h &  \\ \cline{1-3}
-		M-QAM receiver & homodyne\_receiver.cpp & homodyne\_receiver.h &   \\ \cline{1-3}
-		Sink & sink.cpp & sink.h &   \\ \cline{1-3}
-		BER estimator & bit\_error\_rate.cpp & bit\_error\_rate.h &  \\ \cline{1-3}
+	\begin{tabular}{|c|c|c|c|ccc}
+		\cline{1-4}
+		\textbf{System blocks} & \textbf{Source file} & \textbf{Header file}  &  \textbf{Status} & \\ \cline{1-4}
+		Main & m\_qam\_system\_sdf.cpp & --- & \checkmark & \\ \cline{1-4}
+		M-QAM transmitter & m\_qam\_transmitter.cpp & m\_qam\_transmitter.h & \checkmark &  \\ \cline{1-4}
+		M-QAM receiver & homodyne\_receiver.cpp & homodyne\_receiver.h & &  \\ \cline{1-4}
+		Sink & sink.cpp & sink.h &  \checkmark & \\ \cline{1-4}
+		BER estimator & bit\_error\_rate.cpp & bit\_error\_rate.h &  &\\ \cline{1-4}
 	\end{tabular}
 	\label{files_table}
 \end{table}
@@ -164,7 +166,7 @@ The files corresponding to each of the system's blocks are summarized in table \
 
 The required header and source files needed to run this system are summarized in table \ref{table:files}.
 
-\begin{table}[]
+\begin{table}
  	\centering
  	\caption{Required files}
  	\begin{tabular}{|c|c|p{40mm}|c|ccp{40mm}c}
@@ -194,7 +196,7 @@ The required header and source files needed to run this system are summarized in
 
 \subsection*{Input Parameters}
 
-The system can take several input parameters. These are described in table \ref{table:in_par}.
+The system accepts several input parameters that can be defined by the user. These are described in table \ref{table:in_par}.
 
 \begin{table}[]
 	\centering
@@ -225,13 +227,29 @@ The system can take several input parameters. These are described in table \ref{
 
 \subsection*{Simulation results}
 
+In this section we show the eye diagrams for the S1 signals for two different values of the output optical power.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=\textwidth]{./sdf/m_qam_system/figures/eye_diagram_S1_120.pdf}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=\textwidth]{./sdf/m_qam_system/figures/eye_diagram_S1_60.pdf}
+	\end{subfigure}
+	\caption{Eye diagrams for the S1 bandpass signal with an output optical power of $-120$dBm (left) and $-60$dBm (right). Note differente scales on y axis.}
+	\label{fig:test}
+\end{figure}
+
 \subsection{Comparative Analysis}
 
-In this section we show the simulation results and compared them with the theoretical predictions. Figures \ref{fig:ber_random} and \ref{fig:ber_det} show the variation of the BER with the power of the signal, using $4000$ bits and a random and deterministic cyclic ($0101...$) binary sequence, respectively. To produce this plots we considered a noise amplitude of $10^{-6}$ and an amplification of $10^3$. 
+In this section we show the simulation results and compared them with the theoretical predictions. Figures \ref{fig:ber_pseudorandom} shows the variation of the BER with the power of the signal, using $4000$ bits and a pseudorandom binary sequence with pattern length $2^7$. To produce this plots we considered a noise amplitude of $10^{-6}$ and an amplification of $10^3$. 
 
-	\begin{figure}[h]
-		\centering
-		\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_pseudorandom7.pdf}
-		\caption{Simulation result for a random binary sequence with $4000$ bits, a noise amplitude of $10^{-6}$ and an amplification of $10^3$}
-		\label{fig:ber_random}
-	\end{figure}%
+\begin{figure}[h]
+	\centering
+	\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_pseudorandom7.pdf}
+	\caption{Simulation result for a random binary sequence with $4000$ bits, a noise amplitude of $10^{-6}$ and an amplification of $10^3$.}
+	\label{fig:ber_pseudorandom}
+\end{figure}%
