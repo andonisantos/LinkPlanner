@@ -311,17 +311,26 @@ Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe
 	\caption{Thorlabs PDB 450 detection circuit.}
 \end{figure}
 %%
+%%
+A transimpedance amplifier (TIA) "converts the photodiode's current output signal to a usable voltage level"
+\footnote{https://www.digikey.com/en/articles/techzone/2017/jul/design-transimpedance-amplifiers-for-precision-opto-sensing}\\
+++ SEM REFERENCIA ++\\
+The TIA has a high impedance??? which is good to measurent instruments. \footnote{REF?}
+++ WIKI ++\\
+Current-to-voltage converters are used with sensors that have a current response that is more linear than the voltage response. This is the case with photodiodes,
+%%
 \noindent
+{\bf Gain response}\\
+\\
+The gain response is obtained by generating a amplitude sweep such as $V = A(t) \sin \left( \omega_0 t \right)$, in which $A(t) = b t$ for some constant $b$ regulating the change in amplitude. (b linear).
+\footnote{REF?}
 {\bf Frequency response}\\
 \\
 The frequency response is obtained by generating a frequency sweep such as $V = A_0 \sin \left( \omega(t) t \right)$, in which $\omega(t) = b t$ for some constant $b$ regulating the change in frequency. (b exponencial)
 \footnote{REF?}
 \\
 \\
-{\bf Gain response}\\
-\\
-The gain response is obtained by generating a amplitude sweep such as $V = A(t) \sin \left( \omega_0 t \right)$, in which $A(t) = b t$ for some constant $b$ regulating the change in amplitude. (b linear).
-\footnote{REF?}
+
 %%
 %%
 %%
