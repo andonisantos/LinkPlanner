@@ -25,6 +25,8 @@ HomodyneReceiver::HomodyneReceiver(vector<Signal *> &inputSignal, vector<Signal 
 	B14.initializeBlock(vector<Signal*> { &HMD15 }, vector<Signal*> { &HMD17 }); //Sampler
 	B15.initializeBlock(vector<Signal*> { &HMD16, &HMD17 }, vector<Signal*> { &HMD18 }); //Decoder
 
+	//HMD18.setBufferLength(512);
+
 	setModuleBlocks({ &B1, &B2, &B3, &B4, &B5, &B6, &B7, &B8, /*&B9A, &B9B,*/&B9, &B10, &B11, &B12, &B13, &B14, &B15 });
 	
 };

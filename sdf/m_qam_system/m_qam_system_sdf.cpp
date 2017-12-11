@@ -11,7 +11,7 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsGenerated(4000);
+	t_integer numberOfBitsGenerated(200);
 	t_integer samplesPerSymbol(16);
 	t_real bitPeriod = 1.0 / 50e9;
 	t_real rollOffFactor = 0.9;
