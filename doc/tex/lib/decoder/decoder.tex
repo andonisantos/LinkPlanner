@@ -22,7 +22,7 @@ This block accepts a complex electrical signal and outputs a sequence of binary 
 
 \begin{table}[h]
 	\centering
-	\begin{tabular}{|c|c|p{60mm}|c|ccp{60mm}}
+	\begin{tabular}{|c|c|c|c|ccp{60mm}}
 		\cline{1-4}
 		\textbf{Parameter} & \textbf{Type} & \textbf{Values} &   \textbf{Default}& \\ \cline{1-4}
 		m & int & $\geq 4$ & $4$ \\ \cline{1-4}
@@ -76,7 +76,7 @@ As an example take an input signal with positive real and imaginary parts. It wo
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{./lib/decoder/figures/Decoder_output}
+	\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./lib/decoder/figures/MQAM_decoder_output.pdf}
 	\caption{Example of the output signal of the decoder for a binary sequence 01. As expected it reproduces the initial bit stream}\label{Decoder_output}
 \end{figure}
 

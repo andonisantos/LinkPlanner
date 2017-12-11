@@ -11,16 +11,16 @@
 
 This block simulates an optical hybrid. It accepts two input signals corresponding to the signal and to the local oscillator. It generates four output complex signals separated by $90^\circ$ in the complex plane. Figure ~\ref{opticalhybrid} shows a schematic representation of this block.
 
-%\begin{figure}[h]
-%	\centering\includegraphics[width=0.6\textwidth]{../homodyne_receiver/figures/optical_hybrid.png}
-%	\caption{Schematic representation of an optical hybrid}\label{opticalhybrid}
-%\end{figure}
+\begin{figure}[h]
+	\centering\includegraphics[width=0.6\textwidth]{./lib/optical_hybrid/figures/optical_hybrid_block_diagram.png}
+	\caption{Schematic representation of an optical hybrid.}\label{opticalhybrid}
+\end{figure}
 
 \subsection*{Input Parameters}
 
 \begin{table}[h]
 	\centering
-	\begin{tabular}{|c|c|p{60mm}|c|ccp{60mm}}
+	\begin{tabular}{|c|c|c|c|ccp{60mm}}
 		\cline{1-4}
 		\textbf{Parameter} & \textbf{Type} & \textbf{Values} &   \textbf{Default}& \\ \cline{1-4}
 		outputOpticalPower & double & any & $1e-3$ \\ \cline{1-4}
@@ -63,8 +63,6 @@ void setPowerFactor(double pFactor)
 
 This block accepts two  input signals corresponding to the signal to be demodulated ($S$) and to the local oscillator ($L$). It generates four output optical signals given by $\textit{powerFactor}\times(S+L)$, $\textit{powerFactor}\times(S-L)$,$\textit{powerFactor}\times(S+iL)$, $\textit{powerFactor}\times(S-iL)$. The input parameter \textit{powerFactor} assures the conservation of optical power.
 
-\pagebreak
-
 \subsection*{Input Signals}
 
 \subparagraph*{Number:} 2
@@ -81,7 +79,7 @@ This block accepts two  input signals corresponding to the signal to be demodula
 
 %\begin{figure}[h]
 %	\centering
-%	\includegraphics[width=\textwidth]{../homodyne_receiver/figures/OpticalHybrid_output}
+%	\includegraphics[width=\textwidth]{./lib/optical_hybrid/MQAM_optical_hybrid_output.pdf}
 %	\caption{Example of one of the output signals of this block for a binary sequence 01}\label{OpticalHybrid_output}
 %\end{figure}
 
