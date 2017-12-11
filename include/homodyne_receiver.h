@@ -4,7 +4,7 @@
 # include "netxpto.h"
 
 # include "optical_hybrid.h"
-# include "photodiode.h"
+# include "photodiode_old.h"
 # include "subtractor.h"
 # include "ideal_amplifier.h"
 # include "decoder.h"
@@ -13,6 +13,8 @@
 # include "super_block_interface.h"
 # include "pulse_shaper.h"
 # include "clock.h"
+# include "white_noise.h"
+# include "add.h"
 
 
 // this is a test block for the purpose of beta testing new code
@@ -39,23 +41,31 @@ class HomodyneReceiver : public SuperBlock {
 
 	TimeContinuousAmplitudeContinuousReal HMD07{ "HMD07.sgn" }; // Substracted
 
-	TimeContinuousAmplitudeContinuousReal HMD08{ "HMD08.sgn" }; // Amplified
+	TimeContinuousAmplitudeContinuousReal HMD08{ "HMD08.sgn" }; // Ideal Amplified
 
-	TimeContinuousAmplitudeContinuousReal HMD09{ "HMD09.sgn" }; // Amplified
+	TimeContinuousAmplitudeContinuousReal HMD09{ "HMD09.sgn" }; // Ideal Amplified
 
-	TimeContinuousAmplitudeContinuousReal HMD10{ "HMD10.sgn" }; //Filtered (pulse shaper)
+	TimeContinuousAmplitudeContinuousReal HMD10{ "HMD10.sgn" }; // White noise
 
-	TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; //Filtered
+	TimeContinuousAmplitudeContinuousReal HMD11{ "HMD11.sgn" }; // White noise
 
-	TimeContinuousAmplitudeContinuousReal HMD12A{ "HMD12A.sgn" }; //Clock
+	TimeContinuousAmplitudeContinuousReal HMD12{ "HMD12.sgn" }; // Add
 
-	TimeContinuousAmplitudeContinuousReal HMD12B{ "HMD12B.sgn" }; //Clock
+	TimeContinuousAmplitudeContinuousReal HMD13{ "HMD13.sgn" }; // Add
 
-	TimeDiscreteAmplitudeContinuousReal HMD13{ "HMD13.sgn" }; // Sampled 
+	TimeContinuousAmplitudeContinuousReal HMD14{ "HMD14.sgn" }; //Filtered (pulse shaper)
 
-	TimeDiscreteAmplitudeContinuousReal HMD14{ "HMD14.sgn" }; // Sampled 
+	TimeContinuousAmplitudeContinuousReal HMD15{ "HMD15.sgn" }; //Filtered
 
-	Binary HMD15{ "HMD15.sgn" }; // recovery Sequence
+	//TimeContinuousAmplitudeContinuousReal HMD16A{ "HMD12A.sgn" }; //Clock
+
+	//TimeContinuousAmplitudeContinuousReal HMD16B{ "HMD12B.sgn" }; //Clock
+
+	TimeDiscreteAmplitudeContinuousReal HMD16{ "HMD16.sgn" }; // Sampled 
+
+	TimeDiscreteAmplitudeContinuousReal HMD17{ "HMD17.sgn" }; // Sampled 
+
+	Binary HMD18{ "HMD18.sgn" }; // recovery Sequence
 
 
 	// #####################################################################################################
@@ -74,19 +84,27 @@ class HomodyneReceiver : public SuperBlock {
 
 	IdealAmplifier B6;
 
-	PulseShaper B7;
-
-	PulseShaper B8;
-
-	Clock B9A;
-
-	Clock B9B;
-
-	Sampler B10;
-
-	Sampler B11;
+	WhiteNoise B7;
 	
-	Decoder B12;
+	WhiteNoise B8;
+
+	Add B9;
+
+	Add B10;
+
+	PulseShaper B11;
+
+	PulseShaper B12;
+
+	//Clock B13A;
+
+	//Clock B13B;
+
+	Sampler B13;
+
+	Sampler B14;
+	
+	Decoder B15;
 
 	/* State Variables */
 
@@ -109,8 +127,8 @@ public:
 
 	/* Set Methods */
 
-	void setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) { B12.setIqAmplitudes(iqAmplitudesValues); };
-	vector<t_iqValues> const getIqAmplitudes(void) { return B12.getIqAmplitudes(); };
+	void setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) { B15.setIqAmplitudes(iqAmplitudesValues); };
+	vector<t_iqValues> const getIqAmplitudes(void) { return B15.getIqAmplitudes(); };
 
 	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
 	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
@@ -118,23 +136,23 @@ public:
 	void setLocalOscillatorPhase(double lOscillatorPhase) { B1.setPhase(lOscillatorPhase); };
 	void setLocalOscillatorOpticalWavelength(double lOscillatorWavelength) { B1.setWavelength(lOscillatorWavelength); };
 
-	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); B9A.setSamplingPeriod(sPeriod); B9B.setSamplingPeriod(sPeriod);
-	};
+	void setSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };//B13A.setSamplingPeriod(sPeriod); B13B.setSamplingPeriod(sPeriod);
+	//};
 
 	void  setResponsivity(t_real Responsivity) { B3.setResponsivity(Responsivity); B4.setResponsivity(Responsivity); };
 
-	//void setAmplification(t_real Amplification) { B5.amplification = Amplification; B6.amplification = Amplification; };
-	//void setNoiseAmplitude(t_real NoiseAmplitude) { B5.noiseamp = NoiseAmplitude; B6.noiseamp = NoiseAmplitude;};
+	void setAmplification(t_real Amplification) { B5.setGain(Amplification); B6.setGain(Amplification); };
+	void setNoiseAmplitude(t_real NoiseAmplitude) { B7.setNoiseSpectralDensity(NoiseAmplitude); B8.setNoiseSpectralDensity(NoiseAmplitude);};
 
-	void setImpulseResponseTimeLength(int impResponseTimeLength) { B7.setImpulseResponseTimeLength(impResponseTimeLength); B8.setImpulseResponseTimeLength(impResponseTimeLength); };
-	void setFilterType(PulseShaperFilter fType) { B7.setFilterType(fType); B8.setFilterType(fType); };
-	void setRollOffFactor(double rOffFactor) { B7.setRollOffFactor(rOffFactor); B8.setRollOffFactor(rOffFactor); };
+	void setImpulseResponseTimeLength(int impResponseTimeLength) { B11.setImpulseResponseTimeLength(impResponseTimeLength); B12.setImpulseResponseTimeLength(impResponseTimeLength); };
+	void setFilterType(PulseShaperFilter fType) { B11.setFilterType(fType); B12.setFilterType(fType); };
+	void setRollOffFactor(double rOffFactor) { B11.setRollOffFactor(rOffFactor); B12.setRollOffFactor(rOffFactor); };
 
-	void setClockPeriod(double per) { B9A.setClockPeriod(per); B9B.setClockPeriod(per); };
+	//void setClockPeriod(double per) { B13A.setClockPeriod(per); B13B.setClockPeriod(per); };
 
-	void setSamplesToSkip(int sToSkip) { B10.setSamplesToSkip(sToSkip); B11.setSamplesToSkip(sToSkip); };
+	void setSamplesToSkip(int sToSkip) { B13.setSamplesToSkip(sToSkip); B14.setSamplesToSkip(sToSkip); };
 
-	void setSamplerOpticalPower_dBm(double optPower_dBm) { B10.setOutputOpticalPower_dBm(optPower_dBm); };
+	void setSamplerOpticalPower_dBm(double optPower_dBm) { B13.setOutputOpticalPower_dBm(optPower_dBm); B14.setOutputOpticalPower_dBm(optPower_dBm); };
 
 };
 

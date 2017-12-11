@@ -2,17 +2,40 @@
 
 \section{Local Oscillator}
 
+\begin{tcolorbox}	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+		\textbf{Header File}   &:& local\_oscillator.h \\
+		\textbf{Source File}   &:& local\_oscillator.cpp \\
+	\end{tabular}
+\end{tcolorbox}
+
 This block simulates a local oscillator with constant power and initial phase. It produces one output complex signal and it doesn't accept input signals.
 
 \subsection*{Input Parameters}
 
-\begin{itemize}
-	\item opticalPower\{ 1e-3 \}
-	\item wavelength\{ 1550e-9 \}
-	\item frequency\{ SPEED\_OF\_LIGHT / wavelength \}
-	\item phase\{ 0 \}
-	\item samplingPeriod\{ 0.0 \}
-\end{itemize}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|cccc}
+		\cline{1-4}
+		\textbf{Parameter} & \textbf{Type} & \textbf{Values} &   \textbf{Default}& \\ \cline{1-4}
+		opticalPower & double & any & $1\text{e}-3$ \\ \cline{1-4}
+		outputOpticalWavelength & double & any & $1550\text{e}-9$ \\ \cline{1-4}
+		outputOpticalFrequency & double & any &  SPEED\_OF\_LIGHT / outputOpticalWavelength \\ \cline{1-4}
+		phase & double & $\in \left[0,\frac{\pi}{2}\right]$ & $0$ \\ \cline{1-4}
+		samplingPeriod & double & any & $0.0$ \\ \cline{1-4}
+	\end{tabular}
+	\caption{Binary source input parameters}
+	\label{table:LO_in_par}
+\end{table}
+
+%
+%\begin{itemize}
+%	\item opticalPower\{ 1e-3 \}
+%	\item wavelength\{ 1550e-9 \}
+%	\item frequency\{ SPEED\_OF\_LIGHT / wavelength \}
+%	\item phase\{ 0 \}
+%	\item samplingPeriod\{ 0.0 \}
+%\end{itemize}
 
 \subsection*{Methods}
 
