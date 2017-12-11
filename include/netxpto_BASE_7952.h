@@ -30,10 +30,8 @@ typedef struct { t_complex x; t_complex y; } t_complex_xy;
 typedef struct { t_real probabilityAmplitude;  t_real polarization; } t_photon;
 typedef struct { t_photon path[MAX_NUMBER_OF_PATHS]; } t_photon_mp;
 typedef complex<t_real> t_iqValues;
-typedef struct { string fieldName; string fieldValue; } t_message_field;
-typedef vector<t_message_field> t_message;
 
-enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP, Message};
+enum signal_value_type {BinaryValue, IntegerValue, RealValue, ComplexValue, ComplexValueXY, PhotonValue, PhotonValueMP};
 
 
 //########################################################################################################################################################
@@ -87,7 +85,7 @@ public:
 
 	// Signal constructor
 
-	~Signal() { if (!(valueType == Message)) { delete buffer; }; };					// Signal destructor
+	~Signal(){ delete buffer; };					// Signal destructor
 
 	void close();									// Empty the signal buffer and close the signal file
 	int space();									// Returns the signal buffer space
@@ -96,7 +94,7 @@ public:
 	void writeHeader(string signalPath);			// Opens the signal file in the signalPath directory, and writes the signal header
 
 
-	template<typename T>							// Puts a value in the buffer
+		template<typename T>							// Puts a value in the buffer
 	void bufferPut(T value) {
 		(static_cast<T *>(buffer))[inPosition] = value;
 		if (bufferEmpty) bufferEmpty = false;
@@ -129,7 +127,6 @@ public:
 	void virtual bufferGet(t_complex_xy *valueAddr);
 	void virtual bufferGet(t_photon *valueAddr);
 	void virtual bufferGet(t_photon_mp *valueAddr);
-	void virtual bufferGet(t_message *valueAdr);
 	
 	void setSaveSignal(bool sSignal){ saveSignal = sSignal; };
 	bool const getSaveSignal(){ return saveSignal; };
@@ -287,12 +284,7 @@ public:
 
 class TimeContinuousAmplitudeContinuous : public Signal {
 public:
-	TimeContinuousAmplitudeContinuous(string fName) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setFileName(fName); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
-	TimeContinuousAmplitudeContinuous(string fName, int bLength) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setFileName(fName); setBufferLength(bLength); }
-	TimeContinuousAmplitudeContinuous(int bLength) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setBufferLength(bLength); }
-	TimeContinuousAmplitudeContinuous() { setType("TimeContinuousAmplitudeContinuous", RealValue); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
-
-	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_real[bLength]; };
+	TimeContinuousAmplitudeContinuous(){}
 };
 
 
@@ -386,18 +378,6 @@ private:
 	vector<double> centralWavelengths;
 	vector<double> centralFrequencies;
 };*/
-
-class Messages : public Signal {
-public:
-	Messages(string fName) { setType("Message", Message); setFileName(fName); if (buffer == nullptr) buffer = new t_message[bufferLength]; }
-	Messages(string fName, int bLength) { setType("Message", Message); setFileName(fName); setBufferLength(bLength); }
-	Messages(int bLength) { setType("Message", Message); setBufferLength(bLength); }
-	Messages() { setType("Message", Message); if (buffer == nullptr) buffer = new t_message[bufferLength]; }
-
-	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_message[bLength]; };
-	
-	void bufferPut(t_message);
-};
 
 //########################################################################################################################################################
 //########################################################## GENERIC BLOCK DECLARATIONS AND DEFINITIONS ##################################################
@@ -619,27 +599,24 @@ class Fft
 {
 
 public:
-	vector<complex <double>> directTransformInReal(vector<double> real);
+	std::vector<complex <double>> directTransformInReal(std::vector<double> real);
 
-	vector<double> inverseTransformInCP(vector<complex <double>> &In);
-	
-	void directTransform(vector<double> &real, vector<double> &imag);
+	std::vector<double> inverseTransformInCP(std::vector<complex <double>> &In);
 
-	void inverseTransform(vector<double> &real, vector<double> &imag);
+	void directTransform(std::vector<double> &real, std::vector<double> &imag);
 
-	void transformRadix2(vector<double> &real, vector<double> &imag);
+	void inverseTransform(std::vector<double> &real, std::vector<double> &imag);
 
-	void transformBluestein(vector<double> &real, vector<double> &imag);
+	void transformRadix2(std::vector<double> &real, std::vector<double> &imag);
 
-	void Radix2(vector<double> &real, vector<double> &imag, int m);
-	void Fft::Bluestein(vector<double> &real, vector<double> &imag, int m);
+	void transformBluestein(std::vector<double> &real, std::vector<double> &imag);
 
-	void convolve(const vector<double> &x, const vector<double> &y, vector<double> &out);
+	void convolve(const std::vector<double> &x, const std::vector<double> &y, std::vector<double> &out);
 
-	void convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag);
+	void convolve(const std::vector<double> &xreal, const std::vector<double> &ximag, const std::vector<double> &yreal, const std::vector<double> &yimag, std::vector<double> &outreal, std::vector<double> &outimag);
+
 
 };
-
 
 class ComplexMult
 {
@@ -654,91 +631,6 @@ public:
 	void ReImVect2ComplexVect(vector<double> &v1_real, vector<double> &v1_imag, vector<complex <double>> &v_out);
 
 };
-
-
-///////////////////// TRANSFORM ////////////////////////
-/*
-vector <complex<double>> transform(vector<complex<double>>IN, int m)
-{
-	Fft F;										// Various function for FT 
-	ComplexMult split;					        // Complex data functionality like split, addition, multiplication etc.
-	size_t n = IN.size();						// Size of the vector
-
-	vector <complex<double>> OUT(n);
-	vector<double> re(n,0);
-	vector<double> im(n,0);
-
-	split.ComplexVect2ReImVect(IN, re, im);    // Here we have splitted real and imag data from IN.
-	
-	if (n == 0)
-		return OUT;
-	else if ((n & (n - 1)) == 0)				// Is power of 2 : Radix-2 Algorithim
-		F.Radix2(re, im, m);
-	else										// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
-		F.Bluestein(re, im, m);
-
-	for (int i=0; i<re.size(); i++)				// Devide by the square root of "N"
-	{
-		re[i] = re[i] / sqrt(re.size());
-		im[i] = im[i] / sqrt(re.size());
-	}
-
-	split.ReImVect2ComplexVect(re,im,OUT);
-	
-	return OUT;
-};*/
-
-
-///////////////////// FFT function ////////////////////////
-/*vector <complex<double>> fft(vector <double> real)
-{
-	Fft F;
-	vector <complex<double>> Output;						// Type of output of this function : vector <complex<double> & Name of the function : Output
-	ComplexMult CMult;
-	vector<double> im(real.size(), 0);						// Create a vector for imaginary values 
-	vector<complex <double>> v_out(real.size(), 0);
-	size_t n = real.size();
-
-
-	if (n == 0)
-		return v_out;
-	else if ((n & (n - 1)) == 0)							// Is power of 2 : Radix-2 Algorithim
-		F.transformRadix2(real, im);
-	else													// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
-		F.transformBluestein(real, im);
-
-
-	CMult.ReImVect2ComplexVect(real, im, Output);
-	return Output;
-
-};*/
-
-///////////////////// IFFT function ////////////////////////
-/*vector<double> ifft(vector<complex<double>> input)
-{
-	Fft IF;
-	ComplexMult split;
-	
-	vector <double> re(input.size(),0);						// Vector for holding REAL data
-	vector <double> im(input.size(),0);						// Vector for holding IMAG data
-
-	split.ComplexVect2ReImVect(input, re, im);				// Split complex data into real and imaginary vector
-
-	IF.directTransform(im,re);								// Inverse fourier transformation
-
-	for (int i=0; i<re.size(); i++)
-	{
-		re[i] = re[i] / re.size();							// Normalization of real data
-		im[i] = im[i] / re.size();							// This will be zero in case of real time signal
-	}
-	
-	vector <double> Output;
-	Output = re;
-
-	return Output;
-};*/
-
-
 
 
 # endif // PROGRAM_INCLUDE_netxpto_H_
