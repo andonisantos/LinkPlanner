@@ -1,6 +1,5 @@
 \clearpage
-\section{Quantum Noise}
-
+\section{Detection}
 
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}}
@@ -16,14 +15,287 @@
 Quantum noise is an intrinsic property of light, a manifestation of the vaccum field fluctuations
 \cite{fox2006}.
 %\footnote{Mark Fox, p.132}
-Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\ 
-The objective of this module is the simulation of a simple communication system based on the transmission of coherent states, which will be subjected to various sources of noise, in particular to quantum noise, and compared to analytical and experimental results.\\
+Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\
+The objective of this work is to develop a numerical model for the quantum noise in a double homodyne detection and to validate the numerical model with experimental results.\\
 
 %REF:
 %https://www.rp-photonics.com/quantum_noise.html
 
-\subsection{Theoretical Introduction}\label{sec:intro}
+\subsection{Theoretical description}\label{sec:intro}
 
+\subsubsection{Detection}
+
+Calculates the signal to noise ratio at the input of the decision circuit
+
+\paragraph{Single Field Detection}
+
+%\footnote{REF?}\\
+%Single Field Detection consists on the detection of a single mode laser beam. This will only measure the instant power of the beam, or in the quantum case, will measure the number of photons per sampling interval.\\
+
+\paragraph{Homodyne Detection}
+
+\paragraph{Balanced Homodyne Detection}
+
+\paragraph{IQ Homodyne Balanced Detection}
+
+\paragraph{Heterodyne Detection}
+
+\paragraph{Balanced Heterodyne Detection}
+
+\paragraph{IQ Heterodyne Balanced Detection}
+
+\subsubsection{Classical Description}
+
+Single Field Detection\\
+Semi-Classical description\\
+\\
+\\
+"in the semiclassical theory, where the atom is treated quantum-mechanically but the electromagnetic field is treated classically, the phototube has the effect of converting the continuous cycle-averaged classical intensity <I(t)> of the beam into a succession of discrete photocounts."
+\footnote{Loundon, p. 117}\\
+
+The detection of light in a semi-classical approach assumes light as a classical wave? and atoms as ????
+\footnote{Procurar referencias}
+%%
+%%
+\paragraph{Single Field Detection}
+%%
+One of the most simple detection methods is the direct detection of light with a single detector and analysing the resulting photocurrent.
+\footnote{Hans, p.200}
+%%
+\begin{figure}[H]
+	\label{fig:detection_direct}
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/detection-direct.pdf}
+	\caption{Direct detection.}
+\end{figure}
+%%
+%%
+%(Quantum noise: Basic measurements and techniques)\\
+%(Loundon, p.200)\\
+%\\
+%(Loundon, p.180)\\
+%(Loundon, p.181)\\
+%"The electromagnetic field is assumed to excite a single travelling-wave mode with a given wavevector {\bf k} and a polarization direction specified by the label $\lambda$"\\
+%\\
+%(Loudon, p.35)\\
+%(Mark Fox, p.129)\\
+%(Mark Fox, p.11)\\
+%\\
+%(Mark Fox, p.78)\\
+%"A light beam which has constant angular frequency $\omega$, phase $\Phi$, and amplitude $\varepsilon_0$(...)"\\
+%"The beam emitted by a ideal single-mode laser operating well above thershold is a reasonably good approximation to such a field. The intensity {\em I} of the beam is proportional to the square of the amplitude (eq 2.28) (...)"\\
+%Electromagnetic field (real notation)\\ %prof
+%\\
+%(Hans, p. 13??)\\
+Classicaly, the electric field of an ideal single mode laser, modulated in amplitude and phase by a signal $A(t)$, incident in a photodiode is represented as
+%%
+%%
+\begin{equation}
+    E_R(t)=\sqrt{2} |A(t)| cos\left(-\omega t + \theta\right) \,\,\,\, \sqrt{W}
+\end{equation}
+with $A(t)=|A(t)|e^{-i\theta(t)}$.
+
+Measurable optical power, assuming that the detector bandwidth, $B$, is greater than the signal, $A(t)$, bandwidth but much small than $2 \omega_0$, %prof
+\\
+The calculation of power incident in the photodiode is given by the expected value of the square of the amplitude during a time interval $\Delta t = \frac{2 \pi}{\omega}$
+\footnote{REF?}\
+
+\begin{align}
+	P(t) &= \overline{E_R^2(t)}\nonumber\\
+         &= \overline{|A(t)|^2} + \overline{ |A(t)|^2 cos\left(-2 \omega t + 2\theta(t)\right)}\nonumber\\
+         &= |A(t)|^2 \,\,\,\, W
+\end{align}
+%%
+++ A expressao seguinte esta fora do sitio/repetida ++
+%%
+\begin{align}
+	P(t) &= E^{*}(t) E(t)\nonumber\\
+         &= |A(t)|^2 \,\,\,\, W
+\end{align}
+%%
+%%
+Complex notation\\
+\\
+To simplify calculations, the electric field can be expressed by using complex notation. The physically measurable quantities are obtained by taking the real part of the complex wave
+\footnote{Mark Fox, p.11}
+%%
+\begin{equation}
+	E(t) = A(t) e^{-i \omega_0}
+\end{equation}
+%%
+++ Falta o tempo junto ao omega0 ++\\
+\\
+Using this notation, the beam power ($P(t)$) is obtained by multipliyng the electric field's conjugate by itself
+\footnote{REF?}
+%%
+\begin{align}
+	P(t) &= E^{*}(t) E(t)\nonumber\\
+         &= |A(t)|^2
+\end{align}
+%%
+++ Nesta abordagem ainda nao posso falar de fotoes ++\\
+\\
+The photocurrent $i(t)$ is obtained by the removal of electrons from a material which have a bonding energy to the atom's nucleus of $\hbar \omega_0$. Therefore, the photocurrent in function of the optical power ($P(t)$) is expressed as
+\footnote{REF?}
+%\footnote{Hans, p.180}
+%%
+\begin{equation}
+	i(t) = \eta q \frac{P(t)}{\hbar \omega_0}
+\end{equation}
+%%
+++ Seria melhor trocar q por e ++\\
+\\
+in which $\eta$ is the photodiode's responsivity, q is the unit charge and $P(t)/\hbar \omega_0$ is the number of removed electrons.\\
+Given the previous definition of electric field (ref?) and power (ref?), we will obtain the optical power as
+%%
+\begin{equation}
+	E(t) = A(t) e^{-i \omega_0}
+\end{equation}
+%%
+++ Esta definicao e a do power tao repetidas ??++
+%%
+\begin{equation}
+	P(t) = |A(t)|^2
+	\label{eq:power}
+\end{equation}
+%%
+Therefore, we can rewrite the photocurrent $i(t)$ in function of the signal $A(t)$ as
+%%
+\begin{equation}
+	i(t) = \eta q \frac{|A(t)|^2}{\hbar \omega_0}
+\end{equation}
+%%
+The second moment of the photocurrent will be
+%%
+\begin{equation}
+	\langle i^2(t) \rangle = \eta^2 q^2 \frac{\langle |A(t)|^4 \rangle }{\hbar^2 \omega_0^2}
+\end{equation}
+
+
+++ AGORA ESTOU A ENTRAR NA SEGUNDA ABORDAGEM? ++\\
+\\
+++ Aqui o signal nao deveria ser $A_S$ ? ++
+
+\begin{equation}
+	A(t) = |A| e^{i \theta}
+\end{equation}
+%%
+++ Esta-se a considerar $A_S$ constante ? ++
+%%
+\begin{equation}
+	i(t) = I_0 = \eta q \frac{A_s^2}{\hbar \omega_0}
+\end{equation}
+
+\begin{equation}
+	\langle i^2(t) \rangle = I_0^2
+\end{equation}
+%%
+%%
+Shot-noise\\
+\\
+(Shot noise in photodiodes)\\
+\footnote{Mark Fox, p.94, eq. 5.58}
+%%
+%"These photon number fluctuations will be refletecd in the photocurrent fluctuations with a fidelity determined by $\eta$. The fluctuations manifest themselves as {\bf noise} in the photocurrent, as illustraded in (...) The time-varying photocurrent i(t) can be broken into time-independent average current <i> and time-varying fluctuations $\Delta i (t)$ according to: $i(t) = <i> + \Delta i(t)$."
+%(Mark Fox, p.95)\\
+%%
+\\
+Shot noise is a white noise??? which has a constant power independent of any frequency. Therefore, the variance of current will be proportional to the bandwith...\\
+\footnote{REF?}
+
+\begin{equation}
+	\langle i_n^2(t) \rangle = 2 q B I_0
+\end{equation}
+
+++ Porque e que se usam segundos momentos? Estamos a assumir que o valor esperado do shot noise seja 0? ++
+\\
+Using the second moment of the signal (porque?) and the second moment of the quantum noise, we can obtain the signal to noise ratio in function of the signal and bandwidth as 
+
+%Using the and ..., the signal-to-noise ratio is\\
+%Therefore, the signal to noise ratio will be proportional to the signal power and ...
+
+\begin{align}
+	\frac{S}{N} &= \frac{\langle i^2(t) \rangle}{\langle i_n^2(t) \rangle} \nonumber\\
+                &= \frac{I_0}{2 q B}\nonumber\\
+                &= \eta \frac{ |A|^2}{\hbar \omega_0 B}
+\end{align}
+
+
+\paragraph{Homodyne Detection}
+%%
+\begin{figure}[H]
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/detection-homodyne.pdf}
+	\caption{Direct detection.}
+\end{figure}
+%%
+++ REFERENCIA: Loundon, p.272 ++\\
+++ Cuidado: Abordagem quantica! ++\\
+%%
+%%
+\paragraph{Balanced Homodyne Detection}
+\ \\
+"In a balanced homodyne detector (BHD), the signal to be measured is mixed with a local oscillator (LO) at a beam splitter. The interference signals from the two output ports of the beam splitter are sent to two photodiodes followed by a subtraction operation, and then, amplification may be applied. The output of a BHD can be made to be proportional to either the amplitude quadrature or the phase quadrature of the input signal depending on the relative phase between the signal and the LO". \footnote{Chi2010, p.2,3, arxiv:1006.1257v2}
+
+\paragraph{IQ Homodyne Balanced Detection}
+
+\paragraph{Heterodyne Detection}
+
+\paragraph{Balanced Heterodyne Detection}
+
+\paragraph{IQ Heterodyne Balanced Detection}
+
+\subsubsection{Quantum Description}
+
+\paragraph{Single Field Detection}
+
+\paragraph{Homodyne Detection}
+
+\paragraph{Balanced Homodyne Detection}
+
+\paragraph{IQ Homodyne Balanced Detection}
+
+\paragraph{Heterodyne Detection}
+
+\paragraph{Balanced Heterodyne Detection}
+
+\paragraph{IQ Heterodyne Balanced Detection}
+\ \\
+\\
+\\
+%
+%
+{\bf Thorlabs detector}
+The detector used in the laboraty is the Thorlabs PDB 450C. This detector consists of two well-matched photodiodes and a transimpedance amplifier that generates an output voltage (RF OUTPUT) proportional to the difference between the photocurrents of the photodiodes.\\
+Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe the optical input power level on each photodiode separately.
+%%
+\begin{figure}[H]
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/thorlabs-circuit.pdf}
+	\caption{Thorlabs PDB 450 detection circuit.}
+\end{figure}
+%%
+\noindent
+{\bf Frequency response}\\
+\\
+The frequency response is obtained by generating a frequency sweep such as $V = A_0 \sin \left( \omega(t) t \right)$, in which $\omega(t) = b t$ for some constant $b$ regulating the change in frequency. (b exponencial)
+\footnote{REF?}
+\\
+\\
+{\bf Gain response}\\
+\\
+The gain response is obtained by generating a amplitude sweep such as $V = A(t) \sin \left( \omega_0 t \right)$, in which $A(t) = b t$ for some constant $b$ regulating the change in amplitude. (b linear).
+\footnote{REF?}
+%%
+%%
+%%
+%%
+\\
+\\
+\\
+-- BEGIN MATHEMATICS --\\
+\\
+%%
 We start by defining number states $\ket{n}$ (or Fock states), which correspond to states with perfectly fixed number of photons
 %\footnote{Loundon, p.184}
 \cite{loudon2000}.
@@ -135,17 +407,25 @@ Experimentally, the balanced homodyne detection requires a local oscillator with
 %\footnote{Mark Fox, p. 140}
 %
 %The balanced homododyne technique is used to measure the phase of the input signal (S), relative to the phase of a local oscillator (LO), which has the same frequency as the input signal, but a much larger amplitude. The technique consists in combining the input signal and the local oscillator, using a 50:50 beam splitter, from whom two beams emerge, which are then converted to currents using photodides. Finally, the two currents are subtracted, resulting in an output current.\\
-%A phase of the local oscillator can be defined as the reference phase. A phase offset equal to $0$ or $\pi/2$ will give an output proportional to the signal's in-phase component or to the quadrature component, respectively. Therefore, the $\hat{X}$ operator will correspond to the in-phase component and $\hat{Y}$ operator correspond to quadrature component
+A phase of the local oscillator can be defined as the reference phase. A phase offset equal to $0$ or $\pi/2$ will give an output proportional to the signal's in-phase component or to the quadrature component, respectively. Therefore, the $\hat{X}$ operator will correspond to the in-phase component and $\hat{Y}$ operator correspond to quadrature component
 %\cite{fox2006}.
 %\footnote{Mark Fox, p. 140}
 \\
+%
+\begin{figure}[H]
+	\label{fig:scheme_homodyne}
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/scheme_homodyne.pdf}
+	\caption{Balanced homodyne detection.}
+\end{figure}
+%
 In the lab and in our simulations, a more complex system is used, the double balanced homodyne detection, which allows the simultaneous measurement of the $\hat{X}$ and $\hat{Y}$ components. The signal is divided in two beam with half the power of the original. One of the beams is used in a balanced homodyne detection with a local oscillator. The other beam is used in another balanced homodyne detection, but using a local oscillator with a phase difference $\pi/2$ relative to the first one.
 %
 \begin{figure}[H]
-\label{fig:scheme_homodyne}
-\centering
-\includegraphics{./sdf/quantum_noise/figures/scheme_homodyne.pdf}
-\caption{Balanced double homodyne detection.}
+	\label{fig:scheme_homodyne}
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/scheme_double_homodyne.pdf}
+	\caption{Balanced double homodyne detection.}
 \end{figure}
 %
 %
@@ -284,7 +564,7 @@ in which $K_B$ it's Boltzmann's constant, $T_0$ is the absolute temperature, $B$
 \vspace{1cm}
 %
 %
-\subsection{Simulation}
+\subsection{Simulation setup}
 
 \begin{figure}[H]
 \centering
@@ -300,18 +580,26 @@ List of signals used in the simulation:
 \centering
 \begin{tabular}{|c|l|l|}
 \hline
-\bf{Signals}	& \bf{Type}								& \bf{Description}\\
+\bf{Signal name}	& \bf{Signal type}						& \bf{Status}\\
 \hline
-S0				& Binary								& Binary sequence used in the MQAM\\
-S1				& OpticalSignal							& MQAM signal outputp\\
-S2				& OpticalSignal							& Local Oscillator output\\
-S3, S4, S5, S6  & Optical signal						& Optical Hybrid output \\
-S7,S8			& TimeContinuousAmplitudeContinuousReal	& In phase Photodiodes output\\
-S9,S10			& TimeContinuousAmplitudeContinuousReal	& Quadrature Photodiodes output\\
-S11				& TimeContinuousAmplitudeContinuousReal	& In phase difference\\
-S12				& TimeContinuousAmplitudeContinuousReal	& Quadrature difference\\
-S13				& TimeDiscreteAmplitudeContinuousReal	& In phase measurement\\
-S14				& TimeDiscreteAmplitudeContinuousReal	& Quadrature measurement\\
+S0					& Binary								& check\\
+S1					& OpticalSignal							& check\\
+S2					& OpticalSignal							& check\\
+S3					& OpticalSignal							& check\\
+S4					& OpticalSignal							& check\\
+S5					& OpticalSignal							& check\\
+S6					& OpticalSignal							& check\\
+S7					& TimeContinuousAmplitudeContinuousReal	& check\\
+S8					& TimeContinuousAmplitudeContinuousReal	& check\\
+S9					& TimeContinuousAmplitudeContinuousReal	& check\\
+S10					& TimeContinuousAmplitudeContinuousReal	& check\\
+S11					& TimeContinuousAmplitudeContinuousReal	& check\\
+S12					& TimeContinuousAmplitudeContinuousReal	& check\\
+S13					& TimeContinuousAmplitudeContinuousReal	& check\\
+S14					& TimeContinuousAmplitudeContinuousReal	& check\\
+S15					& TimeDiscreteAmplitudeContinuousReal	& check\\
+S16					& TimeDiscreteAmplitudeContinuousReal	& check\\
+S17					& OpticalSignal							& check\\
 \hline
 \end{tabular}
 \end{table}
@@ -321,34 +609,39 @@ S14				& TimeDiscreteAmplitudeContinuousReal	& Quadrature measurement\\
 This system takes into account the following input parameters:
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|c|p{11cm}|}
+\begin{tabulary}{1.0\textwidth}{|c|p{30mm}|p{70mm}|}
 \hline
-\textbf{System Parameters} & \textbf{Description}\\
+\textbf{System Parameters}	& {\bf Default value}		& \textbf{Description}\\
 \hline
-localOscillatorPower1	& Sets the optical power, in units of W, of the local oscillator inside the MQAM\\
+localOscillatorPower1		& $2.0505 \times 10^{-8}$W	& Sets the optical power, in units of W, of the local oscillator inside the MQAM\\
 \hline
-localOscillatorPower2	& Sets the optical power, in units of W, of the local oscillator used for Bob's measurements\\
+localOscillatorPower2		& $2.0505 \times 10^{-8}$W	& Sets the optical power, in units of W, of the local oscillator used for Bob's measurements\\
 \hline
-localOscillatorPhase	& Sets the initial phase of the local oscillator used in the detection\\
+localOscillatorPhase		& $0$ rad					& Sets the initial phase of the local oscillator used in the detection\\
 \hline
-transferMatrix			& Sets the transfer matrix of the beam splitter used in the homodyne detector\\
+responsivity				& $1$ A/W					& Sets the responsivity of the photodiodes used in the homodyne detectors\\
 \hline
-responsivity			& Sets the responsivity of the photodiodes used in the homodyne detectors\\
-\hline
-iqAmplitudeValues		& Sets the amplitude of the states used in the MQAM\\
+iqAmplitudeValues			& $\{ \{ 1, 1 \}, \{ -1, 1 \},$ $ \{ -1, -1 \}, \{ 1, -1 \} \}$
+														& Sets the amplitude of the states used in the MQAM\\
+%
+%\hline
+%transferMatrix				&
+%							$\frac{1}{\sqrt{2}}\{1,1,1,1\}$	
+%							& Sets the transfer matrix of the beam splitter used in the homodyne detector\\
 %\hline
 %shotNoise (FUTURE)      & Chooses if quantum shot noise is used in the simulation\\
 %\hline
 %thermalNoise (FUTURE)   & Chooses if thermal noise is used in the simulation\\
 %\hline
 %thermalNoiseAmplitude  (FUTURE)  & Sets the amplitude of the thermal noise\\
+%
 \hline
 \end{tabulary}
 \end{table}
 %
 \vspace{2em}
 %
-The simulation setup is represented in figure \ref{fig:setup}. The starting point is the MQAM, which generates random states from the constelation given by the variable \texttt{iqAmplitudeValues}. The output from the generator is received in the Optical Hybrid where it is mixed with a local oscillator, outputing two optical signal pairs. Each pair is converted to currents by two photodiodes, and the same currents are subtracted from each other, originating another current proportional to one of the quadratures of the input state. 
+The simulation setup is represented in figure \ref{fig:setup}. The starting point is the MQAM, which generates random states from the constelation given by the variable \texttt{iqAmplitudeValues}. The output from the generator is received in the Optical Hybrid where it is mixed with a local oscillator, outputing two optical signal pairs. Each pair is converted to currents by two photodiodes, and the same currents are subtracted from each other, originating another current proportional to one of the quadratures of the input state.
 The other pair suffers the same process, but the resulting subtraction current will be proportional to another quadrature, dephased by $\pi/2$ relative to the other quadrature.\\
 %
 %\begin{table}[H]
@@ -371,25 +664,29 @@ The other pair suffers the same process, but the resulting subtraction current w
 Header Files
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
+\begin{tabulary}{1.0\textwidth}{|L|L|l|}
 \hline
-\textbf{File}           & \textbf{Description}\\
+\textbf{File}			& \textbf{Description}									& {\bf Status}\\
 \hline
-netxpto.h               & Generic purpose simulator definitions.\\
+netxpto.h               & Generic purpose simulator definitions.				& check\\
 \hline
-m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.\\
+m\_qam\_transmitter.h   & Outputs a QPSK modulated optical signal.				& check\\
 \hline
-local\_oscillator.h     & Generates continuous coherent signal.\\
+local\_oscillator.h     & Generates continuous coherent signal.					& check\\
 \hline
-optical\_hybrid.h       & Mixes the two input signals into four outputs.\\
+optical\_hybrid.h       & Mixes the two input signals into four outputs.		& check\\
 \hline
-photodiode.h            & Converts an optical signal to a current.\\
+photodiode.h            & Converts an optical signal to a current.				& check\\
 \hline
-difference.h            & Ouputs the difference between two input signals.\\
+difference.h            & Ouputs the difference between two input signals.		& check\\
 \hline
-sampler.h               & Samples the input signal.\\
+ideal\_amplifier.h		& Performs a perfect amplification of the input sinal	& check\\
 \hline
-sink.h                  & Closes any unused signals.\\
+sampler.h               & Samples the input signal.								& check\\
+\hline
+real\_to\_complex.h		& Combines two real input signals into a complex signal	& check\\
+\hline
+sink.h                  & Closes any unused signals.							& check\\
 \hline
 \end{tabulary}
 \end{table}
@@ -398,25 +695,29 @@ sink.h                  & Closes any unused signals.\\
 Source Files
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
+\begin{tabulary}{1.0\textwidth}{|L|L|l|}
 \hline
-\textbf{File}                   & \textbf{Description}\\
+\textbf{File}			& \textbf{Description}									& {\bf Status}\\
 \hline
-netxpto.cpp                     & Generic purpose simulator definitions.\\
+netxpto.cpp				& Generic purpose simulator definitions.				& check\\
 \hline
-m\_qam\_transmitter.cpp         & Outputs a QPSK modulated optical signal.\\
+m\_qam\_transmitter.cpp	& Outputs a QPSK modulated optical signal.				& check\\
 \hline
-local\_oscillator.cpp           & Generates continuous coherent signal.\\
+local\_oscillator.cpp	& Generates continuous coherent signal.					& check\\
 \hline
-optical\_hybrid.cpp             & Mixes the two input signals into four outputs.\\
+optical\_hybrid.cpp		& Mixes the two input signals into four outputs.		& check\\
 \hline
-photodiode.h                    & Converts an optical signal to a current.\\
+photodiode.h			& Converts an optical signal to a current.				& check\\
 \hline
-difference.h                    & Ouputs the difference between two input signals.\\
+difference.h			& Ouputs the difference between two input signals.		& check\\
 \hline
-sampler.cpp                     & Samples the input signal.\\
+ideal\_amplifier.h		& Performs a perfect amplification of the input sinal	& check\\
 \hline
-sink.cpp                        & Empties the signal buffer.\\
+sampler.cpp				& Samples the input signal.								& check\\
+\hline
+real\_to\_complex.cpp	& Combines two real input signals into a complex signal	& check\\
+\hline
+sink.cpp				& Empties the signal buffer.							& check\\
 \hline
 \end{tabulary}
 \end{table}
@@ -445,7 +746,7 @@ sink.cpp                        & Empties the signal buffer.\\
 %\item In phase Sampler output; (S$_{13}$)
 %\item Quadrature Sampler output; (S$_{14}$)
 %\end{itemize}
-%\end{itemize}    
+%\end{itemize}
 
 
 \pagebreak
@@ -479,18 +780,93 @@ The following plot shows the behavior of current noise variance $\braket{(\Delta
 %
 %
 \begin{figure}[H]
-\centering
-\includegraphics[width=10cm]{./sdf/quantum_noise/figures/power_plot.png}
-\caption{Output current variance in function of LO power.}
-\label{fig:variance_lo_power}
+	\centering
+	\includegraphics[width=10cm]{./sdf/quantum_noise/figures/power_plot.png}
+	\caption{Output current variance in function of LO power.}
+	\label{fig:variance_lo_power}
 \end{figure}
 %
 %
 We see that for low LO power, the dominant noise is the thermal contribution, but for higher power, quantum noise dominates, growing proportionally to $P_{LO}$. This in accordance with equation \ref{eq:approx_noise}\\
 \\
 \\
-{\bf Comparison to experimental results}\\
-As we have seen earlier, the system will manifest noise even in the absence of input signal (eq \ref{eq:noise}). The experimental procedure for this measurement consisted in just inputing the local oscillator laser and no signal. For each value of  $P_{LO}$, the local oscillator was pulsed, and for each pulse, the variance of the plateau of the maximum was calculated. The final variance was simply the mean of the variances of all pulses.
+%
+%
+%
+%
+\subsection{Experimental setup}
+%
+To confirm the theoretical results obtained in section \ref{subsec:intro}, two experimental setups will be created.\\
+In the first experiement, we will study quantum noise in the single homodyne detection. The experimental setup will be based on the paper \ref{chi2011balanced}.\\
+In the second experiment, we will study quantum noise in the double homodyne detection setup, which will be basically an extension of the single homodyne detection setup.\\
+\\
+\subsubsection{Single homodyne detection}
+%
+To keep the experiment simple and avoid extra sources of noise, we will avoid using black boxes wich have complicated inner workings, having a preference in using simple components, as shown in fig. \ref{fig:experimental_homodyne_setup}:
+\\
+\begin{figure}[H]
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/scheme_experimental.pdf}
+	\caption{Experimental setup}
+	\label{fig:experimental_homodyne_setup}
+\end{figure}
+%
+%
+Material list
+\begin{table}[H]
+	\centering
+	\begin{tabulary}{1.0\textwidth}{|L|L|l|}
+		\hline
+		\textbf{Device}		& \textbf{Description}\\
+		\hline
+		Local Oscillator	& Yenista OSICS Band C/AG\\
+		\hline
+		BS					& Beam Splitter\\
+		\hline
+		Pulse Generator		& HP 8116A Pulse Generator\\
+		\hline
+		Amplitude Modulator	& Mach Zehnder SDL OC 48\\
+		\hline
+		VOA					& Eigenlicht Power Meter 420\\
+		\hline
+		VOA					& Thorlabs VOA 45-APC\\
+		\hline
+		PIN					& Thorlabs PDB 450C\\
+		\hline
+		ADC					& Picoscope 6403D\\
+		\hline
+	\end{tabulary}
+\end{table}
+%
+A single laser is splitted and used as the source for the signal (S) and the local oscillator (LO). The signal beam is pulsed and highly attenuated. The local oscillator is also attenuaded, but not pulsed. The signal and local oscillator interfere in a Beam Splitter originating two beams which are then converted to voltages in the PIN. These voltages are read in the Digital Oscilator (OSC) and collect in the computer. In the post processing phase, the quantum noise is measured by applying a difference between the two beams and measuring it's variance.
+\\
+The second stage of the experiment will be very similar to the first one, in which the signal and local oscillator branches will be divided. One of the new branches of the local oscilator will suffer a phase delay of $\pi/2$, in order to measure the quadrature component of the incoming signal.\\
+%
+%
+\subsubsection{Data analysis}
+%
+Using the data collected in the Digital Oscilloscope, we process each sample for each power level (which???).
+This data analysis will consist in the following steps:
+1) Subtract the data coming from MONITOR- from the data from MONITOR+.\\
+2) Calculate the average impulse and the variance of the impulse. (VALE A PENA ESPECIFICAR A EQUIVALÊNCIA DE FASE?)\\
+3) The representative variance will be the variance of the pulse maximum.\\\
+%
+For each combination of the expected number of photons present in the signal and the local oscillator, we will obtain the variance in the plateau of the pulse. The final variance is simply the mean of the variances of all pulses.
+%
+
+\subsubsection{Double homodyne detection}
+%
+-- UNDER CONSTRUCTION --\\
+\\
+The experiemental setup for this experiment is a simple extension of the single homodyne detection. To implement this experiment, the signal beam will be divided in two beams, in which one of them will be detect in phase with local oscillator and the other in phase with a an oscillator with a $pi/2$ phase relative to the first one.????
+%
+
+\subsection{Comparative analysis}
+%
+WARNING -- OLD DATA --\\
+\\
+Given the theoretical, simulated and experimental frameworks, we will now compare the results given by them.
+\\
 %
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
@@ -522,7 +898,7 @@ The expected growth should be proportional to $P_{LO}$, but the RIN noise, origi
 We see that both the simulation and experimental data display a similar behaviour, but the quadratic growth of noise for large $P_{LO}$ was not predicted in the simulations.\\
 %
 %
-
-
-
+\subsection{Known problems}
+%
+%
 \bibliography{./sdf/quantum_noise/quantum_noise}
