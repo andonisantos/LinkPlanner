@@ -1,3 +1,5 @@
+\begin{bibunit}[plain]
+
 \clearpage
 \section{Detection}
 
@@ -46,15 +48,13 @@ Calculates the signal to noise ratio at the input of the decision circuit
 
 \subsubsection{Classical Description}
 
-Single Field Detection\\
-Semi-Classical description\\
+++ EXPLICAR AS ASSUMPÇÕES E APROXIMAÇÕES DESTE MODELO ++\\
+++ Nao falar de fotoes ++\\
+++ (VER O PAPER do FourYearReview\_pub92.pdf) ++\\
+++ (VER PAPER DO Quantum noise and excess noise in optical homodyne... do SHAPIRO 1985) ++ \\
 \\
-\\
-"in the semiclassical theory, where the atom is treated quantum-mechanically but the electromagnetic field is treated classically, the phototube has the effect of converting the continuous cycle-averaged classical intensity <I(t)> of the beam into a succession of discrete photocounts."
+"In the semiclassical theory, where the atom is treated quantum-mechanically but the electromagnetic field is treated classically, the phototube has the effect of converting the continuous cycle-averaged classical intensity <I(t)> of the beam into a succession of discrete photocounts."
 \footnote{Loundon, p. 117}\\
-
-The detection of light in a semi-classical approach assumes light as a classical wave? and atoms as ????
-\footnote{Procurar referencias}
 %%
 %%
 \paragraph{Single Field Detection}
@@ -98,11 +98,11 @@ with $A(t)=|A(t)|e^{-i\theta(t)}$.
 Measurable optical power, assuming that the detector bandwidth, $B$, is greater than the signal, $A(t)$, bandwidth but much small than $2 \omega_0$, %prof
 \\
 The calculation of power incident in the photodiode is given by the expected value of the square of the amplitude during a time interval $\Delta t = \frac{2 \pi}{\omega}$
-\footnote{REF?}\
+\footnote{REF?}\\
 
 \begin{align}
-	P(t) &= \overline{E_R^2(t)}\nonumber\\
-         &= \overline{|A(t)|^2} + \overline{ |A(t)|^2 cos\left(-2 \omega t + 2\theta(t)\right)}\nonumber\\
+	P(t)	&= \overline{E_R^2(t)}\nonumber\\
+			&= \overline{|A(t)|^2} + \overline{ |A(t)|^2 cos\left(-2 \omega t + 2\theta(t)\right)}\nonumber\\
          &= |A(t)|^2 \,\,\,\, W
 \end{align}
 %%
@@ -135,8 +135,8 @@ Using this notation, the beam power ($P(t)$) is obtained by multipliyng the elec
 %%
 ++ Nesta abordagem ainda nao posso falar de fotoes ++\\
 \\
-The photocurrent $i(t)$ is obtained by the removal of electrons from a material which have a bonding energy to the atom's nucleus of $\hbar \omega_0$. Therefore, the photocurrent in function of the optical power ($P(t)$) is expressed as
-\footnote{REF?}
+%The photocurrent $i(t)$ is obtained by the removal of electrons from a material which have a bonding energy to the atom's nucleus of $\hbar \omega_0$. Therefore, the photocurrent in function of the optical power ($P(t)$) is expressed as
+%\footnote{REF?}
 %\footnote{Hans, p.180}
 %%
 \begin{equation}
@@ -146,7 +146,8 @@ The photocurrent $i(t)$ is obtained by the removal of electrons from a material 
 ++ Seria melhor trocar q por e ++\\
 \\
 in which $\eta$ is the photodiode's responsivity, q is the unit charge and $P(t)/\hbar \omega_0$ is the number of removed electrons.\\
-Given the previous definition of electric field (ref?) and power (ref?), we will obtain the optical power as
+Given the previous definition of electric field and power, we will obtain the optical power as
+\footnote{reference}
 %%
 \begin{equation}
 	E(t) = A(t) e^{-i \omega_0}
@@ -193,6 +194,9 @@ The second moment of the photocurrent will be
 %%
 Shot-noise\\
 \\
+"Shot noise is related to the statistical fluctuations in both the photocurrent and the dark current."
+\footnote{http://qtwork.tudelft.nl/~schouten/linkload/phdiode.pdf, p.4}
+
 (Shot noise in photodiodes)\\
 \footnote{Mark Fox, p.94, eq. 5.58}
 %%
@@ -221,30 +225,60 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 \end{align}
 
 
-\paragraph{Homodyne Detection}
+\paragraph{Homodyne Detection}\ \\
 %%
 \begin{figure}[H]
 	\centering
 	\includegraphics{./sdf/quantum_noise/figures/detection-homodyne.pdf}
-	\caption{Direct detection.}
+	\caption{Homodyne detection.}
 \end{figure}
 %%
 ++ REFERENCIA: Loundon, p.272 ++\\
 ++ Cuidado: Abordagem quantica! ++\\
 %%
 %%
-\paragraph{Balanced Homodyne Detection}
-\ \\
+\paragraph{Balanced Homodyne Detection}\ \\
+%%
+\begin{figure}[H]
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/detection-balanced-homodyne.pdf}
+	\caption{Balanced homodyne detection.}
+\end{figure}
+%%
 "In a balanced homodyne detector (BHD), the signal to be measured is mixed with a local oscillator (LO) at a beam splitter. The interference signals from the two output ports of the beam splitter are sent to two photodiodes followed by a subtraction operation, and then, amplification may be applied. The output of a BHD can be made to be proportional to either the amplitude quadrature or the phase quadrature of the input signal depending on the relative phase between the signal and the LO". \footnote{Chi2010, p.2,3, arxiv:1006.1257v2}
 
-\paragraph{IQ Homodyne Balanced Detection}
-
-\paragraph{Heterodyne Detection}
-
-\paragraph{Balanced Heterodyne Detection}
-
-\paragraph{IQ Heterodyne Balanced Detection}
-
+\paragraph{IQ Homodyne Balanced Detection}\ \\
+%%
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=15cm]{./sdf/quantum_noise/figures/detection-IQ-balanced-homodyne.pdf}
+	\caption{IQ balanced homodyne detection.}
+\end{figure}
+%%
+%%
+\paragraph{Heterodyne Detection}\ \\
+%%
+\begin{figure}[H]
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/detection-heterodyne.pdf}
+	\caption{Heterodyne detection.}
+\end{figure}
+%%
+%%
+\paragraph{Balanced Heterodyne Detection}\ \\
+%%
+\begin{figure}[H]
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/detection-balanced-heterodyne.pdf}
+	\caption{Balanced heterodyne detection.}
+\end{figure}
+%%
+%%
+\paragraph{IQ Heterodyne Balanced Detection}\ \\
+%%
+\vspace{4em}
+++ A DESCRICAO QUANTICA COMECA AQUI ++\\
+%%
 \subsubsection{Quantum Description}
 
 \paragraph{Single Field Detection}
@@ -265,27 +299,6 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 \\
 %
 %
-{\bf Thorlabs detector}
-The detector used in the laboraty is the Thorlabs PDB 450C. This detector consists of two well-matched photodiodes and a transimpedance amplifier that generates an output voltage (RF OUTPUT) proportional to the difference between the photocurrents of the photodiodes.\\
-Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe the optical input power level on each photodiode separately.
-%%
-\begin{figure}[H]
-	\centering
-	\includegraphics{./sdf/quantum_noise/figures/thorlabs-circuit.pdf}
-	\caption{Thorlabs PDB 450 detection circuit.}
-\end{figure}
-%%
-\noindent
-{\bf Frequency response}\\
-\\
-The frequency response is obtained by generating a frequency sweep such as $V = A_0 \sin \left( \omega(t) t \right)$, in which $\omega(t) = b t$ for some constant $b$ regulating the change in frequency. (b exponencial)
-\footnote{REF?}
-\\
-\\
-{\bf Gain response}\\
-\\
-The gain response is obtained by generating a amplitude sweep such as $V = A(t) \sin \left( \omega_0 t \right)$, in which $A(t) = b t$ for some constant $b$ regulating the change in amplitude. (b linear).
-\footnote{REF?}
 %%
 %%
 %%
@@ -841,8 +854,78 @@ Material list
 A single laser is splitted and used as the source for the signal (S) and the local oscillator (LO). The signal beam is pulsed and highly attenuated. The local oscillator is also attenuaded, but not pulsed. The signal and local oscillator interfere in a Beam Splitter originating two beams which are then converted to voltages in the PIN. These voltages are read in the Digital Oscilator (OSC) and collect in the computer. In the post processing phase, the quantum noise is measured by applying a difference between the two beams and measuring it's variance.
 \\
 The second stage of the experiment will be very similar to the first one, in which the signal and local oscillator branches will be divided. One of the new branches of the local oscilator will suffer a phase delay of $\pi/2$, in order to measure the quadrature component of the incoming signal.\\
-%
-%
+%%
+%%
+\subsection{Thorlabs detector}
+%%
+The detector used in the laboratory is the Thorlabs PDB 450C. This detector consists of two well-matched photodiodes and a transimpedance amplifier that generates an output voltage (RF OUTPUT) proportional to the difference between the photocurrents of the photodiodes.\\
+Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe the optical input power level on each photodiode separately.
+\footnote{Manual of THORLABS device PBC 450C: https://www.thorlabs.com/\_sd.cfm?fileName=21709-D02.pdf\&partNumber=PDB450C}
+%%
+\begin{figure}[H]
+	\centering
+	\includegraphics{./sdf/quantum_noise/figures/thorlabs-circuit.pdf}
+	\caption{Thorlabs PDB 450 detection circuit.}
+\end{figure}
+%%
+%%
+The transimpedance amplifier (TIA) is an opamp-based current to voltage conversion amplifier.
+\footnote{http://www.cypress.com/file/131966/download}
+It is used in this circuit, given that the photodiode's current has a linear response to incident light in contrast to it's non-linear voltage response.
+\footnote{http://www.ti.com/lit/an/sboa035/sboa035.pdf, p.1}
+%%
+%%
+%%++ ITEMS DO PROF ++\\
+%- responsividade do pin1 e do pin2
+%- ganho do meu amplificar OPAMP
+%- largura de banda
+%- formado filtro, espectro do filtro
+%- ruído térmico, no braço superior, no braço intermédio e no braço inferior
+%%
+%%
+\\
+Table of characteristics, listed in the manual:
+\begin{table}[H]
+	\centering
+	\begin{tabulary}{1.0\textwidth}{|L|L|l|}
+		\hline
+		\textbf{Characteristic}			& \textbf{Value}\\
+		\hline
+		Bandwidth (monitor)				& DC to 1 MHz\\
+		\hline
+		Voltage Gain (monitor)			& 10 V/mW @ peak responsivity\\
+		\hline
+		Voltage Noise (monitor)			& <180 μV (RMS)\\
+		\hline
+		Max Responsivity (PIN)			& 1.0 A/W\\
+		\hline
+		RF OUTPUT Bandwidth(-3dB)		& DC to 150 / 45 / 4 / 0.3 / 0.1 MHz\\
+		\hline
+		RF OUTPUT Transimpedance Gain	& $10^3$ / $10^4$ / $10^5$ / $10^6$ / $10^7$ V/A\\
+		\hline
+		RF OUTPUT Conversion Gain		& $10^3$ / $10^4$ / $10^5$ / $10^6$ / $10^7$ V/W\\
+		\hline
+	\end{tabulary}
+\end{table}
+%%
+%%
+\noindent
+{\bf Gain response}\\
+The gain response is obtained by fixing an frequency $\omega_0$ and generating optical signals with various amplitudes $A_i$, such as $V = A_i \sin \left( \omega_0 t \right)$ and reading the output voltage amplitude.
+\footnote{REF?}\\
+\\
+{\bf Frequency response/Bandwidth}\\
+The frequency response is obtained by fixing an amplitude $A_0$ and generating  optical signals with various frequencies $\omega_i$, such as $V = A_0 \sin \left( \omega_i t \right)$ and reading the output voltage amplitude.
+\footnote{REF?}
+\\
+The following plot shows the gain for various frequencies???
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{./sdf/quantum_noise/figures/thorlabs-manual-gain-spec-rf.png}
+	\caption{Thorlabs PDB 450 RF output amplitude with frequency, for various gain values.\\(Plots from the manual)}
+\end{figure}
+%%
+%%
 \subsubsection{Data analysis}
 %
 Using the data collected in the Digital Oscilloscope, we process each sample for each power level (which???).
@@ -869,20 +952,20 @@ Given the theoretical, simulated and experimental frameworks, we will now compar
 \\
 %
 \begin{figure}[H]
-    \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel1.png}
-        \caption{$X$ quadrature}
-        \label{fig:noise-exp-1}
-    \end{subfigure}%
-    \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel3.png}
-        \caption{$Y$ quadrature}
-        \label{fig:noise-exp-3}
-    \end{subfigure}
-    \captionsetup{justification=centering}
-    \caption{Noise variance dependency with local oscilator power for two different quadratures. Experimental vs fitted data.}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel1.png}
+		\caption{$X$ quadrature}
+		\label{fig:noise-exp-1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel3.png}
+		\caption{$Y$ quadrature}
+		\label{fig:noise-exp-3}
+	\end{subfigure}
+	\captionsetup{justification=centering}
+	\caption{Noise variance dependency with local oscilator power for two different quadratures. Experimental vs fitted data.}
 \end{figure}
 %
 Figures $\ref{fig:noise-exp-1}$ and $\ref{fig:noise-exp-3}$ show measurements of total noise for two different quadratures. For low power of LO, the noise variance flutuates around a constant value. For high power of LO, $(P_{LO}>10^{-4}W)$, the variance of noise shows an increasing trend roughly proportional to $P_{LO}^2$. The polynomial fittings confirm this trend, showing a degree 2 coefficient much larger than the degree 1 coefficient
@@ -901,4 +984,6 @@ We see that both the simulation and experimental data display a similar behaviou
 \subsection{Known problems}
 %
 %
-\bibliography{./sdf/quantum_noise/quantum_noise}
+\putbib{./sdf/quantum\_noise/quantum\_noise.tex}
+\end{bibunit}
+%\bibliography{./sdf/quantum_noise/quantum_noise}
