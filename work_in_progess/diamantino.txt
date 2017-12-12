@@ -1,4 +1,25 @@
-﻿2017-11-28
+﻿2017-12-12
+TO BE DONE
+	trocar o nome no doc/tex/sdf e no sdf/
+		quantum noise para Optical Detection (optical_detection)
+
+
+	colocar as figuras no sitio correto e criar duas secções para cada esquema de deteção
+		descrição clássica
+		descrição quântica
+
+	fazer as figuras para todos os esquemas de deteção
+
+	inserir as bibliografias por capítulo em diferentes ficheiros *.bib
+
+	criar uma secção relativa ao detetor da Thorlabs na parte experimental, para começar a sua caraterização
+		secção 1, idenficar os parametros relevantes para a sua modelação
+		secção 2, obter valores para estes parametros tendo por base o datasheet do dispositivo
+		secção 3, obter os valores através de ensaios experimentais (trabalho futuro)
+
+
+
+2017-11-28
 TO BE DONE
 	inserir bibliohrafia no capitulo tendo por base o ficheiro quantum_noise.bib
 	colocar as referências todos no final
