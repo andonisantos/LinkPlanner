@@ -64,7 +64,7 @@ One of the most simple detection methods is the direct detection of light with a
 \begin{figure}[H]
 	\label{fig:detection_direct}
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/detection-direct.pdf}
+	\includegraphics{./sdf/optical_detection/figures/detection-direct.pdf}
 	\caption{Direct detection.}
 \end{figure}
 %%
@@ -143,6 +143,7 @@ Using this notation, the beam power ($P(t)$) is obtained by multipliyng the elec
 \end{equation}
 %%
 ++ Seria melhor trocar q por e ++\\
+++ Nao ha stress com o omega htracado ser um quanta de energia ++\\
 \\
 in which $\eta$ is the photodiode's responsivity, q is the unit charge and $P(t)/\hbar \omega_0$ is the number of removed electrons.\\
 Given the previous definition of electric field and power, we will obtain the optical power as
@@ -228,7 +229,7 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 %%
 \begin{figure}[H]
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/detection-homodyne.pdf}
+	\includegraphics{./sdf/optical_detection/figures/detection-homodyne.pdf}
 	\caption{Homodyne detection.}
 \end{figure}
 %%
@@ -240,7 +241,7 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 %%
 \begin{figure}[H]
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/detection-balanced-homodyne.pdf}
+	\includegraphics{./sdf/optical_detection/figures/detection-balanced-homodyne.pdf}
 	\caption{Balanced homodyne detection.}
 \end{figure}
 %%
@@ -250,7 +251,7 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 %%
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=15cm]{./sdf/quantum_noise/figures/detection-IQ-balanced-homodyne.pdf}
+	\includegraphics[width=15cm]{./sdf/optical_detection/figures/detection-IQ-balanced-homodyne.pdf}
 	\caption{IQ balanced homodyne detection.}
 \end{figure}
 %%
@@ -259,7 +260,7 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 %%
 \begin{figure}[H]
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/detection-heterodyne.pdf}
+	\includegraphics{./sdf/optical_detection/figures/detection-heterodyne.pdf}
 	\caption{Heterodyne detection.}
 \end{figure}
 %%
@@ -268,7 +269,7 @@ Using the second moment of the signal (porque?) and the second moment of the qua
 %%
 \begin{figure}[H]
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/detection-balanced-heterodyne.pdf}
+	\includegraphics{./sdf/optical_detection/figures/detection-balanced-heterodyne.pdf}
 	\caption{Balanced heterodyne detection.}
 \end{figure}
 %%
@@ -427,7 +428,7 @@ A phase of the local oscillator can be defined as the reference phase. A phase o
 \begin{figure}[H]
 	\label{fig:scheme_homodyne}
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/scheme_homodyne.pdf}
+	\includegraphics{./sdf/optical_detection/figures/scheme_homodyne.pdf}
 	\caption{Balanced homodyne detection.}
 \end{figure}
 %
@@ -436,7 +437,7 @@ In the lab and in our simulations, a more complex system is used, the double bal
 \begin{figure}[H]
 	\label{fig:scheme_homodyne}
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/scheme_double_homodyne.pdf}
+	\includegraphics{./sdf/optical_detection/figures/scheme_double_homodyne.pdf}
 	\caption{Balanced double homodyne detection.}
 \end{figure}
 %
@@ -580,7 +581,7 @@ in which $K_B$ it's Boltzmann's constant, $T_0$ is the absolute temperature, $B$
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{./sdf/quantum_noise/figures/scheme_setup.pdf}
+\includegraphics[width=\linewidth]{./sdf/optical_detection/figures/scheme_setup.pdf}
 \caption{Overview of the simulated optical system.}
 \label{fig:setup}
 \end{figure}
@@ -770,7 +771,7 @@ To test the simulated implementation, a series of states $\{\ket{\phi_i}\}$ were
 %
 \begin{figure}[H]
 \centering
-\includegraphics[width=10cm]{./sdf/quantum_noise/figures/constelation1.png}
+\includegraphics[width=10cm]{./sdf/optical_detection/figures/constelation1.png}
 \caption{Simulation of a constelation of 4 states (n = 100)}
 \label{fig:constelation}
 \end{figure}
@@ -780,7 +781,7 @@ We see that the measurements made groups in certain regions. Each of this groups
 \begin{figure}[H]
 \captionsetup{justification=centering}
 \centering
-\includegraphics[width=10cm]{./sdf/quantum_noise/figures/plot_var_vs_n1.png}
+\includegraphics[width=10cm]{./sdf/optical_detection/figures/plot_var_vs_n1.png}
 \caption{Simulation of the variance of $m$.\\Local oscillator expected number of photons: $10^4$}
 \label{fig:variance}
 \end{figure}
@@ -793,7 +794,7 @@ The following plot shows the behavior of current noise variance $\braket{(\Delta
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{./sdf/quantum_noise/figures/power_plot.png}
+	\includegraphics[width=10cm]{./sdf/optical_detection/figures/power_plot.png}
 	\caption{Output current variance in function of LO power.}
 	\label{fig:variance_lo_power}
 \end{figure}
@@ -818,7 +819,7 @@ To keep the experiment simple and avoid extra sources of noise, we will avoid us
 \\
 \begin{figure}[H]
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/scheme_experimental.pdf}
+	\includegraphics{./sdf/optical_detection/figures/scheme_experimental.pdf}
 	\caption{Experimental setup}
 	\label{fig:experimental_homodyne_setup}
 \end{figure}
@@ -863,7 +864,7 @@ Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe
 %%
 \begin{figure}[H]
 	\centering
-	\includegraphics{./sdf/quantum_noise/figures/thorlabs-circuit.pdf}
+	\includegraphics{./sdf/optical_detection/figures/thorlabs-circuit.pdf}
 	\caption{Thorlabs PDB 450 detection circuit.}
 \end{figure}
 %%
@@ -920,7 +921,7 @@ The frequency response is obtained by fixing an amplitude $A_0$ and generating  
 The following plot shows the gain for various frequencies???
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{./sdf/quantum_noise/figures/thorlabs-manual-gain-spec-rf.png}
+	\includegraphics[width=10cm]{./sdf/optical_detection/figures/thorlabs-manual-gain-spec-rf.png}
 	\caption{Thorlabs PDB 450 RF output amplitude with frequency, for various gain values.\\(Plots from the manual)}
 \end{figure}
 %%
@@ -953,13 +954,13 @@ Given the theoretical, simulated and experimental frameworks, we will now compar
 \begin{figure}[H]
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel1.png}
+		\includegraphics[width=.8\linewidth]{./sdf/optical_detection/figures/noise_exp_channel1.png}
 		\caption{$X$ quadrature}
 		\label{fig:noise-exp-1}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.8\linewidth]{./sdf/quantum_noise/figures/noise_exp_channel3.png}
+		\includegraphics[width=.8\linewidth]{./sdf/optical_detection/figures/noise_exp_channel3.png}
 		\caption{$Y$ quadrature}
 		\label{fig:noise-exp-3}
 	\end{subfigure}
@@ -983,6 +984,6 @@ We see that both the simulation and experimental data display a similar behaviou
 \subsection{Known problems}
 %
 %
-\putbib{./sdf/quantum\_noise/quantum\_noise.tex}
+\putbib{./sdf/optical\_detection/optical\_detection}
 \end{bibunit}
-%\bibliography{./sdf/quantum_noise/quantum_noise}
+%\bibliography{./sdf/optical_detection/quantum_noise}
