@@ -13,19 +13,19 @@
 %
 \vspace{2em}
 %
-%%
-++ INVENTADO ++\\
+%++ INVENTADO ++
 The detection of light is a fundamental stage in every optical communication system.\\
 Every protocol based on the transmission of quantum states depends on the detection system...\\
 The transmission of quantum states in quantum protocols depend on this stage, which will allow or\\
--- PRECISO DE PALEIO MELHOR --\\
+%-- PRECISO DE PALEIO MELHOR --
 %%
 %%
-Quantum noise is an intrinsic property of light, a manifestation of the vaccum field fluctuations
-\cite{fox2006}.
-%\footnote{Mark Fox, p.132}
-Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\
-The objective of this work is to develop a numerical model for the quantum noise in a double homodyne detection and to validate the numerical model with experimental results.\\
+%-- Introducao antiga --
+%Quantum noise is an intrinsic property of light, a manifestation of the vaccum field fluctuations
+%\cite{fox2006}. %p.132
+%Contrarily to the majority of noise sources, that are overcomed by better equipment, quantum noise has a lower bound, given by the Heisenberg uncertanty principle, which cannot be broken. This propertie can be useful in some areas, such in quantum cryptography, were many protocols depend on it to ensure their security.\\
+%The objective of this work is to develop a numerical model for the quantum noise in a double homodyne detection and to validate the numerical model with experimental results.\\
+%--fim da introducao antiga
 
 %REF:
 %https://www.rp-photonics.com/quantum_noise.html
@@ -34,10 +34,7 @@ The objective of this work is to develop a numerical model for the quantum noise
 
 \subsubsection{Detection}
 
-Light can be measured in a variety of ways, depending on the property of interest. 
-Therefore, a series of schemes will be presented????
-For every scheme, a semi-classical and a quantum description will be given. (SO WHAT?), wich will converge in the noise calculation, giving us the signal to noise ratio....
-
+The detection of light can be performed using a variety of schemes, depending on the property of interest. A series of schemes will be presented and explained by calculating it's response?? and the noise. These calculations will use the semiclassical and quantum models of photodetection.
 % PROF: Calculates the signal to noise ratio at the input of the decision circuit for various detection schemes.\\
 
 
@@ -45,12 +42,12 @@ For every scheme, a semi-classical and a quantum description will be given. (SO 
 
 \subsubsection{Semiclassical versus quantum model}
 
-++ SHAPIRO1985, p.237 ++\\
-++ EXPLICAR AS ASSUMPÇÕES E APROXIMAÇÕES DESTE MODELO ++\\
-++ Nao falar de fotoes ++\\
-++ (VER O PAPER do FourYearReview\_pub92.pdf) (isto tambem e shapiro)++\\
+%++ SHAPIRO1985, p.237 ++\\
+%++ EXPLICAR AS ASSUMPÇÕES E APROXIMAÇÕES DESTE MODELO ++\\
+%++ Nao falar de fotoes ++\\
+%++ (VER O PAPER do FourYearReview\_pub92.pdf) (isto tambem e shapiro)++\\
 
-++ Esta tudo no mark fox, na pag.90 ++
+%++ Esta tudo no mark fox, na pag.90 ++
 
 "(...) The light interacts with the atoms in the detector and liberates individual electrons by the photoelectric effect."
 "The probability of the emission of a photoelectron in a short time interval $\Delta t$ is proportional to the intensity $I$, the $A$ iluminated and the time interval $\Delta t$.\\
@@ -59,7 +56,8 @@ For every scheme, a semi-classical and a quantum description will be given. (SO 
 
 
 The interaction between light and matter is the fundamental process in a photodetection???? The used models to describe it uses a quantum mechanical description for matter, for electrons in particular. But the two approaches differ in it's description of light. In the semiclassical description, light is a classical electromagnetic wave (and??).x
-In the quantum model light is quantized in energy packets, photons. Each photon will interact with one electron (????) (++ REF? ++)\\
+In the quantum model light is quantized in energy packets, photons. Each photon will interact with one electron (????)\\
+(REF?)\\
 
 Two main approaches are used to describe the process of photodetection, the semiclassical model and the quantum model. In both models, we assume that electrons are quantized (????), but 
 \\
@@ -73,7 +71,7 @@ Two main approaches are used to describe the process of photodetection, the semi
 In the quantum model, light is described a stream of particles - photons.\\
 (REF)
 
-Althought the semiclassical model explains the majority of light statistics and effects, for certain conditions, we need a more fundamental explanation based on  the quantum nature of light.\\
+Althought the semiclassical model explains the majority of light statistics and effects, in certain conditions (WHICH ARE?), we need a more fundamental explanation based on  the quantum nature of light.\\
 
 "In the quantum photodetection theory, the classsical positive-frequency complex field (...) is replaced by a positive-frequency field operator (...), whose quantum state is specified by a density operator $\rho$. (...)"\\
 \cite{shapiro1985quantum} %p.239
@@ -92,6 +90,8 @@ One of the most simple detection methods is the direct detection of light with a
 	\includegraphics{./sdf/optical_detection/figures/detection-direct.pdf}
 	\caption{Direct detection.}
 \end{figure}
+
+
 %%
 %%
 %(Quantum noise: Basic measurements and techniques)\\
