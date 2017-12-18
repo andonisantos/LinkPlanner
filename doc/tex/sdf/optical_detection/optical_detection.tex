@@ -34,6 +34,8 @@ The transmission of quantum states in quantum protocols depend on this stage, wh
 
 \subsubsection{Detection}
 
+The detection of an optical signal can be made by a variety of schemes. Each scheme offers a method of measuring 
+
 The detection of light can be performed using a variety of schemes, depending on the property of interest. A series of schemes will be presented and explained by calculating it's response?? and the noise. These calculations will use the semiclassical and quantum models of photodetection.
 % PROF: Calculates the signal to noise ratio at the input of the decision circuit for various detection schemes.\\
 
@@ -46,6 +48,10 @@ The detection of light can be performed using a variety of schemes, depending on
 %++ EXPLICAR AS ASSUMPÇÕES E APROXIMAÇÕES DESTE MODELO ++\\
 %++ Nao falar de fotoes ++\\
 %++ (VER O PAPER do FourYearReview\_pub92.pdf) (isto tambem e shapiro)++\\
+
+
+%inventado:
+The semiclassical model assumes that light is a wave, composed by various waves of different frequencies.\\
 
 %++ Esta tudo no mark fox, na pag.90 ++
 
@@ -151,7 +157,7 @@ We will consider that the detector has a bandwidth $B$, greater that the signal 
 \end{align}
 
 
-
+\vspace{2em}
 \noindent
 {\bf \em Complex notation}\\
 To simplify calculations, the electric field can be expressed the complex notation
@@ -162,7 +168,7 @@ To simplify calculations, the electric field can be expressed the complex notati
 \end{equation}
 %
 %
-The physically measurable quantities are obtained by taking the real part of the complex wave. Using this notation, the beam power ($P(t)$) is obtained by multiplying the electric field's conjugate by itself
+The physically measurable quantities are obtained by taking the real part of the complex wave. Using this notation, the beam power, $P(t)$, is obtained by multiplying the electric field's conjugate by itself
 \footnote{REF?}
 %
 \begin{align}
@@ -171,7 +177,7 @@ The physically measurable quantities are obtained by taking the real part of the
 \end{align}
 %%
 %++ inventado ++
-The semiclassical description assumes that the current 
+The semiclassical description assumes that the current by a process...
 %
 % ++ INVENTADO ++
 %The photocurrent $i(t)$ is obtained by the removal of electrons from a material which have a bonding energy to the atom's nucleus of $\hbar \omega_0$. Therefore, the photocurrent in function of the optical power ($P(t)$) is expressed as
@@ -206,31 +212,36 @@ recovering the result of the real representation. The photocurrent can be rewrit
 	i(t) = \eta q \frac{|A(t)|^2}{\hbar \omega_0}
 \end{equation}
 %
-++ PORQUE E QUE E NECESSARIO ESTE SEGUNDO MOMENTO? ACHO QUE ESTA RELACIONADO COM A DEFINICAO DE SINAL-RUIDO ++\\
+%++ PORQUE E QUE E NECESSARIO ESTE SEGUNDO MOMENTO? ACHO QUE ESTA RELACIONADO COM A DEFINICAO DE SINAL-RUIDO ++\\
 which will use to express the second moment of the photocurrent as
 \begin{equation}
 	\langle i^2(t) \rangle = \eta^2 q^2 \frac{\langle |A(t)|^4 \rangle }{\hbar^2 \omega_0^2}
 \end{equation}
 %
-++ Nao estou a perceber esta segunda parte ++\\
-++ Vou assumir que a amplite de A(t) nao varia no tempo++\\
-\\
-The study of the expected second moment can be simplified by assuming a signal with 
+Assuming a fase modulation, in which the amplitude is constant, the signal is simplified to
 %
 \begin{equation}
 	A(t) = |A| e^{i \theta}
 \end{equation}
 %
+Therefore, the current becomes constant
+%
 \begin{equation}
 	i(t) = I_0 = \eta q \frac{A_s^2}{\hbar \omega_0}
 \end{equation}
-
+%
+and it's second moment become simply
+%
 \begin{equation}
 	\langle i^2(t) \rangle = I_0^2
 \end{equation}
-%%
-%%
-Shot-noise\\
+
+
+
+
+\vspace{2em}
+\noindent
+{\bf \em Shot-noise}\\
 \\
 "Shot noise is related to the statistical fluctuations in both the photocurrent and the dark current."
 \footnote{http://qtwork.tudelft.nl/~schouten/linkload/phdiode.pdf, p.4}
@@ -340,6 +351,11 @@ The uncertanty of this measurement will simply follow the poisson statistics ??,
 	\caption{Heterodyne detection.}
 \end{figure}
 
+% inventado
+In contrast with the homodyne detection, in which the frequency of the signal carrier is equal to the local oscillator, in the heterodyne detection, these frequencies are different.\\
+This scheme generalizes the Homodyne detection, in which the frequency of the local oscillator ($\omega_1$) is not necessarilly equal to the frequency of the signal ($\omega_0$).
+Because of this, the inference will result in a new signal with an intermediate frequency at...
+% PROCURAR REFERENCIAS
 
 {\bf \em Semiclassical model}\\
 {\bf \em Quantum model}\\
@@ -920,18 +936,21 @@ The second stage of the experiment will be very similar to the first one, in whi
 The detector used in the laboratory is the Thorlabs PDB 450C. This detector consists of two well-matched photodiodes and a transimpedance amplifier that generates an output voltage (RF OUTPUT) proportional to the difference between the photocurrents of the photodiodes.\\
 Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe the optical input power level on each photodiode separately.
 \footnote{Manual of THORLABS device PBC 450C: https://www.thorlabs.com/\_sd.cfm?fileName=21709-D02.pdf\&partNumber=PDB450C}
-%%
+%
 \begin{figure}[H]
 	\centering
 	\includegraphics{./sdf/optical_detection/figures/thorlabs-circuit.pdf}
 	\caption{Thorlabs PDB 450 detection circuit.}
 \end{figure}
-%%
-%%
+%
+%
 The transimpedance amplifier (TIA) is an opamp-based current to voltage conversion amplifier.
 \footnote{http://www.cypress.com/file/131966/download}
 It is used in this circuit, given that the photodiode's current has a linear response to incident light in contrast to it's non-linear voltage response.
 \footnote{http://www.ti.com/lit/an/sboa035/sboa035.pdf, p.1}
+%
+Given the several schemes studied in section \ref{sec:schemes}
+%
 %%
 %%
 %%++ ITEMS DO PROF ++\\
