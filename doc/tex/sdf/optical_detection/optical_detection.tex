@@ -14,9 +14,9 @@
 \vspace{2em}
 %
 %++ INVENTADO ++
-The detection of light is a fundamental stage in every optical communication system.\\
-Every protocol based on the transmission of quantum states depends on the detection system...\\
-The transmission of quantum states in quantum protocols depend on this stage, which will allow or\\
+The detection of light is a fundamental stage in every optical communication system, performing the role of bridge between the optical and the electrical domains. This section will make a review of various theorectial and practiacal aspects of light detection, as well various implementations and schemes.
+The objective will be to determine the signal to noise ratio on various schemes of detection.
+
 %-- PRECISO DE PALEIO MELHOR --
 %%
 %%
@@ -34,8 +34,10 @@ The transmission of quantum states in quantum protocols depend on this stage, wh
 
 \subsubsection{Detection}
 
-The detection of an optical signal can be made by a variety of schemes. Each scheme offers a method of measuring 
-
+The detection of an optical signal can be made by a variety of schemes. Each scheme focus on a property of light (amplitude, frequency, phase, etc...) and 
+\\
+We will study various aspects of them, such as the resulting measurement, the precision of that measurement, as well the noise introduced by each method.???
+\\
 The detection of light can be performed using a variety of schemes, depending on the property of interest. A series of schemes will be presented and explained by calculating it's response?? and the noise. These calculations will use the semiclassical and quantum models of photodetection.
 % PROF: Calculates the signal to noise ratio at the input of the decision circuit for various detection schemes.\\
 
@@ -72,7 +74,7 @@ Two main approaches are used to describe the process of photodetection, the semi
 \footnote{Loundon, p. 117}\\
 
 
-++ FALAR DO CONCEITO DE FOTAO NA ABORDAGEM QUANTICA ++\\
+%++ FALAR DO CONCEITO DE FOTAO NA ABORDAGEM QUANTICA ++\\
 
 In the quantum model, light is described a stream of particles - photons.\\
 (REF)
@@ -84,7 +86,7 @@ Althought the semiclassical model explains the majority of light statistics and 
 
 
 
-++ ACHO QUE SERIA MELHOR INTRODUZIR A NOTAÇÃO COMPLEXA AQUI ++\\
+%++ ACHO QUE SERIA MELHOR INTRODUZIR A NOTAÇÃO COMPLEXA AQUI ++\\
 
 
 
@@ -954,7 +956,10 @@ The transimpedance amplifier (TIA) is an opamp-based current to voltage conversi
 It is used in this circuit, given that the photodiode's current has a linear response to incident light in contrast to it's non-linear voltage response.
 \footnote{http://www.ti.com/lit/an/sboa035/sboa035.pdf, p.1}
 %
-Given the several schemes studied in section \ref{sec:schemes}
+In section \ref{sec:schemes}, the various results produced by them dependend on several atributes of the detector, such as the response between optical and electric power, the bandwidth, noise, amplification, and ...
+(The most important characteristics to obtain precise results are:)
+
+Given the several schemes studied in section \ref{sec:schemes},
 %
 %%
 %%
@@ -1022,14 +1027,13 @@ For each combination of the expected number of photons present in the signal and
 
 \subsubsection{Double homodyne detection}
 %
--- UNDER CONSTRUCTION --\\
-\\
-The experiemental setup for this experiment is a simple extension of the single homodyne detection. To implement this experiment, the signal beam will be divided in two beams, in which one of them will be detect in phase with local oscillator and the other in phase with a an oscillator with a $pi/2$ phase relative to the first one.????
+%-- UNDER CONSTRUCTION --\\
+The experiemental setup for this experiment is a simple extension of the single homodyne detection. To implement this experiment, the signal beam will be divided in two beams, in which one of them will be detect in phase with local oscillator and the other in phase with a an oscillator with a $pi/2$ phase relative to the first one.
 %
 
 \subsection{Comparative analysis}
 %
-WARNING -- OLD DATA --\\
+%WARNING -- OLD DATA --\\
 \\
 Given the theoretical, simulated and experimental frameworks, we will now compare the results given by them.
 \\
