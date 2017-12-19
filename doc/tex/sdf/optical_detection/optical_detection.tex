@@ -17,9 +17,11 @@ The detection of light is a fundamental stage in every optical communication sys
 The objective of this work is to develop numerical models for the various detections schemes and to validate these numerical models with experimental results.\\
 %
 %
-\subsection{Theoretical description}\label{sec:intro}
+\subsection{Theoretical description}
+\label{subsec:intro}
 
 \subsubsection{Detection}
+\label{sec:schemes}
 
 The detection of an optical signal can be made by a variety of schemes. Each scheme focus on a property of light (amplitude, frequency, phase, etc...) and 
 \\
@@ -579,6 +581,7 @@ The local oscillator normally has a greater power than the signal
 	\begin{minipage}{52mm}
 		\noindent
 		\begin{equation}
+			\label{eq:var_m}
 			\braket{m} = |\alpha|\cos({\theta_\alpha - \theta_\beta})
 		\end{equation}
 	\end{minipage}
@@ -869,18 +872,14 @@ The following plot shows the behavior of current noise variance $\braket{(\Delta
 \end{figure}
 %
 %
-We see that for low LO power, the dominant noise is the thermal contribution, but for higher power, quantum noise dominates, growing proportionally to $P_{LO}$. This in accordance with equation \ref{eq:approx_noise}\\
-\\
-\\
+We see that for low LO power, the dominant noise is the thermal contribution, but for higher power, quantum noise dominates, growing proportionally to $P_{LO}$. This in accordance with equation \ref{eq:var_m}\\
 %
 %
 %
 %
 \subsection{Experimental setup}
 %
-To confirm the theoretical results obtained in section \ref{subsec:intro}, two experimental setups will be created.\\
-In the first experiement, we will study quantum noise in the single homodyne detection. The experimental setup will be based on the paper \ref{chi2011balanced}.\\
-In the second experiment, we will study quantum noise in the double homodyne detection setup, which will be basically an extension of the single homodyne detection setup.\\
+To confirm the theoretical results obtained in section \ref{subsec:intro}, two experimental setups will be created. In the first experiement, we will study quantum noise in the single homodyne detection. The experimental setup will be based on the paper \cite{chi2011balanced}. In the second experiment, we will study quantum noise in the double homodyne detection setup, which will be basically an extension of the single homodyne detection setup.\\
 \\
 \subsubsection{Single homodyne detection}
 %
@@ -929,7 +928,7 @@ The second stage of the experiment will be very similar to the first one, in whi
 %%
 The detector used in the laboratory is the Thorlabs PDB 450C. This detector consists of two well-matched photodiodes and a transimpedance amplifier that generates an output voltage (RF OUTPUT) proportional to the difference between the photocurrents of the photodiodes.\\
 Additionally, the unit has two monitor outputs(MONITOR+ and MONITOR-) to observe the optical input power level on each photodiode separately.
-\footnote{Manual of THORLABS device PBC 450C: https://www.thorlabs.com/\_sd.cfm?fileName=21709-D02.pdf\&partNumber=PDB450C}
+\cite{pdb450Cmanual}
 %
 \begin{figure}[H]
 	\centering
@@ -942,12 +941,10 @@ The transimpedance amplifier (TIA) is an opamp-based current to voltage conversi
 \footnote{http://www.cypress.com/file/131966/download}
 It is used in this circuit, given that the photodiode's current has a linear response to incident light in contrast to it's non-linear voltage response.
 \footnote{http://www.ti.com/lit/an/sboa035/sboa035.pdf, p.1}
-%
-In order to achieve the quanti
-In section \ref{sec:schemes}, the various results produced by them dependend on several atributes of the detector, such as the response between optical and electric power, the bandwidth, noise, amplification, and ...
-(The most important characteristics to obtain precise results are:)
+\\
 
-Given the several schemes studied in section \ref{sec:schemes},
+We have seen that the theoretical results obtained in section \ref{sec:schemes} all depend on various parameters, such as amplitude, bandwidth, amplification, frequency response and noise.
+Therefore, we need to characterize our photodetector in order that our experimental results can show that our theoretical results are indeed correct.
 %
 %%
 %%
@@ -960,7 +957,7 @@ Given the several schemes studied in section \ref{sec:schemes},
 %%
 %%
 \\
-Table of characteristics, listed in the manual:
+Table \ref{table:thorlabs} lists various important characteristics to perform our measurements. These values were obtained from the device's manual \cite{pdb450Cmanual}
 \begin{table}[H]
 	\centering
 	\begin{tabulary}{1.0\textwidth}{|L|L|l|}
@@ -971,7 +968,7 @@ Table of characteristics, listed in the manual:
 		\hline
 		Voltage Gain (monitor)			& 10 V/mW @ peak responsivity\\
 		\hline
-		Voltage Noise (monitor)			& <180 μV (RMS)\\
+		Voltage Noise (monitor)			& <180 \textmu V (RMS)\\
 		\hline
 		Max Responsivity (PIN)			& 1.0 A/W\\
 		\hline
@@ -982,6 +979,8 @@ Table of characteristics, listed in the manual:
 		RF OUTPUT Conversion Gain		& $10^3$ / $10^4$ / $10^5$ / $10^6$ / $10^7$ V/W\\
 		\hline
 	\end{tabulary}
+	\caption{Main characteristics of the Thorlabs PDB450C balanced detector}
+	\label{table:thorlabs}
 \end{table}
 %%
 %%
