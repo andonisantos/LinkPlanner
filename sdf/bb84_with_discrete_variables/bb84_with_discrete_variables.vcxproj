@@ -23,7 +23,7 @@
     <ProjectGuid>{08AC857F-8721-4497-8FD5-0A7499DD2EF5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>bb84qkd</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,8 +42,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -77,6 +77,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\maria\Documents\Repositorio\LinkPlanner\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -86,11 +87,10 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,32 +148,40 @@
     <ClCompile Include="..\..\lib\alice_qkd.cpp" />
     <ClCompile Include="..\..\lib\binary_source.cpp" />
     <ClCompile Include="..\..\lib\bob_qkd.cpp" />
-    <ClCompile Include="..\..\lib\clock.cpp" />
+    <ClCompile Include="..\..\lib\clock_20171219.cpp" />
+    <ClCompile Include="..\..\lib\discrete_to_continuous_time.cpp" />
     <ClCompile Include="..\..\lib\eve_qkd.cpp" />
+    <ClCompile Include="..\..\lib\m_qam_mapper.cpp" />
     <ClCompile Include="..\..\lib\netxpto.cpp" />
     <ClCompile Include="..\..\lib\optical_switch.cpp" />
     <ClCompile Include="..\..\lib\polarization_beam_splitter.cpp" />
     <ClCompile Include="..\..\lib\polarizer.cpp" />
+    <ClCompile Include="..\..\lib\pulse_shaper.cpp" />
     <ClCompile Include="..\..\lib\rotator_linear_polarizer.cpp" />
     <ClCompile Include="..\..\lib\single_photon_detector.cpp" />
-    <ClCompile Include="..\..\lib\single_photon_source.cpp" />
+    <ClCompile Include="..\..\lib\single_photon_source_20171218.cpp" />
     <ClCompile Include="..\..\lib\sink.cpp" />
-    <ClCompile Include="bb84_qkd.cpp" />
+    <ClCompile Include="..\..\lib\super_block_interface.cpp" />
+    <ClCompile Include="bb84_with_discrete_variables.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\alice_qkd.h" />
     <ClInclude Include="..\..\include\binary_source.h" />
     <ClInclude Include="..\..\include\bob_qkd.h" />
-    <ClInclude Include="..\..\include\clock.h" />
+    <ClInclude Include="..\..\include\clock_20171219.h" />
+    <ClInclude Include="..\..\include\discrete_to_continuous_time.h" />
     <ClInclude Include="..\..\include\eve_qkd.h" />
+    <ClInclude Include="..\..\include\m_qam_mapper.h" />
     <ClInclude Include="..\..\include\netxpto.h" />
     <ClInclude Include="..\..\include\optical_switch.h" />
     <ClInclude Include="..\..\include\polarization_beam_splitter.h" />
     <ClInclude Include="..\..\include\polarizer.h" />
+    <ClInclude Include="..\..\include\pulse_shaper.h" />
     <ClInclude Include="..\..\include\rotator_linear_polarizer.h" />
     <ClInclude Include="..\..\include\single_photon_detector.h" />
-    <ClInclude Include="..\..\include\single_photon_source.h" />
+    <ClInclude Include="..\..\include\single_photon_source_20171218.h" />
     <ClInclude Include="..\..\include\sink.h" />
+    <ClInclude Include="..\..\include\super_block_interface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

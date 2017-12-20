@@ -607,7 +607,7 @@ bool FD_Filter::runBlock(void) {
 	int ready = inputSignals[0]->ready();
 	//inputBufferTimeDomain.resize(ready);
 	//outputBufferTimeDomain.resize(ready);
-	int space = inputBufferTimeDomain.size() - inputBufferPointer;
+	int space = (int) inputBufferTimeDomain.size() - inputBufferPointer;
 
 	int process1 = min(ready, space);
 	//int process1 = ready;
@@ -626,8 +626,8 @@ bool FD_Filter::runBlock(void) {
 	{
 		outputBufferTimeDomain = fft.inverseTransformInCP(CMult.CMultVectorInCP(fft.directTransformInReal(inputBufferTimeDomain), transferFunction));
 		rotate(inputBufferTimeDomain.begin(), inputBufferTimeDomain.begin() + inputBufferTimeDomain.size()/2, inputBufferTimeDomain.end());
-		inputBufferPointer = inputBufferTimeDomain.size()/2;
-		outputBufferPointer = outputBufferTimeDomain.size()/2;
+		inputBufferPointer = (int) inputBufferTimeDomain.size()/2;
+		outputBufferPointer = (int) outputBufferTimeDomain.size()/2;
 	};
 
 	//space = outputSignals[0]->space();
@@ -966,7 +966,7 @@ void System::run(string signalPath) {
 
 void OverlapMethod::overlapSaveSyRealIn(vector<double> &v_in, vector<double> &v_out, vector<double> Hf, int NFFT) {
 
-	int Nblocks = 2 * (v_in.size() / NFFT);
+	int Nblocks = 2 * ((int) v_in.size() / NFFT);
 
 	vector<double> var_temp(NFFT, 0);
 	vector<double> real_temp_copy(NFFT, 0);

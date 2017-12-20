@@ -83,7 +83,7 @@ bool MQamMapper::runBlock(void) {
 }
 
 void MQamMapper::setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues){
-	m = iqAmplitudesValues.size();
+	m = (int) iqAmplitudesValues.size();
 	iqAmplitudes.resize(m);
 	iqAmplitudes = iqAmplitudesValues; 
 };
