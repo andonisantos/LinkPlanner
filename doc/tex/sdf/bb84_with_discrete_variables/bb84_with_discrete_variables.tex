@@ -12,257 +12,87 @@
 BB84 is a key distribution protocol which involves three parties, Alice, Bob and Eve. Alice and Bob exchange information between each other by using a quantum channel and a classical channel. The main goal is continuously build keys only known by Alice and Bob, and guarantee that eavesdropper, Eve, does not gain any information about the keys.
 
 
-\subsection{Theoretical Description}
+\subsection{Protocol Analysis}
+\begin{tcolorbox}	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+		\textbf{Students Name}  &:& Kevin Filipe (7/11/2017)\\
+		\textbf{Goal}          &:& BB84 - Protocol Description
+	\end{tabular}
+\end{tcolorbox}
 
-BB84 protocol was created by Charles Bennett and Gilles Brassard in 1984 \cite{BB84}. This was the first created Quantum Key Distribution (QKD) protocol. A basic model is depicted in figure \ref{fig:qkd model}. It involves two parties sharing keys through a quantum channel to decipher the classical channel data. It is assumed that there is a eavesdropper, Eve to intercept the data.
+BB84 protocol was created by Charles Bennett and Gilles Brassard in 1984 \cite{BB84}. It involves two parties, Alice and Bob, sharing keys through a quantum channel in which could be accessed by a eavesdropper, Eve. A basic model is depicted in figure \ref{fig:qkd model}. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\textwidth,height=7cm]{./sdf/bb84_with_discrete_variables/figures/QKD_Model.png}
-	\caption{Basic QKD Model. Alice and Bob are connected by 2 communication channels, quantum and classical, with an eavesdropper, Eve, in the quantum communication channel. \cite{iqo}}\label{fig:qkd model}
+	\includegraphics[width=0.8\textwidth,height=7cm]{./sdf/bb84_with_discrete_variables/figures/QKD_Model.png}
+	\caption{Basic QKD Model. Alice and Bob are connected by 2 communication channels, quantum and classical, with an eavesdropper, Eve, in the quantum communication channel (figure adapted from \cite{iqo}).}\label{fig:qkd model}
 \end{figure}
 
-
-BB84 protocol uses bit encoding into photon state polarization. Two non-orthogonal basis are used to encoded the information, the rectilinear and diagonal basis. The following table shows this bit encoding and figure \ref{fig:basis} shows a simple representation of it.
-
+BB84 protocol uses bit encoding into photon state polarization. Two non-orthogonal basis are used to encoded the information, the rectilinear and diagonal basis, + and x respectively. The following table shows this bit encoding.
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c}
-		 &  \textbf{\textit{Rectilinear Basis}} & \textbf{\textit{Diagonal Basis}}\\ \hline
+		 &  \textbf{\textit{Rectilinear Basis,+}} & \textbf{\textit{Diagonal Basis,x}}\\ \hline
 		0 &  0$º$ & -45$º$ \\
 		1 & 90$º$ & 45$º$\\
 	\end{tabular}
 \end{table}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\textwidth,height=4cm]{./sdf/bb84_with_discrete_variables/figures/basis.png}
-	\caption{Simple representation of the bit encoding using the corresponding bases.\cite{SURV}}\label{fig:basis}
-\end{figure}
-
-
 The protocol is implemented with the following steps:
-
 \begin{enumerate}
-	\item Alice generates two random bit strings. The random string ,$R_{A1}$, is the data to be encoded while $R_{A2} $is a string which 0 and 1 corresponds to rectilinear and diagonal basis $B_{A}$, respectively.
+	\item Alice generates two random bit strings. The random string , $R_{A1}$, corresponds to the data to be encoded into photon state polarization. $R_{A2}$ is a random string in which 0 and 1 corresponds to the rectilinear, +, and diagonal, $\times$, basis of $B_{A}$, respectively.
 	
 	$$ R_{A1} = \{0,1,1,0,1,0,0,1,1,0,1,1,1,0,0,1,0,0,0,1\}$$
 	$$ R_{A2} = \{0,0,1,0,1,1,1,0,1,1,1,0,1,0,0,0,1,0,1,0\}$$
-	$$ B_{A} = \{+,+,\times,+,\times, \times, \times, +,\times, \times, \times,+,\times,+,+,+,\times,+,\times,+\}$$
+	$$ = $$
+	$$ \{+,+,\times,+,\times, \times, \times, +,\times, \times, \times,+,\times,+,+,+,\times,+,\times,+\}$$
 	
-	\item Alice transmits a train of photons,$S_{AB}$, in which, each photon represents a bit of the random string, Ra1, with the correspondent polarization regarding to the bit value.
+	\item Alice transmits a train of photons, $S_{AB}$, obtained by encoding the bits, $R_{A1}$ with the respective photon polarization state $R_{A2}$.
 	
 	$$S_{AB} = \{\to, \uparrow, \searrow, \to, \searrow, \nearrow, \nearrow, \uparrow, \searrow, \nearrow, \searrow, \uparrow, \searrow, \to, \to, \uparrow, \nearrow, \to, \nearrow, \uparrow\}.$$
 	
-	\item Bob generates a random string, $R_{B}$, such as Alice, to receive the photon trains with the correspondent basis.
+	\item Bob generates a random string, $R_{B}$, to receive the photon trains with the correspondent basis.
 	
 	$$ R_{B} = \{0,1,1,1,0,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0\}$$
-	$$B_{B} = \{ +,\times,\times,\times,+,\times,+,+,\times,\times,+,+,\times,\times,+,+,\times,\times,+,+\}.$$
+	$$ = $$
+	$$ \{ +,\times,\times,\times,+,\times,+,+,\times,\times,+,+,\times,\times,+,+,\times,\times,+,+\}.$$
 	
-	\item If Bob chooses a matched basis compared to the one encoded in the photon, then he can correctly deduce the right bit, otherwise deduced bit is randomly read. It is considered that the channel contains attenuation, this will not click the polarization detector 
+	\item Bob performs the incoming photon states measurement, $M_{B}$ with its generated random basis, $R_{B}$. If the two photon detectors don't click, means the bit was lost during transference and so there is attenuation. If both photon detectors click, a false positive was detected. In the measurements, $M_{B}$, the attenuation is represented by a -1 and the false positives to -2. The measurements done in rectilinear or diagonal basis are represented by 0 and 1, respectively.
 	
-	$$D_{B} = \{0,1,1,0,-,0,1,1,-,0,0,1,-,1,0,1,0,-,1,1\}$$
+	$$M_{B} = \{0,1,1,1,-1,1,0,0,-2,1,0,0,-2,1,0,0,1,-1,0,0\}$$	
 	
 \end{enumerate}
 
-Since less than half of the data is deduced, a second phase is needed so that Alice can announce to Bob which deduced bits are correct This second phase, uses the classical communication channel:
+The second phase, uses the classical communication channel:
 \begin{enumerate}
 	
-	\item Bob sends Alice about the no clicks, in which 1 represents a no click.
-	
-	$$NC_{BA} = \{ 0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0\}.$$
-	
-	\item Bob notifies Alice about what random basis he used to deduce each bit, $R_{B}$, and Alice also sends to Bob the basis $R_{A1}$, she used.
-	
-	\item Both performs an XOR to deduce the correct sequence.
+	\item After the measurement, Bob sends to Alice the values of $M_{B}$.
+	\item Alice remove the bits from $R_{A2}$ corresponding to -1 and -2, performs a negated XOR and mixes the bits using a known algorithm by Alice and Bob. 
 	
 	\begin{table}[H]
 		\centering
-		\begin{tabular}{c|c c c c c c c c c c c c c c c c c c c c}
-			$R_{A2}$ & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 \\
-			$R_{B}$  & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 \\ \hline
-			$\oplus$ & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\ 
+		\begin{tabular}{c|c c c c c c c c c c c c c c c c}
+			$R_{A2}$ & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
+			$R_{B}$  & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\ \hline
+			$B{AB}$ & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 0 & 1 \\ 
 		\end{tabular}
 	\end{table}
 	
-	\item By using the deducid bits and removing the no clicks, the final obtained sequence is $K_{AB}$
+	\item Using also the negated XOR, Bob also mixes the bits with the same algorithm used by Alice and obtains the same key, $K_{AB}$
 	
   	$$ K_{AB} = \{0,1,0,1,0,1,0,1,0,1\}.$$
 		
 \end{enumerate}
 
-	The Quantum Bit Error Rate (QBER) is calculated by knowing the amount of no clicks and correct deduced bits by Bob.
+	To determine the Quantum Bit Error Rate (QBER), Bob will reveal a bit sequence from the deduced key to Alice. Alice then returns to Bob the estimated QBER value, mQBER, with a confidence interval, [qLB, qLB]. To verify if the channel is reliable or not the flowchart presented in figure \ref{fig:flowQber} must be followed and a acceptable QBER limit, qLim, must be imposed. Alice performs the QBER and confidence interval calculation by using the equations in the Bit Error Rate section, but applied to this protocol. By following the presented flowchart if the qLimit is inside the confidence interval, Bob should use more bits from key until qLim is bigger than qLB and qUB. If this condition is achieved, the QBER is successfully estimated and a reliable communication can be achieved. Otherwise the link is declared as unreliable and no further communication is made.
 	
-	$$ QBER = no\_clicks\_qty / correct\_deduced\_bits $$
-	
-	In the previous example, the QBER is 33$\%$, since there are 4 no clicks.	
-
-The presence of a eavesdropper will carry the risk of changing the bits. This will produce disagreement between Bob and Alice in the bits they should agree. When Eve measures and retransmits a photon she can deduce correctly with a probability of 50\%. So by learning the correct polarization of half of the photons, the induced error is 25\%. Alice and Bob can detect Eve presence by sacrifice the secrecy of some bits in order to test.
-
-\begin{thebibliography}{2}
-\bibitem{BB84} 
-Bennett, C. H. and Brassard,
-G. Quantum Cryptography: Public key distribution and coin tossing.
-International Conference on Computers, Systems and Signal Processing, Bangalore, India, 10-12 December 1984, pp. 175-179.
-
-\bibitem{SURV}
-Mart Haitjema, A Survey of the Prominent Quantum Key Distribution Protocols
-
-\bibitem{iqo}
-Christopher Gerry, Peter Knight, "Introductory Quantum Optics" Cambridge University Press, 2005
-
-\end{thebibliography}
-\cleardoublepage
-
-\begin{table}[H]
-\centering
-\begin{tabular}{c|c}
-\textbf{\textit{Basis}}         &  \\ \hline
- 0 & $+$ \\
- 1 & $\times$ \\
-\end{tabular}
-\end{table}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth,height=7cm]{./sdf/bb84_with_discrete_variables/figures/qberEstimation.png}
+	\caption{Flowchart to determine if the channel is reliable or not.}\label{fig:flowQber}
+\end{figure}
 
 
-\begin{table}[H]
-\centering
-\begin{tabular}{c|c}
-            & Basis "+" \\ \hline
- 0 & $\to (0^{\circ})$ \\
- 1 & $\uparrow (90^{\circ})$ \\
-\end{tabular}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\begin{tabular}{c|c}
-      & Basis "$\times$" \\ \hline
- 0 & $\searrow (-45^{\circ})$ \\
- 1 & $\nearrow (45^{\circ})$ \\
-\end{tabular}
-\end{table}
-
-
-\begin{enumerate}
-  \item Alice randomly generate a bit sequence with length $ks$ being, in this case, $k=2$ and $s=4$ as it was defined at the beginning.
-      Therefore, she must define two sets randomly: $S_{A1}$ which contains the basis values; and $S_{A2}$, which contains the key values.
-
-      In that case, lets assume she gets the following sets $S_{A1}$ and $S_{A2}$:
-      $$S_{A1} = \{0,1,1,0,0,1,0,1 \},$$
-      $$S_{A2} = \{1,1,0,0,0,1,0,0 \}.$$
-
-  \item Next, Alice sends to Bob throughout a quantum channel $ks$ photons encrypted using the basis defined in $S_{A1}$ and according to the keys defined in $S_{A2}$.
-
-      In the current example, Alice sends the photons, throughout a quantum channel, according to the following,
-
-      $$S_{AB} = \{\uparrow, \nearrow, \searrow, \to, \to, \nearrow, \to, \searrow \}.$$
-       $$S_{AB} = \{90^{\circ}, 45^{\circ}, -45^{\circ}, 0^{\circ}, 0^{\circ}, 45^{\circ}, 0^{\circ}, -45^{\circ} \}.$$
-
-  \item Bob also randomly generates $ks$ bits, which are going to define his measurement basis, $S_{B1}$. He will measure the photons sent by Alice. Lets assume:
-
-  $$S_{B1} = \{0,1,0,1,0,1,1,1 \}.$$
-
-    When Bob receives photons from Alice, he measures them using the basis defined in $S_{B1}$.
-  In the current example, $S_{B1}$ corresponds to the following set:
-  $$\{ +,\times,+,\times,+,\times, \times, \times \}.$$
-  Bob will get $ks$ results:
-  $$S_{B1'} = \{1,1,0,1,0,1,1,0 \}.$$
-
-  \item Bob will send a \textit{Hash Function} result HASH1 to Alice. This value will do Bob's commitment with the measurements done. In this case, this \textit{Hash Function} is calculated from \textit{SHA-256} algorithm for each pair (Basis from $S_{B1}$ and measured value from $S_{B1'}$), i.e Bob sends to Alice $sk$ pairs as his commitment. In this case, Bob sends eight pairs encoded using a \textit{Hash Function} which is also send to Alice. From that moment on Bob cannot change his commitment neither the basis which he uses to measure the photons sent by Alice.
-
-  \item Once Alice has received the confirmation of measurement from Bob, she sends throughout a classical channel the basis which she has used to codify the photons, which in this case we assumed $S_{A1} = \{0,1,1,0,0,1,0,1\}$.
-
-  \item In order to know which photons were measured correctly, Bob does the operation $S_{B2}=S_{B1} \oplus S_{A1}$.
-      In the current example the operation will be:
-
-  \begin{table}[H]
-    \centering
-    \begin{tabular}{c|c c c c c c c c}
-     $S_{B1}$ & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 \\
-     $S_{A1}$ & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 \\ \hline
-     $\oplus$ & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1
-    \end{tabular}
-    \end{table}
-
-      In this way, Bob gets $$S_{B2} = \{1,1,0,0,1,1,0,1 \}.$$ When Bob uses the right basis he gets the values correctly, when he uses the wrong basis he just guess the value. The values ``$1$'' correspond to the values he measured correctly and ``$0$'' to the values he just guessed.
-
-       Next, Bob sends to Alice, through a classical channel, information about the minimum number between ``ones'' and ``zeros'', i.e $$n=min(\#0,\#1)=3,$$ where $\#0$ represents the number of zeros in $S_{B2}$ and $\#1$ the number of ones in $S_{B2}$. At this time, Alice must be able to know if Bob is being honest or not. Therefore, she will open Bob's commitment from \textit{step 4} and she verify if the number n sent by Bob is according with the commitment values sent by him. In other words, she opens a number of pairs committed by Bob which is known from the beginning.
-
-  \item If $n<s$, being \textit{s} the message's size, Alice and Bob will repeat the steps from $1$ to $7$. In this case, $n=3$ which is smaller than $s=4$. Therefore, Alice and Bob repeat the steps from 1 to 7 in order to enlarge Bob's sets $S_{B1}$ and $S_{B2}$ as well as Alice's sets $S_{A1}$ and $S_{A2}$.
-
-  \item Lets assume :
-
-   $$S_{B1}= \{1,1,0,0,0,1,0,0,1,0,0,0,0,0,1,1 \}.$$
-
-    At Alice's side the new sets $S_{A1}$, which contains the basis values, and $S_{A2}$, which contains the key values, will be the following:
-
-    $$S_{A1}=\{0,1,1,0,0,1,0,1,1,1,0,0,1,1,1,0 \},$$ $$S_{A2}=\{1,1,0,0,0,1,0,0,1,0,1,0,0,0,1,1 \}.$$
-
-    Finally, for $S_{B2}=S_{B1} \oplus S_{A1}$ Bob gets the following sequence:
-
-    $$S_{B2}= \{1,1,0,0,1,1,0,1,0,1,0,0,1,1,0,1 \}.$$
-
-    Note that the sets were enlarge in the second iteration.
-
-  \item At this time, Bob sends again to Alice, through a classical channel, the minimum number between  ``ones'' and ``zeros'',  $n=min(\#0,\#1)$. In this case, $n$ is equal to $7$ which is the number of zeros.
-
-  \item Alice checks if $n>s$ and acknowledge to Bob that she already knows that $n>s$. In this case, $n=7$ and $s=4$ being $n>s$ a valid condition.
-
-  \item Next, Bob defines two new sub-sets, $I_{0}$ and $I_{1}$. $I_{0}$ is a set of values with photons array positions which Bob just guessed the measurement since he did not measure them with the same basis as Alice, $I_{1}$ is a set of values with photons array positions which Bob measured correctly since he used the same basis as Alice used to encoded them.
-
-  In this example, Bob defines two sub-sets with size $s=4$:
-  $$I_{0}=\{3,4,7,11 \},$$
-  and $$I_{1}= \{2,5,6,13 \},$$ where $I_{0}$ is the sequence of positions in which Bob was wrong about basis measurement and $I_{1}$ is the sequence of positions in which Bob was right about basis measurement. Bob sends to Alice the set $S_{b}$
-
-  Thus, if Bob wants to know $m_{0}$ he must send to Alice throughout a classical channel the set $S_{0}=\{I_{1},I_{0} \}$, otherwise if he wants to know $m_{1}$ he must send to Alice throughout a classical channel the set $S_{1}=\{I_{0},I_{1} \}$.
-
-
-  \item With both the received set $S_{b}$ and the hash function value HASH1, Alice must be able to prove that Bob has being honest.
-
-  \item Lets assume Bob sent $S_{0}=\{I_{1},I_{0} \}$.
-   Alice defines two encryption keys $K_{0}$ and $K_{1}$ using the values in positions defined by Bob in the set sent by him. In this example, lets assume: $$K_{0}=\{1,0,1,0\}$$ $$K_{1}=\{0,0,0,1\}.$$
-
-   Alice does the following operations:
-   $$m = \{m_{0}\oplus K_{0}, m_{1} \oplus K_{1} \}.$$
-
-   \begin{table}[H]
-    \centering
-    \begin{tabular}{c|c c c c c c c c}
-     $m_{0}$ & 0 & 0 & 1 & 1 \\
-     $K_{0}$ & 1 & 0 & 1 & 0 \\ \hline
-     $\oplus$ & 1 & 0 & 0 & 1
-    \end{tabular}
-    \end{table}
-
-   \begin{table}[H]
-    \centering
-    \begin{tabular}{c|c c c c c c c c}
-     $m_{1}$ & 0 & 0 & 0 & 1 \\
-     $K_{1}$ & 0 & 0 & 0 & 1 \\ \hline
-     $\oplus$ & 0 & 0 & 0 & 0
-    \end{tabular}
-    \end{table}
-
-    Adding the two results, $m$ will be: $$m=\{1,0,0,1,0,0,0,0\}.$$
-
-   After that, Alice sends to Bob the encrypted message $m$ through a classical channel.
-
-  \item When Bob receives the message $m$, in the same way as Alice, Bob uses $S_{B1\prime}$ values of positions given by $I_{1}$ and $I_{0}$ and does the decrypted operation. In this case, he does following operation:
-
-      \begin{table}[H]
-        \centering
-        \begin{tabular}{c|c c c c c c c c}
-         $m$ & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
-             & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 \\ \hline
-         $\oplus$ & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
-        \end{tabular}
-        \end{table}
-
-      The first four bits corresponds to message 1 and he received $\{0,0,1,1\}$, which is the right message $m_{0}$ and $\{0,1,1,0\}$ which is a wrong message for $m_{1}$.
-
-
-\end{enumerate}
 
 \subsection{Simulation Setup}
 
@@ -389,3 +219,18 @@ netxpto.cpp                       &                      &                 \\ \h
 bb84\_sdf.cpp                       &                      &                 \\ \hline
 \end{tabular}
 \end{table} 
+
+\begin{thebibliography}{2}
+	\bibitem{BB84} 
+	Bennett, C. H. and Brassard,
+	G. Quantum Cryptography: Public key distribution and coin tossing.
+	International Conference on Computers, Systems and Signal Processing, Bangalore, India, 10-12 December 1984, pp. 175-179.
+	
+	\bibitem{SURV}
+	Mart Haitjema, A Survey of the Prominent Quantum Key Distribution Protocols
+	
+	\bibitem{iqo}
+	Christopher Gerry, Peter Knight, "Introductory Quantum Optics" Cambridge University Press, 2005
+	
+\end{thebibliography}
+\cleardoublepage
