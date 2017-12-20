@@ -1,3 +1,15 @@
+2017-12-20
+TO BE DONE
+
+	Detalhar o esquema experimental
+
+	Colocar uma tabela entre os nomes dos blocos e os equipamentos laboratoriais
+
+	Descrição teórica dos sinais à saída do emissor (sinal modulador + sinal de referência) e os 4 sinais antes do detetor balanceado.
+
+	Colocar resultados no tempo da intensidade dos sinais antes do hibrido e depois do hibrido. 
+
+
 2017-12-05
 TO BE DONE
 	Montagem Experimental (PRIORITÁRIO)
