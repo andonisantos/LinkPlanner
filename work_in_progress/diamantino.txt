@@ -1,4 +1,20 @@
-﻿2017-12-12
+﻿2017-12-19
+TO BE DONE
+	sdf/
+		quantum noise para Optical Detection (optical_detection)
+
+	fazer as figuras
+		direct detection, no optical local oscillator (DONE)
+		homodyne detection, single quadratura (DONE, almost)
+		homodyne detection, double quadratura
+		double polarization, homodyne detection, double quadratura
+		heterodyne detection, single quadratura
+		heterodyne detection, double quadratura
+		double polarization, heterodyne detection, double quadratura
+
+	criar uma secção relativa ao detetor da Thorlabs tendo por base o datasheet na parte experimental
+		
+2017-12-12
 TO BE DONE
 	trocar o nome no doc/tex/sdf e no sdf/
 		quantum noise para Optical Detection (optical_detection)
