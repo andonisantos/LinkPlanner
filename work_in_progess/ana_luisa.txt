@@ -1,3 +1,7 @@
+2017-12-11
+TO BE DONE
+	Melhorar a documentação do MQAM
+
 2017-12-04
 TO BE DONE
 	Melhorar a documentação do MQAM

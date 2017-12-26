@@ -287,7 +287,12 @@ public:
 
 class TimeContinuousAmplitudeContinuous : public Signal {
 public:
-	TimeContinuousAmplitudeContinuous(){}
+	TimeContinuousAmplitudeContinuous(string fName) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setFileName(fName); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
+	TimeContinuousAmplitudeContinuous(string fName, int bLength) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setFileName(fName); setBufferLength(bLength); }
+	TimeContinuousAmplitudeContinuous(int bLength) { setType("TimeContinuousAmplitudeContinuous", RealValue);  setBufferLength(bLength); }
+	TimeContinuousAmplitudeContinuous() { setType("TimeContinuousAmplitudeContinuous", RealValue); if (buffer == nullptr) buffer = new t_real[bufferLength]; }
+
+	void setBufferLength(int bLength) { bufferLength = bLength; delete[] buffer; if (bLength != 0) buffer = new t_real[bLength]; };
 };
 
 
@@ -617,7 +622,7 @@ public:
 	vector<complex <double>> directTransformInReal(vector<double> real);
 
 	vector<double> inverseTransformInCP(vector<complex <double>> &In);
-
+	
 	void directTransform(vector<double> &real, vector<double> &imag);
 
 	void inverseTransform(vector<double> &real, vector<double> &imag);
@@ -626,12 +631,14 @@ public:
 
 	void transformBluestein(vector<double> &real, vector<double> &imag);
 
+	void Radix2(vector<double> &real, vector<double> &imag, int m);
+	void Fft::Bluestein(vector<double> &real, vector<double> &imag, int m);
+
 	void convolve(const vector<double> &x, const vector<double> &y, vector<double> &out);
 
 	void convolve(const vector<double> &xreal, const vector<double> &ximag, const vector<double> &yreal, const vector<double> &yimag, vector<double> &outreal, vector<double> &outimag);
 
 };
-
 
 
 class ComplexMult
@@ -648,14 +655,45 @@ public:
 
 };
 
+
+///////////////////// TRANSFORM ////////////////////////
 /*
+vector <complex<double>> transform(vector<complex<double>>IN, int m)
+{
+	Fft F;										// Various function for FT 
+	ComplexMult split;					        // Complex data functionality like split, addition, multiplication etc.
+	size_t n = IN.size();						// Size of the vector
+
+	vector <complex<double>> OUT(n);
+	vector<double> re(n,0);
+	vector<double> im(n,0);
+
+	split.ComplexVect2ReImVect(IN, re, im);    // Here we have splitted real and imag data from IN.
+	
+	if (n == 0)
+		return OUT;
+	else if ((n & (n - 1)) == 0)				// Is power of 2 : Radix-2 Algorithim
+		F.Radix2(re, im, m);
+	else										// More complicated algorithm for arbitrary sizes : Bluestein Algorithim
+		F.Bluestein(re, im, m);
+
+	for (int i=0; i<re.size(); i++)				// Devide by the square root of "N"
+	{
+		re[i] = re[i] / sqrt(re.size());
+		im[i] = im[i] / sqrt(re.size());
+	}
+
+	split.ReImVect2ComplexVect(re,im,OUT);
+	
+	return OUT;
+};*/
+
+
 ///////////////////// FFT function ////////////////////////
-vector <complex<double>> fft(vector <double> real)
+/*vector <complex<double>> fft(vector <double> real)
 {
 	Fft F;
-
 	vector <complex<double>> Output;						// Type of output of this function : vector <complex<double> & Name of the function : Output
-	
 	ComplexMult CMult;
 	vector<double> im(real.size(), 0);						// Create a vector for imaginary values 
 	vector<complex <double>> v_out(real.size(), 0);
@@ -673,10 +711,10 @@ vector <complex<double>> fft(vector <double> real)
 	CMult.ReImVect2ComplexVect(real, im, Output);
 	return Output;
 
-};
+};*/
 
 ///////////////////// IFFT function ////////////////////////
-vector<double> ifft(vector<complex<double>> input)
+/*vector<double> ifft(vector<complex<double>> input)
 {
 	Fft IF;
 	ComplexMult split;
@@ -698,9 +736,9 @@ vector<double> ifft(vector<complex<double>> input)
 	Output = re;
 
 	return Output;
-};
+};*/
 
-*/
+
 
 
 # endif // PROGRAM_INCLUDE_netxpto_H_
