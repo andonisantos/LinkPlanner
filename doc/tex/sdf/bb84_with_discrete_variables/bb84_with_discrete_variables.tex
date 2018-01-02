@@ -12,27 +12,23 @@
 BB84 is a key distribution protocol which involves three parties, Alice, Bob and Eve. Alice and Bob exchange information between each other by using a quantum channel and a classical channel. The main goal is continuously build keys only known by Alice and Bob, and guarantee that eavesdropper, Eve, does not gain any information about the keys.
 
 
-\subsection{Protocol Analysis}
-\begin{tcolorbox}	
-	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
-		\textbf{Students Name}  &:& Kevin Filipe (7/11/2017)\\
-		\textbf{Goal}          &:& BB84 - Protocol Description
-	\end{tabular}
-\end{tcolorbox}
+\subsection{Theoretical Description}
 
-BB84 protocol was created by Charles Bennett and Gilles Brassard in 1984 \cite{BB84}. It involves two parties, Alice and Bob, sharing keys through a quantum channel in which could be accessed by a eavesdropper, Eve. A basic model is depicted in figure \ref{fig:qkd model}. 
+BB84 protocol was created by Charles Bennett and Gilles Brassard in 1984 \cite{BB84}. This was the first created Quantum Key Distribution (QKD) protocol. A basic model is depicted in figure \ref{fig:qkd model}. It involves two parties sharing keys through a quantum channel to decipher the classical channel data. It is assumed that there is a eavesdropper, Eve to intercept the data.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth,height=7cm]{./sdf/bb84_with_discrete_variables/figures/QKD_Model.png}
-	\caption{Basic QKD Model. Alice and Bob are connected by 2 communication channels, quantum and classical, with an eavesdropper, Eve, in the quantum communication channel (figure adapted from \cite{iqo}).}\label{fig:qkd model}
+	\includegraphics[width=1.0\textwidth,height=7cm]{./sdf/bb84_with_discrete_variables/figures/QKD_Model.png}
+	\caption{Basic QKD Model. Alice and Bob are connected by 2 communication channels, quantum and classical, with an eavesdropper, Eve, in the quantum communication channel. \cite{iqo}}\label{fig:qkd model}
 \end{figure}
 
-BB84 protocol uses bit encoding into photon state polarization. Two non-orthogonal basis are used to encoded the information, the rectilinear and diagonal basis, + and x respectively. The following table shows this bit encoding.
+
+BB84 protocol uses bit encoding into photon state polarization. Two non-orthogonal basis are used to encoded the information, the rectilinear and diagonal basis. The following table shows this bit encoding and figure \ref{fig:basis} shows a simple representation of it.
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c}
-		 &  \textbf{\textit{Rectilinear Basis,+}} & \textbf{\textit{Diagonal Basis,x}}\\ \hline
+		 &  \textbf{\textit{Rectilinear Basis}} & \textbf{\textit{Diagonal Basis}}\\ \hline
 		0 &  0$º$ & -45$º$ \\
 		1 & 90$º$ & 45$º$\\
 	\end{tabular}
@@ -48,62 +44,63 @@ BB84 protocol uses bit encoding into photon state polarization. Two non-orthogon
 The protocol is implemented with the following steps:
 
 \begin{enumerate}
-	\item Alice generates two random bit strings. The random string , $R_{A1}$, corresponds to the data to be encoded into photon state polarization. $R_{A2}$ is a random string in which 0 and 1 corresponds to the rectilinear, +, and diagonal, $\times$, basis of $B_{A}$, respectively.
+	\item Alice generates two random bit strings. The random string ,$R_{A1}$, is the data to be encoded while $R_{A2} $is a string which 0 and 1 corresponds to rectilinear and diagonal basis $B_{A}$, respectively.
 	
 	$$ R_{A1} = \{0,1,1,0,1,0,0,1,1,0,1,1,1,0,0,1,0,0,0,1\}$$
 	$$ R_{A2} = \{0,0,1,0,1,1,1,0,1,1,1,0,1,0,0,0,1,0,1,0\}$$
-	$$ = $$
-	$$ \{+,+,\times,+,\times, \times, \times, +,\times, \times, \times,+,\times,+,+,+,\times,+,\times,+\}$$
+	$$ B_{A} = \{+,+,\times,+,\times, \times, \times, +,\times, \times, \times,+,\times,+,+,+,\times,+,\times,+\}$$
 	
-	\item Alice transmits a train of photons, $S_{AB}$, obtained by encoding the bits, $R_{A1}$ with the respective photon polarization state $R_{A2}$.
+	\item Alice transmits a train of photons,$S_{AB}$, in which, each photon represents a bit of the random string, Ra1, with the correspondent polarization regarding to the bit value.
 	
 	$$S_{AB} = \{\to, \uparrow, \searrow, \to, \searrow, \nearrow, \nearrow, \uparrow, \searrow, \nearrow, \searrow, \uparrow, \searrow, \to, \to, \uparrow, \nearrow, \to, \nearrow, \uparrow\}.$$
 	
-	\item Bob generates a random string, $R_{B}$, to receive the photon trains with the correspondent basis.
+	\item Bob generates a random string, $R_{B}$, such as Alice, to receive the photon trains with the correspondent basis.
 	
 	$$ R_{B} = \{0,1,1,1,0,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0\}$$
-	$$ = $$
-	$$ \{ +,\times,\times,\times,+,\times,+,+,\times,\times,+,+,\times,\times,+,+,\times,\times,+,+\}.$$
+	$$B_{B} = \{ +,\times,\times,\times,+,\times,+,+,\times,\times,+,+,\times,\times,+,+,\times,\times,+,+\}.$$
 	
-	\item Bob performs the incoming photon states measurement, $M_{B}$ with its generated random basis, $R_{B}$. If the two photon detectors don't click, means the bit was lost during transference and so there is attenuation. If both photon detectors click, a false positive was detected. In the measurements, $M_{B}$, the attenuation is represented by a -1 and the false positives to -2. The measurements done in rectilinear or diagonal basis are represented by 0 and 1, respectively.
+	\item If Bob chooses a matched basis compared to the one encoded in the photon, then he can correctly deduce the right bit, otherwise deduced bit is randomly read. It is considered that the channel contains attenuation, this will not click the polarization detector
 	
-	$$M_{B} = \{0,1,1,1,-1,1,0,0,-2,1,0,0,-2,1,0,0,1,-1,0,0\}$$	
+	$$D_{B} = \{0,1,1,0,-,0,1,1,-,0,0,1,-,1,0,1,0,-,1,1\}$$
 	
 \end{enumerate}
 
-The second phase, uses the classical communication channel:
+Since less than half of the data is deduced, a second phase is needed so that Alice can announce to Bob which deduced bits are correct This second phase, uses the classical communication channel:
 \begin{enumerate}
 	
-	\item After the measurement, Bob sends to Alice the values of $M_{B}$.
-	\item Alice remove the bits from $R_{A2}$ corresponding to -1 and -2, performs a negated XOR and mixes the bits using a known algorithm by Alice and Bob. 
+	\item Bob sends Alice about the no clicks, in which 1 represents a no click.
+	
+	$$NC_{BA} = \{ 0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0\}.$$
+	
+	\item Bob notifies Alice about what random basis he used to deduce each bit, $R_{B}$, and Alice also sends to Bob the basis $R_{A1}$, she used.
+	
+	\item Both performs an XOR to deduce the correct sequence.
 	
 	\begin{table}[H]
 		\centering
-		\begin{tabular}{c|c c c c c c c c c c c c c c c c}
-			$R_{A2}$ & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
-			$R_{B}$  & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\ \hline
-			$B{AB}$ & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 0 & 1 \\ 
+		\begin{tabular}{c|c c c c c c c c c c c c c c c c c c c c}
+			$R_{A2}$ & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 \\
+			$R_{B}$  & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 \\ \hline
+			$\oplus$ & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
 		\end{tabular}
 	\end{table}
 	
-	\item Using also the negated XOR, Bob also mixes the bits with the same algorithm used by Alice and obtains the same key, $K_{AB}$
+	\item By using the deducid bits and removing the no clicks, the final obtained sequence is $K_{AB}$
 	
   	$$ K_{AB} = \{0,1,0,1,0,1,0,1,0,1\}.$$
 		
 \end{enumerate}
 
-	To determine the Quantum Bit Error Rate (QBER), Bob will reveal a bit sequence from the deduced key to Alice. Alice then returns to Bob the estimated QBER value, mQBER, with a confidence interval, [qLB, qLB]. To verify if the channel is reliable or not the flowchart presented in figure \ref{fig:flowQber} must be followed and a acceptable QBER limit, qLim, must be imposed. Alice performs the QBER and confidence interval calculation by using the equations in the Bit Error Rate section, but applied to this protocol. By following the presented flowchart if the qLimit is inside the confidence interval, Bob should use more bits from key until qLim is bigger than qLB and qUB. If this condition is achieved, the QBER is successfully estimated and a reliable communication can be achieved. Otherwise the link is declared as unreliable and no further communication is made.
+	The Quantum Bit Error Rate (QBER) is calculated by knowing the amount of no clicks and correct deduced bits by Bob.
 	
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth,height=7cm]{./sdf/bb84_with_discrete_variables/figures/qberEstimation.png}
-	\caption{Flowchart to determine if the channel is reliable or not.}\label{fig:flowQber}
-\end{figure}
+	$$ QBER = no\_clicks\_qty / correct\_deduced\_bits $$
+	
+	In the previous example, the QBER is 33$\%$, since there are 4 no clicks.	
 
 The presence of a eavesdropper will carry the risk of changing the bits. This will produce disagreement between Bob and Alice in the bits they should agree. When Eve measures and retransmits a photon she can deduce correctly with a probability of 50\%. So by learning the correct polarization of half of the photons, the induced error is 25\%. Alice and Bob can detect Eve presence by sacrifice the secrecy of some bits in order to test.
 
 \begin{thebibliography}{2}
-\bibitem{BB84} 
+\bibitem{BB84}
 Bennett, C. H. and Brassard,
 G. Quantum Cryptography: Public key distribution and coin tossing.
 International Conference on Computers, Systems and Signal Processing, Bangalore, India, 10-12 December 1984, pp. 175-179.
@@ -267,7 +264,7 @@ Christopher Gerry, Peter Knight, "Introductory Quantum Optics" Cambridge Univers
 
 \end{enumerate}
 
-\subsection{Simulation Setup}
+\newpage
 
 \subsection{Simulation Analysis}
 
@@ -321,84 +318,98 @@ Figure \ref{evesimulation} presents the Eve's side diagram. Eve's processor has 
 
 In addition, Eve's diagram has one more output $Ms_{E}$ which is a message sent to the mutual information block as an input parameter.
 
-\begin{table}[hbt]
+\begin{table}[H]
 \centering
 \caption{System Signals}
 \label{tb:signals}
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{Signal name}         & \textbf{Signal type} & \textbf{Status} \\ \hline
-C\_C\_1 ... C\_C\_6          & Message              &                 \\ \hline
-Q\_C\_1 .. Q\_C\_4           & Photon Stream        &                 \\ \hline
-Ms\_A, Ms\_B, Ms\_E          & Binary               &                 \\ \hline
-NUM\_A , NUM\_B, NUM\_E      & Binary               &                 \\ \hline
-CLK\_A, CLK\_B, CLK\_E       & Real continuous time &                 \\ \hline
-SB\_1, SB\_2, Sr\_1, Sr\_2   & Real continuous time &                 \\ \hline
-SA\_1, SA\_2, St\_1, St\_2   & Real discrete time   &                 \\ \hline
-SA\_3                        & Photon  Stream       &                 \\ \hline
-S\_2, S\_3, S\_4, S\_5       & Photon Stream        &                 \\ \hline
-BS\_1, BS\_2                 & Binary               &                 \\ \hline
+\textbf{Signal name}            & \textbf{Signal type}                      & \textbf{Status} \\ \hline
+NUM\_A                          &  Binary                                   &                 \\ \hline
+MI\_A                           &  Binary                                   &                 \\ \hline
+CLK\_A                          &  TimeContinuousAmplitudeContinuous        &                 \\ \hline
+CLK\_A\_1                       &  TimeContinuousAmplitudeContinuous        &                 \\ \hline
+S2                              &  PhotonStreamXY                           &                 \\ \hline
+S3                              &  TimeContinuousAmplitudeDiscreteReal      &                 \\ \hline
+C\_C\_1                         &  Messages                                 &                 \\ \hline
+C\_C\_6                         &  Messages                                 &                 \\ \hline
+Q\_C\_1                         &  PhotonStreamXY                           &                 \\ \hline
+
 \end{tabular}
 \end{table}
 
 Table \ref{tb:signals} presents the system signals as well as them type.
 
-\begin{table}[hbt]
+\begin{table}[H]
 \centering
 \caption{System Input Parameters}
 \label{tb:inputparameters}
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{Parameter}           & \textbf{Default Value}                           & \textbf{Description} \\ \hline
-SymbolRate                   & 100K                                             &                 \\ \hline
-NumberOfBits                 & Number of photons that Alice sends to Bob        &                 \\ \hline
+\textbf{Parameter}                      & \textbf{Default Value}                                & \textbf{Description} \\ \hline
+RateOfPhotons                           & 1K                                                    &                 \\ \hline
+vector<t\_iqValues> iqAmplitudeValues   & \{-45.0,0.0\},\{0.0,0.0\},\{45.0,0.0\},\{90.0,0.0\}   &                 \\ \hline
 
 \end{tabular}
 \end{table}
 
-\begin{table}[hbt]
+\begin{table}[H]
 \centering
 \caption{Header Files}
 \label{tb:signals}
 \begin{tabular}{|c|c|c|}
 \hline
 \textbf{File name}              & \textbf{Description} & \textbf{Status} \\ \hline
-binary\_source.h       &                      &                 \\ \hline
-single\_photon\_source.h      &                      &                 \\ \hline
-single\_photon\_detector.h       &                      &                 \\ \hline
-optical\_switch.h                       &                      &       Missing          \\ \hline
-polarization\_beam\_splitter.h                       &                      &                 \\ \hline
-mutual\_information.h            &                      &            Missing     \\ \hline
-bit\_error\_rate.h                       &                      &                 \\ \hline
-clock.h                       &                      &                 \\ \hline
-fiber.h                       &                      &                 \\ \hline
-qrng\_decision\_circuit.h                       &                      &                 \\ \hline
-message\_to\_send.h               &                      &      Missing           \\ \hline
-message\_to\_receive.h            &                      &      Missing           \\ \hline
-netxpto.h                       &                      &                 \\ \hline
+netxpto.h                             &                      &    \checkmark   \\ \hline
+alice\_qkd.h                          &                      &  Working on     \\ \hline
+binary\_source.h                      &                      &    \checkmark   \\ \hline
+bob\_qkd.h                            &                      &   Missing       \\ \hline
+clock\_20171219.h                     &                      &    \checkmark   \\ \hline
+discrete\_to\_continuous\_time.h      &                      &    \checkmark   \\ \hline
+eve\_qkd.h                            &                      &   Missing       \\ \hline
+m\_qam\_mapper.h                      &                      &    \checkmark   \\ \hline
+optical\_switch.h                     &                      &   Missing       \\ \hline
+polarization\_beam\_splitter.h        &                      &  Working on     \\ \hline
+polarizer.h                           &                      &  Working on     \\ \hline
+pulse\_shaper.h                       &                      &     \checkmark  \\ \hline
+rotator\_linear\_polarizer.h          &                      &  Working on     \\ \hline
+single\_photon\_detector.h            &                      &   Missing       \\ \hline
+single\_photon\_source\_20171218.h    &                      &    \checkmark   \\ \hline
+sink.h                                &                      &    \checkmark   \\ \hline
+super\_block\_interface.h             &                      &    \checkmark   \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}[hbt]
+\begin{table}[H]
 \centering
 \caption{Source Files}
 \label{tb:signals}
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{File name}              & \textbf{Description} & \textbf{Status} \\ \hline
-binary\_source.cpp       &                      &                 \\ \hline
-single\_photon\_sourcer.cpp      &                      &                 \\ \hline
-single\_photon\_detector.cpp       &                      &                 \\ \hline
-optical\_switch.cpp                       &                      &   Missing              \\ \hline
-polarization\_beam\_splitter.cpp                       &                      &                 \\ \hline
-mutual\_information.cpp            &                      &       Missing          \\ \hline
-bit\_error\_rate.cpp            &                      &                 \\ \hline
-clock.cpp            &                      &                 \\ \hline
-fiber.cpp            &                      &                 \\ \hline
-qrng\_decision\_circuit.cpp            &                      &                 \\ \hline
-message\_to\_send.cpp               &                      &       Missing          \\ \hline
-message\_to\_receive.cpp            &                      &       Missing          \\ \hline
-netxpto.cpp                       &                      &                 \\ \hline
-bb84\_sdf.cpp                       &                      &                 \\ \hline
+\textbf{File name}                      & \textbf{Description} & \textbf{Status} \\ \hline
+netxpto.cpp                             &                      &    \checkmark   \\ \hline
+bb84\_with\_discrete\_variables.cpp     &                      &  Working on     \\ \hline
+alice\_qkd.cpp                          &                      &  Working on     \\ \hline
+binary\_source.cpp                      &                      &    \checkmark   \\ \hline
+bob\_qkd.cpp                            &                      &   Missing       \\ \hline
+clock\_20171219.cpp                     &                      &    \checkmark   \\ \hline
+discrete\_to\_continuous\_time.cpp      &                      &    \checkmark   \\ \hline
+eve\_qkd.cpp                            &                      &   Missing       \\ \hline
+m\_qam\_mapper.cpp                      &                      &    \checkmark   \\ \hline
+optical\_switch.cpp                     &                      &   Missing       \\ \hline
+polarization\_beam\_splitter.cpp        &                      &  Working on     \\ \hline
+polarizer.cpp                           &                      &  Working on     \\ \hline
+pulse\_shaper.cpp                       &                      &     \checkmark  \\ \hline
+rotator\_linear\_polarizer.cpp          &                      &  Working on     \\ \hline
+single\_photon\_detector.cpp            &                      &   Missing       \\ \hline
+single\_photon\_source\_20171218.cpp    &                      &    \checkmark   \\ \hline
+sink.cpp                                &                      &    \checkmark   \\ \hline
+super\_block\_interface.cpp             &                      &    \checkmark   \\ \hline
 \end{tabular}
 \end{table} 
+
+\subsection{Open Issues}
+
+There still are some open issues in simulation code.
+
+One of them was detected in block \textbf{single\_photon\_source\_20171218.cpp}. This block should assume each sample with 4 real values, since it writes two complex values each time the block runs, i.e each \textit{bufferput()} should write an array of two complex values in outputSignal, outputSignals[0]->bufferPut(valueXY), where \textit{t\_complex\_xy valueXY = \{valueX, valueY\}} and \textit{t\_complex valueX = (realValue\_1,realValue\_2)}. This way, independently of the number of samples these four values should always be written. However, if we chose a number of samples which is not divisible by 4, the four numbers are not written in the last "sample" and the array data for X's values and Y's values have different sizes which is wrong. For example, if we chose 10 samples to acquire, the last values correspond to X's values instead of Y's values and the first array data is longer than the other. 

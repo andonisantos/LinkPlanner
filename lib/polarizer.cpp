@@ -22,21 +22,21 @@ bool Polarizer::runBlock(void) {
 
 
 	t_complex_xy valueXY;
-	t_complex valueX, valueY;
+	t_complex valueX, valueY, valueXout, ValueYout;
 
-	double pol;
+	double tetha;
 
 	for (int i = 0; i < length; i++) {
-		inputSignals[0]->bufferGet(&pol);
+		inputSignals[0]->bufferGet(&tetha);
 		inputSignals[1]->bufferGet(&valueXY);
 
 		valueX = valueXY.x;
 		valueY = valueXY.y;
 
-		valueX = valueX * cos(-pol) + valueY * (-sin(-pol));
-		valueY = valueX * sin(-pol) + valueY * cos(-pol);
+		valueXout = cos(-tetha*PI / 180)*valueX + sin(-tetha*PI / 180)*valueY;
+		ValueYout = -sin(-tetha*PI / 180)*valueX + cos(-tetha*PI / 180)*valueY;
 
-		valueXY = { valueX, valueY };
+		valueXY = { valueXout, ValueYout };
 
 		outputSignals[0]->bufferPut(valueXY);
 

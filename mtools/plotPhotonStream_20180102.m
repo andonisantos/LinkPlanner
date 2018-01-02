@@ -1,4 +1,4 @@
-function [mag_x, mag_y, phase_dif] = plotPhotonStream(fname, opt, h)
+function [mag_x, mag_y, phase_dif] = plotPhotonStream_20180102(fname, opt, h)
 % If opt equals 0, or no opt, we plot the absolute value of X and Y and the phase
 % difference.
 % If opt equals 1, we plot the the amplitude of X and Y, this is only
@@ -39,12 +39,18 @@ if opt == 0
     axis([0 inf 0 180])
     title ('Phase shift (Degrees)');
 else
-    subplot(2,1,1);
-    plotSignal_20171220(data_x,symbolperiod,sampling,'PhotonStreamXY',number)
+%     subplot(2,1,1);
+%     plotSignal_20171220(data_x,symbolperiod,sampling,'PhotonStreamXY',number)
+%     axis([0 inf -1 1])
+%     title ('Amplitude X');
+%     subplot(2,1,2);
+%     plotSignal_20171220(data_y,symbolperiod,sampling,'PhotonStreamXY',number)
+%     axis([0 inf -1 1])
+%     title('Amplitude Y');
+    plotSignal_20171220(data_x,symbolperiod,sampling,'PhotonStreamXY',number);
+    hold on
+    plotSignal_20171220(data_y,symbolperiod,sampling,'PhotonStreamXY',number);
     axis([0 inf -1 1])
-    title ('Amplitude X');
-    subplot(2,1,2);
-    plotSignal_20171220(data_y,symbolperiod,sampling,'PhotonStreamXY',number)
-    axis([0 inf -1 1])
-    title('Amplitude Y');
+    title ('Amplitude X and Y');
+    legend('X', 'Y')
 end

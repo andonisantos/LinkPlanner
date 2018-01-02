@@ -6,7 +6,9 @@
 void SinglePhotonSource::initialize(void) {
 
 	outputSignals[0]->setSymbolPeriod(inputSignals[0]->getSymbolPeriod());
-	outputSignals[0]->setSamplingPeriod(inputSignals[0]->getSamplingPeriod());
+	double SamplingPeriod = (double)inputSignals[0]->getSamplingPeriod();
+	SamplingPeriod = SamplingPeriod / 4;
+	outputSignals[0]->setSamplingPeriod(SamplingPeriod);
 	outputSignals[0]->setFirstValueToBeSaved(inputSignals[0]->getFirstValueToBeSaved());
 	outputSignals[0]->centralWavelength = outputOpticalWavelength;
 	outputSignals[0]->centralFrequency = outputOpticalFrequency;

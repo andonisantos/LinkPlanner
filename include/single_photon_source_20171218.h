@@ -11,6 +11,10 @@ public:
 	double outputOpticalWavelength{ 1550e-9 };
 	double outputOpticalPower{ 1e-3 };
 	double outputOpticalFrequency{ SPEED_OF_LIGHT / outputOpticalWavelength };
+	double SymbolPeriod{ 0.0 };
+	double samplingPeriod{ 0.0 };
+
+
 	/*	Methods	*/
 
 	SinglePhotonSource(vector<Signal *> &inputSignals, vector<Signal *> &outputSignals) : Block(inputSignals, outputSignals){};
@@ -23,6 +27,13 @@ public:
 
 	void setOuputOpticalWavelength(double outOpticalWavelength) { outputOpticalWavelength = outOpticalWavelength; outputOpticalFrequency = SPEED_OF_LIGHT / outOpticalWavelength; }
 	void setOutputOpticalFrequency(double outOpticalFrequency) { outputOpticalFrequency = outOpticalFrequency; outputOpticalWavelength = outOpticalFrequency / outputOpticalFrequency; }
+
+	void setSamplingPeriod(double per) { samplingPeriod = per; }
+	double getSamplingPeriod() { return samplingPeriod; }
+
+	void setSymbolPeriod(double symbper) { SymbolPeriod = symbper; }
+	double getSymbolPeriod() { return SymbolPeriod; }
+
 
 };
 
