@@ -14,9 +14,12 @@ Directory              &:& mtools
 
 This section shows how to convert a simulation signal into an AWG compatible waveform file through the use of a matlab function called sgnToWfm. This allows the application of simulated signals into real world systems.
 
-\subsection{sgnToWfm}
+\subsection{sgnToWfm\_20171121}
 
-[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm(fname\_sgn, nReadr, fname\_wfm );
+\subsubsection{Structure of a function}
+[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate, samplingRateDecimate]  =  sgnToWfm\_20171121 (fname\_sgn, nReadr, fname\_wfm)   
+
+%[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm(fname\_sgn, nReadr, fname\_wfm );
 
 \subsection*{Inputs}
 
@@ -30,10 +33,14 @@ This section shows how to convert a simulation signal into an AWG compatible wav
 
 \textbf{fname\_wfm}: Name that will be given to the waveform file.
 
+
 \subsection*{Outputs}
 A waveform file will be created in the Matlab current folder. It will also return six variables in the workspace which are:
 \bigskip
 
+\textbf{dataDecimate}: A vector which contains decimated signal data by an appropriate decimation factor to make it compatible with the AWG.
+\bigskip	
+	
 \textbf{data}: A vector with the signal data.
 \bigskip
 
@@ -50,6 +57,10 @@ A waveform file will be created in the Matlab current folder. It will also retur
 \bigskip
 
 \textbf{samplingRate}: Sampling rate of the signal.
+\bigskip
+
+\textbf{samplingRateDecimate}: Reduced sampling rate which is compatible with AWG. (i.e. less than 16 GSa/s).
+\bigskip
 
 
 \subsection*{Functional Description}
@@ -63,7 +74,7 @@ Using one argument:
 \bigskip
 
 \noindent
-[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn');
+[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate, samplingRateDecimate] = sgnToWfm('S6.sgn');
 \bigskip
 
 \noindent
@@ -76,11 +87,11 @@ Using two arguments:
 \bigskip
 
 \noindent
-[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn',256);
+[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate, samplingRateDecimate] = sgnToWfm('S6.sgn',256);
 \bigskip
 
 \noindent
-This creates a waveform file with the same name as the signal file name and the number of samples used equals nReadr x samplesPerSymbol. The samplesPerSymbol constant is defined in the *.sgn file.
+This creates a waveform file with the same name as the signal file name and the number of samples used equals nReadr x samplesPerSymbol. The samplesPerSymbol constant is 	defined in the *.sgn file.
 \bigskip
 
 \noindent
@@ -89,11 +100,94 @@ Using three arguments:
 \bigskip
 
 \noindent
-[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn',256,'myWaveform.wfm');
+[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate, samplingRateDecimate] = sgnToWfm('S6.sgn',256,'myWaveform.wfm');
 \bigskip
 
 \noindent
 This creates a waveform file with the name "myWaveform" and the number of samples used equals nReadr x samplesPerSymbol. The samplesPerSymbol constant is defined in the *.sgn file.
+
+%\subsection{sgnToWfm\_20171121}
+%
+%\subsubsection{Structure of a function}
+%[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRateDecimate]  = sgnToWfm\_20171121(fname\_sgn, nReadr, fname\_wfm)
+%
+%\subsubsection*{Inputs}
+%\begin{tabular}{|p{2cm}||p{12cm}|}
+%	\hline
+%	\textbf{Name} &\textbf{Description}\\
+%	\hline
+%	\vspace{0.1cm}& \vspace{0.1cm}\\
+%	\textbf{fname\_sgn} \vspace{0.25cm}& Input the filename of the signal (*.sgn) you want to convert. It must be a real signal (type: TimeContinuousAmplitudeContinuousReal).\vspace{0.25cm}\\
+%	
+%	\textbf{nReadr} \vspace{0.25cm}& Number of symbols you want to extract from the signal.\vspace{0.25cm}\\
+%	
+%	\textbf{fname\_wfm}\vspace{0.25cm}& Name that will be given to the waveform file.\vspace{0.25cm}\\
+%	\hline
+%\end{tabular}
+%
+%\subsubsection*{Output}
+%\begin{tabular}{|p{4cm}||p{10cm}|}
+%	\hline
+%	\textbf{Name} &\textbf{Description}\\
+%	\hline
+%	\vspace{0.1cm}& \vspace{0.1cm}\\
+%	\textbf{dataDecimate} \vspace{0.25cm}& A vector which contains decimated signal data by an appropriate decimation factor to make it compatible with the AWG. \vspace{0.25cm}\\
+%	
+%	\textbf{data} \vspace{0.25cm}& A vector which contains signal data without decimation. \vspace{0.25cm}\\
+%	
+%	\textbf{symbolPeriod}\vspace{0.25cm}& Symbol period of the signal.\vspace{0.25cm}\\
+%	
+%	\textbf{samplingPeriod}\vspace{0.25cm}& Sampling period of the signal.\vspace{0.25cm}\\
+%	
+%	\textbf{type}\vspace{0.25cm}& A string which contains the name of the signal data type.\vspace{0.25cm}\\
+%	
+%	\textbf{numberOfSymbols}\vspace{0.25cm}& Number of symbols retrieved from the signal.\vspace{0.25cm}\\
+%	
+%	\textbf{samplingRateDecimate}\vspace{0.25cm}& Reduced sampling rate which is compatible with AWG. (i.e. less than 16 GSa/s)\vspace{0.25cm}\\
+%	
+%	\textbf{r}\vspace{0.25cm}&Recommended decimation factor\vspace{0.25cm}\\
+%	\hline
+%\end{tabular}
+%\subsubsection*{Functional Description}
+%
+%This matlab function generates a *.wfm file given an input signal file (*.sgn). The waveform file is compatible with the laboratory's Arbitrary Waveform Generator (Tekatronix AWG70002A). In order to recreate it appropriately, the signal must be real, not exceed $8*10^9$ samples and have a sampling rate equal or bellow 16 GS/s.
+%
+%
+%\subsection*{This function can be called with one, two or three arguments:}
+%\textbf{Using one argument:}
+%\bigskip
+%
+%\noindent
+%[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRateDecimate]  = sgnToWfm\_20171121sgnToWfm('S6.sgn')
+%\bigskip
+%
+%\noindent
+%This creates a waveform file with the same name as the *.sgn file and uses all of the samples it contains.
+%\bigskip
+%
+%\noindent
+%\textbf{Using two arguments:}
+%\bigskip
+%
+%\noindent
+%[dataDecimate, data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRateDecimate]  = sgnToWfm\_20171121sgnToWfm('S6.sgn',256);
+%\bigskip
+%
+%\noindent
+%This creates a waveform file with the same name as the signal file name and the number of samples used equals nReadr x samplesPerSymbol. The samplesPerSymbol constant is defined in the *.sgn file.
+%\bigskip
+%
+%\noindent
+%\textbf{Using three arguments:}
+%\bigskip
+%
+%\noindent
+%[data, symbolPeriod, samplingPeriod, type, numberOfSymbols, samplingRate] = sgnToWfm('S6.sgn',256,'myWaveform.wfm');
+%\bigskip
+%
+%\noindent
+%This creates a waveform file with the name "myWaveform" and the number of samples used equals nReadr x samplesPerSymbol. The samplesPerSymbol constant is defined in the *.sgn file.
+
 
 \subsection{Loading a signal to the Tekatronix AWG70002A}
 

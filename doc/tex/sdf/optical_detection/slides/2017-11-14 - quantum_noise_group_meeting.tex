@@ -1,0 +1,332 @@
+\documentclass[5pt]{article}
+\usepackage{mathptmx,amsmath}
+\usepackage{pdfslide2,pause}
+\usepackage{eurosym}
+\usepackage[portuguese,english]{babel}
+%\usepackage{kerkis}
+\usepackage{colortbl} % used to highlight row or columns of tables. http://www.tug.org/pracjourn/2007-1/mori/mori.pdf
+\usepackage[small]{caption} % more option on http://www.dd.chalmers.se/latex/Docs/PDF/caption.pdf
+\usepackage[tight,scriptsize]{subfigure}
+\usepackage{lastpage}
+\usepackage{chngcntr}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tabto}
+\usepackage{animate}
+%\usepackage{listings}
+\captionsetup{labelformat=empty,skip=-0.8cm}
+
+%%%% Diamantino %%%%
+% As minhas packages
+\usepackage[utf8]{inputenc}
+\usepackage{braket}
+
+%\lstset{
+%    language=Matlab,                % choose the language of the code
+%    basicstyle=\ttfamily\tiny,      % the size of the fonts that are used for the code
+%    numbers=none,                   % where to put the line-numbers
+%    numberstyle=\tiny,              % the size of the fonts that are used for the line-numbers
+%    stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
+%    numbersep=5pt,                  % how far the line-numbers are from the code
+%    backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+%    showspaces=false,               % show spaces adding particular underscores
+%    showstringspaces=false,         % underline spaces within strings
+%    showtabs=false,                 % show tabs within strings adding particular underscores
+%    tab=\rightarrowfill,
+%    frame=none,	                 % adds a frame around the code
+%    tabsize=2,	                     % sets default tabsize to 2 spaces
+%    captionpos=b,                   % sets the caption-position to bottom
+%    breaklines=true,                % sets automatic line breaking
+%    breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+%    title=\lstname,                 % show the filename of files included with \lstinputlisting; also try caption instead of title
+%    escapeinside={\%*}{*)},          % if you want to add a comment within your code
+%    morekeywords={ifftshift,fftshift},
+%    keywordstyle=\bfseries\color[rgb]{0,0,0.3},
+%    commentstyle=\color[rgb]{0.133,0.5,0.133}
+%}
+%\lstset{
+%    emph={function,end,for,if,while},
+%    emphstyle=\bfseries\color[rgb]{0.6,0,0},
+%}
+
+\definecolor{itblue}{rgb}{0.0,0.0,0.5}
+\definecolor{itred}{rgb}{0.82,0.18,0.24}
+\newcommand{\pageNum}{
+    \begin{picture}(0,0)(0,0)
+        \put(-15,-390){
+            \begin{minipage}{1.8cm}
+            \end{minipage}
+        }
+    \end{picture}
+}
+\newcommand{\cb}[1]{{\color{itblue} #1}}%
+\newcommand{\cred}[1]{{\color{itred} #1}}%
+\newcommand{\bb}[1]{{\textbf{\color{itblue} #1}}}%
+\newcommand{\br}[1]{{\textbf{\color{itred} #1}}}%
+\renewcommand{\labelitemi}{\textcolor{itred}{\normalsize $\bullet$}}
+\renewcommand{\labelitemii}{\textcolor{itblue}{$\bullet$}}
+\newcommand{\mysection}[1]{\section*{\pageNum\color{itred}\sffamily #1}\vspace*{0.5cm}\overlay{./figures/it_1.png}\sffamily}%
+\newcommand{\ITfootnote}[1]{\hspace{1.8cm}\begin{minipage}{13cm}\tiny{#1}\end{minipage}}
+\newcommand{\edfaGain}{$G=\exp\left(\frac{\alpha}{2}L_{span}\right)$}
+\newenvironment{reference}{
+    \begin{textblock*}{0.7\textwidth}(32mm,137mm)\tiny\noindent\bgroup\color{black}
+}
+{
+    \egroup\end{textblock*}
+}
+
+
+\graphicspath{{./Figures/}}
+\pagestyle{title}
+
+\hyphenpenalty=50000
+\tolerance=10000
+
+\setlength{\textheight}{1.5\textheight}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%************************************************************************************************
+%                                          SLIDE
+%************************************************************************************************
+\pagenumbering{roman}
+\begin{titlepage}  \overlay{./figures/it_0.png}
+
+\color{itblue} \sffamily \noindent \small
+\hspace*{1cm}  Universidade de Aveiro\\ %Instituto\\ Superior T�cnico, Instituto de Telecomunica��es\\
+\hspace*{1cm}  2017-2018\\ %Lisboa, 14th of February, 2013\\
+
+\vspace*{1cm}
+\begin{center}
+    \color{black} \sffamily \noindent \Large
+    \br{Quantum Noise\\}
+\end{center}
+\vspace{6mm}
+\begin{center}
+    \color{black}
+    \textbf{Diamantino Silva\\}
+    {(diamantinosilva@ua.pt)}
+\end{center}
+
+\vspace{0.0mm}
+\scriptsize
+\begin{center}
+Department of Electronics, Telecommunications and Informatics,\\
+University of Aveiro, Aveiro, Portugal\\
+Instituto de Telecomunicações, Aveiro, Portugal\\
+\end{center}
+
+\vspace{1.0cm}
+\hfill \tiny \copyright 2005, it - instituto de telecomunicações\hfill
+
+\end{titlepage}
+
+
+\renewcommand{\headsep}{-25pt}
+\pagenumbering{arabic}
+
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Quantum Noise}\large
+\vspace{0cm}
+
+\noindent
+Quantum noise is an intrinsic property of light, it is a manifestation of the fluctuations of the quantum vacuum field.\\
+\\
+%In fact, there is a minimum energy level ??? (ver mark fox) of uncertanty given by the Heisenberg uncertanty
+%\begin{equation}
+%	\Delta x \Delta p \geq \frac{\hbar}{2}
+%\end{equation}
+The objective of this work is to model quantum noise in a double homodyne detection system and validate the numerical model with  experimental data.\\
+\\
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Quantum Noise - Theoretical Introduction}\large
+\vspace{0cm}
+
+A Coherent states can be defined in the number state basis $\{\ket{n}\}$ as
+$$
+\ket{\alpha} = e^{-\frac{|\alpha|^2}{2}} \sum_{n=0}^\infty \frac{\alpha^n}{\sqrt{n!}} \ket{n}
+$$
+%in which the complex number $\alpha$ is the sole parameter that characterizes it.\\
+in which the complex number $\alpha = |\alpha|^{i \theta_\alpha}$ is the sole parameter that defines it. The parameter $|\alpha|$ is equal to square root of the number of photons and $\theta_\alpha$ is the signal's phase difference to a reference oscillator.\\
+\\
+A number state $\ket{n}$ has exactly $n$ photons. The action of the creation $\hat{a}^\dagger$ and annihilation $\hat{a}$ operators are
+$$
+\hat{a} \ket{n} = \sqrt{n} \ket{n-1}
+\qquad
+\hat{a}^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}
+$$
+$$
+\hat{n} \ket{n} = n \ket{n}
+$$
+in which $\hat{n} = \hat{a}^\dagger \hat{a}$, is the number operator.
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Quantum Noise - Theoretical Introduction}\large
+\vspace{0cm}
+
+\noindent
+The measurement of quadratures is based in the quantum operators
+$\hat{X} = \frac{1}{2} \left( \hat{a}^\dagger + \hat{a} \right)$
+and
+$\hat{Y} = \frac{i}{2} \left( \hat{a}^\dagger - \hat{a} \right)$,
+which have the expected values
+$$
+	\bra{\alpha} \hat{X} \ket{\alpha} = \textrm{Re}(\alpha),
+	\qquad
+	\bra{\alpha} \hat{Y} \ket{\alpha} = \textrm{Im}(\alpha)
+$$
+and a variance
+$$
+\textrm{Var}(\hat{X}) = \textrm{Var}(\hat{Y}) = \frac{1}{4}
+$$
+This result shows that for both quadratures, the variance of measurement is the same and independent of the value of $\alpha$.
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Double Homodyne Detection}\large
+\vspace{0cm}
+
+The simultaneous measurement of the $X$ and $Y$ quadratures can be made by the double balanced homodyne technique. The quantum description of the detection is described by the following diagram
+\vspace{-1em}
+\begin{figure}[h]
+\label{fig:scheme_homodyne}
+\centering
+\includegraphics{../figures/scheme_double_homodyne.pdf}
+%\caption{Balanced double homodyne detection.}
+\end{figure}
+
+This technique basically measures the phase difference between a input signal (S) and a local oscillator (LO). The figure shows the quantum mechanical description of this technique, based in annhihilation operators, in which $\hat{m}$ is the operator of the output difference between the photocurrents.\\
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Double Homodyne Detection}\large
+\vspace{0cm}
+
+\noindent
+%The used technique is the double homodyne technique which starts by dividing S in two beams of equal power.
+One of the beams is measures in-phase with the local oscillator, and the other is measured with a phase difference of $\pi/2$ relative to the local oscillator.\\
+Given the input signal state $\ket{\alpha}$, the expected values of $\hat{m}_X$ and $\hat{m}_Y$ in shot noise units will be
+%
+%
+%and the local oscillator state  $\ket{\beta}$ ($\beta = |\beta| e^{i\theta_\beta}$), the expected value for the two quadratures operators $\hat{m_X}$ and $\hat{m_Y}$ is\\
+%
+$$
+	\braket{\hat{m}_X} = \left|\frac{\alpha}{\sqrt{2}}\right| \cos({\theta_\alpha}),
+	\qquad
+	\textrm{Var}(\hat{m}_X) = \frac{1}{4}
+$$
+$$
+	\braket{\hat{m}_Y} =  \left|\frac{\alpha}{\sqrt{2}}\right| \sin({\theta_\alpha}),
+	\qquad
+	\textrm{Var}(\hat{m}_Y) = \frac{1}{4}
+$$
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Simulation setup}\large
+\vspace{2cm}
+
+\begin{figure}[h]
+\label{fig:scheme_homodyne}
+\centering
+\includegraphics[width=\textwidth]{../figures/scheme_setup.pdf}
+%\caption{Balanced double homodyne detection.}
+\end{figure}
+
+%A state is generated in the MQAM which is then mixed in the Optical hybrid with a local oscillator. The 2 pairs of output optical signals are then converted to photocurrents. The difference between the currents of each pair is obtained and then sampled. Finally the two signals are combined in a complex number which will be the final output.
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Simulation results - REVIEW}\large
+\vspace{0cm}
+
+\begin{figure}[h]
+\centering
+	\begin{subfigure}
+%		\label{fig:scheme_homodyne}
+		\centering
+		\includegraphics[height=65mm]{../figures/var_Pout_PS_no_noise.png}
+		%\caption{Balanced double homodyne detection.}
+	\end{subfigure}
+	\begin{subfigure}
+%		\label{fig:scheme_homodyne}
+		\centering
+		\includegraphics[height=65mm]{../figures/var_Pout_PLO_no_noise.png}
+		%\caption{Balanced double homodyne detection.}
+	\end{subfigure}
+\end{figure}
+%
+These plots show the variance of $\hat{m}$ in function of signal power (left) and local oscillator power (right).
+Given that there is no implementation of noise, these plots show only fluctuations of numerical errors. We see that these values are very close to 0.\\
+
+
+
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Experimental setup}\large
+\vspace{0cm}
+
+\begin{figure}[h]
+\label{fig:scheme_homodyne}
+\centering
+\includegraphics[width=\textwidth]{../figures/scheme_experimental.pdf}
+\end{figure}
+%
+\vspace{1em}
+%
+A signal is produced by modulating and attenuating a laser beam. This signal and a vacuum signal are used as the inputs of the Coherent Receiver, which outputs two voltages, proportional to each quadrature of the double homodyne detection.\\
+\\
+\begin{small}
+Reference:
+Yuemeng Chi, L Tian, B Qi, L Qian, and HK Lo. High speed homodyne detector for gaussian-modulated coherent-state quantum key distribution. University of Toronto, 2009.
+\end{small}
+
+
+%--------------------------------------------------------------------------------------------------
+%------------ SLIDE-------
+\mysection{Experimental results}\large
+\vspace{0cm}
+
+\begin{figure}[h]
+\centering
+	\begin{subfigure}
+%		\label{fig:scheme_homodyne}
+		\centering
+		\includegraphics[height=65mm]{../figures/noise_exp_channel1.png}
+		%\caption{Balanced double homodyne detection.}
+	\end{subfigure}
+	\begin{subfigure}
+%		\label{fig:scheme_homodyne}
+		\centering
+		\includegraphics[height=65mm]{../figures/noise_exp_channel3.png}
+		%\caption{Balanced double homodyne detection.}
+	\end{subfigure}
+\end{figure}
+
+These plots of the variance of the quadratures, $X$ and $Y$, show a constant value for low power of LO, and a growth proportional to the square of the power of LO for higher power. This is not in conformity with the theory and can be attributed to the noise generated by the electronic devices.
+
+
+
+
+%-------------------------------------------------------------------
+%------------ SLIDE ------------------------------------------------
+\mysection{} \sffamily
+\vspace{-10mm}
+\large\centerline{E-mail: diamantinosilva@ua.pt}
+
+
+\end{document}

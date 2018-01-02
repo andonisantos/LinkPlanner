@@ -1,0 +1,11 @@
+Simulação de:
+	- variância do sinal de saída vs a potência do sinal de entrada (S) (Pout_PS.txt).
+	- variância do sinal de saída vs a potência do sinal do local oscillator (LO) (Pout_PLO.txt).
+
+As quantidades são:
+[ P_in  P_S/P_LO ]
+
+As unidades são
+[ n_fotoes  corrente( ou potencia) ]
+
+NB: A eficiência do fotodíodo é 1, portanto, corrente  = potência.

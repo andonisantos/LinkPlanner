@@ -1,3 +1,45 @@
+2017-11-22
+TO BE DONE
+	Simulation
+		Alice com o setup do BB84 (TQ)
+
+
+2017-11-17
+TO BE DONE
+	Simulation
+		incluir a parte da Alice detalhada igual à parte experimental (parte ótica)
+
+	Experimental
+		avançar com a implementação para ter algo para mostrar dia 25/11
+
+2017-11-14
+TO BE DONE
+	Simulation
+		incluir a parte da Alice detalhada (parte ótica)
+
+	Experimental
+		avançar com a implementação para ter algo para mostrar dia 25/11
+
+2017-11-10
+TO BE DONE
+	Experimental
+		perceber bem a geração dos 4 estados
+		verificar se com os estados 45, -45, cd, ce funciona
+		comprar o FM + OC	
+
+
+
+2017-11-07
+TO BE DONE
+	Experimental
+		- perceber bem a geração e a deteção dos estados
+		- verificar o que há e o que falta (fazer lista daquilo que tem que se comprar)
+		- ir para o laboratório implementar a Alice
+
+	Simulação
+		- criar o ficheiro qokd_sdf.cpp
+
+
 2017-11-02
 TO BE DONE
 	Apresentação 

@@ -1,3 +1,82 @@
+2017-12-05
+TO BE DONE
+	finalize the documentation of the fork (minor minor details)
+
+	finalize this conclude the sgnToWfm without changing the readsignal_20170930.m
+		warning('The sampling frequency was XX and the signal was decimated to obtain a sampling frequency of YY (< 16 GHz).')
+
+	work in the FFT algorithm fft( , -1) or fft( , 1)
+
+Next Meeting: 2017/12/07
+
+
+2017-11-28
+TO BE DONE
+	finalize the documentation of the fork (minor details)
+
+	conclude the sgnToWfm without changing the readsignal_20170930.m
+		warning('The sampling frequency was XX and the signal was decimated to obtain a sampling frequency of YY (< 16 GHz).')
+
+	work in the FFT algorithm fft( , -1) or fft( , 1)
+
+Next Meeting: 2017/11/05
+
+2017-11-21
+TO BE DONE
+	finalize the fork
+		documentation + code (for all types)
+
+	change the sgnToWfm function to force decimation if sampling rate is gretaer than 16 GS/s
+
+	work in the FFT algorithm fft( , -1) or fft( , 1)
+
+NEXT Meeting: Friday, 8h30m
+
+2017-11-14
+TO BE DONE
+	documentation
+		include the fork in the library, follow Bit Error Rate style
+
+		algorithms section, write a section about DFFT (discrete fft and discrete ifft) (go to netxpto.cpp file and see which algorithm are, try to understand them)
+	
+	theoretical part
+		check which is the RF frequency that you need
+
+
+		
+2017-11-09
+TO BE DONE
+	presentation
+		finalize the presentation
+		include results from simulation
+
+	simulation
+		finish the fork
+		think about how to implement the Hilbert transform
+
+	- solve the optical networks dimensioning problem
+
+NEXT METTING: Next Thursday, 16/11, 10 am
+
+2017-11-07
+TO BE DONE
+   - simulation part
+	put the mixer and rf_oscillator in the setup
+
+   - presentation
+
+   - start by reviewing the netxpto - NetPlanner software, install
+
+next meeting: Thursday, 10 am
+
+2017-11-03
+TO BE DONE
+   - simulation part
+	develop the mixer and rf_oscillator 
+
+   - start by reviewing the netxpto - NetPlanner software, install
+
+######################################## October 2017 ##############################################
 2017-10-26
 TO BE DONE
   - go to the lab and setup a proper place to conduct the experiment (put a sheet with the experimental setup and a short description + student and supervisor name)
@@ -43,7 +122,7 @@ Later
 Hilbert Transform
 How to generate?
 
-
+########################################## September 2017 #############################################
 2017-09-14
 TO BE DONE
 - study two papers (Mecozzi16, Mecozzi17)

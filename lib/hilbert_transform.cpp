@@ -22,47 +22,123 @@ bool HilbertTransform::runBlock(void)
 
 	if (process <= 0) return false;
 
-	vector <complex<double>> inputSignalsFreq;
 	t_real S8;
-	vector<double> S9;
-	vector<double> inputBufferTimeDomain;
+	vector<double> inputBufferTimeDomain(process);
+	vector <complex<double>> IN(process);
+	vector <complex<double>> inputSignalFreqencyDomain(process);
+	vector <complex<double>> hilbertTransformed(process);
+	complex<double> imaginary{ (0,-1) };
+	
+	for (int i = 0; i < process; i++)									// Get the Input signal as a vector of size "n"
+	{
+		inputSignals[0]->bufferGet(&S8);
+		inputBufferTimeDomain.at(i)=S8;
+	}
+	
+	/*Here we have to convert the vector of REAL value into COMPLEX value because our function acccepts only complex value*/
 
-	vector <double> outputSignalsFreq;
-	/*
+	ComplexMult C;
+	vector<double> re(process);
+	vector<double> im(process);							// Imaginary part as "0"
 
 	for (int i = 0; i < process; i++)
 	{
-		inputSignals[0]->bufferGet(&S8);
-		inputBufferTimeDomain[i] = S8;
+		re[i] = inputBufferTimeDomain.at(i);			// Real part
 	}
 
-	inputSignalsFreq = fft(inputBufferTimeDomain);						// Frequeny domain input signal
+	C.ReImVect2ComplexVect(re, im, IN);					// Time domain complex form signal
+	inputSignalFreqencyDomain = transform(IN,1);		// Frequency domain complex form signal
 
-	/////////// Hilbert Tranformation  //////////////
-	// Negative frequency components multiplied by "i" 
-	// Positive frequency components multiplied by "-i" 
-	// For DC, it's multiplied by "0" 
-	// Frequency to time domain conversion
+	double zero{ 0 };
 
-	/*int n = inputSignalsFreq.size();
-
-	for ()
+	for (int i = 0; i < process; i++)
 	{
-		if ()
+		if (i < process/2)
 		{
+			vector <double> a;
+			vector <double> b;
+			double c;
+			double d;
+			vector <double> ac;
+			vector <double> bd;
+			vector <double> bc;
+			vector <double> ad;
+			vector <double> re;
+			vector <double> im;
 
+			a.at(i) = inputSignalFreqencyDomain[i].real();
+			b.at(i) = inputSignalFreqencyDomain[i].imag();
+			c = imaginary.real();
+			d = imaginary.imag();
+
+			ac.at(i) = a.at(i)*c;	// ac
+			bd.at(i) = b.at(i)*d;	// bd
+			bc.at(i) = b.at(i)*c;	// bc
+			ad.at(i) = a.at(i)*d;	// ad
+
+			re.at(i) = ac.at(i) - bd.at(i);	// ac-bd REAL PART
+			im.at(i) = bc.at(i) + ad.at(i);	// bc+ad IMAG PART
+
+			for (int i = 0; i < re.size(); i++)
+			{
+				hilbertTransformed[i] = (re[i],im[i]);
+			}
+		}
+
+		if (i > process/2)
+		{
+			vector <double> a;
+			vector <double> b;
+			double c;
+			double d;
+			vector <double> ac;
+			vector <double> bd;
+			vector <double> bc;
+			vector <double> ad;
+			vector <double> re;
+			vector <double> im;
+
+			a.at(i) = inputSignalFreqencyDomain[i].real();
+			b.at(i) = inputSignalFreqencyDomain[i].imag();
+			c = imaginary.real();
+			d = imaginary.imag();
+
+			ac.at(i) = a.at(i)*c;	// ac
+			bd.at(i) = b.at(i)*d;	// bd
+			bc.at(i) = b.at(i)*c;	// bc
+			ad.at(i) = a.at(i)*d;	// ad
+
+			re.at(i) = ac.at(i) - bd.at(i);	// ac-bd REAL PART
+			im.at(i) = bc.at(i) + ad.at(i);	// bc+ad IMAG PART
+
+			for (int i = 0; i < re.size(); i++)
+			{
+				hilbertTransformed[i] = (re[i], im[i]);
+			}
+		}
+
+		if (i == 0)
+		{
+			hilbertTransformed[i] = (zero, zero);
 		}
 
 	}
 
+	vector<complex<double>> hilbertTransformedTD(hilbertTransformed.size());
+
+	
+	hilbertTransformedTD = transform(hilbertTransformed, 1);
 
 
 
+	for (int i = 0; i < process; i++)									// put the data using bufferput
+	{
+		t_real S9;
 	}
 
-	return true;*/
 
-}
+	return true;
+	}
 
 
 

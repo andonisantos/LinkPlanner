@@ -1,425 +1,293 @@
-
 \clearpage
-\section{Continuos Variable Quantum Transmission System}\label{sec:intro}
+\section{Continuous Variable QKD Transmission System}\label{sec:intro}
 
-Student Name: Daniel Pereira\\
+\begin{tcolorbox}	
+\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+\textbf{Student Name}  &:& Daniel Pereira (2017/05/01 - )\\
+\textbf{Goal}          &:& Simulation and experimental validation of a CV-QKD transmission system.\\
+\textbf{Directory}              &:& sdf/cv\_system  
+\end{tabular}
+\end{tcolorbox}
 
-Starting Date: May 1, 2017\\
-
-Goal: Simulation and experimental validation of a continuous variable transmission system.\\
-
-Description of the Laboratorial and Simulation Setup:
-
-
-Theoretical Description of the System:
-
-
-Laboratorial and Simulation Results:
-
-
-Discussion:
-
-In this section a continuous varible quantum transmission system is analyzed.
-The results here presented follow closely the~\cite{namiki2003security}.
-In~\cite{namiki2003security}, the security of a continuous variable quantum key distribution (CV-QKD) system is studied theoretically, here we complete that theoretical study with simulations results.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=.5\linewidth]{./sdf/cv_system/figures/constellation.png}
-\caption{State constellation}
-\label{fig:const}
-\end{figure}
-
-The state constellation used in the system is presented in Figure~\ref{fig:const}.
-The emitter (usually named Alice) is going to use two basis, the $45º$ base and the $-45º$ base.
-In the $45º$ base, Alice sends one of two values, $1$ and $-1$, which correspond to the states $\ket{\alpha}$ and $\ket{-\alpha}$.
-In the $-45º$ base, Alice can also send one of two values, $1$ and $-1$, which correspond to the states $\ket{-i\alpha}$ and $\ket{i\alpha}$.
-At the end Alice is going to send one of the four states $\ket{\alpha}$, $\ket{-\alpha}$, $\ket{-i\alpha}$, and $\ket{i\alpha}$, with equal probability.
-
-Because we don't know $\grave{a}$ prior which state is going be transmitted, neither which basis is going to be used, and to incorporate our ``ignorance"\, in the system description, we can work with the density operator. The density operator is a proper tool to describe ``statistical mixtures". A ``statistical mixtures" is one state, from a possible set, but we don't know which state it is. There is no state superposition.
-
-Since all states have the same probability of occurring, the state density operator is given by:
-
-\begin{equation}\label{eq:statedensity}
-\hat{\rho}=\frac{1}{4}\left(\ket{\alpha}\bra{\alpha}+\ket{-\alpha}\bra{-\alpha}+\ket{i\alpha}\bra{i\alpha}+\ket{-i\alpha}\bra{-i\alpha}\right).
-\end{equation}
-
-The probability to detect at the receiver the state $\ket{\alpha}$ is given by
-\begin{equation}\label{eq:statedensity}
-P(\alpha)=\bra{\alpha}\hat{\rho}\ket{\alpha}=\frac{1}{4}.
-\end{equation}
-
-
-Note that the density operator is equivalent to the wave function in terms of the system description.
-
-From the receiver perspective, i.e. from the Bob perspective, and after knowing the base used by Alice.
-The density operator can be reduce to,
-
-\begin{align}
-\hat{\rho}_1&=\frac{1}{2}\left(\ket{\alpha}\bra{\alpha}+\ket{-\alpha}\bra{-\alpha}\right),\label{eq:statedensity1} \\
-\hat{\rho}_2&=\frac{1}{2}\left(\ket{i\alpha}\bra{i\alpha}+\ket{-i\alpha}\bra{-i\alpha}\right).\label{eq:statedensity2}
-\end{align}
-
-where $1$ corresponds to the $45º$ base and $-1$ corresponds to $-45º$.
-
-\subsubsection*{Single Base Homodyne Detection}
-
-
-
-The probability of obtaining a quadrature $\hat{X}_\phi=\hat{X}_1\cos\phi+\hat{X}_2\sin\phi$ when measuring the coherent state $\ket{\alpha}$ is given by the following gaussian distribution:
-
-\begin{equation}
-\left|\braket{X_\phi|\alpha}\right|^2=\sqrt{\frac{2}{\pi}}e^{-2(X_\phi-\alpha\cos\phi)^2},
-\end{equation}
-
-We can define the "correct" and "wrong" basis measurement probability density, respectively, as:
-
-\begin{equation}\label{eq:probdensity}
-\bra{X_i}\hat{\rho}_j\ket{X_i}=
-\begin{cases}
-\frac{1}{\sqrt{2\pi}}\left(e^{-2(X_i-\alpha)^2}+e^{-2(X_i+\alpha)}\right), & i=j\\
-\sqrt{\frac{2}{\pi}}e^{-2X_i^2}, &i\neq j
-\end{cases}.
-\end{equation}
-
-The post selection efficiency (PSE) can be defined as the probability of a measurement in the correct basis yields a result that satisfies the limit value $X_0$:
-
-\begin{equation}\label{eq:postselecteff}
-\begin{aligned}
-P(X_0,\alpha)&=\int^{-X_0}_{-\infty}\bra{X_1}\hat{\rho}_1\ket{X_1}dX_1+\int^{\infty}_{X_0}\bra{X_1}\hat{\rho}_1\ket{X_1}dX_1\\
-&=\frac{1}{2}\left[\text{erfc}(\sqrt{2}(X_0+\alpha))+\text{erfc}(\sqrt{2}(X_0-\alpha))\right].
-\end{aligned}
-\end{equation}
-
-The bit error rate (BER) is the normalized probability of, after choosing the correct basis, obtaining the wrong bit value:
-
-\begin{equation}\label{eq:biterrorratio}
-Q(X_0,\alpha)=\frac{1}{P(X_0,\alpha)}\int_{-\infty}^{-X_0}\left|\braket{X_i|\alpha}\right|dX_i=\frac{\text{erfc}\left(\sqrt{2}(X_0+\alpha)\right)}{2P(X_0,n)}
-\end{equation}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth, trim= 0mm 60mm 0mm 70mm]{./sdf/cv_system/figures/singlehomodyne.pdf}
-\caption{BER and PSE in function of $\alpha$ for the single homodyne setup. $X_0=1$ was used}
-\label{fig:ber}
-\end{figure}
-
-
-
-\subsubsection*{Double Homodyne setup}
-
-In our proposed double homodyne protocol both quadratures are measured simultaneously, as such the concept of correct and wrong basis measurements has no value. Our protocol also makes use of a locally generated Local Oscillator (LO), obtained from a different laser than the one used to generate the signal, thus we have to take into account the phase drift between both lasers. High intensity reference pulses are sent periodically to allow for an estimation of the phase drift. The double homodyne setup requires the signal to be divided into the two utilized detectors, so each measurement is made on a coherent state with half the amplitude of the incoming signal $\alpha\rightarrow\frac{\alpha}{\sqrt{2}}$
+The aim of Continuous Variable Quantum Key Distribution (CV-QKD) is to encode information in observables whose measurements take continuous values.
 \par
-For each incoming pulse we measure quadratures $X_\phi$ and $Y_\phi$. $\phi$ has contributions from both the encoded angle, $\theta$, and the phase difference between lasers, $\epsilon$, we assume $\phi=\theta+\epsilon$. On the reference pulses no phase is encoded, that is $\theta=0$, thus $\epsilon$ can be estimated. Assuming $\epsilon$ doesn't change between a reference pulse and the following signal pulse, the measured quadratures can be cast into the originally sent quadratures $X_\theta$ and $Y_\theta$ via:
-\begin{equation}
-\begin{aligned}
-X_\theta&=X_\phi\cos\epsilon-Y_\phi\sin\epsilon\\
-Y_\theta&=X_\phi\sin\epsilon+Y_\phi\sin\epsilon
-\end{aligned}
-\end{equation}
-Assuming an announcement of the coding basis, the density operators~\eqref{eq:statedensity1} and~\eqref{eq:statedensity2} still apply. We can now define the probability density of obtaining results $X_\theta$ and $Y_\theta$, assuming a state in the $X_1$ base was sent, as:
-\begin{align}
-\braket{X_\theta|\hat{\rho}_1|X_\theta}&= \frac{\sqrt{\frac{2}{\pi}}}{4}\left(e^{-2\left(x_\theta-\frac{\alpha}{\sqrt{2}}\cos\theta\right)^2}+e^{-2\left(x_\theta+\frac{\alpha}{\sqrt{2}}\cos\theta\right)^2}\right),\\
-\braket{Y_\theta|\hat{\rho_1}|Y_\theta}&= \frac{\sqrt{\frac{2}{\pi}}}{4}\left(e^{-2\left(y_\theta-\frac{\alpha}{\sqrt{2}}\sin\theta\right)^2}+e^{-2\left(y_\theta+\frac{\alpha}{\sqrt{2}}\sin\theta\right)^2}\right).
-\end{align}
-\par
-Now each state needs to satisfy two limit values, $X_0$ and $Y_0$, to be accepted. Thus, the PSE is now defined as:
-\begin{equation}
-\begin{aligned}
-P_{DH}(X_0,Y_0,\alpha)&=\int^{-X_0}_{-\infty}\braket{X_\theta|\hat{\rho}_1|X_\theta}dx_\theta\int^{-Y_0}_{-\infty}\braket{Y_\theta|\hat{\rho}_1|Y_\theta}dy_\theta+\\
-&\int_{X_0}^{\infty}\braket{X_\theta|\hat{\rho}_1|X_\theta}dx_\theta\int_{Y_0}^{\infty}\braket{Y_\theta|\hat{\rho}_1|Y_\theta}dy_\theta\\
-&=\frac{1}{4}\left\lbrace\text{erfc}\left[\sqrt{2}\left(X_0-\frac{\alpha}{\sqrt{2}}\cos\theta\right)\right]+\text{erfc}\left[\sqrt{2}\left(X_0+\frac{\alpha}{\sqrt{2}}\cos\theta\right)\right]\right\rbrace\\
-&\left\lbrace\text{erfc}\left[\sqrt{2}\left(Y_0-\frac{\alpha}{\sqrt{2}}\sin\theta\right)\right]+\text{erfc}\left[\sqrt{2}\left(Y_0+\frac{\alpha}{\sqrt{2}}\sin\theta\right)\right]\right\rbrace,
-\end{aligned}
-\end{equation}
-The DH subscript denotes Double Homodyne. In a somewhat similar manner, the BER is now defined as:
-\begin{equation}\label{eq:adaptedBER}
-\begin{aligned}
-Q_{DH}(X_0,Y_0,\alpha)&=\frac{1}{P_{DH}}\left(\int^{-X_0}_{-\infty}\left|\braket{X_\theta|\frac{\alpha}{\sqrt{2}}}\right|^2dx_\theta\int^{-Y_0}_{-\infty}\left|\braket{Y_\theta|\frac{\alpha}{\sqrt{2}}}\right|^2dy_\theta+\right.\\
-&\left.\int_{X_0}^{\infty}\left|\braket{X_\theta|-\frac{\alpha}{\sqrt{2}}}\right|^2dx_\theta\int_{Y_0}^{\infty}\left|\braket{Y_\theta|-\frac{\alpha}{\sqrt{2}}}\right|^2dy_\theta\right)\\
-&=\frac{1}{2P_{DH}}\text{erfc}\left[\sqrt{2}\left(X_0+\frac{\alpha}{\sqrt{2}}\cos\theta\right)\right]\text{erfc}\left[\sqrt{2}\left(Y_0+\frac{\alpha}{\sqrt{2}}sin\theta\right)\right],
-\end{aligned}
-\end{equation}
-note that, in this definition for BER, only values $\theta\in\left[0,\frac{\pi}{2}\right]$ make sense (the sent state was $\alpha$).
+The purpose of this study is to analyse a CV-QKD transmission system in which the information is sent in the two orthogonal quadratures of a coherent state. 
 
+\subsection{Theoretical Analysis}
+
+In this section we describe in depth the Continuous Variables Quantum Key Distribution (\textbf{CV-QKD}) system analysed here. The CV-QKD  system enables two parties (Alice and Bob) to share a secret key to be employed in a symmetric encryption protocol. The following CV-QKD employs discrete modulation of coherent states, resulting in the Quadrature Phase Shift Keying (\textbf{QPSK}) constellation presented in Figure~\ref{fig:QPSKconst}.
 \begin{figure}[h]
 \centering
-\begin{subfigure}{.48\linewidth}
-\includegraphics[width=\linewidth, trim= 0mm 60mm 0mm 70mm]{doublehomodynePSE.pdf}
-\caption{PSE in function of $\alpha$ and $\theta$ for the double homodyne setup. $X_0=1$ was used}
-\end{subfigure}
-~
-\begin{subfigure}{.48\linewidth}
-\includegraphics[width=\linewidth, trim= 0mm 60mm 0mm 70mm]{doublehomodyneBER.pdf}
-\caption{BER in function of $\alpha$ and $\theta$ for the double homodyne setup. $X_0=1$ was used}
-\end{subfigure}
-\caption{Theoretical results for double homodyne setup.}
+\includegraphics[width=.4\linewidth]{QPSKconstellation.pdf}
+\caption{QPSK symbol constellation.}
+\label{fig:QPSKconst}
 \end{figure}
-
-\subsection*{Functional Description}
-
-Simplified diagrams of the systems being simulated are presented in Figures~\ref{fig:singleH}. and~\ref{fig:doubleH}. Two optical signals are generated, one with a constant power level of 10~dBm and the other with power in multiples of the power corresponding to a single photon per sampling time (6.4078e$\times10^{-13}$~W for a sampling time of 200~ns). The two signals are mixed, with a Balanced Beam Splitter in the single homodyne case and with a 90$^\text{o}$ Optical Hybrid in the double homodyne one, and are subsequently evaluated with recourse to Homodyne Receivers.
-
-\begin{figure}[h]
-\centering
-\begin{subfigure}{\linewidth}
-\includegraphics[width=\linewidth]{singlehomodyneSimuBlock.png}
-\caption{Single homodyne simulation block diagram.}
-\label{fig:singleH}
-\end{subfigure}
-\\
-~
-\\
-\begin{subfigure}{\linewidth}
-\includegraphics[width=\linewidth]{doublehomodyneSimuBlock.png}
-\caption{Double homodyne simulation block diagram.}
-\label{fig:doubleH}
-\end{subfigure}
-\caption{Block diagrams of both simulation results presented in this report.}
-\end{figure}
-
+The state to bit correspondence, agreed by Alice and Bob beforehand, also presented in Figure~\ref{fig:QPSKconst}, is as follows:
 \begin{table}[H]
 \centering
 \begin{tabular}{c|c}
-System Blocks          & netxpto Blocks       \\ \hline
-Local Oscillator       & LocalOscillator      \\
-Homodyne Receiver      & I\_HomodyneReceiver   \\
-Balanced Beam Splitter & BalancedBeamSplitter \\
-90$^\text{o}$ Optical Hybrid     & OpticalHybrid
+\textbf{State} & \textbf{Bit} \\ \hline
+$\ket{\alpha_0}=\ket{|\alpha|e^{i\frac{\pi}{4}}}$ & 11 \\
+$\ket{\alpha_1}=\ket{|\alpha|e^{i\frac{3\pi}{4}}}$ & 01 \\
+$\ket{\alpha_2}=\ket{|\alpha|e^{i\frac{5\pi}{4}}}$ & 10 \\
+$\ket{\alpha_3}=\ket{|\alpha|e^{i\frac{7\pi}{4}}}$ & 00 \\
 \end{tabular}
 \end{table}
-
-\pagebreak
-
-\subsection*{Theoretical study of the setup}
-
-A detailed diagram of the system studied is presented in Figure~\ref{fig:theoexpDia}, with the respective mathematical treatment presented in equations~\eqref{eq:1} through~\eqref{eq:20}.
-
-\begin{figure}
+A step by step description of the protocol now follows:
+\begin{enumerate}
+\item Alice generates a random bit string of length $2N$. Lets assume that $N=8$ and that the following random bit string of length $2N=16$ is generated:
+\begin{equation*}
+B_\text{A}=\lbrace1,~1,~0,~1,~1,~0,~0,~1,~1,~1,~0,~1,~0,~0,~1,~0\rbrace,
+\end{equation*}
+\item Next, Alice sends to Bob a sequence of $N$ quantum states based on the bit string $B_\text{A}$, according to the encoding presented before, resulting in the following state sequence:
+\begin{equation*}
+S_\text{A}=\lbrace\ket{\alpha_0},~\ket{\alpha_1},\ket{\alpha_2},~\ket{\alpha_1},~\ket{\alpha_0},~\ket{\alpha_1},~\ket{\alpha_3},~\ket{\alpha_2}\rbrace.
+\end{equation*}
+\item Bob measures both quadratures of the received states and obtains two results $I_i$ and $Q_i$, $i\in1,...,N$, corresponding to the in-phase and in-quadrature components, respectively, of the $i$-th coherent state. Bob's results $b$ are related to Alice's originally encoded states $a$ by:
+\begin{equation*}
+b=ta+z,
+\end{equation*}
+which are normal linear models parametrized by $t=\sqrt{\frac{T}{2}}$ and where $z$ are the total noise contribution following a normal distribution with null mean and variance $\sigma^2$. Alice's sent states $a$ are a Bernoulli random variable taking the values $\pm\sqrt{2}|\alpha|$. 
+\item Bob shares a subset of $k$ measurement results with Alice, who uses the previous linear relations to estimate the transmission channel parameters as follows:
+\begin{equation*}
+\tilde{t}=\frac{\sum^k_{i=1}b_ia_i}{\sum^k_{i=1}a_i^2},~\tilde{\sigma}^2=\frac{1}{k}\sum^k_{i=1}(b_i-\tilde{t}a_i)^2
+\end{equation*}
+These values are used to evaluate the key's security. If it is deemed not to be secure, the protocol is aborted, otherwise it continues as follows.
+\item Bob attributes each measurement result to the closest corresponding possible state sent Alice, taking the considered QPSK constellation this corresponds to:
+\begin{table}[H]
 \centering
-\includegraphics[width=.6\linewidth]{finalsystemdiagram.pdf}
-\caption{Simplified diagram of experimental setup.}
-\label{fig:theoexpDia}
-\end{figure}
+\begin{tabular}{c|c}
+\textbf{Measurement} & \textbf{Decoded state} \\ \hline
+$I_i>0~\&~Q_i>0$ & $\ket{\alpha_0}$ \\
+$I_i<0~\&~Q_i>0$ & $\ket{\alpha_1}$ \\
+$I_i<0~\&~Q_i<0$ & $\ket{\alpha_2}$ \\
+$I_i>0~\&~Q_i<0$ & $\ket{\alpha_3}$
+\end{tabular}
+\end{table}
+and builds a bit string according to both the measurement results and the previously agreed upon state to bit correspondence. Lets assume that Bob builds the following decoded state sequence:
+\begin{equation*}
+S_\text{B}=\lbrace\ket{\alpha_0},~\underline{\ket{\alpha_0}},\ket{\alpha_2},~\ket{\alpha_1},~\ket{\alpha_0},~\underline{\ket{\alpha_2}},~\underline{\ket{\alpha_2}},~\ket{\alpha_2}\rbrace,
+\end{equation*}
+with the corresponding bit string:
+\begin{equation*}
+B_\text{B}=\lbrace1,~1,~\underline{1},~1,~1,~0,~0,~1,~1,~1,~\underline{1},~\underline{0},~\underline{1},~0,~1,~0\rbrace.
+\end{equation*}
+The mistakes in both the bit string and state sequence are underlined.
+\end{enumerate}
 
-\begin{equation}\label{eq:1}
-E_1=|E_S|e^{i\left(\omega_St+\xi_S(t)\right)}
-\end{equation}
-\begin{equation}\label{eq:2}
-p(t)=
-\begin{cases}
-1,~\frac{T}{8}\leq t<\frac{T}{8}\\
-0,~\text{other}
-\end{cases}
-\end{equation}
-\begin{equation}\label{eq:3}
-E_2=p(t)|E_S|e^{i\left(\omega_St+\xi_S(t)\right)}
-\end{equation}
-\begin{equation}\label{eq:4}
-E_{S1}=\frac{p(t)}{\sqrt{2}}|E_S|e^{i\left(\omega_St+\xi_S(t)\right)}
-\end{equation}
-\begin{equation}\label{eq:5}
-E_{S2}=\frac{p(t)}{\sqrt{2}}|E_S|e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}
-\end{equation}
-\begin{equation}\label{eq:6}
-E_{S3}=\frac{p(t)}{\sqrt{2}\text{Att}}|E_S|e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}
-\end{equation}
-\begin{equation}\label{eq:7}
-E_{R1}=\frac{p(t)}{\sqrt{2}}|E_S|e^{i\left(\omega_St+\xi_S(t)\right)}
-\end{equation}
-\begin{equation}\label{eq:8}
-E_{R2}=\frac{p(t-\frac{T}{2})}{\sqrt{2}}|E_S|e^{i\left(\omega_S(t-\frac{T}{2})+\xi_S(t-\frac{T}{2})\right)}
-\end{equation}
-\begin{equation}\label{eq:9}
-E_{SR}=\frac{|E_S|}{\sqrt{2}}\left[\frac{p(t)}{\text{Att}}e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]
-\end{equation}
-\begin{equation}\label{eq:10}
-E_{SR1}=\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]
-\end{equation}
-\begin{equation}\label{eq:11}
-E_{SR2}=\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i\left(\omega_St+\phi_{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)\right)}+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]
-\end{equation}
-\begin{equation}\label{eq:12}
-E_L(t)=|E_L|e^{i\left(\omega_Lt+\xi_L(t)\right)}
-\end{equation}
-\begin{equation}\label{eq:13}
-E_{LP}(t)=\frac{1}{\sqrt{2}}|E_L|e^{i\left(\omega_Lt+\xi_L(t)\right)}
-\end{equation}
-\begin{equation}\label{eq:14}
-E_{LQ}(t)=\frac{1}{\sqrt{2}}|E_L|e^{i\left(\omega_Lt+\xi_L(t)+\frac{\pi}{2}\right)}
-\end{equation}
-\begin{multline}\label{eq:15}
-E_{P1}(t)=\frac{1}{\sqrt{2}}\left\lbrace\frac{|E_L|}{\sqrt{2}}e^{i\left(\omega_Lt+\xi_L(t)\right)}+\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i(\omega_St+\phi_{IQ}t+\xi_S(t)+\xi_{IQ}(t))}\right.\right.\\
-\left.\left.+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]\right\rbrace
-\end{multline}
-\begin{multline}\label{eq:16}
-E_{P2}(t)=\frac{1}{\sqrt{2}}\left\lbrace\frac{|E_L|}{\sqrt{2}}e^{i\left(\omega_Lt+\xi_L(t)\right)}-\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i(\omega_St+\phi_{IQ}t+\xi_S(t)+\xi_{IQ}(t))}\right.\right.\\
-\left.\left.+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]\right\rbrace
-\end{multline}
-\begin{multline}\label{eq:17}
-E_{Q1}(t)=\frac{1}{\sqrt{2}}\left\lbrace\frac{|E_L|}{\sqrt{2}}e^{i\left(\omega_Lt+\xi_L(t)+\frac{\pi}{2}\right)}+\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i(\omega_St+\phi_{IQ}t+\xi_S(t)+\xi_{IQ}(t))}\right.\right.\\
-\left.\left.+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]\right\rbrace
-\end{multline}
-\begin{multline}\label{eq:18}
-E_{Q2}(t)=\frac{1}{\sqrt{2}}\left\lbrace\frac{|E_L|}{\sqrt{2}}e^{i\left(\omega_Lt+\xi_L(t)+\frac{\pi}{2}\right)}-\frac{|E_S|}{2}\left[\frac{p(t)}{\text{Att}}e^{i(\omega_St+\phi_{IQ}t+\xi_S(t)+\xi_{IQ}(t))}\right.\right.\\
-\left.\left.+p\left(t-\frac{T}{2}\right)e^{i\left(\omega_S\left(t-\frac{T}{2}\right)+\xi_S\left(t-\frac{T}{2}\right)\right)}\right]\right\rbrace
-\end{multline}
-\begin{multline}\label{eq:19}
-I_P(t)=\frac{|E_S||E_L|}{\sqrt{2}}\left\lbrace\frac{p(t)}{\text{Att}}\cos((\omega_S-\omega_L)t+\phi{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)-\xi_L(t))\right.\\
-\left.+p\left(t-\frac{T}{2}\right)\cos\left((\omega_S-\omega_L)t+\omega_S\frac{T}{2}+\xi_S\left(t-\frac{T}{2}\right)-\xi_L(t)\right)\right\rbrace
-\end{multline}
-\begin{multline}\label{eq:20}
-I_Q(t)=\frac{|E_S||E_L|}{\sqrt{2}}\left\lbrace\frac{p(t)}{\text{Att}}\sin((\omega_S-\omega_L)t+\phi{IQ}(t)+\xi_S(t)+\xi_{IQ}(t)-\xi_L(t))\right.\\
-\left.+p\left(t-\frac{T}{2}\right)\sin\left((\omega_S-\omega_L)t+\omega_S\frac{T}{2}+\xi_S\left(t-\frac{T}{2}\right)-\xi_L(t)\right)\right\rbrace
-\end{multline}
 
-\subsection*{Experimental description}
 
-The main experimental setup utilized for the study presented in this document is presented in Figure~\ref{fig:expDia}.
+%The security of QKD is a complex topic to tackle, given the difficulty of proving the non-existence of an attack that cracks a protocol's security. This topic is usually approached by analysing various eavesdropping strategies and evaluating their effects on the key rate referenced in~\eqref{eq:keyrateperfect}. Information between Alice and Bob needs to be shared with current existing technology, so their shared information is always classical and Shannon's formalism is enough to describe it. However, Eve has no such restriction, so the information she has on Bob's results needs to be described according to the quantum properties of the system. 
+
+\subsection{Simulation Analysis}
+
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth, trim={0cm 2.5cm 0cm 3cm}, clip=true]{withtrace.pdf}
-\caption{Diagram of full experimental setup.}
-\label{fig:expDia}
+%left bottom right top
+\includegraphics[width=\linewidth]{diagramSIMU.pdf}
+\caption{Overview of the CV-QKD system being simulated.}
+\label{fig:CV-System}
 \end{figure}
-The setup contained two Yenista OSICS Band C/AG TLS lasers, tuned to a 1550~nm wavelength. A JDSU dual drive Mach-Zehnder Modulator with a Picosecond 5865 RF driver, employed at the output of one of the lasers, set the repetition rate at 1~GHz with a pulse time of 125~ps. The driving signal was generated by an Agilent Technologies BER Tester. A 50/50 beam-splitter was employed at the output of the Mach-Zehnder Modulator, one arm output is sent through an IQ Modulator while the other is sent through a fibre loop with length chosen such that the two arms have a relative delay of $\sim$500~ps. The employed IQ Modulator was a u2t photonics 32~GHz IQ Modulator with a SHF 807 RF driver, the driving signal being generated by a Tektronix AWG70002A Arbitrary Waveform Generator (AWG). A Variable Optical Attenuator (VOA) was set at the output of the IQ modulator to allow a fine tuning of the optical power to the desired level. The two arms output created by the first beam-splitter are combined by a 50/50 beam combiner. A fibre channel of $\sim10$~km was set between Alice's and Bob's setup. A Picometrix CR-100D 100G Integrated Balanced Receiver for Coherent Applications was employed to perform double homodyne measurements, recovering both the in-phase and in-quadrature components of the incoming light field. The response of the receiver was recorded by a Tektronix DPO77002SX-R3 oscilloscope, with an acquisition frequency of 100~GHz for a period of 400~$\mu$s.
-
-\subsubsection*{Experimental results}
 
 \subsection*{Required files}\label{Required files}
 
-Header Files
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
+\begin{tabulary}{1.0\textwidth}{|p{6cm}|p{8cm}|p{1cm}|}
 \hline
-\textbf{File}              & \textbf{Description} 				            \\ \hline
-netxpto.h                  & Generic purpose simulator definitions.	        \\ \hline
-local\_oscillator.h        & Generates continuous coherent signal.            \\ \hline
-balanced\_beam\_splitter.h & Mixes the two input signals into two outputs.    \\ \hline
-optical\_hybrid.h          & Mixes the two input signals into four outputs.   \\ \hline
-homodyne\_reciever.h       & Performs coherent detection on the input signal. \\ \hline
-sink.h                     & Closes any unused signals.                       \\ \hline
+\multicolumn{3}{|c|}{ \textbf{Header Files} } \\
+\hline
+\textbf{File}                    & \textbf{Comments} & \textbf{Status} \\ \hline
+add.h                            &                   & \checkmark \\ \hline
+binary\_source.h                 &                   & \checkmark \\ \hline
+discrete\_to\_continuous\_time.h &                   & \checkmark \\ \hline
+i\_homodyne\_reciever.h          &                   & \checkmark \\ \hline
+ideal\_amplififer.h              &                   & \checkmark \\ \hline
+iq\_modulator.h                  &                   & \checkmark \\ \hline
+local\_oscillator.h              &                   & \checkmark \\ \hline
+m\_qam\_mapper.h                 &                   & \checkmark \\ \hline
+m\_qam\_transmitter.h            &                   & \checkmark \\ \hline
+netxpto.h                        &                   & \checkmark \\ \hline
+optical\_hybrid.h                &                   & \checkmark \\ \hline
+photodiode.h                     &                   & \checkmark \\ \hline
+pulse\_shaper.h                  &                   & \checkmark \\ \hline
+sampler.h                        &                   & \checkmark \\ \hline
+sink.h                           &                   & \checkmark \\ \hline
+super\_block\_interface.h        &                   & \checkmark \\ \hline
+white\_noise.h                   &                   & \checkmark \\ \hline
 \end{tabulary}
-\end{table}
+\end{table}		
 %
-Source Files
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|L|L|}
+\begin{tabulary}{1.0\textwidth}{|p{6cm}|p{8cm}|p{1cm}|}
 \hline
-\textbf{File}                & \textbf{Description} 					          \\ \hline
-netxpto.cpp                  & Generic purpose simulator definitions.	          \\ \hline
-local\_oscillator.cpp        & Generates continuous coherent signal.            \\ \hline
-balanced\_beam\_splitter.cpp & Mixes the two input signals into two outputs.    \\ \hline
-optical\_hybrid.cpp          & Mixes the two input signals into four outputs.   \\ \hline
-homodyne\_reciever.cpp       & Performs coherent detection on the input signal. \\ \hline
-sink.cpp                     & Closes any unused signals.                       \\ \hline
+\multicolumn{3}{|c|}{ \textbf{Source Files} } \\
+\hline
+\textbf{File}                      & \textbf{Comments} & \textbf{Status} \\ \hline
+add.cpp                            &                   & \checkmark \\ \hline
+binary\_source.cpp                 &                   & \checkmark \\ \hline
+discrete\_to\_continuous\_time.cpp &                   & \checkmark \\ \hline
+i\_homodyne\_reciever.cpp          &                   & \checkmark \\ \hline
+ideal\_amplififer.cpp              &                   & \checkmark \\ \hline
+iq\_modulator.cpp                  &                   & \checkmark \\ \hline
+local\_oscillator.cpp              &                   & \checkmark \\ \hline
+m\_qam\_mapper.cpp                 &                   & \checkmark \\ \hline
+m\_qam\_transmitter.cpp            &                   & \checkmark \\ \hline
+netxpto.cpp                        &                   & \checkmark \\ \hline
+optical\_hybrid.cpp                &                   & \checkmark \\ \hline
+photodiode.cpp                     &                   & \checkmark \\ \hline
+pulse\_shaper.cpp                  &                   & \checkmark \\ \hline
+sampler.cpp                        &                   & \checkmark \\ \hline
+sink.cpp                           &                   & \checkmark \\ \hline
+super\_block\_interface.cpp        &                   & \checkmark \\ \hline
+white\_noise.cpp                   &                   & \checkmark \\ \hline
 \end{tabulary}
-\end{table}
-
+\end{table}		
 
 \subsection*{System Input Parameters}
 
 This system takes into account the following input parameters:
+
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|C|C|}
+\begin{tabulary}{1.0\textwidth}{|p{6cm}|p{4cm}|p{5cm}|}
 \hline
-\textbf{System Parameters} & \textbf{Description}                                                                   \\ \hline
-numberOfBitsGenerated      & Gives the number of bits to be simulated                                               \\ \hline
-bitPeriod                  & Sets the time between adjacent bits                                                    \\ \hline
-samplesPerSymbol           & Establishes the number of samples each bit in the string is given                      \\ \hline
-localOscillatorPower\_dBm1 & Sets the optical power, in units of dBm, at the reference output	                      \\ \hline
-localOscillatorPower2      & Sets the optical power, in units of W, of the signal                                   \\ \hline
-localOscillatorPhase1      & Sets the initial phase of the local oscillator used for reference                      \\ \hline
-localOscillatorPhase2      & Sets the initial phase of the local oscillator used for signal                         \\ \hline
-transferMatrix             & Sets the transfer matrix of the beam splitter used in the homodyne detector            \\ \hline
-responsivity               & Sets the responsivity of the photodiodes used in the homodyne detector                 \\ \hline
-amplification              & Sets the amplification of the trans-impedance amplifier used in the homodyne detector  \\ \hline
-electricalNoiseAmplitude   & Sets the amplitude of the gaussian thermal noise added in the homodyne detector        \\ \hline
-shotNoise                  & Chooses if quantum shot noise is used in the simulation                                \\ \hline
+\multicolumn{3}{|c|}{ \textbf{System Input Parameters} } \\
+\hline
+\textbf{Parameter}     & \textbf{Default Value}                                     & \textbf{Comments} \\ \hline
+numberOfBitsGenerated  & $40000$	                                                   &                     \\ \hline
+bitPeriod              & $20\times10^{-12}$                                         &\\ \hline
+samplesPerSymbol       & $16$                                                       &\\ \hline
+pLength                & $5$                                                        &\\ \hline
+iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ & \\ \hline
+outOpticalPower\_dBm   & Variable                                                   & Value varied for presented study\\ \hline
+loOutOpticalPower\_dBm & $0$                                                        & \\ \hline
+localOscillatorPhase   & $0$                                                        & \\ \hline
+transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
+responsivity           & $1$                                                        & \\ \hline
+amplification          & $10^3$                                                     & \\ \hline
+noiseSpectralDensity   & $5\times10^{-4}\sqrt{2}$~V$^2$                             & \\ \hline
+confidence             & $0.95$                                                     & \\ \hline
+midReportSize          & $0$                                                        & \\ \hline
 \end{tabulary}
 \end{table}		
 
 \subsection*{Inputs}
 
 This system takes no inputs.
-%
+
 \subsection*{Outputs}
 
-The single homodyne system outputs the following objects:
+This system outputs the following objects:
 \begin{itemize}
 \item Signals:
 \begin{itemize}
-\item Local Oscillator Optical Reference; (S$_{1}$)
-\item Local Oscillator Optical Signal; (S$_{2}$)
-\item Beam Splitter Outputs; (S$_{3}$, S$_{4}$)
-\item Homodyne Detector Electrical Output; (S$_{5}$)
-\end{itemize}
-\end{itemize}
-\par
-The double homodyne system outputs the following objects:
-\begin{itemize}
-\item Signals:
-\begin{itemize}
-\item Local Oscillator Optical Reference; (S$_{1}$)
+\item Optical Signal with coded Binary String; (S$_{1}$)
 \item Local Oscillator Optical Signal; (S$_{2}$)
 \item 90$^\text{o}$ Optical Hybrid Outputs; (S$_{3}$, S$_{4}$, S$_{5}$, S$_{6}$)
-\item Homodyne Detector Electrical Output; (S$_{7}$)
+\item Homodyne Detectors' Electrical Output; (S$_{7}$, S$_{8}$)
+\item Sampled Signals; (S$_{9}$, S$_{10}$)
 \end{itemize}
-\end{itemize}		
+\end{itemize}
 
-\subsection*{Simulation Results}
-\subsubsection*{Single homodyne results}\label{subsec:SHresults}
 
-The numerical results presented in Figure~\ref{fig:directber} were obtained with the simulation described by the block diagram in Figure~\ref{fig:singleH}. Theoretical results are a direct trace of~\eqref{eq:biterrorratio}. One can see that the numerical results adhere quite well to the expected curve.
+\subsection{Experimental Analysis}
 
-\begin{figure}[h]
+The main experimental setup used is presented in Figure~\ref{fig:expDia}.
+\begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth, trim= 0mm 60mm 0mm 70mm]{directBER.pdf}
-\caption{BER in function of $\alpha$ for the single homodyne setup. $X_0=0$ was used}
-\label{fig:directber}
+\includegraphics[width=\linewidth, trim={0cm 0cm 0cm 0cm}, clip=true]{diagram_BW_CV_EXP.pdf}
+\caption{Diagram of full experimental setup.}
+\label{fig:expDia}
 \end{figure}
+The setup contained one Yenista OSICS Band C/AG TLS lasers, tuned to a 1550~nm wavelength, followed by a 50/50 beam-splitter, generating two different optical signals. A Mach-Zehnder Modulator, employed at one of the outputs of the beam-splitter and acting as an amplitude modulator, set the repetition rate at 1~MHz with a pulse time of 100~ns. This amplitude modulated light field is dubbed the Signal (\textbf{SI}) laser. The driving signal was generated by an Agilent Technologies BER Tester. A 50/50 beam-splitter was employed at the output of the Mach-Zehnder Modulator, one arm output is sent through an IQ Modulator while the other is sent through a fibre loop with length chosen such that the two arms have a relative delay of roughly 500~ns. The employed IQ Modulator was a u2t Photonics 32~GHz IQ Modulator, the driving signal being generated by a Tektronix AWG70002A Arbitrary Waveform Generator (\textbf{AWG}). A 15~dB attenuator followed by a Variable Optical Attenuator (\textbf{VOA}) was set at the output of the IQ modulator to allow a fine tuning of the phase modulated signal's optical power to the desired level. The two arms created by the first beam-splitter are combined by a 50/50 beam combiner. 
+\par
+The second output of the first beam-splitter in Figure~\ref{fig:expDia} was sent through a VOA to a Kylia 90$^\circ$ Optical Hybrid, where it is mixed with the SI laser before being sent to two Thorlabs PDB450C Balanced Homodyne Detectors, set to an amplification factor of 10$^5$, corresponding to a bandwidth of 4~MHz. This detection setup recovers both the in-phase and in-quadrature components of the incoming light field. The response of the receiver was recorded by a Tektronix DPO77002SX-R3 oscilloscope, with an acquisition frequency of 100~GHz for a period of 400~\textmu{s}.
+\par
+The driving signal implemented on the AWG was generated by a short Matlab code that generated a Pseudo Random Bit Sequence (\textbf{PRBS}) with length $2^{17}$ preceded by a deterministic tram of length 32896 taking the form $1001110000(...)$.
 
-\subsubsection*{Double homodyne results}\label{subsec:DHresults}
+\subsubsection{Output Data Processing}
 
-The numerical results presented in Figure~\ref{fig:adaptedber} were obtained with the simulation described by the block diagram in Figure~\ref{fig:doubleH}. Theoretical results are a direct trace of~\eqref{eq:adaptedBER} with $\theta=\frac{\pi}{4}$. One can see that the numerical results adhere quite well to the expected curve.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth, trim= 0mm 60mm 0mm 70mm]{adaptedBER.pdf}
-\caption{BER in function of $\alpha$ for the double homodyne setup. $X_0=0$ was used}
-\label{fig:adaptedber}
-\end{figure}
-
-%\section{Block Description}
-%
-%\subsection{Homodyne Receiver}
-%\subfile{./lib/i_homodyne_receiver}
-%
-%\subsection{Local Oscillator}
-%\subfile{./lib/localoscillator}
-%
-%\subsection{Beam Splitter}
-%\subfile{./lib/beamsplitter}
-%
-%\subsection{90$^\text{o}$ Optical Hybrid}
-%
-%\subsection{Photodiode}
-%\subfile{./lib/photodiode}
-%
-%\subsection{Amplifier}
-%\subfile{./lib/ideal_amplifier}
-%
-%\subsection{Electrical Filter}
-%\subfile{./lib/pulse_shaper}
-
-\subsection*{Known Problems}
+A Matlab algorithm was developed to allow for the post-processing of the recorded experimental data. The code works as follows:
 \begin{enumerate}
-    \item Homodyne Super-Block not functioning
+\item Loads the data into the Matlab workspace.
+\item Generates a persistence figure isolating every information-reference pulse pair for easier post-processing (see Figure~\ref{fig:persistence1}), with the reference and signal pulses being visible, in the time ranges $\sim[0.1,0.2]\times10^{-9}~$s and $\sim[0.7,0.8]\times10^{-9}~$s respectively.
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.45\linewidth}
+\includegraphics[width=\linewidth, trim={3cm 9cm 3cm 9.5cm}, clip=true]{persistence1.pdf}
+\caption{}
+\label{fig:persistence1}
+\end{subfigure}
+~
+\begin{subfigure}{.45\linewidth}
+\includegraphics[width=\linewidth, trim={3cm 9cm 3cm 9.5cm}, clip=true]{persistence2.pdf}
+\caption{}
+\label{fig:persistence2}
+\end{subfigure}
+\caption{Persistence of 1000 pairs of information and reference pulses before~(a) and after~(b) low frequency noise removal.}
+\label{fig:persistence}
+\end{figure}
+\item Removes low frequency noise by computing the average voltage value on an area outside the pulses for each persistence pair and subtracting that value from the full pair. The effect of this noise removal is noticeable in Figure~\ref{fig:persistence2}, notice the noise amplitude in the time range $\sim[0.3,0.6]\times10^{-9}~$s.
+\item Selects the points inside the pulses, the following steps are performed only on these selected points.
+\item Orthogonalizes the data by implementing a recursive Gram-Schmidt orthogonolazitation algorithm, adapted from the method presented in~\cite{huang2001recursive}. The correlation $r_{IQ}$ between the in-phase and in-quadrature points of the reference pulses is calculated, this correlation is then used to weigh the amount of the in-phase contribution that is subtracted from the in-quadrature element for both the signal and reference pulses. For $i\geq2$ this algorithm takes the form:
+\begin{equation}
+\begin{cases}
+r_{IQ}(i)=r_{IQ}(i-1)+p\left(\text{Q}_r(i-1)\text{I}_r(i-1)-r_{IQ}(i-1)\right)\\
+\text{Q}_{ro}(i)=\text{Q}_r(i)-r_{IQ}(i)\text{I}_r(i)\\
+\text{Q}_{so}(i)=\text{Q}_s(i)-r_{IQ}(i)\text{I}_s(i)\\
+\end{cases},
+\end{equation}
+with I$_r$/I$_s$ being the in-phase components of the reference/signal pulses, which are maintained, Q$_{r}$/Q$_{s}$ are the initial in-quadrature components of the reference/signal pulses, while Q$_{ro}$/Q$_{so}$ are the in-quadrature components of the of the reference/signal pulses after removal of the in-phase contribution. For $i=1$, $r_{IQ}$ was set at 0 and $p$ is a small number that we have chosen to be $10^{-3}$. The effect of this orthogonalization procedure is presented graphically in Figure~\ref{fig:orthogonalization}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=.2\linewidth]{orthogonalization.pdf}
+\caption{Visual representation of the employed axis orthogonalization.}
+\label{fig:orthogonalization}
+\end{figure}
+This algorithm is applied on the reference pulses. Before this step the constellation consists of an ellipse with a small eccentricity, while after application of the algorithm the constellation becomes a circle, removing the detector imbalances. This algorithm is implemented only on the reference pulses because of the extremely low Signal to Noise Ratio (\textbf{SNR}) of the signal pulses while working at quantum levels. This algorithm has a short convergence time, rendering the first bits (numbering roughly $10^4$) unusable.
+\item Removes the phase difference between the signal and local oscillator lasers, see Figure~\ref{fig:driftCompens}, where it is clear that the constellation presented in Figure~\ref{fig:phasedriftA} is a dragging rotation of the constellation in Figure~\ref{fig:phasedriftB}. The compensation of the phase difference between the signal and local oscillator is accomplished by measuring the phase of the reference pulses in relation to the local oscillator, this phase difference is then subtracted from the phase measured from the signal pulses. This is accomplished by multiplying the signal constellation with the conjugate of the normalized reference constellation. It is visible that the constellation before the phase drift compensation is a dragging rotation of the QPSK constellation obtained afterwards.
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.45\linewidth}
+\includegraphics[width=\linewidth, trim={3cm 9cm 3cm 9.5cm}, clip=true]{doubleBTBSNUBefPhasDriftComp.pdf}
+\caption{}
+\label{fig:phasedriftA}
+\end{subfigure}
+~
+\begin{subfigure}{.45\linewidth}
+\includegraphics[width=\linewidth, trim={3cm 9cm 3cm 9.5cm}, clip=true]{doubleBTBSNU.pdf}
+\caption{}
+\label{fig:phasedriftB}
+\end{subfigure}
+\caption{Signal constellation before (a) and after (b) phase difference compensation.}
+\label{fig:driftCompens}
+\end{figure}
+\item Ranges the start of the PRBS sequence via detection of the deterministic tram mentioned above.
+\item Corrects rotations of the constellation via minimization of the error of the deterministic tram. Given the laser's central frequency fluctuations, this rotation should be compensated at regular intervals during transmission.
+\item Converts the signal constellation to shot noise units.
+\item Estimates the secret key rate obtained from the recovered bit string.
 \end{enumerate}
+\par
+Figure~\ref{fig:recConst} presents the recovered constellations for single and double laser setups at high levels of signal power ($\sim$200 photons per pulse on average). The expected output would be a \textit{square} four state constellation, while the observed results show a clear skew on the recovered constellation. We conclude this is due to imbalances on the modulation stage, this is the reason why this imbalance appears in both the single and double laser schemes. These imbalances are to be expected and in classical communications they would be compensated by applying an orthogonalization method on the data, this is not an option for our setup because at quantum levels the signal to noise ratio is so low that such methods are not efficient.
+%COMMENT THE BER AND THE CONSTELLATION SKEW, PIVOT TO QUANTUM LEVEL AND SAY WE NEED TO START BY PERFORMING SHOT NOISE CHARACTERIZATION.
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.45\linewidth}
+\includegraphics[width=\linewidth, trim={3cm 9cm 3cm 9.5cm}, clip=true]{singleBTBSNU.pdf}
+\caption{}
+\end{subfigure}
+~
+\begin{subfigure}{.45\linewidth}
+\includegraphics[width=\linewidth, trim={3cm 9cm 3cm 9.5cm}, clip=true]{doubleBTBSNU.pdf}
+\caption{}
+\end{subfigure}
+\caption{Final constellation for single (a) and double (b) laser setups.}
+\label{fig:recConst}
+\end{figure}
 
+\subsection{Comparative Analysis}
 
 \bibliographystyle{unsrt}
  

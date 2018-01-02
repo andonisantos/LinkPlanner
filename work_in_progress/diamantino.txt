@@ -1,22 +1,156 @@
-2017-10-31
+﻿2017-12-19
 TO BE DONE
-        Apresenta��o
-		- preparar apresenta��o, reuni�o de grupo (doc/sdf/ot_with_discrete_variables/slides)
+	sdf/
+		quantum noise para Optical Detection (optical_detection)
 
-	Simula��o
-		- criar o bloco real_to_complex, e inserir na simula��o
+	fazer as figuras
+		direct detection, no optical local oscillator (DONE)
+		homodyne detection, single quadratura (DONE, almost)
+		homodyne detection, double quadratura
+		double polarization, homodyne detection, double quadratura
+		heterodyne detection, single quadratura
+		heterodyne detection, double quadratura
+		double polarization, heterodyne detection, double quadratura
+
+	criar uma secção relativa ao detetor da Thorlabs tendo por base o datasheet na parte experimental
+		
+2017-12-12
+TO BE DONE
+	trocar o nome no doc/tex/sdf e no sdf/
+		quantum noise para Optical Detection (optical_detection)
+
+
+	colocar as figuras no sitio correto e criar duas secções para cada esquema de deteção
+		descrição clássica
+		descrição quântica
+
+	fazer as figuras para todos os esquemas de deteção
+
+	inserir as bibliografias por capítulo em diferentes ficheiros *.bib
+
+	criar uma secção relativa ao detetor da Thorlabs na parte experimental, para começar a sua caraterização
+		secção 1, idenficar os parametros relevantes para a sua modelação
+		secção 2, obter valores para estes parametros tendo por base o datasheet do dispositivo
+		secção 3, obter os valores através de ensaios experimentais (trabalho futuro)
+
+
+
+2017-11-28
+TO BE DONE
+	inserir bibliohrafia no capitulo tendo por base o ficheiro quantum_noise.bib
+	colocar as referências todos no final
+
+	figuras para todos os tipos de deteção
+		single field and single polarization detection
+			acrescentar um polarizador linear (está feito)
+		homodyne detection
+			acrescentar referência à frequência
+		heterodyne detection
+			falta fazer
+		balanced homodyne dectection
+			falta fazer
+		balanced heterodyne dectection
+			falta fazer
+		IQ balanced homodyne dectection
+			falta fazer
+		IQ balanced heterodyne dectection
+			falta fazer
+		
+	criar uma secção relativa ao detetor da Thorlabs na parte experimental, para começar a sua caraterização
+		- responsividade do pin1 e do pin2
+		- ganho do meu amplificar OPAMP
+		- largura de banda
+		- formado filtro, espectro do filtro		
+		- ruído térmico, no braço superior, no braço intermédio e no braço inferior
+		
+		- esclarecer a diferença entre o TIA e o OPAMP
+
+
+
+
+2017-11-28
+TO BE DONE
+	solução para incluir a bibliografia em casa capítulo
+
+	criar uma secção relativa ao detetor da Thorlabs na parte experimental, para começar a sua caraterização
+		- responsividade
+		- ganho do meu amplificar OPAMP
+		- ruído térmico
+		- largura de banda
+		- formado filtro, espectro do filtro
+
+	uma figura + texto para o single field detection
+	uma figura + texto para o homodyne detection
+
+	ler e verificar a teoria para o single field detection e colocar texto 
+
+Next meeting: 5/12/2017, 14h
+
+2017-11-22
+TO BE DONE
+	setup experimental single homodine detection
+		detalhar o setup experimental
+		descrever os sinais retirados do osciloscópio
+		detalhar a análise de dados
+		mostrar os resultados finais
+
+Next Meeting: 28/11, 14h
+
+2017-11-16
+TO BE DONE
+	- tornar consistente a teoria com a simulação e com a parte experimental;
+	- fixar o setup experimental (usar uma referência), adaptar a teoria e a simulação a parte experimental;
+
+	setup experimental
+		montar o setup experimental, e detalhar na apresentação
+
+Next Meeting: quarta-feira, 22/11, 14h30m
+
+
+2017-11-09
+TO BE DONE
+	- tornar consistente a teoria com a simulação e com a parte experimental;
+	- fixar o setup experimental (usar uma referência), adaptar a teoria e a simulação a parte experimental;
+
+	setup experimental
+		montar o setup experimental, e detalhar na apresentação
+
+2017-11-07
+TO BE DONE
+        Apresentação
+		- finalizar
+
+	Simulação
+		- criar o bloco real_to_complex, e inserir na simulação
 		- inserir o Ti Amplifier + Filtro
-		- verificar valores da constela��o sem ru�do (de forma quantitativa, corrente = pot�ncia �tica)
-		- incluir na simulation results, os resultados sem ru�do
+		- verificar valores da constelação sem ruído (de forma quantitativa, corrente = potência ótica)
+		- incluir na simulation results, os resultados sem ruído
 
 	Setup experimental
-		- incluir a descri��o do setup experimental
+		- incluir a descrição do setup experimental
+		
+
+next meeting: quinta-feira, 9/11, 9h
+
+2017-10-31
+TO BE DONE
+        Apresentação
+		- preparar apresentação, reunião de grupo (doc/sdf/ot_with_discrete_variables/slides)
+
+	Simulação
+		- criar o bloco real_to_complex, e inserir na simulação
+		- inserir o Ti Amplifier + Filtro
+		- verificar valores da constelação sem ruído (de forma quantitativa, corrente = potência ótica)
+		- incluir na simulation results, os resultados sem ruído
+
+	Setup experimental
+		- incluir a descrição do setup experimental
 		
 
 2017-10-20
 TO BE DONE
-	- melhorar a descri��o te�rica (medium priority)
-        - concluir a descri��o do setup a simular
+	- melhorar a descrição teórica (medium priority)
+        - concluir a descrição do setup a simular
         - identificar os blocos que criaste novos no simulador (*.cpp)
 		- diff
 		- photodiode
@@ -25,9 +159,9 @@ TO BE DONE
 2017-09-28
 TO BE DONE
      - photodiode.cpp 
-	- sem ru�do t�rmico, e sem ru�do qu�ntico, largura de banda infinita
-	- com ru�do t�rmico,  largura de banda infinita
-	- com ru�do qu�ntico, largura de banda infinita
+	- sem ruído térmico, e sem ruído quântico, largura de banda infinita
+	- com ruído térmico,  largura de banda infinita
+	- com ruído quântico, largura de banda infinita
 	- com largura de banda finita (LATER)
 
      - concluir o doc
@@ -36,16 +170,16 @@ TO BE DONE
 			- photodiode
 				criar um sistema 
 					laser -> photodiode -> sink
-					representa��o passa baixo de sinais passa-banda
+					representação passa baixo de sinais passa-banda
 					emissor otico (optical power 1 mW)
-     - resolver os warnings do c�digo
+     - resolver os warnings do código
 
 2017-09-28
 TO BE DONE
   - photodiode.cpp 
-	- sem ru�do t�rmico, e sem ru�do qu�ntico, largura de banda infinita
-	- com ru�do t�rmico,  largura de banda infinita
-	- com ru�do qu�ntico, largura de banda infinita
+	- sem ruído térmico, e sem ruído quântico, largura de banda infinita
+	- com ruído térmico,  largura de banda infinita
+	- com ruído quântico, largura de banda infinita
 	- com largura de banda finita (LATER)
   - photodiode.h
   - photodiode.tex

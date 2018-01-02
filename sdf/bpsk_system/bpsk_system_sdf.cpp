@@ -32,7 +32,7 @@ int main(){
 	double amplification = 1e6;
 	double electricalNoiseAmplitude = 5e-4*sqrt(2);
 	int samplesToSkip = 8 * samplesPerSymbol;
-	int bufferLength = 512;
+	int bufferLength = 20;
 	bool shotNoise(false);
 		
 	// #####################################################################################################
