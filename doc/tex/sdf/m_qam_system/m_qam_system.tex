@@ -3,7 +3,7 @@
 
 \begin{tcolorbox}	
 	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
-		\textbf{Student Name}  &:& Ana Luisa Carvalho\\
+		\textbf{Student Name}  &:& Ana Luisa Carvalho (2017/04/01 - 2017/12/31) \\
 		\textbf{Goal}          &:& M-QAM system implementation with BER measurement and comparison with theoritical values.\\
 		\textbf{Directory} &:& sdf/m\_qam\_system
 	\end{tabular}
@@ -19,7 +19,7 @@ For $M=4$ the M-QAM system reduces to a Quadrature Phase Shift Keying system (QP
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[clip, trim=2cm 3cm 3cm 3cm, width=\textwidth]{./sdf/m_qam_system/figures/MQAM_constellation.pdf}
+	\includegraphics[clip, trim=3cm 3cm 3cm 3cm, width=\textwidth]{./sdf/m_qam_system/figures/MQAM_constellation.pdf}
 	\caption{4-QAM constellation points.}
 	\label{fig:const}
 \end{figure}
@@ -338,4 +338,15 @@ In this section we show the simulation results and compared them with the theore
 	\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_pseudorandom7_Eb_n0.pdf}
 	\caption{Simulation result for a random binary sequence with $4000$ bits, a noise amplitude of $10^{-6}$ and an amplification of $10^3$.}
 	\label{fig:ber_pseudorandom}
+\end{figure}%
+
+\subsection{Experimental setup}
+
+In this section we show a schematic representation of the experimental setup. Here, BS and VOA stand for Beam Splitter and Variable Optical Attenuator, respectively.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{./sdf/m_qam_system/figures/experimental_setup.png}
+	\caption{QPSK transmission system experimental setup}
+	\label{fig:exp}
 \end{figure}%
