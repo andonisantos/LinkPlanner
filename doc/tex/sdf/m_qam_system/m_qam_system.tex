@@ -3,7 +3,7 @@
 
 \begin{tcolorbox}	
 	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
-		\textbf{Student Name}  &:& Ana Luisa Carvalho\\
+		\textbf{Student Name}  &:& Ana Luisa Carvalho (2017/04/01 - 2017/12/31) \\
 		\textbf{Goal}          &:& M-QAM system implementation with BER measurement and comparison with theoritical values.\\
 		\textbf{Directory} &:& sdf/m\_qam\_system
 	\end{tabular}
@@ -11,15 +11,15 @@
 
 The goal of this project is to simulate a Quadrature Amplitude Modulation transmission system with M points in the constellation diagram (M-QAM) and to perform a Bit Error Rate (BER) measurement that can be compared with theoretical values. 
 
-M-QAM systems can encode $\log_2 M$ bits per symbol which means they can transmit higher data rates keeping the same bandwidth when compared, for example, to PSK systems. However, because the states are closer together, these systems can be more susceptible to noise.
+M-QAM systems can encode $\log_2 M$ bits per symbol which means they can transmit higher data rates keeping the same bandwidth when compared, for example, to PSK systems. However, because the states are closer together, these systems are more susceptible to noise.
 
-The Bit Error Rate (BER) is a measurement of how a bit stream is altered by a transmission system due to noise (among other factors). To study this effect we introduced Additive White Gaussian Noise (AWGN) to model thermal noise ate the receiver. 
+The Bit Error Rate (BER) is a measurement of how a bit stream is altered by a transmission system due to noise (among other factors). To study this effect we introduced Additive White Gaussian Noise (AWGN) to model thermal noise at the receiver. 
 
 For $M=4$ the M-QAM system reduces to a Quadrature Phase Shift Keying system (QPSK) system that uses four equispaced points in the constellation diagram (see figure \ref{fig:const}). 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[clip, trim=1cm 3cm 1cm 3cm, width=\textwidth]{./sdf/m_qam_system/figures/MQAM_constellation.pdf}
+	\includegraphics[clip, trim=3cm 3cm 3cm 3cm, width=\textwidth]{./sdf/m_qam_system/figures/MQAM_constellation.pdf}
 	\caption{4-QAM constellation points.}
 	\label{fig:const}
 \end{figure}
@@ -111,7 +111,7 @@ This function is plotted in figure \ref{fig:QPSK_th_curve} for $n_0=10^{-6}$.
 
 \begin{figure}[h]
 		\centering
-		\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_theory.pdf}
+		\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_theory_Eb_n0.pdf}
 		\caption{QPSK theoretical BER values as a function of the output optical power in dBm.}
 		\label{fig:QPSK_th_curve}
 \end{figure}
@@ -119,16 +119,16 @@ This function is plotted in figure \ref{fig:QPSK_th_curve} for $n_0=10^{-6}$.
 \pagebreak
 \subsection{Simulation Analysis}
 
-\begin{figure}[h]
+The system to be simulated is composed of four blocks: a M-QAM transmitter, a M-QAM receiver, a sink and a block that performs a Bit Error Rate (BER) measurement. This system is a complex block of code that simulates the modulation, transmission and demodulation of an optical signal using M-QAM modulation. The schematic representation of the
+system is presented in figure \ref{MQAM_system_block_diagram}. 
+
+\begin{figure}[!b]
 	\centering
-	\includegraphics[width=0.8\textwidth]{./sdf/m_qam_system/figures/MQAM_system_block_diagram}
-	\caption{Schematic representation of the MQAM system.}\label{MQAM_system_block_diagram}
+	\includegraphics[trim={4cm 4cm 4cm 6cm},clip,width=\textwidth]{./sdf/m_qam_system/figures/MQAM_system_block_diagram.pdf}
+	\caption{Schematic representation of the M-QAM system.}\label{MQAM_system_block_diagram}
 \end{figure}
 
-The M-QAM transmission system is a complex block of code that simulates the modulation, transmission and
-demodulation of an optical signal using M-QAM modulation.
-It is composed of four blocks: a transmitter, a receiver, a sink and a block that performs a Bit Error Rate (BER) measurement. The schematic representation of the
-system is presented in figure \ref{MQAM_system_block_diagram}. 
+%The M-QAM transmission system is a complex block of code that simulates the modulation, transmission and demodulation of an optical signal using M-QAM modulation.
 
 \paragraph{Current state:} The system currently being implement is a QPSK system (M=4).
 
@@ -145,111 +145,208 @@ a binary signal. It performs the M-QAM demodulation of the input signal by combi
 
 The demodulated optical signal is compared to the one produced by the transmitter in order to estimate the Bit Error Rate (BER).
 
-The files corresponding to each of the system's blocks are summarized in table \ref{files_table}. Along with the library and corresponding source files these allow for the full operation of the M-QAM system.
+\subsection*{Input Parameters}
 
-\begin{table}[]
+The system accepts several input parameters that can be defined by the user. These are described in table \ref{table:in_par}.
+
+\begin{table}[h]
 	\centering
-	\caption{Main system files}
-	\begin{tabular}{|c|c|c|c|ccc}
-		\cline{1-4}
-		\textbf{System blocks} & \textbf{Source file} & \textbf{Header file}  &  \textbf{Status} & \\ \cline{1-4}
-		Main & m\_qam\_system\_sdf.cpp & --- & \checkmark & \\ \cline{1-4}
-		M-QAM transmitter & m\_qam\_transmitter.cpp & m\_qam\_transmitter.h & \checkmark &  \\ \cline{1-4}
-		M-QAM receiver & homodyne\_receiver.cpp & homodyne\_receiver.h & &  \\ \cline{1-4}
-		Sink & sink.cpp & sink.h &  \checkmark & \\ \cline{1-4}
-		BER estimator & bit\_error\_rate.cpp & bit\_error\_rate.h &  &\\ \cline{1-4}
+	\caption{Input parameters}
+	\begin{tabular}{|c|c|p{70mm}|ccp{70mm}}
+		\cline{1-3}
+		\textbf{Parameter} & \textbf{Type} & \textbf{Description} &    \\ \cline{1-3}
+		%numberOfBitsGenerated & t\_integer & Determines the number of bits to be generated by the binary source  &    \\ \cline{1-3}
+		%samplesPerSymbol & t\_integer & Number of samples per symbol &    \\ \cline{1-3}
+		%prbsPatternLength & int & Determines the length of the pseudorandom sequence pattern (used only when the binary source is operated in \textit{PseudoRandom} mode) &    \\ \cline{1-3}
+		%bitPeriod & t\_real & Temporal interval occupied by one bit &    \\ \cline{1-3}
+		%rollOffFactor & t\_real & Parameter of the raised cosine filter &    \\ \cline{1-3}
+		signalOutputPower\_dBm & t\_real & Determines the power of the output optical signal in dBm &  \\ \cline{1-3}
+		numberOfBitsReceived & int &   Determines when the simulation should stop. If $-1$ then it only stops when there is no more bits to be sent&   \\ \cline{1-3}
+		iqAmplitudeValues & vector<t\_iqValues> & Determines the constellation used to encode the signal in IQ space &    \\ \cline{1-3}
+		%symbolPeriod & double & Given by bitPeriod/samplesPerSymbol &    \\ \cline{1-3}
+		%localOscillatorPower\_dBm & t\_real & Power of the local oscillator &    \\ \cline{1-3}
+		%responsivity & t\_real & Responsivity of the photodiodes (1 corresponds to having all optical power transformed into electrical current) &    \\ \cline{1-3}
+		%amplification & t\_real & Amplification provided by the ideal amplifier &    \\ \cline{1-3}
+		%noiseAmplitude & t\_real & Amplitude of the white noise &    \\ \cline{1-3}
+		%samplesToSkip & t\_integer & Number of samples to be skipped by the \textit{sampler} block &    \\ \cline{1-3}
+		%confidence & t\_real & Determines the confidence limits for the BER estimation &    \\ \cline{1-3}
+		%midReportSize & t\_integer &  &    \\ \cline{1-3}
+		%bufferLength & t\_integer & Corresponds to the number of samples that can be processed in each run of the system &    \\ \cline{1-3}
 	\end{tabular}
-	\label{files_table}
+	\label{table:in_par}
 \end{table}
 
 \subsection*{Required Files}
 
 The required header and source files needed to run this system are summarized in table \ref{table:files}.
 
-\begin{table}
- 	\centering
- 	\caption{Required files}
- 	\begin{tabular}{|c|c|p{40mm}|c|ccp{40mm}c}
- 		\cline{1-4}
- 		\textbf{Header file} & \textbf{Source file} & \textbf{Description} &  \textbf{Status} & \\ \cline{1-4}
- 		add.h & add.cpp & Adds two signals.  & \checkmark &   \\ \cline{1-4}
- 		binary\_source.h & binary\_source.cpp & Produces a binary sequence. & \checkmark & \\ \cline{1-4}
- 		bit\_error\_rate.h & bit\_error\_rate.cpp & Computes the BER and writes it to a text file. & \checkmark & \\ \cline{1-4}
- 		discrete\_to\_continuous\_time.h & discrete\_to\_continuous\_time.cpp & Converts a signal from discrete in time to continuous in time. & \checkmark & \\ \cline{1-4}
- 		homodyne\_receiver.h & m\_qam\_homodyne\_receiver.cpp & & \\ \cline{1-4}
- 		ideal\_amplifier.h & ideal\_amplifier.cpp & Amplifies the signal. & \checkmark & \\ \cline{1-4}
- 		iq\_modulator.h & iq\_modulator.cpp & Divides the signal in its quadrature and in phase components & \checkmark &\\ \cline{1-4}
- 		local\_oscillator.h & local\_oscillator.cpp & & & \checkmark &\\ \cline{1-4}
- 		m\_qam\_mapper.h & m\_qam\_mapper.cpp & Maps the signal using the defined constellation & \checkmark & \\ \cline{1-4}
- 		m\_qam\_transmitter.h & m\_qam\_transmitter.cpp & & \checkmark & \\ \cline{1-4}
- 		netxpto.h & netxpto.cpp & General class that contains definition from signals and buffers. & \checkmark &\\ \cline{1-4}
- 		optical\_hybrid.h & optical\_hybrid.cpp & Implements an optical hybrid. & \checkmark & \\ \cline{1-4}
- 		photodiode\_old.h & photodiode\_old.cpp & Pair of photodiodes and current subtraction. & \checkmark & \\ \cline{1-4}
- 		pulse\_shaper.h & pulse\_shaper.cpp & Electrical filter. & \checkmark &\\ \cline{1-4}
- 		sampler\_20171119.h & sampler\_20171119.cpp & Samples the signal. & \checkmark &\\ \cline{1-4}
- 		sink.h & sink.cpp & Deletes signal. & \checkmark & \\ \cline{1-4}
- 		super\_block\_interface.h & super\_block\_interface.cpp & & \checkmark &\\ \cline{1-4}
- 		white\_noise.h & white\_noise.cpp & Generates white gaussian noise. & \checkmark &\\ \cline{1-4}  
- 	\end{tabular}
- 	\label{table:files}
+\begin{table}[]
+	\centering
+	\caption{Main system files}
+	\begin{tabular}{|c|c|p{35mm}|c|ccc}
+		\cline{1-4}
+		\textbf{Source file} & \textbf{Header file}  &  \textbf{System blocks} & \textbf{Status} & \\ \cline{1-4}
+		m\_qam\_system\_sdf.cpp & --- & Main &\checkmark & \\ \cline{1-4}
+		m\_qam\_transmitter.cpp & m\_qam\_transmitter.h & M-QAM Transmitter & \checkmark &  \\ \cline{1-4}
+		m\_qam\_homodyne\_receiver.cpp & homodyne\_receiver.h & M-QAM Receiver & \checkmark &  \\ \cline{1-4}
+		sink.cpp & sink.h & Sink & \checkmark & \\ \cline{1-4}
+		bit\_error\_rate.cpp & bit\_error\_rate.h & BER Estimator & \checkmark &\\ \cline{1-4}
+		add.cpp & add.h & M-QAM transmitter & \checkmark & \\ \cline{1-4}
+		binary\_source.cpp & binary\_source.h & M-QAM Transmitter & \checkmark & \\ \cline{1-4}
+		discrete\_to\_continuous\_time.cpp & discrete\_to\_continuous\_time.h & M-QAM Transmitter & \checkmark & \\ \cline{1-4}
+		ideal\_amplifier.cpp & ideal\_amplifier.h & M-QAM Receiver & \checkmark & \\ \cline{1-4}
+		iq\_modulator.cpp & iq\_modulator.h & M-QAM Transmitter & \checkmark & \\ \cline{1-4}
+		local\_oscillator.cpp & local\_oscillator.h & M-QAM Receiver & \checkmark & \\ \cline{1-4}
+		m\_qam\_mapper.cpp & m\_qam\_mapper.h & M-QAM Transmitter & \checkmark & \\ \cline{1-4}
+		netxpto.cpp & netxpto.h & All & \checkmark & \\ \cline{1-4}
+		optical\_hybrid.cpp & optical\_hybrid.h & M-QAM Receiver & \checkmark & \\ \cline{1-4}
+		photodiode\_old.cpp & photodiode\_old.h & M-QAM Receiver & \checkmark & \\ \cline{1-4}
+		pulse\_shaper.cpp & pulse\_shaper.h & M-QAM Transmitter \newline M-QAM receiver & \checkmark & \\ \cline{1-4}
+		sampler\_20171119.cpp & sampler\_20171119.h & M-QAM Receiver & \checkmark & \\ \cline{1-4}
+		sink.cpp & sink.h & Sink & \checkmark & \\ \cline{1-4}
+		super\_block\_interface.cpp & super\_block\_interface.h & ? & \checkmark & \\ \cline{1-4}
+		white\_noise.cpp & white\_noise.h & M-QAM Receiver & \checkmark & \\ \cline{1-4}
+	\end{tabular}
+	\label{table:files}
 \end{table}
 
-\subsection*{Input Parameters}
+%\begin{table}
+% 	\centering
+% 	\caption{Required files}
+% 	\begin{tabular}{|c|c|p{40mm}|c|ccp{40mm}c}
+% 		\cline{1-4}
+% 		\textbf{Header file} & \textbf{Source file} & \textbf{Description} &  \textbf{Status} & \\ \cline{1-4}
+% 		add.h & add.cpp & Adds two signals.  & \checkmark &   \\ \cline{1-4}
+% 		binary\_source.h & binary\_source.cpp & Produces a binary sequence. & \checkmark & \\ \cline{1-4}
+% 		bit\_error\_rate.h & bit\_error\_rate.cpp & Computes the BER and writes it to a text file. & \checkmark & \\ \cline{1-4}
+% 		discrete\_to\_continuous\_time.h & discrete\_to\_continuous\_time.cpp & Converts a signal from discrete in time to continuous in time. & \checkmark & \\ \cline{1-4}
+% 		homodyne\_receiver.h & m\_qam\_homodyne\_receiver.cpp & & \\ \cline{1-4}
+% 		ideal\_amplifier.h & ideal\_amplifier.cpp & Amplifies the signal. & \checkmark & \\ \cline{1-4}
+% 		iq\_modulator.h & iq\_modulator.cpp & Divides the signal in its quadrature and in phase components & \checkmark &\\ \cline{1-4}
+% 		local\_oscillator.h & local\_oscillator.cpp & & & \checkmark &\\ \cline{1-4}
+% 		m\_qam\_mapper.h & m\_qam\_mapper.cpp & Maps the signal using the defined constellation & \checkmark & \\ \cline{1-4}
+% 		m\_qam\_transmitter.h & m\_qam\_transmitter.cpp & & \checkmark & \\ \cline{1-4}
+% 		netxpto.h & netxpto.cpp & General class that contains definition from signals and buffers. & \checkmark &\\ \cline{1-4}
+% 		optical\_hybrid.h & optical\_hybrid.cpp & Implements an optical hybrid. & \checkmark & \\ \cline{1-4}
+% 		photodiode\_old.h & photodiode\_old.cpp & Pair of photodiodes and current subtraction. & \checkmark & \\ \cline{1-4}
+% 		pulse\_shaper.h & pulse\_shaper.cpp & Electrical filter. & \checkmark &\\ \cline{1-4}
+% 		sampler\_20171119.h & sampler\_20171119.cpp & Samples the signal. & \checkmark &\\ \cline{1-4}
+% 		sink.h & sink.cpp & Deletes signal. & \checkmark & \\ \cline{1-4}
+% 		super\_block\_interface.h & super\_block\_interface.cpp & & \checkmark &\\ \cline{1-4}
+% 		white\_noise.h & white\_noise.cpp & Generates white gaussian noise. & \checkmark &\\ \cline{1-4}  
+% 	\end{tabular}
+% 	\label{table:files}
+%\end{table}
 
-The system accepts several input parameters that can be defined by the user. These are described in table \ref{table:in_par}.
+\pagebreak
+\subsection*{Simulation results}
+
+The parameters used to produce the results presented in this section are summarized in table \ref{table:par}.
 
 \begin{table}[]
 	\centering
-	\caption{Input parameters}
-	\begin{tabular}{|c|c|p{70mm}|ccp{70mm}}
-		\cline{1-3}
-		\textbf{Parameter} & \textbf{Type} & \textbf{Description} &    \\ \cline{1-3}
-		numberOfBitsGenerated & t\_integer & Determines the number of bits to be generated by the binary source  &    \\ \cline{1-3}
-		samplesPerSymbol & t\_integer & Number of samples per symbol &    \\ \cline{1-3}
-		prbsPatternLength & int & Determines the length of the pseudorandom sequence pattern (used only when the binary source is operated in \textit{PseudoRandom} mode) &    \\ \cline{1-3}
-		bitPeriod & t\_real & Temporal interval occupied by one bit &    \\ \cline{1-3}
-		rollOffFactor & t\_real & Parameter of the raised cosine filter &    \\ \cline{1-3}
-		signalOutputPower\_dBm & t\_real & Determines the power of the output optical signal in dBm &  \\ \cline{1-3}
-		numberOfBitsReceived & int &   Determines when the simulation should stop. If $-1$ then it only stops when there is no more bits to be sent&   \\ \cline{1-3}
-		iqAmplitudeValues & vector<t\_iqValues> & Determines the constellation used to encode the signal in IQ space &    \\ \cline{1-3}
-		symbolPeriod & double & Given by bitPeriod/samplesPerSymbol &    \\ \cline{1-3}
-		localOscillatorPower\_dBm & t\_real & Power of the local oscillator &    \\ \cline{1-3}
-		responsivity & t\_real & Responsivity of the photodiodes (1 corresponds to having all optical power transformed into electrical current) &    \\ \cline{1-3}
-		amplification & t\_real & Amplification provided by the ideal amplifier &    \\ \cline{1-3}
-		noiseAmplitude & t\_real & Amplitude of the white noise &    \\ \cline{1-3}
-		samplesToSkip & t\_integer & Number of samples to be skipped by the \textit{sampler} block &    \\ \cline{1-3}
-		confidence & t\_real & Determines the confidence limits for the BER estimation &    \\ \cline{1-3}
-		midReportSize & t\_integer &  &    \\ \cline{1-3}
-		bufferLength & t\_integer & Corresponds to the number of samples that can be processed in each run of the system &    \\ \cline{1-3}
-		\end{tabular}
-		\label{table:in_par}
-		\end{table}
+	\caption{Values of the simulation parameters}
+	\begin{tabular}{|c|c|cc}
+		\cline{1-2}
+		\textbf{Parameter} & \textbf{Value} & \\ \cline{1-2}
+		numberOfBitsGenerated & $4000$ & \\ \cline{1-2}
+		samplesPerSymbol & $16$ & \\ \cline{1-2}
+		bitPeriod & $20$~ps & \\ \cline{1-2}
+		rollOfFactor & $0.9$ & \\ \cline{1-2}
+		prbsPatternLength & $7$ & \\ \cline{1-2}
+		symbolPeriod & $1.25$~ps & \\ \cline{1-2}
+		localOscillatorPower\_dBm & $0$ & \\ \cline{1-2}
+		localOscillatorPhase & $0$ & \\ \cline{1-2}
+		responsivity & $1$ & \\ \cline{1-2}
+		amplification & $10^3$ & \\ \cline{1-2}
+		noiseAmplitude & $10^{-6}$ & \\ \cline{1-2}
+		samplesToSkip & $256$ & \\ \cline{1-2}
+		confidence & $0.95$ & \\ \cline{1-2}
+		midReportSize & $0$ & \\ \cline{1-2}
+		bufferLength & $512$ & \\ \cline{1-2}
+	\end{tabular}
+	\label{table:par}
+\end{table}
 
-\subsection*{Simulation results}
+We show the eye diagrams for the signals HMD14 and HMD15 (see figure \ref{fig:MQAM_receiver}) for $\sqrt{\frac{E_b}{n_0}}=10^{-8},1,10^6$. These correspond to figures \ref{fig:eye_diagram_140}, \ref{fig:eye_diagram_60}, \ref{fig:eye_diagram_0}, respectively. We also show, in figure \ref{fig:ber_pseudorandom_sim}, the plot of the BER as a function of $\sqrt{\frac{E_b}{n_0}}$.
 
-In this section we show the eye diagrams for the S1 signals for two different values of the output optical power.
+\begin{figure}[]
+	\centering
+	\includegraphics[width=1.1\textwidth]{./lib/homodyne_receiver/figures/MQAM_receiver_block_diagram.png}
+	\caption{M-QAM receiver schematic representation}
+	\label{fig:MQAM_receiver}
+\end{figure}
 
 \begin{figure}
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=\textwidth]{./sdf/m_qam_system/figures/eye_diagram_S1_120.pdf}
+		\includegraphics[clip, trim=5cm 10cm 5cm 10cm, width=\textwidth]{./sdf/m_qam_system/figures/HMD14_eye_diagram_140.pdf}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=\textwidth]{./sdf/m_qam_system/figures/eye_diagram_S1_60.pdf}
+		\includegraphics[clip, trim=5cm 10cm 5cm 10cm, width=\textwidth]{./sdf/m_qam_system/figures/HMD15_eye_diagram_140.pdf}
 	\end{subfigure}
-	\caption{Eye diagrams for the S1 bandpass signal with an output optical power of $-120$dBm (left) and $-60$dBm (right). Note differente scales on y axis.}
-	\label{fig:test}
+	\caption{Eye diagrams for the signals HMD14 (left) and HMD15 (right) for signalOutputPower\_dBm $=-140$. This corresponds to $\sqrt{\frac{E_b}{n_0}}=10^{-8}$.}
+	\label{fig:eye_diagram_140}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[clip, trim=5cm 10cm 5cm 10cm, width=\textwidth]{./sdf/m_qam_system/figures/HMD14_eye_diagram_60.pdf}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[clip, trim=5cm 10cm 5cm 10cm, width=\textwidth]{./sdf/m_qam_system/figures/HMD15_eye_diagram_60.pdf}
+	\end{subfigure}
+	\caption{Eye diagrams for the signals HMD14 (left) and HMD15 (right) for signalOutputPower\_dBm$=-60$. This corresponds to $\sqrt{\frac{E_b}{n_0}}=1$.}
+	\label{fig:eye_diagram_60}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[clip, trim=5cm 10cm 5cm 10cm, width=\textwidth]{./sdf/m_qam_system/figures/HMD14_eye_diagram_0.pdf}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[clip, trim=5cm 10cm 5cm 10cm, width=\textwidth]{./sdf/m_qam_system/figures/HMD15_eye_diagram_0.pdf}
+	\end{subfigure}
+	\caption{Eye diagrams for the signals HMD14 (left) and HMD15 (right) for signalOutputPower\_dBm$=0$. This corresponds to $\sqrt{\frac{E_b}{n_0}}=10^{6}$.}
+	\label{fig:eye_diagram_0}
+\end{figure}
+
+\begin{figure}[]
+	\centering
+	\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_pseudorandom7_Eb_n0_onlySim.pdf}
+	\caption{Simulation result for a random binary sequence with $4000$ bits, a noise amplitude of $10^{-6}$ and an amplification of $10^3$.}
+	\label{fig:ber_pseudorandom_sim}
+\end{figure}
+
+\pagebreak
+\clearpage
+\newpage
 \subsection{Comparative Analysis}
 
 In this section we show the simulation results and compared them with the theoretical predictions. Figures \ref{fig:ber_pseudorandom} shows the variation of the BER with the power of the signal, using $4000$ bits and a pseudorandom binary sequence with pattern length $2^7$. To produce this plots we considered a noise amplitude of $10^{-6}$ and an amplification of $10^3$. 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_pseudorandom7.pdf}
+	\includegraphics[clip, trim=0.5cm 9cm 0.5cm 9cm, width=\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_pseudorandom7_Eb_n0.pdf}
 	\caption{Simulation result for a random binary sequence with $4000$ bits, a noise amplitude of $10^{-6}$ and an amplification of $10^3$.}
 	\label{fig:ber_pseudorandom}
+\end{figure}%
+
+\subsection{Experimental setup}
+
+In this section we show a schematic representation of the experimental setup. Here, BS and VOA stand for Beam Splitter and Variable Optical Attenuator, respectively.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{./sdf/m_qam_system/figures/experimental_setup.png}
+	\caption{QPSK transmission system experimental setup}
+	\label{fig:exp}
 \end{figure}%

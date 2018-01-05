@@ -19,14 +19,15 @@ EbNo=(1e3)*(1e-3)*(10.^(EbNodBm/10));%the first factor is the amplification of t
 %x=sqrt(3*k*EbNo/(M-1));
 Pb=0.5*erfc(sqrt(2*EbNo/n0));
 %Pb=(4/k)*(1-(1/sqrt(M)))*(1/2)*erfc(x/sqrt(2*n0));
-semilogy(EbNodBm,Pb,'LineWidth',1.5)
+x=EbNo/n0;
+semilogy(sqrt(x),Pb,'LineWidth',1.5)
 grid on
 set(gca, 'YScale', 'log')
-axis([-140 -50 1e-3 1e0])
-xlabel('Optical power (dBm)')
-ylabel('BER')
+axis([0 1.6 1e-3 1e0])
+xlabel('$\sqrt{E_b/n_0}$','Interpreter','Latex')
+ylabel('BER','Interpreter','Latex')
 leg=legend('QPSK theoretical curve');
-set(leg,'position',[0.2 0.18 0.2964 0.0869],'FontSize',12)
+set(leg,'position',[0.2 0.18 0.2964 0.0869],'FontSize',12,'Interpreter','Latex')
 ax=gca;
 ax.LineWidth=1.2;
 ax.FontSize=12;
@@ -118,23 +119,48 @@ title('Deterministic Cyclic 0101...')
 figure
 A=importdata('BER6.txt');
 NumLin=size(A,1);
-OpticalPower=A(1:NumLin,1);
+OpticalPower_dBm=A(1:NumLin,1);
+OpticalPower=(1e3)*(1e-3)*(10.^(OpticalPower_dBm/10));
+xExp=OpticalPower/n0;
 ber=A(1:NumLin,2);
 Up=A(1:NumLin,3);
 Lo=A(1:NumLin,4);
 yneg=ber-Lo;
 ypos=Up-ber;
-errorbar(OpticalPower,ber,yneg,ypos,'bs','MarkerSize',5,'MarkerFaceColor','b')
+errorbar(sqrt(xExp),ber,yneg,ypos,'bs','MarkerSize',5,'MarkerFaceColor','b')
 grid on
-xlabel('Output optical power [dBm]')
-ylabel('BER')
+xlabel('$\sqrt{E_b/n_0}$','Interpreter','Latex')
+ylabel('BER','Interpreter','Latex')
 hold on
-plot(EbNodBm,Pb,'r','LineWidth',1.5)
+plot(sqrt(EbNo/n0),Pb,'r','LineWidth',1.5)
 set(gca, 'YScale', 'log')
 leg=legend('Simulation results','QPSK theoretical curve');
-set(leg,'position',[0.2 0.18 0.2964 0.0869],'FontSize',12)
+set(leg,'position',[0.2 0.18 0.2964 0.0869],'FontSize',12,'Interpreter','Latex')
 %title('Pseudorandom sequence 2^7')
-axis([-140 -50 1e-3 1e0])
+axis([0 1.6 1e-3 1e0])
+ax=gca;
+ax.LineWidth=1.2;
+ax.FontSize=12;
+%% only simulation
+figure
+A=importdata('BER6.txt');
+NumLin=size(A,1);
+OpticalPower_dBm=A(1:NumLin,1);
+OpticalPower=(1e3)*(1e-3)*(10.^(OpticalPower_dBm/10));
+xExp=OpticalPower/n0;
+ber=A(1:NumLin,2);
+Up=A(1:NumLin,3);
+Lo=A(1:NumLin,4);
+yneg=ber-Lo;
+ypos=Up-ber;
+errorbar(sqrt(xExp),ber,yneg,ypos,'bs','MarkerSize',5,'MarkerFaceColor','b')
+grid on
+xlabel('$\sqrt{E_b/n_0}$','Interpreter','Latex')
+ylabel('BER','Interpreter','Latex')
+set(gca, 'YScale', 'log')
+leg=legend('Simulation results');
+set(leg,'position',[0.2 0.18 0.2964 0.0869],'FontSize',12,'Interpreter','Latex')
+axis([0 1.2 1e-3 1e0])
 ax=gca;
 ax.LineWidth=1.2;
 ax.FontSize=12;
