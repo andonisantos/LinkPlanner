@@ -3,8 +3,8 @@
 
 \begin{tcolorbox}	
 	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
-		\textbf{Student Name}  &:& Ana Luisa Carvalho (2017/04/01 - 2017/12/31) \\
-		\textbf{Goal}          &:& M-QAM system implementation with BER measurement and comparison with theoritical values.\\
+		\textbf{Student Name}  &:& Andoni Santos (2018/01/03), Ana Luisa Carvalho (2017/04/01 - 2017/12/31) \\
+		\textbf{Goal}          &:& M-QAM system implementation with BER measurement and comparison with theoretical values.\\
 		\textbf{Directory} &:& sdf/m\_qam\_system
 	\end{tabular}
 \end{tcolorbox}
@@ -85,7 +85,9 @@ where we have used the expression for the cossine of a sum and the definitions o
 %P_e=\erfc \sqrt{\frac{E}{2 n_0}}.
 %\end{equation}
 
-The probability of symbol error, $P_s$, in coherent M-PSK demodulation with AWGN is given by
+Exact solutions for the probability of symbol and bit errors exist only for $M=2$ and $M=4$. For the cases of $M>4$, an aproximation is needed.
+
+The probability of symbol error, $P_s$, in coherent M-PSK demodulation with AWGN can be aproximated by
 
 \begin{equation}
 	P_s=2~Q\left(\sqrt{2~\log_2 M \left(\frac{E_b}{n_0}\right)\sin^2\frac{\pi}{M}}\right)
@@ -96,7 +98,8 @@ where $E_b$ is the energy of one bit, $n_0$ is the noise power and the function 
 	\label{eq:Ps}
 \end{equation}
 
-The probability of bit errors, $P_b$ is related to $P_s$ by
+This aproximation is only valid for high SNR values. From here, the probability of bit errors can be estimated, as it is related to $P_s$ by
+
 \begin{equation}
 	P_b=\frac{1}{\log_2 M}P_s.
 	\label{eq:Pb}
@@ -104,8 +107,10 @@ The probability of bit errors, $P_b$ is related to $P_s$ by
 
 For QPSK we get, using $M=4$ in equations \ref{eq:Ps} and \ref{eq:Pb},
 \begin{equation}
-	P_b=\frac{1}{2} erfc\left(\sqrt{\frac{2~E_b}{n_0}}\right).
+	P_b= 2 Q\left(\sqrt{\frac{2~E_b}{n_0}}\right) = erfc\left(\sqrt{\frac{E_b}{n_0}}\right).
 \end{equation}
+
+The exact probability bit error for $M=4$ are
 
 This function is plotted in figure \ref{fig:QPSK_th_curve} for $n_0=10^{-6}$.
 
