@@ -36,6 +36,19 @@ int main(){
 
 	//vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ 1.0, -1.0 },{ -1.0, -1.0 } };
 	vector<t_iqValues> iqAmplitudeValues = { { -3.0, -3.0 },{ -3.0, -1.0 },{ -3.0, 1.0 },{ -3.0, 3.0 },{ -1.0, -3.0 },{ -1.0, -1.0 },{ -1.0, 3.0 },{ -1.0, 1.0 },{ 3.0, -3.0 },{ 3.0, -1.0 },{ 3.0, 3.0 },{ 3.0, 1.0 },{ 1.0, -3.0 },{ 1.0, -1.0 },{ 1.0, 3.0 },{ 1.0, 1.0 } };
+	
+	t_iqValues maxAmplitude = iqAmplitudeValues[0].real();
+	for (unsigned int i = 1; i < iqAmplitudeValues.size(); i++)
+	{
+		if (iqAmplitudeValues[i].real() > maxAmplitude.real()) { maxAmplitude = iqAmplitudeValues[i]; };
+	}
+	
+	for (unsigned int i = 0; i < iqAmplitudeValues.size(); i++)
+	{
+		iqAmplitudeValues[i] = iqAmplitudeValues[i]/maxAmplitude.real();
+	}
+
+
 	//int m = 4;
 	
 	//double rollOffFactor = 0.3;
