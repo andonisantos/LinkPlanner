@@ -11,7 +11,7 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsGenerated(1000);
+	t_integer numberOfBitsGenerated(5000);
 	t_integer samplesPerSymbol(16);
 	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
@@ -34,7 +34,9 @@ int main(){
 
 	int prbsPatternLength = 5;
 
-	vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ 1.0, -1.0 },{ -1.0, -1.0 } };
+	//vector<t_iqValues> iqAmplitudeValues = { { 1.0, 1.0 },{ -1.0, 1.0 },{ 1.0, -1.0 },{ -1.0, -1.0 } };
+	vector<t_iqValues> iqAmplitudeValues = { { -3.0, -3.0 },{ -3.0, -1.0 },{ -3.0, 1.0 },{ -3.0, 3.0 },{ -1.0, -3.0 },{ -1.0, -1.0 },{ -1.0, 3.0 },{ -1.0, 1.0 },{ 3.0, -3.0 },{ 3.0, -1.0 },{ 3.0, 3.0 },{ 3.0, 1.0 },{ 1.0, -3.0 },{ 1.0, -1.0 },{ 1.0, 3.0 },{ 1.0, 1.0 } };
+	//int m = 4;
 	
 	//double rollOffFactor = 0.3;
 
@@ -50,6 +52,7 @@ int main(){
 	t_real noiseAmplitude = 1e-6;
 	SeedType seedType = RandomDevice;
 	array<int, 2> seedArray = { 1, 2 };
+	double amplitude = amplification * sqrt(pow(10, localOscillatorPower_dBm/10)*1e-3*pow(10, signalOutputPower/10)*1e-3);
 
 //	INITIAL SAMPLES TO IGNORE IN THE SAMPLER
 //	Required to set this value due to the Pulse Shaper influence
@@ -106,6 +109,8 @@ int main(){
 	B1.setPulseShaperFilter(shaperFilter);
 //	B1.usePassiveFilterMode(true);
 	B1.setImpulseResponseFilename("pulse_shaper.imp");
+	B1.setIqAmplitudes(iqAmplitudeValues);
+	//B1.setM(m);
 
 	HomodyneReceiver B2{ vector<Signal*> {&S1}, vector<Signal*> {&S2} };
 	B2.setIqAmplitudes(iqAmplitudeValues);
@@ -127,9 +132,10 @@ int main(){
 //	B2.setClockPeriod(symbolPeriod);
 	B2.setRollOffFactor(rollOffFactor_out);
 	B2.setFilterType(outputFilter);
-//	B2.usePassiveFilterMode(true);
+	B2.usePassiveFilterMode(true);
 	B2.setImpulseResponseFilename("out_filter.imp");
 	B2.setFirstFilteredValueToBeSaved(samplesToSkip);
+	B2.setAmplitude(amplitude);
 
 
 

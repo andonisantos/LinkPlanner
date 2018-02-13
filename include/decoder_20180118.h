@@ -13,7 +13,7 @@ class Decoder : public Block {
 	t_integer m{ 4 };
 
 	vector<t_complex> iqAmplitudes{ { 1.0, 1.0 },{ -1.0, 1.0 },{ -1.0, -1.0 },{ 1.0, -1.0 } };
-
+	double amplitude = 1e-3;
 	/* State Variables */
 
 	bool firstTime{ true };
@@ -32,6 +32,9 @@ public:
 
 	void setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues);
 	vector<t_iqValues> getIqAmplitudes() { return iqAmplitudes; }
+
+	void setAmplitude(double amplitude);
+	double getAmplitude() { return amplitude; }
 
 	/*void setIqValues(vector<t_complex> iq) { iqValues = iq; };
 	vector<t_complex> getIqValues() { return iqValues; }*/

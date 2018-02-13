@@ -88,13 +88,13 @@ void rootRaisedCosine(vector<t_real> &impulseResponse, int impulseResponseLength
 			impulseResponse[i] = (1 / symbolPeriod)* impulseResponse[i] / (alpha * (1 - ((4 * rollOffFactor * t / symbolPeriod) * (4 * rollOffFactor * t / symbolPeriod))));
 		}
 
-		gain = gain + impulseResponse[i];
 	}
 
 	for (int i = 0; i < impulseResponseLength; i++)
 	{
 //		impulseResponse[i] = impulseResponse[i] / ((1 / symbolPeriod)*(1 + rollOffFactor * ((4 / PI) - 1)));
 		impulseResponse[i] = impulseResponse[i] * symbolPeriod;
+		gain = gain + impulseResponse[i];
 	}
 
 	if (passiveFilterMode)

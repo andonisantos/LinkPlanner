@@ -128,6 +128,9 @@ public:
 	void setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) { B15.setIqAmplitudes(iqAmplitudesValues); };
 	vector<t_iqValues> const getIqAmplitudes(void) { return B15.getIqAmplitudes(); };
 
+	void setAmplitude(double amplitude) { B15.setAmplitude(amplitude); };
+	double getAmplitude(void) { return B15.getAmplitude(); };
+
 	void setLocalOscillatorSamplingPeriod(double sPeriod) { B1.setSamplingPeriod(sPeriod); };
 	void setLocalOscillatorOpticalPower(double opticalPower) { B1.setOpticalPower(opticalPower); };
 	void setLocalOscillatorOpticalPower_dBm(double opticalPower_dBm) { B1.setOpticalPower_dBm(opticalPower_dBm); };

@@ -34,6 +34,10 @@ void Decoder::setM(int mValue) {
 	};
 };
 
+void Decoder::setAmplitude(double amplitudeValue) {
+	amplitude = amplitudeValue;
+}
+
 void Decoder::setIqAmplitudes(vector<t_iqValues> iqAmplitudesValues) {
 	m = iqAmplitudesValues.size();
 	iqAmplitudes.resize(m);
@@ -62,10 +66,10 @@ bool Decoder::runBlock(void) {
 		inputSignals[1]->bufferGet(&in2);
 
 		complex<double> s_in(in1, in2);
-		minimum = norm(s_in - iqAmplitudes[0]);
+		minimum = norm(s_in - iqAmplitudes[0]*amplitude);
 		int aux{ 0 };
 		for (int l = 1; l < m; l++) {
-			d = norm(s_in - iqAmplitudes[l]);
+			d = norm(s_in - iqAmplitudes[l]*amplitude);
 			if (d < minimum) {
 				minimum = d;
 				aux = l;
