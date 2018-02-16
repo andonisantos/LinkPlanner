@@ -11,7 +11,7 @@ int main(){
 	// #################################### System Input Parameters ########################################
 	// #####################################################################################################
 
-	t_integer numberOfBitsGenerated(5000);
+	t_integer numberOfBitsGenerated(100000);
 	t_integer samplesPerSymbol(16);
 	t_integer pLength = 5;
 	t_real bitPeriod = 1.0 / 50e9;
@@ -19,7 +19,7 @@ int main(){
 	t_real rollOffFactor_shp = 0.3;
 	t_real rollOffFactor_out = 0.3;
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
-	t_real signalOutputPower = -60;
+	t_real signalOutputPower = -50;
 	PulseShaperFilter shaperFilter = RootRaisedCosine;
 	PulseShaperFilter outputFilter = RootRaisedCosine;
 

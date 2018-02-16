@@ -186,22 +186,23 @@ From this, the probability of symbol error is:
 %		\label{fig:QPSK_th_curve}
 %\end{figure}
 
-It's worth noting that these equations are only valid for M=4, as in that case the system is similar to QPSK with a 4 point constellation. For $M > 4$ a different approach is required.
-
 It is possible to further decrease the error rate by using a matched filter before sampling the signal. The resulting signal will still have Gaussian noise, but the SNR will be greatly improved. This can be achieved, for instance by using a root-raised cosine filter at the pulse shaper and another one before the sampler. Intersymbol interference will still be minimal as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
 
 As the constellation remains the same, the expression to calculate the BER is similar, but replacing the values of $m$ and $N_0$ of Equation~\eqref{eq:berMQAM} by those corresponding to the signal at the output of the filter.
 
 The optimal BER that can be obtained by using matched filtering is described by~\cite{mischasch}:
 
-\begin{equation}\label{eq:berBPSK}
-P_{be}= \frac{1}{2} \text{erfc}\left({\frac{m_{mf}}{N_{mf}}}\right)
-\end{equation}
+\begin{eqnarray}\label{eq:berBPSK}
+&P_{be} &= \frac{1}{2} \text{erfc}\left({\frac{mT/2}{\sqrt{2} N_{mf}}}\right) =\\
+&	    &= \frac{1}{2} \text{erfc}\left(\sqrt{{\frac{m^2T}{2 n_0}}}\right) =\\
+&	    &= \frac{1}{2} \text{erfc}\left(\sqrt{{\frac{E}{n_0}}}\right)
+\end{eqnarray}
 
 with
 
 \begin{eqnarray}
-&m_{mf} &= \frac{1}{2} T G_{ele} \sqrt{P_L P_S} \\
+%&m_{mf} &= \frac{1}{2} T G_{ele} \sqrt{P_L P_S} \\
+&E &= \frac{m^2 T}{2} \\
 &N_{mf} &= \sqrt{\frac{n_0 T}{4}}
 \end{eqnarray}
 
@@ -209,12 +210,15 @@ where T is the symbol period.
 Figure~\ref{fig:QPSK_th_curves} show the curves for both these equations, in the case where  $n_0=10^{-6}$, $P_L = 0~dBm$ and $G_{ele} = 10^3$.
 %Here, $T$ is the symbol period. 
 
+
 \begin{figure}[h]
 		\centering
 		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/teor_BER_curves.pdf}
 		\caption{QPSK theoretical BER values as a function of the output optical power in dBm.\label{fig:QPSK_th_curves}}	
 \end{figure}
 
+
+It's worth noting that these equations are only valid for M=4, as in that case the system is similar to QPSK with a 4 point constellation. For $M > 4$ a different approach is required.
 % TODO: preencher isto depois de requisitar o livro
 
 
