@@ -3,6 +3,11 @@
 #include "fft_20180208.h"
 #include "netxpto_20180118.h"
 #include "snr_estimator_20180227.h"
+//// Currently estimating SNR only for real valued electrical signals.
+//// Not working for SNR< 10dB. Needs improvement.
+//// No upper and lower bounds yet.
+
+
 
 void SNREstimator::initialize(void) {
 	firstTime = false;
