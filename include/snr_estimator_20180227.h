@@ -13,7 +13,7 @@ class SNREstimator : public Block {
 	bool firstTime{ true };
 
 public:
-
+	SNREstimator() {};
 	SNREstimator(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig) {};
 
 	void initialize(void);
@@ -38,7 +38,6 @@ private:
 	vector <double> measuredInterval;
 	WindowType windowType = Hamming;
 	vector<double> window;
-	vector<double> frequencies;
 	bool firstPass = true;
 	int measuredIntervalSize = 1024;
 	int currentSize = 0;

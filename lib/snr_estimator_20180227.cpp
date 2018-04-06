@@ -26,6 +26,7 @@ bool SNREstimator::runBlock(void) {
 	double signalPower = 0;
 	double SNR = 0;
 	double stdSNR = 0;
+	vector<double> frequencies(segmentSize);
 
 	// If its the first pass, calculate z for finding the confidence interval.
 	// Also, calculate the window to be used and the vector of frequencies.
@@ -43,7 +44,7 @@ bool SNREstimator::runBlock(void) {
 		}
 		z = -x3;
 
-		window = getWindow(windowType, measuredIntervalSize);
+		window = getWindow(windowType, segmentSize);
 		
 		U = 0;	// Window normalization constant
 		for (unsigned int i = 0; i < window.size(); i++) {
@@ -107,10 +108,10 @@ bool SNREstimator::runBlock(void) {
 
 		// Get Welch's PSD estimate
 		int start = 0;
-		int finish = start + segmentSize-1;
+		int finish = start + segmentSize;
 		int summed = 0;
 		vector<double> periodogramSum;
-		vector<double> periodogramTmp;
+		vector<double> periodogramTmp(segmentSize);
 		
 
 		while (finish < (int)measuredInterval.size()) {
@@ -119,7 +120,7 @@ bool SNREstimator::runBlock(void) {
 			
 
 			// Multiply by window (in time domain)
-			for (long int i = 0; i < measuredIntervalSize; i++) {
+			for (long int i = 0; i < segmentSize; i++) {
 				segment[i] *= window[i];
 			}
 
@@ -134,8 +135,10 @@ bool SNREstimator::runBlock(void) {
 			// Get the FFT
 			fourierTransformed = fft(segmentComplex);
 			fourierTransformed = fftshift(fourierTransformed);
+			double absFFTi = 0;
 			for (unsigned int i = 0; i < fourierTransformed.size(); i++) {
-				periodogramTmp[i] = (double)pow(abs(fourierTransformed[i]), 2) / (U*segmentSize);
+				absFFTi = abs(fourierTransformed[i]);
+				periodogramTmp[i] = pow(absFFTi, 2) / (U*segmentSize);
 			}
 
 			// Add to summing vector
@@ -148,10 +151,10 @@ bool SNREstimator::runBlock(void) {
 			}
 			summed += 1;
 			segment.clear();
-			periodogramTmp.clear();
+			//periodogramTmp.clear();
 			fourierTransformed.clear();
 			segmentComplex.clear();
-			start += segmentSize;
+			start += segmentSize - overlapCount;
 			finish += segmentSize - overlapCount;
 		}
 
@@ -209,7 +212,9 @@ vector<double> SNREstimator::getWindow(WindowType windowType, int windowSize) {
 			for (int x = 0; x < windowSize; x++) {
 				wn[x] = 0.5 *(1 - cos(2 * PI*x / (windowSize - 1)));
 			}
+			return wn;
 	}
+	return wn;
 }
 
 

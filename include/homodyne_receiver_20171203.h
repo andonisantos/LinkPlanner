@@ -13,6 +13,7 @@
 # include "pulse_shaper_20180118.h"
 # include "white_noise_20180118.h"
 # include "add_20171116.h"
+# include "snr_estimator_20180227.h"
 
 
 // this is a test block for the purpose of beta testing new code
@@ -50,6 +51,8 @@ class HomodyneReceiver : public SuperBlock {
 	TimeContinuousAmplitudeContinuousReal HMD12{ "HMD12.sgn" }; // Add
 
 	TimeContinuousAmplitudeContinuousReal HMD13{ "HMD13.sgn" }; // Add
+
+	TimeContinuousAmplitudeContinuousReal TS1{ "TS1.sgn" }; // SNREstimator
 
 	TimeContinuousAmplitudeContinuousReal HMD14{ "HMD14.sgn" }; //Filtered (pulse shaper)
 
@@ -89,6 +92,8 @@ class HomodyneReceiver : public SuperBlock {
 	Add B9;
 
 	Add B10;
+
+	SNREstimator T1;
 
 	PulseShaper B11;
 

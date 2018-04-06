@@ -32,7 +32,7 @@ int main(){
 	t_real rollOffFactor_shp = 0.05;
 	t_real rollOffFactor_out = 0.05;
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
-	t_real signalOutputPower = -70;
+	t_real signalOutputPower = -45;
 	PulseShaperFilter shaperFilter = RootRaisedCosine;
 	PulseShaperFilter outputFilter = RootRaisedCosine;
 
