@@ -38,6 +38,8 @@ private:
 	vector <double> measuredInterval;
 	WindowType windowType = Hamming;
 	vector<double> window;
+	vector<double> frequencies;
+	vector <double> allSNR;
 	bool firstPass = true;
 	int measuredIntervalSize = 1024;
 	int currentSize = 0;
