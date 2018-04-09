@@ -34,6 +34,8 @@ public:
 	void setWindowType(WindowType wd) { windowType = wd; }
 	WindowType getWindowType(void) { return windowType; }
 
+	void setFilename(string fname) { filename = fname; }
+	string getFilename(void) { return filename; }
 
 	vector<double> getWindow(WindowType windowType, int windowSize);
 	vector<complex<double>> fftshift(vector<complex<double>> &vec);
@@ -52,7 +54,7 @@ private:
 	double alpha = 0.05;
 	double z;
 	double U;
-
+	string filename = "SNR.txt";
 };
 
 

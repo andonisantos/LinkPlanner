@@ -4,8 +4,8 @@
 #include "netxpto_20180118.h"
 #include "snr_estimator_20180227.h"
 //// Currently estimating SNR only for real valued electrical signals.
-//// Not working for SNR< 10dB. Needs improvement.
-//// No upper and lower bounds yet.
+//// Does not work for SNR< 10dB. Results also dubious for SNR>35;
+//// Needs improvement.
 
 
 
@@ -197,7 +197,7 @@ bool SNREstimator::runBlock(void) {
 
 		/* Outputting a .txt report*/
 			ofstream myfile;
-			myfile.open("SNR.txt");
+			myfile.open(filename);
 //			myfile.open("SNR.txt", std::ios_base::app);
 			myfile << "SNR= " << SNR << "\n";
 			myfile << "Upper and lower confidence bounds for " << (1 - alpha) * 100 << "% confidence level \n";
