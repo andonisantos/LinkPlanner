@@ -30,6 +30,8 @@ bool SNREstimator::runBlock(void) {
 	double signalPower = 0;
 	double SNR = 0;
 	double stdSNR = 0;
+	double LowerBound;
+	double UpperBound;
 	
 
 	// If its the first pass, calculate z for finding the confidence interval.
@@ -165,31 +167,43 @@ bool SNREstimator::runBlock(void) {
 
 		/* Calculating average SNR and bounds */
 		if (!allSNR.empty()) {
+			
+
 			for (unsigned int i = 0; i < allSNR.size(); i++) {
 				SNR += allSNR[i];
 			}
-			SNR = 10 * log10(SNR / allSNR.size());
-		
-		//		else {
-		//			cout << "ERROR: SNR could not be calculated. It is probably too low." << "\n";
-		//		}
-
-		//		double UpperBound = BER + 1 / sqrt(receivedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * receivedBits)*(2 * z * z * (1 / 2 - BER) + (2 - BER));
-		//		double LowerBound = BER - 1 / sqrt(receivedBits) * z  * sqrt(BER*(1 - BER)) + 1 / (3 * receivedBits)*(2 * z * z * (1 / 2 - BER) - (1 + BER));
-
-		//		if (LowerBound<lowestMinorant) {
-		//			LowerBound = lowestMinorant;
-		//		}
+			SNR = SNR/allSNR.size();
+			for (unsigned int i = 0; i < allSNR.size(); i++) {
+				stdSNR += pow((SNR - allSNR[i]), 2);
+			}
+			if (allSNR.size() > 1) {
+				stdSNR = sqrt(stdSNR / (allSNR.size() - 1));
+			}
+			else {
+				stdSNR = 0;
+			}
+			
+			if (allSNR.size() > 1) {
+				LowerBound = 10 * log10(SNR - z * stdSNR / sqrt(allSNR.size()));
+				UpperBound = 10 * log10(SNR + z * stdSNR / sqrt(allSNR.size()));
+			} else {
+				LowerBound = 0;
+				UpperBound = 0;
+			}
+			SNR = 10 * log10(SNR);
+//			if (LowerBound<lowestMinorant) {
+//					LowerBound = lowestMinorant;
+//				}
 
 		/* Outputting a .txt report*/
 			ofstream myfile;
 			myfile.open("SNR.txt");
 //			myfile.open("SNR.txt", std::ios_base::app);
 			myfile << "SNR= " << SNR << "\n";
-			//		myfile << "Upper and lower confidence bounds for " << (1 - alpha) * 100 << "% confidence level \n";
-			//		myfile << "Upper Bound= " << UpperBound << "\n";
-			//		myfile << "Lower Bound= " << LowerBound << "\n";
-			//		myfile << "Number of received bits =" << receivedBits << "\n";
+			myfile << "Upper and lower confidence bounds for " << (1 - alpha) * 100 << "% confidence level \n";
+			myfile << "Upper Bound= " << UpperBound << "\n";
+			myfile << "Lower Bound= " << LowerBound << "\n";
+			myfile << "Number of measurements= " << allSNR.size() << "\n";
 			myfile.close();
 		}
 		measuredInterval.clear();
