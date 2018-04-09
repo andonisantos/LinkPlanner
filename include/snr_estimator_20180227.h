@@ -31,6 +31,10 @@ public:
 	void setConfidence(double P) { alpha = 1-P; }
 	double getConfidence(void) { return 1 - alpha; }
 
+	void setWindowType(WindowType wd) { windowType = wd; }
+	WindowType getWindowType(void) { return windowType; }
+
+
 	vector<double> getWindow(WindowType windowType, int windowSize);
 	vector<complex<double>> fftshift(vector<complex<double>> &vec);
 
@@ -41,9 +45,9 @@ private:
 	vector<double> frequencies;
 	vector <double> allSNR;
 	bool firstPass = true;
-	int measuredIntervalSize = 1024;
+	int measuredIntervalSize = 2048;
 	int currentSize = 0;
-	int segmentSize = 512;
+	int segmentSize = 1024;
 	int overlapCount = 256;
 	double alpha = 0.05;
 	double z;
