@@ -1,1 +1,5 @@
-SNR= 0
+SNR= -0.438024
+Upper and lower confidence bounds for 95% confidence level 
+Upper Bound= -0.162174
+Lower Bound= -0.73259
+Number of measurements= 9

@@ -53,6 +53,8 @@ class HomodyneReceiver : public SuperBlock {
 	TimeContinuousAmplitudeContinuousReal HMD13{ "HMD13.sgn" }; // Add
 
 	TimeContinuousAmplitudeContinuousReal TS1{ "TS1.sgn" }; // SNREstimator
+	
+	TimeContinuousAmplitudeContinuousReal TS2{ "TS1.sgn" }; // SNREstimator
 
 	TimeContinuousAmplitudeContinuousReal HMD14{ "HMD14.sgn" }; //Filtered (pulse shaper)
 
@@ -94,6 +96,7 @@ class HomodyneReceiver : public SuperBlock {
 	Add B10;
 
 	SNREstimator T1;
+	SNREstimator T2;
 
 	PulseShaper B11;
 
@@ -164,6 +167,7 @@ public:
 
 	void setSamplerOpticalPower_dBm(double optPower_dBm) { B13.setOutputOpticalPower_dBm(optPower_dBm); B14.setOutputOpticalPower_dBm(optPower_dBm); };
 	
+	void setSNR2Filename(string fname) { T2.setFilename(fname); }
 };
 
 #endif

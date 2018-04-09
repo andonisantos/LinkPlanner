@@ -27,12 +27,12 @@ int main(){
 	t_real bitPeriod = 1 / (2 * symbolRate);
 	double symbolPeriod = 1 / symbolRate;
 
-	t_integer numberOfBitsGenerated(30000);
+	t_integer numberOfBitsGenerated(10000);
 	t_integer pLength = 5;
 	t_real rollOffFactor_shp = 0.05;
 	t_real rollOffFactor_out = 0.05;
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
-	t_real signalOutputPower = -80;
+	t_real signalOutputPower = -60;
 	PulseShaperFilter shaperFilter = RootRaisedCosine;
 	PulseShaperFilter outputFilter = RootRaisedCosine;
 
@@ -143,6 +143,7 @@ int main(){
 //	B2.usePassiveFilterMode(true);
 	B2.setImpulseResponseFilename("out_filter.imp");
 	B2.setFirstFilteredValueToBeSaved(samplesToSkip);
+	B2.setSNR2Filename("SNR_after_mf.txt");
 
 
 
