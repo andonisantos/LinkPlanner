@@ -16,9 +16,12 @@
 	\centering
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\textbf{Name}  & \textbf{Type}  & \textbf{Value}    \\ \hline
-		Confidence     & double         & 0.95              \\ \hline
-		IntervalSize& double			& 					\\ \hline
+		\textbf{Name}  		 & \textbf{Type}  & \textbf{Value}    	\\\hline
+		Confidence     		 & double         & 0.95              	\\\hline
+		measuredIntervalSize & int 			  & 1024				\\\hline
+		windowType			 & WindowType     & Hamming			  	\\\hline
+		segmentSize			 & int			  & 512					\\\hline
+		overlapCount  		 & int			  & 256					\\\hline
 %		LowestMinorant & double         & $1\times10^{-10}$ \\ \hline
 	\end{tabular}
 \end{table}
@@ -57,7 +60,10 @@ This block output signal is exactly equal to the input signal, to estimate SNR a
 %\end{align}
 %where $z_{\alpha/2}$ is the $100\left(1-\frac{\alpha}{2}\right)$th percentile of a standard normal distribution.
 
+\subsection*{Theoretical Description}\label{snrestissues}
 
+This block currently only works with \textit{TimeContinuousAmplitudeContinuousReal} signals.
+It also does work correctly for SNR values lower than -10 dB or higher than approximately 35 dB.
 
 
 
