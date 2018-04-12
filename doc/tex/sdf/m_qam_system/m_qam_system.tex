@@ -34,8 +34,8 @@ For $M=4$ the M-QAM system can be reduced to a Quadrature Phase Shift Keying sys
 M-QAM is a modulation scheme that takes advantage of two sinusoidal carriers with a phase difference of $\pi/2$. The resultant output consists of a signal with both amplitude and phase variations. The two carriers, referred to as I (In-phase) and Q (Quadrature), can be represented as
 
 \begin{align}
-	I(t)=A(t)\cos(\phi t) \\
-	Q(t)=A(t)\sin(\phi t)
+	I(t)=a(t)\cos(\phi t) \\
+	Q(t)=a(t)\sin(\phi t)
 \end{align}
 which means that any sinusoidal wave can be decomposed in its I and Q components:
 
@@ -53,10 +53,10 @@ This means that the probability of an error in bit detection is independent amon
 
 %Considering a signal with amplitude $A$ sampled at the signal peak with no inter-symbol interference, and affected by noise with variance $n_0/2$, the sampled value will be a Gaussian random variable with mean $\pm A$ and variance $n_0/2$. Thus, the probability of error is given by the probability that the value is affected by a deviation greater than $m$.
 
-Let the $s(t)$ be the signal sampled at a given instant $t$ for either the in-phase or quadrature component, $A(t)$ be the component corresponding to the transmitted signal with value equal to $\pm A$, depending on whether the transmitted signal was 1 or 0, and $n(t)$ the component associated with the Gaussian white noise with spectral density $n_0/2$, such that
+Let the $s(t)$ be the signal to be sampled at a given instant $t$ for either the in-phase or quadrature component, $a(t)$ be the component corresponding to the transmitted signal with peak amplitude equal to $A$, depending on whether the transmitted signal was 1 or 0, and $n(t)$ the component associated with the Gaussian white noise with spectral density $n_0/2$, such that
 
 \begin{equation}\label{eq:sigAmpNoise}
-s(t) = A(t) + n(t)
+s(t) = a(t) + n(t)
 \end{equation}
 
 \begin{figure}[H]
@@ -65,7 +65,8 @@ s(t) = A(t) + n(t)
 	\caption{The relation between $m$ and the distance between constellation points.\label{fig:const_2m}}
 \end{figure}
 
-In this case, assuming the absence of inter-symbol interference, $s(t)$ will be a Gaussian random variable with average value of $\pm A$, depending on what signal was transmitted, and variance equal to $n_0/2$. In this case, using the constellation from Figure~\ref{fig:const_2m}, with a decision boundary halfway between $A$ and $-A$, an error occurs in two situations: when the a 0 is transmitted but a 1 is identified, or a 1 is transmitted and a 0 is identified. These errors happen when the perturbation in the signal due to noise is enough to push the value beyond the decision boundary. This is illustrated in Figures~\ref{fig:gauss} and~\ref{fig:gausserr}, where the probability of error is shown by the colored area under the curve.
+In this case, assuming the absence of inter-symbol interference, $s(t)$ will be a Gaussian random variable with average value of $\pm A$, depending on what signal was transmitted, and variance equal to $n_0/2$. In this case, using the constellation from Figure~\ref{fig:const_2m}, with a decision boundary halfway between $A$ and $-A$, an error occurs in two situations: when the a 0 is transmitted but a 1 is identified, or a 1 is transmitted and a 0 is identified. These errors happen when the perturbation in the signal due to noise is enough to push the value beyond the decision boundary. This is illustrated in Figures~\ref{fig:gauss} and~\ref{fig:gausserr}, where the probability of error is shown by the colored area under the curve~\cite{mischasch}.
+
 
 \begin{figure}[H]
 	\centering
@@ -98,7 +99,7 @@ P_{be} = P_0 P_{e0} + P_1 P_{e1}
 With equal probability for both bits, and considering the constellation's symmetry
 
 \begin{equation}\label{eq:berMQAM}
-P_{be} =  Q\left({\frac{A}{\sqrt{N}}}\right) = \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{2 N}}}\right)
+P_{be} =  Q\left({\frac{A}{\sqrt{N}}}\right) = \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{2 N}}}\right) 
 %= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
 \end{equation}
 
@@ -120,7 +121,8 @@ with
 
 \begin{eqnarray}
 &A &= G_{ele} \sqrt{P_L P_S}\label{eq:bpskamplitude}\\
-&N &\propto n_0 B
+%&N &\propto n_0 B
+&N & = n_0 B
 \end{eqnarray}
 %\begin{equation}\label{eq:berBPSK}
 %BER= Q\left({G_{ele}\sqrt{\frac{2 P_L P_S}{n_0}}}\right) = \frac{1}{2} \text{erfc}\left({G_{ele}\sqrt{\frac{P_L P_S}{n_0}}}\right).
@@ -134,7 +136,7 @@ The peak power signal-to-noise ratio, defined as the ratio between the instantan
 	\text{SNR} = \frac{A^2}{{N}}
 \end{equation}
 
-$N$, the mean noise Power, is the variance of the noise signal. The square root of this value is the peak signal-to-rms-noise ratio, and it is the single parameter on which the probability of errors depends.
+$N$, the mean noise power, is the variance of the noise signal. The square root of this value is the peak signal-to-rms-noise ratio, and it is the single parameter on which the probability of errors depends.
 
 \begin{equation}
 \text{SNR}_{RMS} = \frac{A}{\sqrt{N}}
@@ -201,21 +203,21 @@ From this, the probability of symbol error is:
 It is possible to further decrease the error rate by using a matched filter before sampling the signal. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and another one before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
 
 %As the constellation remains the same, the expression to calculate the BER is similar, but replacing the values of $m$ and $N_0$ of Equation~\eqref{eq:berMQAM} by those corresponding to the signal at the output of the filter, which can be calculated as:
-Considering a signal similar to the one described by Equation~\ref{eq:sigAmpNoise}, the output of the matched filter receiver will be~\cite{mischasch}:
+Considering a signal similar to the one described by Equation~\ref{eq:sigAmpNoise}, let $ a(t) = A~p(t) $, where A is the peak amplitude of the signal and $p(t)$ is the shape of the signal, shaped at the transmitter. Also, let $H(\omega)$ be the frequency domain response of the filter at the receiver. For matched filtering, the receiver filter is equal to the transmitter, but reversed in time and shifted by a time delay~\cite{carlson1986communication}.
+
 
 \begin{eqnarray}
-&s_{mf} (t) &= \int_{0}^{T} s(t)\cos(\omega_0 t ) dt\nonumber\\
-&	       &= \int_{0}^{T} m(t) \cos(\omega_0 t ) dt + \int_{0}^{T} n(t) \cos(\omega_{0} t ) dt
+A_o = \mathfrak{F}^{-1}\left[H(\omega) A(\omega)\right]\big|_{t=t_0+t_d} = 
 \end{eqnarray}
 
-In the case of QPSK with m=4, both the quadrature and in-phase components have $m(t) = \pm A$. The values that replace $m$ and $N_0$ in Equation~\ref{eq:berMQAM} become:
+%In the case of QPSK with m=4, both the quadrature and in-phase components have $a(t) = \pm A$. The values that replace $A$ and $N_0$ in Equation~\ref{eq:berMQAM} become:
 
-\begin{eqnarray}
-%&A_{mf} &= \frac{A T}{2} = \frac{G_{ele} T_s B \sqrt{P_L P_S}}{2}\\
-%&N_{mf} &= N \frac{T_s B}{2}
-&A_{mf} &= \frac{A T}{2} = \frac{G_{ele} T \sqrt{P_L P_S}}{2}\\
-&N_{mf} &= N \frac{T}{2}
-\end{eqnarray}
+%\begin{eqnarray}
+%%&A_{mf} &= \frac{A T}{2} = \frac{G_{ele} T_s B \sqrt{P_L P_S}}{2}\\
+%%&N_{mf} &= N \frac{T_s B}{2}
+%%&A_{mf} &= \frac{A T}{2} = \frac{G_{ele} T \sqrt{P_L P_S}}{2}\\
+%%&N_{mf} &= N \frac{T}{2}
+%\end{eqnarray}
 
 Here, $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier, $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A_mf$ is the average amplitude at the sampling points of the signal after amplification without noise, $\sigma_o^2$ is the variance of the noise component of the matched filter output, the and $n_0$ is the noise spectral density.
 
@@ -1414,7 +1416,7 @@ The setup shown in Figure~\ref{fig:experimental_mqam_setup} was used to obtain e
 Figure~\ref{fig:qamTxSig} to~\ref{fig:rxFinal} show the waveforms of the signal and the constellations at different points during the course of processing the received signal. All the waveforms shown correspond to the first 3 nanoseconds of the signal. The constellations assume that the signal has been sampled at the appropriate times unless otherwise noted.
 
 Figure~\ref{fig:qamTxSig} shows the beginning of the signal generated by the AWG that was then sent to the IQ modulator.
-The beginning of the signal received at the oscilloscope is shown in Figure~\ref{fig:qamRxSig}. Its worth noting that they are not synchronized, requiring that to be accomplished while processing after the aquisition.
+The beginning of the signal received at the oscilloscope is shown in Figure~\ref{fig:qamRxSig}. Its worth noting that they are not synchronized, requiring that to be accomplished while processing after the aquisition. 
 
 \begin{figure}[H]
 	\centering
@@ -1481,7 +1483,7 @@ As can be seen, the constellation is not properly aligned. Also, the noise seen 
 
 \subsection{Comparative Analysis}
 
-In this section we show the simulation results and compared them with the theoretical predictions for an M-QAM system with $M=4$. Figure \ref{fig:ber_pseudorandom} shows the variation of the BER with the optical power of the signal, using $40000$ bits produced by a random number generator. The noise power spectral density was set at $10^{-6}~V^2.Hz^{-1}$, the local oscillator at $0~dBm$ and the amplification at the transimpedance amplifier was set at $10^3$.
+In this section we show the simulation results and compared them with the theoretical predictions for an M-QAM system with $M=4$. Figure \ref{fig:ber_pseudorandom} shows the variation of the BER with the optical power of the signal, using $40000$ bits produced by a random number generator. The noise power was set at $10^{-6}$, the local oscillator at $0~dBm$ and the amplification at the transimpedance amplifier was set at $10^3$.
 The blue line represents the theoretical curve, while the orange points represent the simulated values with the respective confidence margins. The simulation agrees closely with the theoretical values.
 
 
