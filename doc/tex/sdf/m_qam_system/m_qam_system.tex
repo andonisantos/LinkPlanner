@@ -203,12 +203,19 @@ From this, the probability of symbol error is:
 It is possible to further decrease the error rate by using a matched filter before sampling the signal. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and another one before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
 
 %As the constellation remains the same, the expression to calculate the BER is similar, but replacing the values of $m$ and $N_0$ of Equation~\eqref{eq:berMQAM} by those corresponding to the signal at the output of the filter, which can be calculated as:
-Considering a signal similar to the one described by Equation~\ref{eq:sigAmpNoise}, let $ a(t) = A~p(t) $, where A is the peak amplitude of the signal and $p(t)$ is the shape of the signal, shaped at the transmitter. Also, let $H(\omega)$ be the frequency domain response of the filter at the receiver. For matched filtering, the receiver filter is equal to the transmitter, but reversed in time and shifted by a time delay~\cite{carlson1986communication}.
+Considering a signal similar to the one described by Equation~\ref{eq:sigAmpNoise}, let $ a(t) = A~p(t) $, where A is the peak amplitude of the signal and $p(t)$ is the shape of the signal, shaped at the transmitter. Also, let $H(f)$ be the frequency domain response of the filter at the receiver. For matched filtering, the receiver filter is equal to the transmitter, but reversed in time and shifted by a time delay~\cite{carlson1986communication}. The amplitude of the signal component after the receiver filter, at a given sampling time $t=t_0+t_d$, is given by:
 
 
 \begin{eqnarray}
-A_o = \mathfrak{F}^{-1}\left[H(\omega) A(\omega)\right]\big|_{t=t_0+t_d} = 
+A_o = \mathfrak{F}^{-1}\left[H(f) A(f)\right]\big|_{t=t_0+t_d} = A \int_{-\infty}^{+\infty} H(f) P(f) e^{+j \omega t_d}df
 \end{eqnarray}
+
+Similarly, considering AWGN at the input, with spectral density $G_n = \frac{n_0}{2}$, the noise power at the receiver filter output is given by:
+
+\begin{eqnarray}
+N_o = \int_{-\infty}^{+\infty} {|H(f)|}^2 G_n(f) df = \frac{n_0}{2} \int_{-\infty}^{+\infty} {|H(f)|}^2
+\end{eqnarray}
+
 
 %In the case of QPSK with m=4, both the quadrature and in-phase components have $a(t) = \pm A$. The values that replace $A$ and $N_0$ in Equation~\ref{eq:berMQAM} become:
 
@@ -226,7 +233,7 @@ The optimal BER that can be obtained by using matched filtering is then given by
 
 \begin{eqnarray}\label{eq:berBPSK}
 &P_{be} &= Q\left({\frac{A_{mf}}{\sqrt{N_{mf}}}}\right)\nonumber\\
-&		&= \frac{1}{2} \text{erfc}\left({\frac{A_{mf}}{\sqrt{2 N_{mf}}}}\right)\nonumber\\
+&		&= \frac{1}{2} \text{erfc}\left({\frac{A_{o}}{\sqrt{2 N_{o}}}}\right)\nonumber\\
 %&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T_s B}{2}}}\right)\\
 &	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T}{2}}}\right)\\
 %&	    &= \frac{1}{2} \text{erfc}\left(\sqrt{{\frac{E_b}{n_0}}}\right)\nonumber
