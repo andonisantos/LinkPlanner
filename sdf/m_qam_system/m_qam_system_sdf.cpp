@@ -22,7 +22,7 @@ int main(){
 	double symbolPeriod = bitPeriod / samplesPerSymbol;
 	*/
 	double samplingRate = 64e9;
-	double symbolRate = 16e9;
+	double symbolRate = 4e9;
 	t_integer samplesPerSymbol(samplingRate / symbolRate);
 	t_real bitPeriod = 1 / (2 * symbolRate);
 	double symbolPeriod = 1 / symbolRate;
@@ -32,7 +32,7 @@ int main(){
 	t_real rollOffFactor_shp = 0.05;
 	t_real rollOffFactor_out = 0.05;
 	//vector<t_iqValues> iqAmplitudeValues = { { -1, 0 },{ 1, 0 } };
-	t_real signalOutputPower = -70;
+	t_real signalOutputPower = -45;
 	PulseShaperFilter shaperFilter = RootRaisedCosine;
 	PulseShaperFilter outputFilter = RootRaisedCosine;
 
