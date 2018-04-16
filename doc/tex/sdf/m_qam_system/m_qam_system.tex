@@ -227,7 +227,7 @@ Similarly, the noise power at the receiver filter output is given by:
 N_o = \int_{-\infty}^{+\infty} {|H(f)|}^2 G_n(f) df = \frac{n_0}{2} \int_{-\infty}^{+\infty} {|H(f)|}^2
 \end{eqnarray}
 
-This means that the peak signal power to mean noise power ratio is given by:
+This means that the peak signal power to mean noise power ratio at the filter output is given by:
 
 \begin{eqnarray}
 \frac{A_o^2}{N_o} &= A_p^2 \frac{\big|\int_{-\infty}^{+\infty} |H(f) P(f)e^{j\omega t_d} df\big|^2}{\int_{-\infty}^{+\infty} {|H(f)|}^2 G_n(f) df}\\\nonumber
@@ -237,7 +237,7 @@ This means that the peak signal power to mean noise power ratio is given by:
 It can be shown that a matched filter maximizes the ratio above, so that it becomes~\cite{carlson1986communication} :
 
 \begin{equation}
-\frac{A_o^2}{N_o} = \frac{A_p^2}{n_0/2} \int_{-\infty}^{+\infty} |P(f)|^2 df
+\frac{A_o^2}{N_o} = \frac{A_p^2}{n_0/2} \int_{-\infty}^{+\infty} |P(f)|^2 df = \frac{A_p^2}{n_0/2} \int_{-\infty}^{+\infty} p(t)^2 dt
 \end{equation}
 
 Substituting from equation~\ref{eq:pulseEnergy}:
@@ -277,7 +277,7 @@ If $\omega_0$ is such that $\omega_0 T_s \gg 1$, as it typically is when modulat
 E_p \doteq \frac{1}{2}\int_{0}^{T_s} a(t)^2 dt = \frac{1}{2}\int_{0}^{T_s} A^2 p(t)^2 dt=\frac{1}{2} A^2 \int_{0}^{T_s} p(t)^2 dt= \frac{A^2 T_s}{2}
 \end{equation}
 
-Substituting from equations~\ref{eq:rectSigEn} and~\ref{eq:noiseBw} into Equation~\ref{eq:berMQAMmf}, the BER expression becomes:
+Substituting from equations~\ref{eq:noiseBw} and~\ref{eq:rectSigEn} into Equation~\ref{eq:berMQAMmf}, the BER expression becomes:
 
 \begin{equation}\label{eq:berMod}
 P_{be} = \frac{1}{2} \text{erfc}\left(\sqrt{\frac{A^2 T_s / 2}{ N / B}}\right) = 
@@ -973,8 +973,8 @@ the receiver is rather effective at filtering the noise.
 		%		midReportSize          & $0$                                                        \\ \hline
 		theoreticalSNR  	   & $15~dB$                             					\\ \hline
 		numericalSNR 		   & $13.9182~dB$                             					\\ \hline
-		numericalSNR Upper Bound & $13.9624~dB$                             					\\ \hline
-		numericalSNR Lower Bound & $13.8737~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $13.9624~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $13.8737~dB$                             					\\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
@@ -1030,8 +1030,8 @@ the receiver is rather effective at filtering the noise.
 		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 		theoreticalSNR  	   & $15~dB$                             					\\ \hline
 		numericalSNR 		     & $14.9902~dB$                             					\\ \hline
-		numericalSNR Upper Bound & $15.0408~dB$                             					\\ \hline
-		numericalSNR Lower Bound & $14.9391~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $15.0408~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $14.9391~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -1095,8 +1095,8 @@ the case is in all aspects similar to the one presented above.
 		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 		theoreticalSNR  	   & $15~dB$                             					\\ \hline
 				numericalSNR 		     & $14.6827~dB$                             					\\ \hline
-		numericalSNR Upper Bound & $14.7321~dB$                             					\\ \hline
-		numericalSNR Lower Bound & $14.6327~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $14.7321~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $14.6327~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -1154,8 +1154,8 @@ the case is in all aspects similar to the one presented above.
 		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 		theoreticalSNR  	   & $15~dB$                             					\\ \hline
 		numericalSNR 		     & $14.9696~dB$                             					\\ \hline
-		numericalSNR Upper Bound & $15.006~dB$                             					\\ \hline
-		numericalSNR Lower Bound & $14.9329~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $15.006~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $14.9329~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -1229,8 +1229,8 @@ without it the signal visually appears to be random noise.
 		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 		theoreticalSNR  	   & $0~dB$                             					\\ \hline
 		numericalSNR 		     & $-1.07702~dB$                             					\\ \hline
-		numericalSNR Upper Bound & $-1.0038~dB$                             					\\ \hline
-		numericalSNR Lower Bound & $-1.1515~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $-1.0038~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $-1.1515~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -1289,8 +1289,8 @@ without it the signal visually appears to be random noise.
 		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 				theoreticalSNR  	   & $0~dB$                             					\\ \hline
 		numericalSNR 		     & $0.0290907~dB$                             					\\ \hline
-		numericalSNR Upper Bound & $0.120973~dB$                             					\\ \hline
-		numericalSNR Lower Bound & $-0.064778~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $0.120973~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $-0.064778~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -1349,8 +1349,8 @@ case but using a roll-off factor of 0.3.
 		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 						theoreticalSNR  	   & $0~dB$                             					\\ \hline
 		numericalSNR 		     & $-0.306456~dB$                             					\\ \hline
-		numericalSNR Upper Bound & $-0.233164~dB$                             					\\ \hline
-		numericalSNR Lower Bound & $-0.381006~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $-0.233164~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $-0.381006~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -1407,8 +1407,8 @@ case but using a roll-off factor of 0.3.
 		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 								theoreticalSNR  	   & $0~dB$                             					\\ \hline
 		numericalSNR 		     & $0.0368278~dB$                             					\\ \hline
-		numericalSNR Upper Bound & $0.09153~dB$                             					\\ \hline
-		numericalSNR Lower Bound & $-0.0185722~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $0.09153~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $-0.0185722~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
