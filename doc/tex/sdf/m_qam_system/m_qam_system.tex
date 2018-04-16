@@ -200,28 +200,57 @@ From this, the probability of symbol error is:
 %		\label{fig:QPSK_th_curve}
 %\end{figure}
 
-It is possible to further decrease the error rate by using a matched filter before sampling the signal. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and another one before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
+It is possible to further decrease the error rate by using a matched filter before sampling the signal. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and a similar one at the receiver, before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
 
 %As the constellation remains the same, the expression to calculate the BER is similar, but replacing the values of $m$ and $N_0$ of Equation~\eqref{eq:berMQAM} by those corresponding to the signal at the output of the filter, which can be calculated as:
-Considering a pulse with composition similar to the signal described by Equation~\ref{eq:sigAmpNoise}, let $ a(t) = A_p~p(t) $, where $A_p$ is the peak amplitude of the signal and $p(t)$ is the shape of the pulse. Also, let $H(f)$ be the frequency domain response of the filter at the receiver. For matched filtering, the receiver filter is equal to the transmitter, but reversed in time and shifted by a time delay~\cite{carlson1986communication}.
+Considering a pulse with composition similar to the signal described by Equation~\ref{eq:sigAmpNoise}, let $ a(t) = A_p~p(t) $, where $A_p$ is the peak amplitude of the signal and $p(t)$ is the shape of the pulse, and $n(t)$ be AWGN of spectral density $G_n(f) = \frac{n_0}{2}$. Also, let $H(f)$ be the frequency domain response of the filter at the receiver.
+The filter is similar to the shape of the pulse , but reversed in time and shifted by a time delay, such that it maximizes the SNR~\cite{carlson1986communication}.
 
-The energy contained in the pulse depends on the pulse amplitude and on its shape, and it is given by:
+The energy contained in the pulse that enters the receiver filter depends on the pulse amplitude and on its shape, and it is given by:
 
-\begin{eqnarray}
-E_p = \int_{-\infty}^{\infty} {|[A(f)]|}^2 df = A_p \int_{-\infty}^{\infty} {|P(f)|}^2 df  
+\begin{eqnarray}\label{eq:pulseEnergy}
+E_p = \int_{-\infty}^{\infty} {|A(f)|}^2 df = A_p^2 \int_{-\infty}^{\infty} {|P(f)|}^2 df  
 \end{eqnarray}
 
 The amplitude of the signal component after the receiver filter $H(f)$, at a given sampling time $t=t_0+t_d$, is:
 
 \begin{eqnarray}
-A_o = \mathfrak{F}^{-1}\left[H(f) A(f)\right]\big|_{t=t_0+t_d} = A \int_{-\infty}^{+\infty} H(f) P(f) e^{+j \omega t_d}df
+A_o = \mathfrak{F}^{-1}\left[H(f) A(f)\right]\big|_{t=t_0+t_d} = A_p \int_{-\infty}^{+\infty} H(f) P(f) e^{+j \omega t_d}df
 \end{eqnarray}
 
-Similarly, considering the noise at the input to be AWGN  with spectral density $G_n = \frac{n_0}{2}$, the noise power at the receiver filter output is given by:
+Similarly, the noise power at the receiver filter output is given by:
 
 \begin{eqnarray}
 N_o = \int_{-\infty}^{+\infty} {|H(f)|}^2 G_n(f) df = \frac{n_0}{2} \int_{-\infty}^{+\infty} {|H(f)|}^2
 \end{eqnarray}
+
+This means that the peak signal power to mean noise power ratio is given by:
+
+\begin{eqnarray}
+\frac{A_o^2}{N_o} &= A_p^2 \frac{\big|\int_{-\infty}^{+\infty} |H(f) P(f)e^{j\omega t_d} df\big|^2}{\int_{-\infty}^{+\infty} {|H(f)|}^2 G_n(f) df}\\\nonumber
+				  &= A_p^2 \frac{\big|\int_{-\infty}^{+\infty} |H(f) P(f)e^{j\omega t_d} df\big|^2}{\frac{n_0}{2}\int_{-\infty}^{+\infty} {|H(f)|}^2df}
+\end{eqnarray}
+
+It can be shown that a matched filter maximizes the ratio above, so that it becomes~\cite{carlson1986communication} :
+
+\begin{equation}
+\frac{A_o^2}{N_o} = \frac{A_p^2}{n_0/2} \int_{-\infty}^{+\infty} |P(f)|^2 df
+\end{equation}
+
+Substituting from equation~\ref{eq:pulseEnergy}:
+
+\begin{equation}
+\frac{A_o^2}{N_o} = \frac{2 E_p}{n_0}
+\end{equation}
+
+This shows that the SNR and, therefore, the error probability are dependent on the energy of each symbol and the noise spectral density. However, even though the relation does not directly depend on the pulse shape, the energy of each symbol still depends on the pulse shape. It can also be expected that the energy is related to the symbol period. Considering two a similar shaped pulses, with similar amplitude but duration, the one with longer duration should have more energy.
+
+The BER expression for matched filtering the becomes:
+
+\begin{equation}\label{eq:berMQAMmf}
+P_{be} =  Q\left(\sqrt{\frac{2 E_p}{{n_0}}}\right) = \frac{1}{2} \text{erfc}\left(\sqrt{\frac{E_p}{n_0}}\right) 
+%= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
+\end{equation}
 
 
 %In the case of QPSK with m=4, both the quadrature and in-phase components have $a(t) = \pm A$. The values that replace $A$ and $N_0$ in Equation~\ref{eq:berMQAM} become:
@@ -233,30 +262,30 @@ N_o = \int_{-\infty}^{+\infty} {|H(f)|}^2 G_n(f) df = \frac{n_0}{2} \int_{-\inft
 %%&N_{mf} &= N \frac{T}{2}
 %\end{eqnarray}
 
-Here, $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier, $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A_mf$ is the average amplitude at the sampling points of the signal after amplification without noise, $\sigma_o^2$ is the variance of the noise component of the matched filter output, the and $n_0$ is the noise spectral density.
+%Here, $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier, $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A_mf$ is the average amplitude at the sampling points of the signal after amplification without noise, $\sigma_o^2$ is the variance of the noise component of the matched filter output, the and $n_0$ is the noise spectral density.
+%
+%
+%The optimal BER that can be obtained by using matched filtering is then given by:
+
+%%\begin{eqnarray}\label{eq:berBPSK}
+%&P_{be} &= Q\left({\frac{A_{mf}}{\sqrt{N_{mf}}}}\right)\nonumber\\
+%&		&= \frac{1}{2} \text{erfc}\left({\frac{A_{o}}{\sqrt{2 N_{o}}}}\right)\nonumber\\
+%%&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T_s B}{2}}}\right)\\
+%&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T}{2}}}\right)\\
+%%&	    &= \frac{1}{2} \text{erfc}\left(\sqrt{{\frac{E_b}{n_0}}}\right)\nonumber
+%\end{eqnarray}
+
+%with
+%
+%\begin{eqnarray}
+%&A &= G_{ele} \sqrt{P_L P_S}
+%%&m_{mf} &= \frac{1}{2} T G_{ele} \sqrt{P_L P_S} \\
+%%&E_b &= \frac{A^2 T}{2} \\
+%\end{eqnarray}
 
 
-The optimal BER that can be obtained by using matched filtering is then given by:
-
-\begin{eqnarray}\label{eq:berBPSK}
-&P_{be} &= Q\left({\frac{A_{mf}}{\sqrt{N_{mf}}}}\right)\nonumber\\
-&		&= \frac{1}{2} \text{erfc}\left({\frac{A_{o}}{\sqrt{2 N_{o}}}}\right)\nonumber\\
-%&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T_s B}{2}}}\right)\\
-&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T}{2}}}\right)\\
-%&	    &= \frac{1}{2} \text{erfc}\left(\sqrt{{\frac{E_b}{n_0}}}\right)\nonumber
-\end{eqnarray}
-
-with
-
-\begin{eqnarray}
-&A &= G_{ele} \sqrt{P_L P_S}
-%&m_{mf} &= \frac{1}{2} T G_{ele} \sqrt{P_L P_S} \\
-%&E_b &= \frac{A^2 T}{2} \\
-\end{eqnarray}
-
-
-\noindent where $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A$ is as defined in Equation~\ref{eq:bpskamplitude}, the peak amplitude of the signal without noise prior to filtering.
-%and $B_e$ is the energy of a single received bit.
+%\noindent where $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A$ is as defined in Equation~\ref{eq:bpskamplitude}, the peak amplitude of the signal without noise prior to filtering.
+%%and $B_e$ is the energy of a single received bit.
 
 The expressions for the Bit-Error-Rate in the cases with and without matched filtering is then:
 
@@ -265,7 +294,7 @@ The expressions for the Bit-Error-Rate in the cases with and without matched fil
 	\begin{tabulary}{1.0\textwidth}{|c|c|}
 		\hline
 		\textbf{Without matched filter} 								& \textbf{With Matched Filter} \\ \hline
-		$ \frac{1}{2} \text{erfc} \left( \frac{A}{\sqrt{n_0}} \right) $	& $ \frac{1}{2} \text{erfc} \left( \frac{A}{\sqrt{n_0}} \sqrt{\frac{T}{2}} \right) $ \\ \hline
+		$ \frac{1}{2} \text{erfc} \left( \frac{A}{\sqrt{N}} \right) $	& $ \frac{1}{2} \text{erfc} \left( \sqrt{\frac{E_p}{{n_0}}} \right) $ \\ \hline
 	\end{tabulary}
 	
 	\caption{Comparison between the BER equations for the cases with and without matched filtering.\label{tab:ber_qpsk}}
