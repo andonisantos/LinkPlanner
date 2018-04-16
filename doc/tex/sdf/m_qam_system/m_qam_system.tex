@@ -4,7 +4,7 @@
 \begin{refsection}
 
 \begin{tcolorbox}	
-	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}}
 		\textbf{Student Name}  & & Andoni Santos (2018/01/03 - )\\
 							   & & Ana Luisa Carvalho (2017/04/01 - 2017/12/31) \\
 		\textbf{Goal}          &:& M-QAM system implementation with BER measurement and comparison with theoretical and experimental values.\\
@@ -122,15 +122,31 @@ with
 \begin{eqnarray}
 &A &= G_{ele} \sqrt{P_L P_S}\label{eq:bpskamplitude}\\
 %&N &\propto n_0 B
-&N & = n_0 B
+&N & = n_0 B\label{eq:noiseBw}
 \end{eqnarray}
 %\begin{equation}\label{eq:berBPSK}
 %BER= Q\left({G_{ele}\sqrt{\frac{2 P_L P_S}{n_0}}}\right) = \frac{1}{2} \text{erfc}\left({G_{ele}\sqrt{\frac{P_L P_S}{n_0}}}\right).
 %\end{equation}
 
-\noindent where $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier and $n_0$ is the noise spectral density. $A$ is the magnitude of the signal at sampling time and $\sqrt{N}$ is the RMS noise. Figure~\ref{fig:const_2m} shows the relation between the constellation points and $A$.
+\noindent where $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier, $n_0/2$ is the noise spectral density and $B$ is the channel bandwidth. $A$ is the magnitude of the signal at sampling time and $\sqrt{N}$ is the RMS noise. Figure~\ref{fig:const_2m} shows the relation between the constellation points and $A$.
+
+The symbol error rate depends on both bits being correctly detected. This probability is:
+
+\begin{equation}
+P_C = (1 - P_{be})^2
+\end{equation}
+
+From this, the probability of symbol error is:
+
+\begin{eqnarray}
+&P_s &= 1-P_C \nonumber\\
+&	   &= 1 - \left(1 - Q \left({\frac{A}{\sqrt{N}}}\right)\right)^2 \nonumber \\
+&	   &= 2 Q\left({\frac{A}{\sqrt{N}}}\right)\left[1-\frac{1}{2} Q \left({\frac{A}{\sqrt{N}}}\right)\right]
+\end{eqnarray}
+
+
 %$N_0$ will be the standard deviation of the sampled values.
-The peak power signal-to-noise ratio, defined as the ratio between the instantaneous peak signal power to mean noise power, is given by
+The peak power signal-to-noise ratio, defined as the ratio between the instantaneous peak signal power to mean noise power, is given by:
 
 \begin{equation}
 	\text{SNR} = \frac{A^2}{{N}}
@@ -144,19 +160,6 @@ $N$, the mean noise power, is the variance of the noise signal. The square root 
 
 Here, A is the peak signal amplitude and $\sqrt{N}$ is the RMS noise in the absence of a signal.
 
-The symbol error rate however is not the same, as it depends on both bits being correctly detected. The probability of both bits being correctly detected is:
-
-\begin{equation}
-P_C = (1 - P_{be})^2
-\end{equation}
-
-From this, the probability of symbol error is:
-
-\begin{eqnarray}
-&P_s &= 1-P_C \nonumber\\
-&	   &= 1 - \left(1 - Q \left({\frac{A}{\sqrt{N}}}\right)\right)^2 \nonumber \\
-&	   &= 2 Q\left({\frac{A}{\sqrt{N}}}\right)\left[1-\frac{1}{2} Q \left({\frac{A}{\sqrt{N}}}\right)\right]
-\end{eqnarray}
 
 %The bit error rate is then equal to the probability of the phase falling outside the correct detection range in a given component due to noise,
 
@@ -253,7 +256,7 @@ P_{be} =  Q\left(\sqrt{\frac{2 E_p}{{n_0}}}\right) = \frac{1}{2} \text{erfc}\lef
 %= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
 \end{equation}
 
-To exemplify with a simple case, let the pulse shape be rectangular with width $T_s$, such as
+To exemplify with a simple case, let the pulse shape be rectangular with period $T_s$, such as:
 
 \begin{equation*}
 	a(t) = \begin{cases}
@@ -262,14 +265,37 @@ To exemplify with a simple case, let the pulse shape be rectangular with width $
 	\end{cases}
 \end{equation*}
 
-The pulse's energy will be given by:
+The energy of a pulse at the receptor input will be given by:
 
 \begin{equation}
-E_p = \int_{0}^{T_s} {a(t)cos(\omega_0 t)}^2 dt = \frac{A^2 T_s}{2}
+E_p = \int_{0}^{T_s} {a(t)^2cos^2(\omega_0 t)} dt 
 \end{equation}
 
+If $\omega_0$ is such that $\omega_0 T_s \gg 1$, as it typically is when modulating optical signals, $cos^2(\omega_0 t) \doteq 1/2$. Then:
 
+\begin{equation}\label{eq:rectSigEn}
+E_p \doteq \frac{1}{2}\int_{0}^{T_s} a(t)^2 dt = \frac{1}{2}\int_{0}^{T_s} A^2 p(t)^2 dt=\frac{1}{2} A^2 \int_{0}^{T_s} p(t)^2 dt= \frac{A^2 T_s}{2}
+\end{equation}
 
+Substituting from equations~\ref{eq:rectSigEn} and~\ref{eq:noiseBw} into Equation~\ref{eq:berMQAMmf}, the BER expression becomes:
+
+\begin{equation}\label{eq:berMod}
+P_{be} = \frac{1}{2} \text{erfc}\left(\sqrt{\frac{A^2 T_s / 2}{ N / B}}\right) = 
+\frac{1}{2} \text{erfc}\left(\frac{A}{\sqrt{N}} \sqrt{\frac{T_s}{2B}}\right) 
+%= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
+\end{equation}
+
+%Similarly, let the signal be shaped using a root-raised-filter, defined as the square root of a raised-cosine in the frequency domain. It ca defined as:
+
+%\begin{equation}
+%	RRC(f) = \begin{cases}
+%	1              & |f| \le \frac{1-\beta}{2T_s}\\
+%	1 cos\left[\frac{\pi T_s}{2 \beta}\left( |f| - \frac{1-\beta}{2T_s}\right)\right]               & \frac{1-\beta}{2T_s} \le |f| \le \frac{1+\beta}{2T_s}\\
+%	0						   & |f|  \ge \frac{1+\beta}{2T_s}
+%	\end{cases}
+%\end{equation}
+%
+%The energy of a signal
 
 %In the case of QPSK with m=4, both the quadrature and in-phase components have $a(t) = \pm A$. The values that replace $A$ and $N_0$ in Equation~\ref{eq:berMQAM} become:
 
@@ -305,14 +331,14 @@ E_p = \int_{0}^{T_s} {a(t)cos(\omega_0 t)}^2 dt = \frac{A^2 T_s}{2}
 %\noindent where $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A$ is as defined in Equation~\ref{eq:bpskamplitude}, the peak amplitude of the signal without noise prior to filtering.
 %%and $B_e$ is the energy of a single received bit.
 
-The expressions for the Bit-Error-Rate in the cases with and without matched filtering is then:
+Note that $N$ here is the noise power at the input of the matched filter, as is the bandwidth $B$. The expressions for the Bit-Error-Rate in the cases with and without matched filtering:
 
 \begin{table}[H]
 	\centering
 	\begin{tabulary}{1.0\textwidth}{|c|c|}
 		\hline
 		\textbf{Without matched filter} 								& \textbf{With Matched Filter} \\ \hline
-		$ \frac{1}{2} \text{erfc} \left( \frac{A}{\sqrt{N}} \right) $	& $ \frac{1}{2} \text{erfc} \left( \sqrt{\frac{E_p}{{n_0}}} \right) $ \\ \hline
+		$ \frac{1}{2} \text{erfc} \left( \frac{A}{\sqrt{2N}} \right) $	& $ \frac{1}{2} \text{erfc}\left(\frac{A}{\sqrt{2N}} \sqrt{\frac{T_s}{B}}\right)  $ \\ \hline
 	\end{tabulary}
 	
 	\caption{Comparison between the BER equations for the cases with and without matched filtering.\label{tab:ber_qpsk}}
@@ -341,8 +367,9 @@ Figure~\ref{fig:QPSK_th_curves} show the curves for both these equations, with t
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noisePower			   & $10^6$~V$^2$                             					\\ \hline
+		noisePower			   & $10^{-6}$~V$^2$                             					\\ \hline
 		confidence             & $0.95$                                                     \\ \hline
+		theoreticalSNR (before matched filter) &	0 dB								    \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 	\caption{Parameters for the theoretical curves in Figure~\ref{fig:QPSK_th_curves}.\label{tab:thCurves}}
@@ -547,7 +574,7 @@ The files used are summarized in tables~\ref{tab:sources} and~\ref{tab:headers}.
 		localOscillatorPower\_dBm & t\_real & Power of the local oscillator &    \\ \cline{1-3}
 		responsivity & t\_real & Responsivity of the photodiodes (1 corresponds to having all optical power transformed into electrical current) &    \\ \cline{1-3}
 		amplification & t\_real & Amplification provided by the ideal amplifier &    \\ \cline{1-3}
-		noiseAmplitude & t\_real & Amplitude of the white noise &    \\ \cline{1-3}
+		noisePower & t\_real & Average power (and variance) of the white noise &    \\ \cline{1-3}
 		samplesToSkip & t\_integer & Number of samples to be skipped by the \textit{sampler} block &    \\ \cline{1-3}
 		confidence & t\_real & Determines the confidence limits for the BER estimation &    \\ \cline{1-3}
 		midReportSize & t\_integer &  &    \\ \cline{1-3}
@@ -603,7 +630,7 @@ be seen that no inter-symbol interference is present.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 %		responsivity           & $1$                                                        \\ \hline
 %		amplification          & $10^3$                                                     \\ \hline
-%		noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+%		noisePower   & $0$~V$^2$                             					\\ \hline
 %		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 		
@@ -662,7 +689,7 @@ captured after the second filter.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 				responsivity           & $1$                                                        \\ \hline
 				amplification          & $10^3$                                                     \\ \hline
-				noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+				noisePower   & $0$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -732,7 +759,7 @@ pulse-shaper. Thus, it shows no sign of inter-symbol interference.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+		noisePower   & $0$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -797,7 +824,7 @@ raised-cosine-filter.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+		noisePower   & $0$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -856,7 +883,7 @@ raised-cosine-filter.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+		noisePower   & $0$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -910,7 +937,7 @@ root-raised-cosine filter will be used at the pulse-shaper and the receiver.
 
 Figures \ref{fig:eyes_n_rc_45_09}-\ref{fig:eyes_n_rrc_45_09} show the eye
 diagrams for both these cases. The optical power used was $-45~dBm$, the
-noise spectral density was set at $10^6 W/Hz$, and the roll-off factor was set
+noise power was set at $10^{-6} V^2$, and the roll-off factor was set
 to $0.9$ in both cases. In both cases, its is still possible to visibly see the
 approximate shape of the signal after noise is added, even without matched
 filtering. However, it can be seen that the output signal in the case with
@@ -941,14 +968,18 @@ the receiver is rather effective at filtering the noise.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
+		theoreticalSNR  	   & $15~dB$                             					\\ \hline
+		numericalSNR 		   & $13.9182~dB$                             					\\ \hline
+		numericalSNR Upper Bound & $13.9624~dB$                             					\\ \hline
+		numericalSNR Lower Bound & $13.8737~dB$                             					\\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Raised-Cosine Signal (roll-off=0.9) with Added Noise, SNR = 15}
+	\textbf{Raised-Cosine Signal (roll-off=0.9) with Added Noise, SNR = 15 dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -996,7 +1027,11 @@ the receiver is rather effective at filtering the noise.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+		theoreticalSNR  	   & $15~dB$                             					\\ \hline
+		numericalSNR 		     & $14.9902~dB$                             					\\ \hline
+		numericalSNR Upper Bound & $15.0408~dB$                             					\\ \hline
+		numericalSNR Lower Bound & $14.9391~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -1008,7 +1043,7 @@ the receiver is rather effective at filtering the noise.
 	\centering
 	\begin{subfigure}{.45\textwidth}
 		\centering
-		\includegraphics[clip, trim=5cm 4cm 5cm 4cm, width=\textwidth]{./sdf/m_qam_system/figures/eyes/if_p_45_09.pdf}
+			\includegraphics[clip, trim=5cm 4cm 5cm 4cm, width=\textwidth]{./sdf/m_qam_system/figures/eyes/if_p_45_09.pdf}
 	\end{subfigure}
 	\begin{subfigure}{.45\textwidth}
 		\centering
@@ -1057,14 +1092,18 @@ the case is in all aspects similar to the one presented above.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+		theoreticalSNR  	   & $15~dB$                             					\\ \hline
+				numericalSNR 		     & $14.6827~dB$                             					\\ \hline
+		numericalSNR Upper Bound & $14.7321~dB$                             					\\ \hline
+		numericalSNR Lower Bound & $14.6327~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Raised-Cosine Signal (roll-off=0.3) with Added Noise, SNR = 15}
+	\textbf{Raised-Cosine Signal (roll-off=0.3) with Added Noise, SNR = 15 dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1112,14 +1151,18 @@ the case is in all aspects similar to the one presented above.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+		theoreticalSNR  	   & $15~dB$                             					\\ \hline
+		numericalSNR 		     & $14.9696~dB$                             					\\ \hline
+		numericalSNR Upper Bound & $15.006~dB$                             					\\ \hline
+		numericalSNR Lower Bound & $14.9329~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Root-Raised-Cosine Signal (roll-off=0.3) with Added Noise and Matched Filtering, SNR = }
+	\textbf{Root-Raised-Cosine Signal (roll-off=0.3) with Added Noise and Matched Filtering, SNR = 15 dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1149,7 +1192,7 @@ the case is in all aspects similar to the one presented above.
 \subsubsection*{Signals with AWGN and low SNR}
 Figures \ref{fig:eyes_n_rrc_60_03}-\ref{fig:eyes_n_rc_60_09} show eye
 diagrams similar to the previous section, but with a lower optical power ($-60~dBm$),
-comparable to the spectral density of the noise ($10^{-6}$).
+comparable to the average noise power ($10^{-6} V^2$).
 
 
 
@@ -1176,21 +1219,25 @@ without it the signal visually appears to be random noise.
 		%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
 		outputOpticalPower     & $-60$~dBm 													\\ \hline
 		shaperFilter	       & RaisedCosine												\\ \hline
-		outputFilter		   &                												\\ \hline
+		outputFilter		   &                											\\ \hline
 		rollOffFactor		   & 0.9														\\ \hline
 		localOscillatorPower   & $0$~dBm                                                    \\ \hline
 		localOscillatorPhase   & $0$                                                        \\ \hline
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+		theoreticalSNR  	   & $0~dB$                             					\\ \hline
+		numericalSNR 		     & $-1.07702~dB$                             					\\ \hline
+		numericalSNR Upper Bound & $-1.0038~dB$                             					\\ \hline
+		numericalSNR Lower Bound & $-1.1515~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Raised-Cosine Signal (roll-off=0.9) with Added Noise, SNR = 1}
+	\textbf{Raised-Cosine Signal (roll-off=0.9) with Added Noise, SNR = 0~dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1239,14 +1286,18 @@ without it the signal visually appears to be random noise.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+				theoreticalSNR  	   & $0~dB$                             					\\ \hline
+		numericalSNR 		     & $0.0290907~dB$                             					\\ \hline
+		numericalSNR Upper Bound & $0.120973~dB$                             					\\ \hline
+		numericalSNR Lower Bound & $-0.064778~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Root-Raised-Cosine Signal (roll-off=0.9) with Added  and Matched Filtering, SNR = 1}
+	\textbf{Root-Raised-Cosine Signal (roll-off=0.9) with Added  and Matched Filtering, SNR = 0~dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1295,14 +1346,18 @@ case but using a roll-off factor of 0.3.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+						theoreticalSNR  	   & $0~dB$                             					\\ \hline
+		numericalSNR 		     & $-0.306456~dB$                             					\\ \hline
+		numericalSNR Upper Bound & $-0.233164~dB$                             					\\ \hline
+		numericalSNR Lower Bound & $-0.381006~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Raised-Cosine Signal (roll-off=0.3) with Added Noise, SNR = 1}
+	\textbf{Raised-Cosine Signal (roll-off=0.3) with Added Noise, SNR = 0~dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1349,14 +1404,18 @@ case but using a roll-off factor of 0.3.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+								theoreticalSNR  	   & $0~dB$                             					\\ \hline
+		numericalSNR 		     & $0.0368278~dB$                             					\\ \hline
+		numericalSNR Upper Bound & $0.09153~dB$                             					\\ \hline
+		numericalSNR Lower Bound & $-0.0185722~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Root-Raised-Cosine Signal (roll-off=0.3) with Added Noise and Matched Filtering,\\ SNR = 1}
+	\textbf{Root-Raised-Cosine Signal (roll-off=0.3) with Added Noise and Matched Filtering,\\ SNR = 0~dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1409,7 +1468,7 @@ The simulated results show agreement with the theoretical curves, as can be seen
 		%		transferMatrix         & $\lbrace~\lbrace	 \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noisePower			   & $10^6$~V$^2$                             					\\ \hline
+		noisePower			   & $10^{-6}$~V$^2$                             					\\ \hline
 		confidence             & $0.95$                                                     \\ \hline
 		%			midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
