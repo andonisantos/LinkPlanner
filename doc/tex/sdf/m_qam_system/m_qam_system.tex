@@ -53,7 +53,7 @@ This means that the probability of an error in bit detection is independent amon
 
 %Considering a signal with amplitude $A$ sampled at the signal peak with no inter-symbol interference, and affected by noise with variance $n_0/2$, the sampled value will be a Gaussian random variable with mean $\pm A$ and variance $n_0/2$. Thus, the probability of error is given by the probability that the value is affected by a deviation greater than $m$.
 
-Let the $s(t)$ be the signal to be sampled at a given instant $t$ for either the in-phase or quadrature component, $a(t)$ be the component corresponding to the transmitted signal with peak amplitude equal to $A$, depending on whether the transmitted signal was 1 or 0, and $n(t)$ the component associated with the Gaussian white noise with spectral density $n_0/2$, such that
+Let the $s(t)$ be the signal to be sampled at a given instant $t$ for either the in-phase or quadrature component, $a(t)$ be the component corresponding to the transmitted signal with peak amplitude equal to $A$, depending on whether the transmitted signal was 1 or 0, and $n(t)$ the component associated with the Gaussian white noise with spectral density $G_n(f) = n_0/2$, such that
 
 \begin{equation}\label{eq:sigAmpNoise}
 s(t) = a(t) + n(t)
@@ -65,14 +65,14 @@ s(t) = a(t) + n(t)
 	\caption{The relation between $m$ and the distance between constellation points.\label{fig:const_2m}}
 \end{figure}
 
-In this case, assuming the absence of inter-symbol interference, $s(t)$ will be a Gaussian random variable with average value of $\pm A$, depending on what signal was transmitted, and variance equal to $n_0/2$. In this case, using the constellation from Figure~\ref{fig:const_2m}, with a decision boundary halfway between $A$ and $-A$, an error occurs in two situations: when the a 0 is transmitted but a 1 is identified, or a 1 is transmitted and a 0 is identified. These errors happen when the perturbation in the signal due to noise is enough to push the value beyond the decision boundary. This is illustrated in Figures~\ref{fig:gauss} and~\ref{fig:gausserr}, where the probability of error is shown by the colored area under the curve~\cite{mischasch}.
+In this case, assuming the absence of inter-symbol interference, $s(t)$ at the time of sampling will be a Gaussian random variable with average value of $\pm A$, depending on what signal was transmitted, and variance equal to $N$, the noise power. In this case, using the constellation from Figure~\ref{fig:const_2m}, with a decision boundary halfway between $A$ and $-A$, an error occurs in two situations: when the a 0 is transmitted but a 1 is identified, or a 1 is transmitted and a 0 is identified. These errors happen when the perturbation in the signal due to noise is enough to push the value beyond the decision boundary. This is illustrated in Figures~\ref{fig:gauss} and~\ref{fig:gausserr}, where the probability of error is shown by the colored area under the curve~\cite{mischasch}.
 
 
 \begin{figure}[H]
 	\centering
 	\centering
 	\includegraphics[ width=0.8\textwidth]{./sdf/m_qam_system/figures/gaussians.pdf}
-	\caption{Probability density functions for $s(t) = A(t) + n(t)$, with $m(t)=\pm A$ and $n(t)$ as a Gaussian variable.}
+	\caption{Probability density functions for $s(t) = a(t) + n(t)$, with $a(t)=\pm A$ and $n(t)$ as a Gaussian variable of zero mean and variance $N$.}
 	\label{fig:gauss}
 \end{figure}
 
@@ -243,7 +243,8 @@ Substituting from equation~\ref{eq:pulseEnergy}:
 \frac{A_o^2}{N_o} = \frac{2 E_p}{n_0}
 \end{equation}
 
-This shows that the SNR and, therefore, the error probability are dependent on the energy of each symbol and the noise spectral density. However, even though the relation does not directly depend on the pulse shape, the energy of each symbol still depends on the pulse shape. It can also be expected that the energy is related to the symbol period. Considering two a similar shaped pulses, with similar amplitude but duration, the one with longer duration should have more energy.
+This shows that the SNR and, therefore, the error probability are dependent on the energy of each symbol and the noise spectral density. However, even though the relation does not directly depend on the pulse shape, the energy of each symbol still depends on the pulse shape. It can also be expected that the energy is related to the symbol period.
+% Considering two a similar shaped pulses, with similar amplitude but duration, the one with longer duration should have more energy.
 
 The BER expression for matched filtering the becomes:
 
@@ -251,6 +252,23 @@ The BER expression for matched filtering the becomes:
 P_{be} =  Q\left(\sqrt{\frac{2 E_p}{{n_0}}}\right) = \frac{1}{2} \text{erfc}\left(\sqrt{\frac{E_p}{n_0}}\right) 
 %= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
 \end{equation}
+
+To exemplify with a simple case, let the pulse shape be rectangular with width $T_s$, such as
+
+\begin{equation*}
+	a(t) = \begin{cases}
+		A               & 0 \le t \le T_s\\
+		0               & t > T_s\\
+	\end{cases}
+\end{equation*}
+
+The pulse's energy will be given by:
+
+\begin{equation}
+E_p = \int_{0}^{T_s} {a(t)cos(\omega_0 t)}^2 dt = \frac{A^2 T_s}{2}
+\end{equation}
+
+
 
 
 %In the case of QPSK with m=4, both the quadrature and in-phase components have $a(t) = \pm A$. The values that replace $A$ and $N_0$ in Equation~\ref{eq:berMQAM} become:
@@ -300,44 +318,40 @@ The expressions for the Bit-Error-Rate in the cases with and without matched fil
 	\caption{Comparison between the BER equations for the cases with and without matched filtering.\label{tab:ber_qpsk}}
 \end{table}
 
-Figure~\ref{fig:QPSK_th_curves} show the curves for both these equations, in the case where  $n_0=10^{-6}$~$V^2.Hz^{-1}$, $P_L = 0$~dBm and $G_{ele} = 10^3$.
+Figure~\ref{fig:QPSK_th_curves} show the curves for both these equations, with the parameters listed in Table~\ref{tab:thCurves}.
 %Here, $T$ is the symbol period.
 
-\begin{figure}
-\begin{minipage}[b]{0.4\linewidth}
 \begin{table}[H]
 	\centering
-	\footnotesize
 	\begin{tabular}{|l|l|}
 		\hline
 		\multicolumn{2}{|c|}{ \textbf{Curve Parameters} } \\
 		\hline
 		\textbf{Parameter}     & \textbf{Default Value}                                     \\\hline
-%		numberOfBitsGenerated  & $40000$	                                                \\\hline
-		bandwidth              & 															\\\hline
-		symbolRate		       &                                                     		\\\hline
-%		samplesPerSymbol       & $16$                                                       \\\hline
-%		symbolRate		       &                                                     		\\\hline
-%		pLength                & $5$                                                        \\\hline
-%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
+		%		numberOfBitsGenerated  & $40000$	                                                \\\hline
+		bandwidth              & 64 GHz															\\\hline
+		symbolRate		       & 4 GHz                                                    		\\\hline
+		%		samplesPerSymbol       & $16$                                                       \\\hline
+		%		symbolRate		       &                                                     		\\\hline
+		%		pLength                & $5$                                                        \\\hline
+		%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
 		outputOpticalPower     & Variable                                                   \\ \hline
 		localOscillatorPower   & $0$~dBm                                                    \\ \hline
-%		localOscillatorPhase   & $0$                                                        \\ \hline
-%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
+		%		localOscillatorPhase   & $0$                                                        \\ \hline
+		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^6$~V$^2$                             \\ \hline
+		noisePower			   & $10^6$~V$^2$                             					\\ \hline
 		confidence             & $0.95$                                                     \\ \hline
-%		midReportSize          & $0$                                                        \\ \hline
+		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
+	\caption{Parameters for the theoretical curves in Figure~\ref{fig:QPSK_th_curves}.\label{tab:thCurves}}
 \end{table}
-\end{minipage}
-\begin{minipage}[b]{0.6\linewidth}
-		\centering
-		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/teor_BER_curves.pdf}
-%			
-\end{minipage}
-\caption{QPSK theoretical BER values as a function of the output optical power in dBm.\label{fig:QPSK_th_curves}}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/teor_BER_curves.pdf}
+	\caption{QPSK theoretical BER values as a function of the output optical power in dBm.\label{fig:QPSK_th_curves}}
 \end{figure}
 
 
@@ -1372,41 +1386,40 @@ case but using a roll-off factor of 0.3.
 \subsection{BER Curves}
 
 The simulated results show agreement with the theoretical curves, as can be seen in Figure~\ref{fig:ber_pseudorandom}.
-\begin{figure}[H]
-\begin{minipage}[b]{0.5\linewidth}
-	\begin{table}[H]
-		\centering
-		\footnotesize
-		\begin{tabulary}{1.0\textwidth}{|p{3.5cm}|p{3.5cm}|}
-			\hline
-			\multicolumn{2}{|l|}{ \textbf{Simulation and Curve Parameters} } \\
-			\hline
-			\textbf{Parameter}     & \textbf{Default Value}                                     \\\hline
-			numberOfBitsGenerated  & $40000$	                                                \\\hline
-			samplingRate           & 															\\\hline
-			symbolRate		       &                                                     		\\\hline
-			shaperFilter		   & Red Curve: RootRaisedCosine; Blue Curve: RaisedCosine	    \\\hline
-			receiverFilter		   & Red Curve: RootRaisedCosine; Blue Curve: no filter 		\\\hline
-			%		samplesPerSymbol       & $16$                                                       \\\hline
-			%		pLength                & $5$                                                        \\\hline
-			%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
-			outputOpticalPower     & Variable                                                   \\ \hline
-			localOscillatorPower   & $0$~dBm                                                    \\ \hline
-			%		localOscillatorPhase   & $0$                                                        \\ \hline
-			%		transferMatrix         & $\lbrace~\lbrace	 \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
-			responsivity           & $1$                                                        \\ \hline
-			amplification          & $10^3$                                                     \\ \hline
-			noiseSpectralDensity   & $10^6$~V$^2$                             \\ \hline
-			confidence             & $0.95$                                                     \\ \hline
-%			midReportSize          & $0$                                                        \\ \hline
-		\end{tabulary}
-	\end{table}
-\end{minipage}
-\begin{minipage}[b]{0.5\linewidth}
+
+\begin{table}[H]
 	\centering
-	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.9\textwidth]{./sdf/m_qam_system/figures/teor_vs_simul.pdf}
+	\begin{tabular}{|l|l|}
+	\hline
+	\multicolumn{2}{|c|}{ \textbf{Simulation and Curve Parameters} } \\
+		\hline
+		\textbf{Parameter}     & \textbf{Default Value}                                     \\\hline
+		numberOfBitsGenerated  & $40000$	                                                \\\hline
+		samplingRate           & 64 GHz															\\\hline
+		symbolRate		       & 4 GHz                                                    		\\\hline
+		shaperFilter		   & Red Curve: RootRaisedCosine; Blue Curve: RaisedCosine	    \\\hline
+		receiverFilter		   & Red Curve: RootRaisedCosine; Blue Curve: no filter 		\\\hline
+		rollOff				   & 0.3														\\\hline
+		%		samplesPerSymbol       & $16$                                                       \\\hline
+		%		pLength                & $5$                                                        \\\hline
+		%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
+		outputOpticalPower     & Variable                                                   \\ \hline
+		localOscillatorPower   & $0$~dBm                                                    \\ \hline
+		%		localOscillatorPhase   & $0$                                                        \\ \hline
+		%		transferMatrix         & $\lbrace~\lbrace	 \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
+		responsivity           & $1$                                                        \\ \hline
+		amplification          & $10^3$                                                     \\ \hline
+		noisePower			   & $10^6$~V$^2$                             					\\ \hline
+		confidence             & $0.95$                                                     \\ \hline
+		%			midReportSize          & $0$                                                        \\ \hline
+	\end{tabular}
+	\caption{Parameters for the theoretical curves and simulation results shown in Figure~\ref{fig:ber_pseudorandom}.\label{tab:ber_pseudorandom}}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.9\textwidth]{./sdf/m_qam_system/figures/teor_vs_simul.pdf}
 	%			
-\end{minipage}
 \caption{QPSK theoretical BER values as a function of the output optical power in dBm.\label{fig:ber_pseudorandom}}
 \end{figure}
 
