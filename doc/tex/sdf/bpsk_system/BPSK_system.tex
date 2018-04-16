@@ -1,9 +1,12 @@
 \clearpage
 \section{BPSK Transmission System}
 
+\begin{refsection}
+
 \begin{tcolorbox}	
 \begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
-\textbf{Student Name}  &:& Daniel Pereira (2017/09/01 - 2017/11/16)\\
+\textbf{Student Name}  &:&  Andr\'e Mourato (2018/01/28 - 2018/02/27)\\
+\textbf{}  & &  Daniel Pereira (2017/09/01 - 2017/11/16)\\
 \textbf{Goal}          &:& Estimate the BER in a Binary Phase Shift Keying optical transmission system with additive white Gaussian noise. Comparison with theoretical results.\\
 \textbf{Directory}              &:& sdf/bpsk\_system
 \end{tabular}
@@ -13,7 +16,7 @@ Binary Phase Shift Keying (BPSK) is the simplest form of Phase Shift Keying (PSK
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=.3\linewidth]{./sdf/bpsk_system/figures/bpskconstellation.pdf}
+\includegraphics[width=.4\linewidth]{./sdf/bpsk_system/figures/bpskconstellation.jpg}
 \caption{BPSK symbol constellation.}
 \label{fig:BPSKConst}
 \end{figure}
@@ -57,7 +60,7 @@ BER=\int_0^{+\infty}f(x|\Delta\theta=\pi)\text{d}x=\frac{1}{2}\text{erfc}\left(\
 
 \subsection{Simulation Analysis}
 
-A diagram of the system being simulated is presented in the Figure~\ref{fig:homodynesystem}. A random binary sequence is generated and encoded in an optical signal using BPSK modulation. The decoding of the optical signal is accomplished by an homodyne receiver, which combines the signal with a local oscillator. The received binary signal is compared with the transmitted binary signal in order to estimate the Bit Error Rate (BER). The simulation is repeated for multiple signal power levels, each corresponding BER is recorded and plotted against the expectation value.
+A diagram of the system being simulated is presented in the Figure~\ref{fig:homodynesystem}. A random binary sequence is generated and encoded in an optical signal using BPSK modulation. The decoding of the optical signal is accomplished by an homodyne receiver, which combines the signal with a local oscillator. The received binary signal is compared with the transmitted binary signal in order to estimate the Bit Error Rate (BER). The simulation is repeated for multiple signal power levels. Each corresponding BER is recorded and plotted against the expectation value.
 
 \begin{figure}[h]
 \centering
@@ -71,59 +74,61 @@ A diagram of the system being simulated is presented in the Figure~\ref{fig:homo
 
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|p{6cm}|p{8cm}|p{1cm}|}
+\begin{tabulary}{1.0\textwidth}{|p{7.5cm}|p{6.5cm}|p{1cm}|}
 \hline
 \multicolumn{3}{|c|}{ \textbf{Header Files} } \\
 \hline
 \textbf{File}                    & \textbf{Comments} & \textbf{Status} \\ \hline
-add.h                            &                   & \checkmark \\ \hline
-balanced\_beam\_splitter.h       &                   & \checkmark \\ \hline
-binary\_source.h                 &                   & \checkmark \\ \hline
-bit\_decider.h                   &                   & \checkmark \\ \hline
-bit\_error\_rate.h               &                   & \checkmark \\ \hline
-discrete\_to\_continuous\_time.h &                   & \checkmark \\ \hline
-netxpto.h                        &                   & \checkmark \\ \hline
-m\_qam\_mapper.h                 &                   & \checkmark \\ \hline
-m\_qam\_transmitter.h            &                   & \checkmark \\ \hline
-local\_oscillator.h              &                   & \checkmark \\ \hline
-i\_homodyne\_reciever.h          &                   & \checkmark \\ \hline
-ideal\_amplififer.h              &                   & \checkmark \\ \hline
-iq\_modulator.h                  &                   & \checkmark \\ \hline
-photodiode.h                     &                   & \checkmark \\ \hline
-pulse\_shaper.h                  &                   & \checkmark \\ \hline
-sampler.h                        &                   & \checkmark \\ \hline
-sink.h                           &                   & \checkmark \\ \hline
-super\_block\_interface.h        &                   & \checkmark \\ \hline
-white\_noise.h                   &                   & \checkmark \\ \hline
+add\_20171116.h                            &                   & \checkmark \\ \hline
+balanced\_beam\_splitter\_20180124.h       &                   & \checkmark \\ \hline
+binary\_source\_20180118.h                 &                   & \checkmark \\ \hline
+bit\_decider\_20170818.h                   &                   & \checkmark \\ \hline
+bit\_error\_rate\_20171810.h               &                   & \checkmark \\ \hline
+discrete\_to\_continuous\_time\_20180118.h &                   & \checkmark \\ \hline
+i\_homodyne\_receiver\_20180124.h          &                   & \checkmark \\ \hline
+ideal\_amplifier\_20180118.h               &                   & \checkmark \\ \hline
+iq\_modulator\_20180130.h                  &                   & \checkmark \\ \hline
+local\_oscillator\_20180130.h              &                   & \checkmark \\ \hline
+m\_qam\_mapper\_20180118.h                 &                   & \checkmark \\ \hline
+m\_qam\_transmitter\_20180118.h            &                   & \checkmark \\ \hline
+netxpto\_20180118.h                        &                   & \checkmark \\ \hline
+photodiode\_old\_20180118.h                &                   & \checkmark \\ \hline
+pulse\_shaper\_20180118.h                  &                   & \checkmark \\ \hline
+sampler\_20171116.h                        &                   & \checkmark \\ \hline
+sink\_20180118.h                           &                   & \checkmark \\ \hline
+super\_block\_interface\_20180118.h        &                   & \checkmark \\ \hline
+ti\_amplifier\_20180102.h                  &                   & \checkmark \\ \hline
+white\_noise\_20180118.h                   &                   & \checkmark \\ \hline
 \end{tabulary}
 \end{table}		
 %
 \begin{table}[H]
 \centering
-\begin{tabulary}{1.0\textwidth}{|p{6cm}|p{8cm}|p{1cm}|}
+\begin{tabulary}{1.0\textwidth}{|p{7.5cm}|p{6.5cm}|p{1cm}|}
 \hline
 \multicolumn{3}{|c|}{ \textbf{Source Files} } \\
 \hline
 \textbf{File}                      & \textbf{Comments} & \textbf{Status} \\ \hline
-add.cpp                            &                   & \checkmark \\ \hline
-balanced\_beam\_splitter.cpp       &                   & \checkmark \\ \hline
-binary\_source.cpp                 &                   & \checkmark \\ \hline
-bit\_decider.cpp                   &                   & \checkmark \\ \hline
-bit\_error\_rate.cpp               &                   & \checkmark \\ \hline
-discrete\_to\_continuous\_time.cpp &                   & \checkmark \\ \hline
-netxpto.cpp                        &                   & \checkmark \\ \hline
-m\_qam\_mapper.cpp                 &                   & \checkmark \\ \hline
-m\_qam\_transmitter.cpp            &                   & \checkmark \\ \hline
-local\_oscillator.cpp              &                   & \checkmark \\ \hline
-i\_homodyne\_reciever.cpp          &                   & \checkmark \\ \hline
-ideal\_amplififer.cpp              &                   & \checkmark \\ \hline
-iq\_modulator.cpp                  &                   & \checkmark \\ \hline
-photodiode.cpp                     &                   & \checkmark \\ \hline
-pulse\_shaper.cpp                  &                   & \checkmark \\ \hline
-sampler.cpp                        &                   & \checkmark \\ \hline
-sink.cpp                           &                   & \checkmark \\ \hline
-super\_block\_interface.cpp        &                   & \checkmark \\ \hline
-white\_noise.cpp                   &                   & \checkmark \\ \hline
+add\_20171116.cpp                            &                   & \checkmark \\ \hline
+balanced\_beam\_splitter\_20180124.cpp       &                   & \checkmark \\ \hline
+binary\_source\_20180118.cpp                 &                   & \checkmark \\ \hline
+bit\_decider\_20170818.cpp                   &                   & \checkmark \\ \hline
+bit\_error\_rate\_20171810.cpp               &                   & \checkmark \\ \hline
+discrete\_to\_continuous\_time\_20180118.cpp &                   & \checkmark \\ \hline
+i\_homodyne\_receiver\_20180124.cpp          &                   & \checkmark \\ \hline
+ideal\_amplifier\_20180118.cpp               &                   & \checkmark \\ \hline
+iq\_modulator\_20180130.cpp                  &                   & \checkmark \\ \hline
+local\_oscillator\_20180130.cpp              &                   & \checkmark \\ \hline
+m\_qam\_mapper\_20180118.cpp                 &                   & \checkmark \\ \hline
+m\_qam\_transmitter\_20180118.cpp            &                   & \checkmark \\ \hline
+netxpto\_20180118.cpp                        &                   & \checkmark \\ \hline
+photodiode\_old\_20180118.cpp                &                   & \checkmark \\ \hline
+pulse\_shaper\_20180118.cpp                  &                   & \checkmark \\ \hline
+sampler\_20171116.cpp                        &                   & \checkmark \\ \hline
+sink\_20180118.cpp                           &                   & \checkmark \\ \hline
+super\_block\_interface\_20180118.cpp        &                   & \checkmark \\ \hline
+ti\_amplifier\_20180102.cpp                  &                   & \checkmark \\ \hline
+white\_noise\_20180118.cpp                   &                   & \checkmark \\ \hline
 \end{tabulary}
 \end{table}		
 
@@ -138,20 +143,23 @@ This system takes into account the following input parameters:
 \multicolumn{3}{|c|}{ \textbf{System Input Parameters} } \\
 \hline
 \textbf{Parameter}     & \textbf{Default Value}                                     & \textbf{Comments} \\ \hline
-numberOfBitsGenerated  & $40000$	                                                   & \\ \hline
-bitPeriod              & $20\times10^{-12}$                                         & \\ \hline
+numberOfBitsReceived   & $-1$	                                                    & \\ \hline
+numberOfBitsGenerated  & $1000$	                                                    & \\ \hline
 samplesPerSymbol       & $16$                                                       & \\ \hline
 pLength                & $5$                                                        & \\ \hline
-iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ & \\ \hline
-outOpticalPower\_dBm   & Variable                                                   & Value varied from -75~dBm to -25~dBm with intervals of 5~dBm \\ \hline
-loOutOpticalPower\_dBm & $0$                                                        & \\ \hline
+bitPeriod              & $20\times10^{-12}$                                         & \\ \hline
+rollOffFactor          & $0.3$                                                      & \\ \hline
+signalOutputPower\_dBm & $-20$	                                                    & \\ \hline
+localOscillatorPower\_dBm & $0$                                                     & \\ \hline
 localOscillatorPhase   & $0$                                                        & \\ \hline
+iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ & \\ \hline
 transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 responsivity           & $1$                                                        & \\ \hline
-amplification          & $10^3$                                                     & \\ \hline
-noiseSpectralDensity   & $5\times10^{-4}\sqrt{2}$~V$^2$                             & \\ \hline
-confidence             & $0.95$                                                     & \\ \hline
-midReportSize          & $0$                                                        & \\ \hline
+amplification          & $10^6$                                                     & \\ \hline
+electricalNoiseAmplitude  & $5\times10^{-4}\sqrt{2}$                                & \\ \hline
+samplesToSkip          & $8\times samplesPerSymbol$                                 & \\ \hline
+bufferLength           & $20$                                                       & \\ \hline
+shotNoise              & false                                                      & \\ \hline
 \end{tabulary}
 \end{table}		
 
@@ -162,23 +170,27 @@ This system takes no inputs.
 \subsection*{Outputs}
 
 This system outputs the following objects:
-\begin{itemize}
-\item Signals:
-\begin{itemize}
-\item Initial Binary String; (S$_0$)
-\item Optical Signal with coded Binary String; (S$_{1}$)
-\item Local Oscillator Optical Signal; (S$_{2}$)
-\item Beam Splitter Outputs; (S$_{3}$, S$_{4}$)
-\item Homodyne Detector Electrical Output; (S$_{5}$)
-\item Decoded Binary String; (S$_{6}$)
-\item BER result String; (S$_{7}$)
-\end{itemize}
-\item Other:
-\begin{itemize}
-\item Bit Error Rate report in the form of a .txt file. (BER.txt)
-\end{itemize}
-\end{itemize}
-
+\begin{table}[H]
+\centering
+\begin{tabulary}{1.0\textwidth}{|p{8cm}|p{7cm}|}
+\hline
+\multicolumn{2}{|c|}{ \textbf{System Output Signals} } \\
+\hline
+\textbf{Signal}     & \textbf{Associated File} \\ \hline
+Initial Binary String (S$_0$) & S0.sgn \\ \hline
+Optical Signal with coded Binary String (S$_{1}$) & S1.sgn \\ \hline
+Local Oscillator Optical Signal (S$_{2}$) & S2.sgn \\ \hline
+Beam Splitter Outputs (S$_{3}$, S$_{4}$) & S3.sgn \& S4.sgn \\ \hline
+Homodyne Receiver Electrical Output (S$_{5}$) & S5.sgn \\ \hline
+Sampler Output (S$_{6}$) & S6.sgn \\ \hline
+Decoded Binary String (S$_{7}$) & S7.sgn \\ \hline
+BER Result String (S$_{8}$) & S8.sgn \\ \hline
+\textbf{Report}     & \textbf{Associated File} \\ \hline
+Bit Error Rate Report & BER.txt \\ \hline
+\end{tabulary}
+\end{table}	
+\pagebreak
+\subsection*{Bit Error Rate - Simulation Results}
 \begin{figure}[H]
 \centering
 \includegraphics[width=.7\linewidth]{./sdf/bpsk_system/figures/BER_Evolution_simu.pdf}
@@ -197,7 +209,10 @@ The following results show the dependence of the error rate with the signal powe
 \end{figure}
 
 
-
-\bibliographystyle{unsrt}
-
-\bibliography{bibliography} 
+% bibliographic references for the section ----------------------------
+\clearpage
+\printbibliography[heading=subbibliography]
+\end{refsection}
+\addcontentsline{toc}{subsection}{Bibliography}
+\cleardoublepage
+% --------------------------------------------------------------------- 

@@ -2,6 +2,8 @@
 
 \section{SNR Estimator}
 
+\begin{refsection}
+
 \begin{tcolorbox}	
 	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
 		\textbf{Header File}   &:& snr\_estimator\_*.h \\
@@ -41,8 +43,10 @@
 This block accepts one OpticalSignal or TimeContinuousAmplitudeContinousReal signal, estimates the signal-to-noise ratio for a given signal interval and outputs the estimated value. It also writes a \textit{.txt} file reporting the estimated signal-to-noise ratio, a count of the number of measurements and the corresponding bounds for a given confidence level.
 
 \subsection*{Theoretical Description}\label{snrcalc}
-The SNR is calculated from the power spectral density of the signal over a given time interval. The power spectral density is obtained using Welch's Method. Using a chosen interval size, a number of sequential samples is collected. Using the power spectrum obtained from this sequence, the frequency interval containing the signal is identified, estimated from the sampling rate, symbol rate and modulation type. The rest of the spectrum is considered to be only noise.
-Assuming the noise is white, the noise superimposed with the signal is considered to be similar to the rest of the spectrum. The noise power is estimated from the integral of the spectrum in noise area. The signal power is obtained by integrating the spectrum within the signal's frequency interval, minus the corresponding superimposed noise. The SNR is the ratio between these two values. 
+The SNR is calculated multiples times through the power spectral density of the signal over a given time interval. The multiple SNR measurements are then averaged and the confidence interval is established based on the observations.
+
+The power spectral density is obtained by getting Welch's periodogram over a given interval size. Using the power spectrum obtained from this sequence, the frequency interval containing the signal is identified, estimated from the sampling rate, symbol rate and modulation type. The rest of the spectrum is considered to be only noise.
+Assuming the noise is white, the noise superimposed with the signal is considered to be similar to the rest of the spectrum. The noise power is estimated from the integral of the spectrum in noise area. The signal power is obtained by integrating the spectrum within the signal's frequency interval, minus the corresponding superimposed noise. The SNR is the ratio between these two values.
 
 This value is saved and the process is repeated for every sequence of samples. In the end the confidence interval is calculated based on the obtained values. The SNR value and confidence interval is saved to a text file.
 This block output signal is exactly equal to the input signal, to estimate SNR at any point in a given simulated system without interfering with it.
@@ -60,13 +64,22 @@ This block output signal is exactly equal to the input signal, to estimate SNR a
 %\end{align}
 %where $z_{\alpha/2}$ is the $100\left(1-\frac{\alpha}{2}\right)$th percentile of a standard normal distribution.
 
-\subsection*{Theoretical Description}\label{snrestissues}
+\subsection*{Known Issues}\label{snrestissues}
 
-This block currently only works with \textit{TimeContinuousAmplitudeContinuousReal} signals.
-It also does work correctly for SNR values lower than -10 dB or higher than approximately 35 dB.
+This block currently only works with \textit{TimeContinuousAmplitudeContinuousReal} signals. It has also only been tested with the in-phase and quadrature components of an MQAM signal with M=4.
+It also does not work correctly if the noise's power spectral density is high enough for the signal not to be detected (in the mentioned case, SNR < -10dB).
 
 
 
-\bibliographystyle{unsrt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\bibliography{bibliography} 
+
+% bibliographic references for the section ----------------------------
+\clearpage
+\printbibliography[heading=subbibliography]
+\end{refsection}
+\addcontentsline{toc}{subsection}{Bibliography}
+\cleardoublepage
+% ---------------------------------------------------------------------

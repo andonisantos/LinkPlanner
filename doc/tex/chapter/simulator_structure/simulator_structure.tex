@@ -1,0 +1,51 @@
+
+% ------------------------------------------------------------------------
+\chapter{Simulator Structure}
+
+\begin{refsection}
+
+
+
+LinkPlanner is a signals open-source simulator.
+
+The major entity is the system.
+
+A system comprises a set of blocks.
+
+The blocks interact with each other through signals.
+
+\section{System}
+
+\section{Blocks}
+
+\section{Signals}
+
+List of available signals:
+
+\begin{itemize}
+    \item Signal
+
+\end{itemize}
+
+\subsubsection{PhotonStreamXY}
+A single photon is described by two amplitudes $A_x$ and $A_y$ and a phase difference between them, $\delta$. This way, the signal PhotonStreamXY is a structure with two complex numbers, $x$ and $y$.
+
+
+\subsubsection{PhotonStreamXY\_MP}
+The multi-path signals are used to simulate the propagation of a quantum signal when the signal can follow multiple paths. The signal has information about all possible paths, and a measurement performed in one path immediately affects all other possible paths.
+From a Quantum approach, when a single photon with a certain polarization angle reaches a $50:50$ Polarizer, it has a certain probability of follow one path or another. In order to simulate this, we have to use a signal PhotonStreamXY\_MP, which contains information about all the paths available. In this case, we have two possible paths: $0$ related with horizontal and $1$ related with vertical. This signal is the same in both outputs of the polarizer. The first decision is made by the detector placed on horizontal axis. Depending on that decision, the information about the other path $1$ is changed according to the result of the path $0$. This way, we guarantee the randomness of the process. So, signal PhotonStreamXY\_MP is a structure of two PhotonStreamXY indexed by its path.
+
+
+\section{Log File}
+
+
+
+% bibliographic references for the section ----------------------------
+\clearpage
+\printbibliography[heading=subbibliography]
+\end{refsection}
+\addcontentsline{toc}{subsection}{Bibliography}
+\cleardoublepage
+% ---------------------------------------------------------------------
+
+

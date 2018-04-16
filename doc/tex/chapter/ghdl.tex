@@ -1,0 +1,47 @@
+\chapter{Simulating VHDL programs with GHDL}
+
+This guide will help you simulate VHDL programs with the open-source simulator GHDL.
+
+\section{Adding Path To System Variables}
+Please follow this step-by-step tutorial:
+  \begin{enumerate}
+    \item Open the \textbf{Control Panel}.
+    \item Select the option \textbf{System and Security}.
+    \item Select the option \textbf{System}.
+    \item Select \textbf{Advanced System Settings} on the menu on the left side of the window.
+    \item This should have opened another window. Click on \textbf{Environment variables}.
+    \item Check if there is a variable called \textbf{Path} in the \textbf{System Variables} (bottom list).
+    \item \textbf{If it doesn't exist}, create a new variable by pressing \textbf{New} in \textbf{System Variables} (bottom list). Insert the name \textbf{Path} as the name of the variable and enter your absolute path to the folder \textbf{\textbackslash{}LinkPlanner\textbackslash{}vhdl\_simulation\textbackslash{}ghdl\textbackslash{}bin}.\\ Example:
+        \textbf{C:\textbackslash{}repos\textbackslash{}LinkPlanner\textbackslash{}vhdl\_simulation\textbackslash{}ghdl\textbackslash{}bin}.\\
+          Jump to step 10.
+    \item \textbf{If it exists}, click on the variable \textbf{Path} and press \textbf{Edit}. This should open another window;
+    \item Click on \textbf{New} to add another value to this variable. Enter your absolute path to the folder \textbf{\textbackslash{}LinkPlanner\textbackslash{}vhdl\_simulation\textbackslash{}ghdl\textbackslash{}bin}.\\ Example:
+        \textbf{C:\textbackslash{}repos\textbackslash{}LinkPlanner\textbackslash{}vhdl\_simulation\textbackslash{}ghdl\textbackslash{}bin}.\\
+    \item Press \textbf{Ok} and you're done.
+  \end{enumerate}
+\pagebreak
+\section{Using GHDL To Simulate VHDL Programs}
+This guide will only cover the simulation of the VHDL module in this repository.\\
+This simulation will take an .sgn file and output its binary information, removing the header.\\
+There are two ways to simulate this module.
+\subsection{Requirements}
+Place a .sgn file in the directory \textbf{\textbackslash{}vhdl\_simulation\textbackslash{}input\_files\textbackslash{}} and rename it to SIGNAL.sgn
+
+\subsection{Option 1}
+Execute the batch file \textbf{simulation.bat}, located in the directory \textbf{\textbackslash{}vhdl\_simulation\textbackslash{}} in this repository.
+
+\subsection{Option 2}
+Open the \textbf{Command Line} and navigate to your project folder (where the .vhd file is located).
+Execute the following commands:
+\begin{itemize}
+  \item[] \textbf{ghdl -a --std=08 signal\_processing.vhd}
+  \item[] \textbf{ghdl -a --std=08 vhdl\_simulation.vhd}
+  \item[] \textbf{ghdl -e --std=08 vhdl\_simulation}
+  \item[] \textbf{ghdl -r --std=08 vhdl\_simulation}
+\end{itemize}
+\textbf{Additional information}: The first two commands are used to compile the program and will generate .cf files. Do not remove these file until the simulation is complete.\\
+The third command is used to elaborate the simulation.\\
+The last command is used to run the simulation. If you want to simulate the same program again, you will just need to execute this command (as long as you don't delete the .cf files).
+
+\subsection{Simulation Output}
+The simulation will output the file SIGNAL.sgn. This file will contain all the processed binary information of the input file, with the header.
