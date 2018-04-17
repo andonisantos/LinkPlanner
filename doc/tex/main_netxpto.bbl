@@ -135,6 +135,79 @@
   \enddatalist
 \endrefsection
 
+\refsection{4}
+  \datalist[entry]{none/global//global/global}
+    \entry{john2007digital}{book}{}
+      \name{author}{2}{}{%
+        {{hash=128ef94875575197486357cafe165952}{%
+           family={Proakis},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima G..},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=3a9b3bbdacf1efbec7b98d46b1e452cd}{%
+           family={Manolakis},
+           familyi={M\bibinitperiod},
+           given={Dimitris\bibnamedelima G..},
+           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Prentice Hall}%
+      }
+      \strng{namehash}{576eb5a533b5c52a93eb4a1a4e291ed2}
+      \strng{fullhash}{576eb5a533b5c52a93eb4a1a4e291ed2}
+      \strng{bibnamehash}{576eb5a533b5c52a93eb4a1a4e291ed2}
+      \strng{authorbibnamehash}{576eb5a533b5c52a93eb4a1a4e291ed2}
+      \strng{authornamehash}{576eb5a533b5c52a93eb4a1a4e291ed2}
+      \strng{authorfullhash}{576eb5a533b5c52a93eb4a1a4e291ed2}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Digital signal processing: principles, algorithms, and applications}
+      \field{year}{2007}
+    \endentry
+    \entry{tranter2004principles}{book}{}
+      \name{author}{4}{}{%
+        {{hash=87d132454b11288bc91fe6e5fe54c130}{%
+           family={Tranter},
+           familyi={T\bibinitperiod},
+           given={William\bibnamedelima H},
+           giveni={W\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=42a3fe3f23d3b66eb841ca2c2c062c6a}{%
+           family={Rappaport},
+           familyi={R\bibinitperiod},
+           given={Theodore\bibnamedelima S},
+           giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=8dad00e2fa4030cd1ae490df4a2cf1a8}{%
+           family={Kosbar},
+           familyi={K\bibinitperiod},
+           given={Kurt\bibnamedelima L},
+           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=c038ac67834ea9fa5f083dbdc6921ca3}{%
+           family={Shanmugan},
+           familyi={S\bibinitperiod},
+           given={K\bibnamedelima Sam},
+           giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall New Jersey}%
+      }
+      \strng{namehash}{24fae50afbe34821f8ab5c6292eec79b}
+      \strng{fullhash}{ef56d9a568c5ce3619b1bf26a51de575}
+      \strng{bibnamehash}{24fae50afbe34821f8ab5c6292eec79b}
+      \strng{authorbibnamehash}{24fae50afbe34821f8ab5c6292eec79b}
+      \strng{authornamehash}{24fae50afbe34821f8ab5c6292eec79b}
+      \strng{authorfullhash}{ef56d9a568c5ce3619b1bf26a51de575}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Principles of communication systems simulation with wireless applications}
+      \field{year}{2004}
+    \endentry
+  \enddatalist
+\endrefsection
+
 \refsection{5}
   \datalist[entry]{none/global//global/global}
     \entry{saleh1991}{book}{}

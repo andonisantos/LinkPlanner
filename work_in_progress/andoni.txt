@@ -1,5 +1,31 @@
 Medium term goal: um sistema quântico com variavies continuas em real-time em que os resultados experimentais batam certo com a simulação e descrição teórica.
 
+
+2018-04-17
+TO BE DONE
+
+
+
+	############################################### (para a próxima semana)
+	colocar o sistema experimental a funcionar no melhor cenário com o melhor DSP
+	###############################################
+
+	##############################################
+	colocar a funcionar no cenário (clássico) que queremos QPSK com o nosso DSP
+	##############################################
+
+	melhorando a parte teórica
+
+	rever o bloco do white noise o parâmetro deveria ser bilateralSpectralDensity ou unilaterSpectralDensity (incluir no manual)
+
+        ###############################################      
+	- avançar com o bloco do cálculo da SNR, documentar devidamente incluindo referência
+	- rever a parte da simulação calculcar a SNR teórica e numérica para cada caso
+        ###############################################
+
+
+Next meeting: 24/4, 11h
+
 2018-03-22
 TO BE DONE
         ############################################### (para a próxima semana)

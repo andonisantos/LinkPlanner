@@ -53,8 +53,8 @@
       <file>blx-dm.def</file>
       <file>blx-compat.def</file>
       <file>biblatex.def</file>
-      <file>numeric.bbx</file>
       <file>standard.bbx</file>
+      <file>numeric.bbx</file>
       <file>numeric.cbx</file>
       <file>biblatex.cfg</file>
       <file>english.lbx</file>
@@ -82,6 +82,7 @@
       <file>./chapter/simulator_structure/simulator_structure.bib</file>
       <file>./sdf/bpsk_system/bpsk_system.bib</file>
       <file>./sdf/m_qam_system/m_qam_system.bib</file>
+      <file>./lib/snr_estimator/snr_estimator.bib</file>
       <file>./lib/snr_photoelectron_generator/snr_photoelectron_generator.bib</file>
       <file>./algorithms/fft/fft.bib</file>
     </requires>
