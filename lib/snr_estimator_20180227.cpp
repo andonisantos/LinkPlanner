@@ -162,7 +162,7 @@ bool SNREstimator::runBlock(void) {
 			cout << "ERROR: SNR too low, cannot identify the signal within the noise" << "\n";
 		} else {
 			allSNR.insert(allSNR.end(), signalPower / noisePower);
-			cout << "SNR: " << 10 * log10(signalPower / noisePower) << "\n";
+			cout << "SNR: " << 10 * (log10(signalPower) - log10(noisePower)) << "\n";
 		}
 
 		/* Calculating average SNR and bounds */
