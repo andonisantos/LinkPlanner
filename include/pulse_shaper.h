@@ -3,10 +3,13 @@
 
 # include <vector>
 # include "netxpto.h"
+# include "filter_20180306.h"
+# include "fft_20180208.h"
+# include "overlap_save_20180208.h"
 
 using namespace std;
 
-enum PulseShaperFilter { RaisedCosine, Gaussian, Square };
+enum PulseShaperFilter { RaisedCosine, RootRaisedCosine, Gaussian, Square };
 
 /* Raised-cosine filter FIR implementation. */
 class PulseShaper : public FIR_Filter{
@@ -17,6 +20,8 @@ class PulseShaper : public FIR_Filter{
 	int impulseResponseTimeLength{ 16 };				// in units of symbol period
 
 	double rollOffFactor{ 0.9 };						// Roll-off factor (roll) for the raised-cosine filter
+
+	double BTs{ 0.5 };									// Bandwidth-symbil time product of gaussian filter
 
 	bool passiveFilterMode{ false };
 
@@ -36,6 +41,9 @@ public:
 
 	void setRollOffFactor(double rOffFactor){ rollOffFactor = rOffFactor; };
 	double const getRollOffFactor(){ return rollOffFactor; };
+
+	void setBTs(double bandwidthSymbolTimeProduct) { BTs = bandwidthSymbolTimeProduct; };
+	double const getBTs() { return BTs; };
 
 	void usePassiveFilterMode(bool pFilterMode){ passiveFilterMode = pFilterMode; };
 		

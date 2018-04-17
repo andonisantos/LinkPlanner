@@ -51,14 +51,13 @@ class Signal {
 public:
 
 	/* Signal constructor */
-
 	Signal() : signalBuffer(vector<T>(DEFAULT_BUFFER_LENGTH)) {};
 	Signal(string fName) : signalBuffer(vector<T>(DEFAULT_BUFFER_LENGTH)), fileName{ fName } {};
 	Signal(int bLength) : signalBuffer(vector<T>(bLength)) {};
 	Signal(string fName, int bLength) : signalBuffer(vector<T>(bLength)), fileName{ fName } {};
 
 	/* Signal destructor */
-	~Signal() { if (!(valueType == Message)) { delete buffer; }; };					
+	~Signal() {};					
 
 	/* Methods */
 
@@ -66,7 +65,7 @@ public:
 	int space();									// Returns the signal buffer space
 	int ready();									// Returns the number of samples in the buffer ready to be processed
 	void writeHeader();								// Opens the signal file in the default signals directory, \signals, and writes the signal header
-	void writeHeader(string signalPath);			// Opens the signal file in the signalPath directory, and writes the signal header
+	void writeHeader(string signalPath);						// Opens the signal file in the signalPath directory, and writes the signal header
 
 	void setBuffer(void* ptr) { buffer = ptr; return; };
 	void* getBuffer() { return buffer; };
@@ -161,10 +160,9 @@ public:
 private:
 
 	/* State Variables */
-
 	vector<T> SignalBuffer;
 
-	void *buffer{ nullptr };						// Pointer to buffer
+	vector<T> *buffer{ &SignalBuffer };						// Pointer to Signalbuffer
 	int inPosition{ 0 };							// Next position for the buffer input values
 	int outPosition{ 0 };							// Next position for the buffer output values
 	bool bufferEmpty{ true };						// Flag bufferEmpty

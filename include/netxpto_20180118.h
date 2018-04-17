@@ -626,6 +626,8 @@ class System {
   void terminate();										
   void run();
   void run(string signalPath);
+  void setLogValue(bool value);
+  void setLogFileName(string newName);
 
   string signalsFolder{ "signals" };
   char fileName[MAX_NAME_SIZE];  // Name of the file with system description (.sdf)
@@ -633,6 +635,9 @@ class System {
   int numberOfBlocks;  // Number of system Blocks
   int (*topology)[MAX_TOPOLOGY_SIZE];  // Relationship matrix
   vector<Block *> SystemBlocks;  // Pointer to an array of pointers to Block objects
+  //Debug inputs
+  string logFileName{ "log.txt" }; // The name of the file where the debug info will be written
+  bool logValue{ true }; // Will write debug info if true
 };
 
 //########################################################################################################################################################

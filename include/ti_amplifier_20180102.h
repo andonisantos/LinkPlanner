@@ -1,7 +1,7 @@
 # ifndef PROGRAM_INCLUDE_TIAMPLIFIER_H_
 # define PROGRAM_INCLUDE_TIAMPLIFIER_H_
 
-# include "netxpto_20180131.h"
+# include "netxpto_20180118.h"
 
 # include "add_20180118.h"
 # include "ideal_amplifier_20180118.h"
