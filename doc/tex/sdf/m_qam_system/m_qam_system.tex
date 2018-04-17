@@ -14,7 +14,6 @@
 
 The goal of this project is to simulate a Quadrature Amplitude Modulation transmission system with M points in the constellation diagram (M-QAM) and to perform a Bit Error Rate (BER) measurement that can be compared with theoretical and experimental values.
 
-%TODO: Verify
 M-QAM systems can encode $\log_2 M$ bits per symbol which means they can transmit higher data rates keeping the same bandwidth when compared, for example, to PSK systems. However, because the states are closer together, these systems require a higher signal-to-noise ratio.
 The Bit Error Rate (BER) is a measurement of how a bit stream is altered by a transmission system due to noise (among other factors). To study this effect we introduced Additive White Gaussian Noise (AWGN) to model thermal noise at the receiver.
 
@@ -53,7 +52,7 @@ This means that the probability of an error in bit detection is independent amon
 
 %Considering a signal with amplitude $A$ sampled at the signal peak with no inter-symbol interference, and affected by noise with variance $n_0/2$, the sampled value will be a Gaussian random variable with mean $\pm A$ and variance $n_0/2$. Thus, the probability of error is given by the probability that the value is affected by a deviation greater than $m$.
 
-Let the $s(t)$ be the signal to be sampled at a given instant $t$ for either the in-phase or quadrature component, $a(t)$ be the component corresponding to the transmitted signal with peak amplitude equal to $A$, depending on whether the transmitted signal was 1 or 0, and $n(t)$ the component associated with the Gaussian white noise with spectral density $G_n(f) = n_0/2$, such that
+Let the $s(t)$ be the signal to be sampled at a given instant $t$ for either the in-phase or quadrature component, $a(t)$ be the component corresponding to the transmitted signal with peak amplitude equal to $A$, depending on whether the transmitted signal was 1 or 0, and $n(t)$ the component associated with the Gaussian white noise with spectral density $G_n(f) = n_0/2$, such that:
 
 \begin{equation}\label{eq:sigAmpNoise}
 s(t) = a(t) + n(t)
@@ -281,7 +280,7 @@ Substituting from equations~\ref{eq:noiseBw} and~\ref{eq:rectSigEn} into Equatio
 
 \begin{equation}\label{eq:berMod}
 P_{be} = \frac{1}{2} \text{erfc}\left(\sqrt{\frac{A^2 T_s / 2}{ N / B}}\right) = 
-\frac{1}{2} \text{erfc}\left(\frac{A}{\sqrt{N}} \sqrt{\frac{T_s}{2B}}\right) 
+\frac{1}{2} \text{erfc}\left(\frac{A}{\sqrt{2N}} \sqrt{\frac{T_s}{B}}\right) 
 %= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
 \end{equation}
 
@@ -331,7 +330,7 @@ P_{be} = \frac{1}{2} \text{erfc}\left(\sqrt{\frac{A^2 T_s / 2}{ N / B}}\right) =
 %\noindent where $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A$ is as defined in Equation~\ref{eq:bpskamplitude}, the peak amplitude of the signal without noise prior to filtering.
 %%and $B_e$ is the energy of a single received bit.
 
-Note that $N$ here is the noise power at the input of the matched filter, as is the bandwidth $B$. The expressions for the Bit-Error-Rate in the cases with and without matched filtering:
+Note that $N$ here is the noise power at the input of the matched filter, as is the bandwidth $B$ and the peak amplitude $A$. The expressions for the Bit-Error-Rate in the cases with and without matched filtering:
 
 \begin{table}[H]
 	\centering
@@ -1038,7 +1037,7 @@ the receiver is rather effective at filtering the noise.
 \end{table}
 \begin{figure}[H]
 	\centering
-\textbf{Root-Raised-Cosine Signal (roll-off=0.9) with Added Noise and Matched Filtering, SNR = 15}
+\textbf{Root-Raised-Cosine Signal (roll-off=0.9) with Added Noise and Matched Filtering,\\SNR = 15}
 \begin{minipage}{\linewidth}
 	\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1442,7 +1441,7 @@ case but using a roll-off factor of 0.3.
 
 
 
-\subsection{BER Curves}
+\subsection*{BER Curves}
 
 The simulated results show agreement with the theoretical curves, as can be seen in Figure~\ref{fig:ber_pseudorandom}.
 
@@ -1477,10 +1476,25 @@ The simulated results show agreement with the theoretical curves, as can be seen
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.9\textwidth]{./sdf/m_qam_system/figures/teor_vs_simul.pdf}
+		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/teor_vs_simul.pdf}
 	%			
 \caption{QPSK theoretical BER values as a function of the output optical power in dBm.\label{fig:ber_pseudorandom}}
 \end{figure}
+
+%\subsection*{Comparative Analysis}
+
+In this section we show the simulation results and compared them with the theoretical predictions for an M-QAM system with $M=4$. Figure \ref{fig:ber_pseudorandom} shows the variation of the BER with the optical power of the signal, using $40000$ bits produced by a random number generator. The noise power was set at $10^{-6}~V^2$, the local oscillator at $0~dBm$ and the amplification at the transimpedance amplifier was set at $10^3$.
+The red and blue lines represents the theoretical curve, with and without matched filters, respectively. The the red and purple points represent the simulated values for the same situation with the respective confidence margins. The simulation agrees closely with the theoretical values.
+
+
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_mf_20180205.pdf}
+%	\caption{Simulation result using root-raised cosine matched filtering for a random binary sequence with $40000$ bits, a noise power of $10^{-6}$ and an amplification of $10^3$.}
+%	\label{fig:ber_pseudorandom_mf}
+%\end{figure}%
+
 
 %\begin{figure}[H]
 %	\centering
@@ -1491,7 +1505,7 @@ The simulated results show agreement with the theoretical curves, as can be seen
 \subsubsection*{Conclusions}
 The use of a root-raised-cosine filters for shaping and filtering the signal provides the best results, due to reducing noise while creating no inter-symbol interference. The experimental BER curves agree with the theoretical values and show the advantages of matched filtering.
 
-\subsection*{Experimental Analysis}
+\subsection{Experimental Analysis}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./sdf/m_qam_system/figures/mqamExperimental20180321.pdf}
@@ -1536,14 +1550,14 @@ The beginning of the signal received at the oscilloscope is shown in Figure~\ref
 \begin{figure}[H]
 	\centering
 	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/exp/TX_03.pdf}
-	\caption{Signal sent to the IQ Modulator.}
+	\caption{Signal sent to the IQ Modulator (Elec1).}
 	\label{fig:qamTxSig}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/exp/RX_03.pdf}
-\caption{Signal received at the Oscilloscope}
+\caption{Signal received at the Oscilloscope (Elec2).}
 \label{fig:qamRxSig}
 \end{figure}
 
@@ -1594,22 +1608,9 @@ Frequency offset correction was done resorting to a a MATLAB function in the Com
 	\label{fig:rxFinal}
 \end{figure}
 
-As can be seen, the constellation is not properly aligned. Also, the noise seen is far greater than it should be. These issues need to be dealt with before a proper BER curve can be obtained. However, the process so far is somewhat validated by the error rate measurements, which even though they are not proper, are still far from completely wrong or random. The error rates for the shown constellation is around $2 \times 10^{-3}$ for the in-phase component, and around $6 \times 10^{-3}$ for the quadrature component.
+As can be seen, the constellation is not properly aligned. Also, the noise seen is far greater than it should be. These issues need to be dealt with before a proper BER curve can be obtained. However, the process so far is somewhat validated by the error rate measurements, which even though they are not proper, are still far from completely wrong or random. The error rate for the shown constellation is around $2 \times 10^{-3}$ for the in-phase component, and around $6 \times 10^{-3}$ for the quadrature component.
 
-\subsection{Comparative Analysis}
-
-In this section we show the simulation results and compared them with the theoretical predictions for an M-QAM system with $M=4$. Figure \ref{fig:ber_pseudorandom} shows the variation of the BER with the optical power of the signal, using $40000$ bits produced by a random number generator. The noise power was set at $10^{-6}$, the local oscillator at $0~dBm$ and the amplification at the transimpedance amplifier was set at $10^3$.
-The blue line represents the theoretical curve, while the orange points represent the simulated values with the respective confidence margins. The simulation agrees closely with the theoretical values.
-
-
-
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_mf_20180205.pdf}
-%	\caption{Simulation result using root-raised cosine matched filtering for a random binary sequence with $40000$ bits, a noise power of $10^{-6}$ and an amplification of $10^3$.}
-%	\label{fig:ber_pseudorandom_mf}
-%\end{figure}%
-
+\subsection{DSP}
 
 \subsection{Open Issues}
 
