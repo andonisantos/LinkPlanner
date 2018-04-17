@@ -151,7 +151,7 @@ The peak power signal-to-noise ratio, defined as the ratio between the instantan
 	\text{SNR} = \frac{A^2}{{N}}
 \end{equation}
 
-$N$, the mean noise power, is the variance of the noise signal. The square root of this value is the peak signal-to-rms-noise ratio, and it is the single parameter on which the probability of errors depends.
+\noindent 	$N$, the mean noise power, is the variance of the noise signal. The square root of this value is the peak signal-to-rms-noise ratio, and it is the single parameter on which the probability of errors depends.
 
 \begin{equation}
 \text{SNR}_{RMS} = \frac{A}{\sqrt{N}}
@@ -245,7 +245,7 @@ Substituting from equation~\ref{eq:pulseEnergy}:
 \frac{A_o^2}{N_o} = \frac{2 E_p}{n_0}
 \end{equation}
 
-This shows that the SNR and, therefore, the error probability are dependent on the energy of each symbol and the noise spectral density. However, even though the relation does not directly depend on the pulse shape, the energy of each symbol still depends on the pulse shape. It can also be expected that the energy is related to the symbol period.
+This shows that the SNR and, therefore, the error probability are dependent on the energy of each symbol and the noise spectral density. However, even though the relation does not directly depend on the pulse shape, the energy of each symbol still depends on the pulse shape. The energy of the symbol results from an integration over the symbol period.
 % Considering two a similar shaped pulses, with similar amplitude but duration, the one with longer duration should have more energy.
 
 The BER expression for matched filtering the becomes:
