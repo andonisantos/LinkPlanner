@@ -108,6 +108,30 @@
       \field{title}{Information Transmission, Modulation and Noise}
       \field{year}{1990}
     \endentry
+    \entry{carlson1986communication}{book}{}
+      \name{author}{1}{}{%
+        {{hash=d4055be908df6154a812268f7e60be90}{%
+           family={Carlson},
+           familyi={C\bibinitperiod},
+           given={A\bibnamedelima Bruce},
+           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw Hill}%
+      }
+      \strng{namehash}{d4055be908df6154a812268f7e60be90}
+      \strng{fullhash}{d4055be908df6154a812268f7e60be90}
+      \strng{bibnamehash}{d4055be908df6154a812268f7e60be90}
+      \strng{authorbibnamehash}{d4055be908df6154a812268f7e60be90}
+      \strng{authornamehash}{d4055be908df6154a812268f7e60be90}
+      \strng{authorfullhash}{d4055be908df6154a812268f7e60be90}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Communication Systems: An Introducton to Signals and Noise in Electrical Communication}
+      \field{year}{1986}
+    \endentry
   \enddatalist
 \endrefsection
 

@@ -45,10 +45,11 @@ This block accepts one OpticalSignal or TimeContinuousAmplitudeContinousReal sig
 \subsection*{Theoretical Description}\label{snrcalc}
 The SNR is calculated multiples times through the power spectral density of the signal over a given time interval. The multiple SNR measurements are then averaged and the confidence interval is established based on the observations.
 
-The power spectral density is obtained by getting Welch's periodogram over a given interval size. Using the power spectrum obtained from this sequence, the frequency interval containing the signal is identified, estimated from the sampling rate, symbol rate and modulation type. The rest of the spectrum is considered to be only noise.
-Assuming the noise is white, the noise superimposed with the signal is considered to be similar to the rest of the spectrum. The noise power is estimated from the integral of the spectrum in noise area. The signal power is obtained by integrating the spectrum within the signal's frequency interval, minus the corresponding superimposed noise. The SNR is the ratio between these two values.
+The power spectrum is estimated through Welch's periodogram over a predefined interval size~\cite{john2007digital}. Using the power spectrum obtained from this sequence, the frequency interval containing the signal is identified, estimated from the sampling rate, symbol rate and modulation type. This interval is considered to contain both the signal and white noise.
 
-This value is saved and the process is repeated for every sequence of samples. In the end the confidence interval is calculated based on the obtained values. The SNR value and confidence interval is saved to a text file.
+White noise is assumed to be present with constant spectral density. Therefore, the noise superimposed with the signal is considered to be similar to the rest of the spectrum. The noise power is estimated from the integral of the spectrum in area without signal, extrapolating for the total noise power in the spectrum. The signal power is obtained by integrating the spectrum within the signal's frequency interval, minus the corresponding superimposed noise, according to what was previously estimated. The power SNR is the ratio between these two values.
+
+This value is saved and the process is repeated for every sequence of samples. In the end the confidence interval is calculated based on the obtained values~\cite{tranter2004principles}. The SNR value and confidence interval is saved to a text file.
 This block output signal is exactly equal to the input signal, to estimate SNR at any point in a given simulated system without interfering with it.
 
 %The $\widehat{\text{BER}}$ is obtained by counting both the total number received bits, $N_T$, and the number of coincidences, $K$, and calculating their relative ratio:

@@ -4,7 +4,7 @@
 \begin{refsection}
 
 \begin{tcolorbox}	
-	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
+	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}}
 		\textbf{Student Name}  & & Andoni Santos (2018/01/03 - )\\
 							   & & Ana Luisa Carvalho (2017/04/01 - 2017/12/31) \\
 		\textbf{Goal}          &:& M-QAM system implementation with BER measurement and comparison with theoretical and experimental values.\\
@@ -14,7 +14,6 @@
 
 The goal of this project is to simulate a Quadrature Amplitude Modulation transmission system with M points in the constellation diagram (M-QAM) and to perform a Bit Error Rate (BER) measurement that can be compared with theoretical and experimental values.
 
-%TODO: Verify
 M-QAM systems can encode $\log_2 M$ bits per symbol which means they can transmit higher data rates keeping the same bandwidth when compared, for example, to PSK systems. However, because the states are closer together, these systems require a higher signal-to-noise ratio.
 The Bit Error Rate (BER) is a measurement of how a bit stream is altered by a transmission system due to noise (among other factors). To study this effect we introduced Additive White Gaussian Noise (AWGN) to model thermal noise at the receiver.
 
@@ -34,8 +33,8 @@ For $M=4$ the M-QAM system can be reduced to a Quadrature Phase Shift Keying sys
 M-QAM is a modulation scheme that takes advantage of two sinusoidal carriers with a phase difference of $\pi/2$. The resultant output consists of a signal with both amplitude and phase variations. The two carriers, referred to as I (In-phase) and Q (Quadrature), can be represented as
 
 \begin{align}
-	I(t)=A(t)\cos(\phi t) \\
-	Q(t)=A(t)\sin(\phi t)
+	I(t)=a(t)\cos(\phi t) \\
+	Q(t)=a(t)\sin(\phi t)
 \end{align}
 which means that any sinusoidal wave can be decomposed in its I and Q components:
 
@@ -53,10 +52,10 @@ This means that the probability of an error in bit detection is independent amon
 
 %Considering a signal with amplitude $A$ sampled at the signal peak with no inter-symbol interference, and affected by noise with variance $n_0/2$, the sampled value will be a Gaussian random variable with mean $\pm A$ and variance $n_0/2$. Thus, the probability of error is given by the probability that the value is affected by a deviation greater than $m$.
 
-Let the $s(t)$ be the signal sampled at a given instant $t$ for either the in-phase or quadrature component, $A(t)$ be the component corresponding to the transmitted signal with value equal to $\pm A$, depending on whether the transmitted signal was 1 or 0, and $n(t)$ the component associated with the Gaussian white noise with spectral density $n_0/2$, such that
+Let the $s(t)$ be the signal to be sampled at a given instant $t$ for either the in-phase or quadrature component, $a(t)$ be the component corresponding to the transmitted signal with peak amplitude equal to $A$, depending on whether the transmitted signal was 1 or 0, and $n(t)$ the component associated with the Gaussian white noise with spectral density $G_n(f) = n_0/2$, such that:
 
 \begin{equation}\label{eq:sigAmpNoise}
-s(t) = A(t) + n(t)
+s(t) = a(t) + n(t)
 \end{equation}
 
 \begin{figure}[H]
@@ -65,13 +64,14 @@ s(t) = A(t) + n(t)
 	\caption{The relation between $m$ and the distance between constellation points.\label{fig:const_2m}}
 \end{figure}
 
-In this case, assuming the absence of inter-symbol interference, $s(t)$ will be a Gaussian random variable with average value of $\pm A$, depending on what signal was transmitted, and variance equal to $n_0/2$. In this case, using the constellation from Figure~\ref{fig:const_2m}, with a decision boundary halfway between $A$ and $-A$, an error occurs in two situations: when the a 0 is transmitted but a 1 is identified, or a 1 is transmitted and a 0 is identified. These errors happen when the perturbation in the signal due to noise is enough to push the value beyond the decision boundary. This is illustrated in Figures~\ref{fig:gauss} and~\ref{fig:gausserr}, where the probability of error is shown by the colored area under the curve.
+In this case, assuming the absence of inter-symbol interference, $s(t)$ at the time of sampling will be a Gaussian random variable with average value of $\pm A$, depending on what signal was transmitted, and variance equal to $N$, the noise power. In this case, using the constellation from Figure~\ref{fig:const_2m}, with a decision boundary halfway between $A$ and $-A$, an error occurs in two situations: when the a 0 is transmitted but a 1 is identified, or a 1 is transmitted and a 0 is identified. These errors happen when the perturbation in the signal due to noise is enough to push the value beyond the decision boundary. This is illustrated in Figures~\ref{fig:gauss} and~\ref{fig:gausserr}, where the probability of error is shown by the colored area under the curve~\cite{mischasch}.
+
 
 \begin{figure}[H]
 	\centering
 	\centering
 	\includegraphics[ width=0.8\textwidth]{./sdf/m_qam_system/figures/gaussians.pdf}
-	\caption{Probability density functions for $s(t) = A(t) + n(t)$, with $m(t)=\pm A$ and $n(t)$ as a Gaussian variable.}
+	\caption{Probability density functions for $s(t) = a(t) + n(t)$, with $a(t)=\pm A$ and $n(t)$ as a Gaussian variable of zero mean and variance $N$.}
 	\label{fig:gauss}
 \end{figure}
 
@@ -98,7 +98,7 @@ P_{be} = P_0 P_{e0} + P_1 P_{e1}
 With equal probability for both bits, and considering the constellation's symmetry
 
 \begin{equation}\label{eq:berMQAM}
-P_{be} =  Q\left({\frac{A}{\sqrt{N}}}\right) = \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{2 N}}}\right)
+P_{be} =  Q\left({\frac{A}{\sqrt{N}}}\right) = \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{2 N}}}\right) 
 %= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
 \end{equation}
 
@@ -120,29 +120,16 @@ with
 
 \begin{eqnarray}
 &A &= G_{ele} \sqrt{P_L P_S}\label{eq:bpskamplitude}\\
-&N &\propto n_0 B
+%&N &\propto n_0 B
+&N & = n_0 B\label{eq:noiseBw}
 \end{eqnarray}
 %\begin{equation}\label{eq:berBPSK}
 %BER= Q\left({G_{ele}\sqrt{\frac{2 P_L P_S}{n_0}}}\right) = \frac{1}{2} \text{erfc}\left({G_{ele}\sqrt{\frac{P_L P_S}{n_0}}}\right).
 %\end{equation}
 
-\noindent where $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier and $n_0$ is the noise spectral density. $A$ is the magnitude of the signal at sampling time and $\sqrt{N}$ is the RMS noise. Figure~\ref{fig:const_2m} shows the relation between the constellation points and $A$.
-%$N_0$ will be the standard deviation of the sampled values.
-The peak power signal-to-noise ratio, defined as the ratio between the instantaneous peak signal power to mean noise power, is given by
+\noindent where $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier, $n_0/2$ is the noise spectral density and $B$ is the channel bandwidth. $A$ is the magnitude of the signal at sampling time and $\sqrt{N}$ is the RMS noise. Figure~\ref{fig:const_2m} shows the relation between the constellation points and $A$.
 
-\begin{equation}
-	\text{SNR} = \frac{A^2}{{N}}
-\end{equation}
-
-$N$, the mean noise Power, is the variance of the noise signal. The square root of this value is the peak signal-to-rms-noise ratio, and it is the single parameter on which the probability of errors depends.
-
-\begin{equation}
-\text{SNR}_{RMS} = \frac{A}{\sqrt{N}}
-\end{equation}
-
-Here, A is the peak signal amplitude and $\sqrt{N}$ is the RMS noise in the absence of a signal.
-
-The symbol error rate however is not the same, as it depends on both bits being correctly detected. The probability of both bits being correctly detected is:
+The symbol error rate depends on both bits being correctly detected. This probability is:
 
 \begin{equation}
 P_C = (1 - P_{be})^2
@@ -155,6 +142,23 @@ From this, the probability of symbol error is:
 &	   &= 1 - \left(1 - Q \left({\frac{A}{\sqrt{N}}}\right)\right)^2 \nonumber \\
 &	   &= 2 Q\left({\frac{A}{\sqrt{N}}}\right)\left[1-\frac{1}{2} Q \left({\frac{A}{\sqrt{N}}}\right)\right]
 \end{eqnarray}
+
+
+%$N_0$ will be the standard deviation of the sampled values.
+The peak power signal-to-noise ratio, defined as the ratio between the instantaneous peak signal power to mean noise power, is given by:
+
+\begin{equation}
+	\text{SNR} = \frac{A^2}{{N}}
+\end{equation}
+
+$N$, the mean noise power, is the variance of the noise signal. The square root of this value is the peak signal-to-rms-noise ratio, and it is the single parameter on which the probability of errors depends.
+
+\begin{equation}
+\text{SNR}_{RMS} = \frac{A}{\sqrt{N}}
+\end{equation}
+
+Here, A is the peak signal amplitude and $\sqrt{N}$ is the RMS noise in the absence of a signal.
+
 
 %The bit error rate is then equal to the probability of the phase falling outside the correct detection range in a given component due to noise,
 
@@ -198,101 +202,182 @@ From this, the probability of symbol error is:
 %		\label{fig:QPSK_th_curve}
 %\end{figure}
 
-It is possible to further decrease the error rate by using a matched filter before sampling the signal. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and another one before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
+It is possible to further decrease the error rate by using a matched filter before sampling the signal. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and a similar one at the receiver, before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
 
 %As the constellation remains the same, the expression to calculate the BER is similar, but replacing the values of $m$ and $N_0$ of Equation~\eqref{eq:berMQAM} by those corresponding to the signal at the output of the filter, which can be calculated as:
-Considering a signal similar to the one described by Equation~\ref{eq:sigAmpNoise}, the output of the matched filter receiver will be~\cite{mischasch}:
+Considering a pulse with composition similar to the signal described by Equation~\ref{eq:sigAmpNoise}, let $ a(t) = A_p~p(t) $, where $A_p$ is the peak amplitude of the signal and $p(t)$ is the shape of the pulse, and $n(t)$ be AWGN of spectral density $G_n(f) = \frac{n_0}{2}$. Also, let $H(f)$ be the frequency domain response of the filter at the receiver.
+The filter is similar to the shape of the pulse , but reversed in time and shifted by a time delay, such that it maximizes the SNR~\cite{carlson1986communication}.
+
+The energy contained in the pulse that enters the receiver filter depends on the pulse amplitude and on its shape, and it is given by:
+
+\begin{eqnarray}\label{eq:pulseEnergy}
+E_p = \int_{-\infty}^{\infty} {|A(f)|}^2 df = A_p^2 \int_{-\infty}^{\infty} {|P(f)|}^2 df  
+\end{eqnarray}
+
+The amplitude of the signal component after the receiver filter $H(f)$, at a given sampling time $t=t_0+t_d$, is:
 
 \begin{eqnarray}
-&s_{mf} (t) &= \int_{0}^{T} s(t)\cos(\omega_0 t ) dt\nonumber\\
-&	       &= \int_{0}^{T} m(t) \cos(\omega_0 t ) dt + \int_{0}^{T} n(t) \cos(\omega_{0} t ) dt
+A_o = \mathfrak{F}^{-1}\left[H(f) A(f)\right]\big|_{t=t_0+t_d} = A_p \int_{-\infty}^{+\infty} H(f) P(f) e^{+j \omega t_d}df
 \end{eqnarray}
 
-In the case of QPSK with m=4, both the quadrature and in-phase components have $m(t) = \pm A$. The values that replace $m$ and $N_0$ in Equation~\ref{eq:berMQAM} become:
+Similarly, the noise power at the receiver filter output is given by:
 
 \begin{eqnarray}
-%&A_{mf} &= \frac{A T}{2} = \frac{G_{ele} T_s B \sqrt{P_L P_S}}{2}\\
-%&N_{mf} &= N \frac{T_s B}{2}
-&A_{mf} &= \frac{A T}{2} = \frac{G_{ele} T \sqrt{P_L P_S}}{2}\\
-&N_{mf} &= N \frac{T}{2}
+N_o = \int_{-\infty}^{+\infty} {|H(f)|}^2 G_n(f) df = \frac{n_0}{2} \int_{-\infty}^{+\infty} {|H(f)|}^2
 \end{eqnarray}
 
-Here, $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier, $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A_mf$ is the average amplitude at the sampling points of the signal after amplification without noise, $\sigma_o^2$ is the variance of the noise component of the matched filter output, the and $n_0$ is the noise spectral density.
-
-
-The optimal BER that can be obtained by using matched filtering is then given by:
-
-\begin{eqnarray}\label{eq:berBPSK}
-&P_{be} &= Q\left({\frac{A_{mf}}{\sqrt{N_{mf}}}}\right)\nonumber\\
-&		&= \frac{1}{2} \text{erfc}\left({\frac{A_{mf}}{\sqrt{2 N_{mf}}}}\right)\nonumber\\
-%&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T_s B}{2}}}\right)\\
-&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T}{2}}}\right)\\
-%&	    &= \frac{1}{2} \text{erfc}\left(\sqrt{{\frac{E_b}{n_0}}}\right)\nonumber
-\end{eqnarray}
-
-with
+This means that the peak signal power to mean noise power ratio at the filter output is given by:
 
 \begin{eqnarray}
-&A &= G_{ele} \sqrt{P_L P_S}
-%&m_{mf} &= \frac{1}{2} T G_{ele} \sqrt{P_L P_S} \\
-%&E_b &= \frac{A^2 T}{2} \\
+\frac{A_o^2}{N_o} &= A_p^2 \frac{\big|\int_{-\infty}^{+\infty} |H(f) P(f)e^{j\omega t_d} df\big|^2}{\int_{-\infty}^{+\infty} {|H(f)|}^2 G_n(f) df}\\\nonumber
+				  &= A_p^2 \frac{\big|\int_{-\infty}^{+\infty} |H(f) P(f)e^{j\omega t_d} df\big|^2}{\frac{n_0}{2}\int_{-\infty}^{+\infty} {|H(f)|}^2df}
 \end{eqnarray}
 
+It can be shown that a matched filter maximizes the ratio above, so that it becomes~\cite{carlson1986communication} :
 
-\noindent where $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A$ is as defined in Equation~\ref{eq:bpskamplitude}, the peak amplitude of the signal without noise prior to filtering.
-%and $B_e$ is the energy of a single received bit.
+\begin{equation}
+\frac{A_o^2}{N_o} = \frac{A_p^2}{n_0/2} \int_{-\infty}^{+\infty} |P(f)|^2 df = \frac{A_p^2}{n_0/2} \int_{-\infty}^{+\infty} p(t)^2 dt
+\end{equation}
 
-The expressions for the Bit-Error-Rate in the cases with and without matched filtering is then:
+Substituting from equation~\ref{eq:pulseEnergy}:
+
+\begin{equation}
+\frac{A_o^2}{N_o} = \frac{2 E_p}{n_0}
+\end{equation}
+
+This shows that the SNR and, therefore, the error probability are dependent on the energy of each symbol and the noise spectral density. However, even though the relation does not directly depend on the pulse shape, the energy of each symbol still depends on the pulse shape. It can also be expected that the energy is related to the symbol period.
+% Considering two a similar shaped pulses, with similar amplitude but duration, the one with longer duration should have more energy.
+
+The BER expression for matched filtering the becomes:
+
+\begin{equation}\label{eq:berMQAMmf}
+P_{be} =  Q\left(\sqrt{\frac{2 E_p}{{n_0}}}\right) = \frac{1}{2} \text{erfc}\left(\sqrt{\frac{E_p}{n_0}}\right) 
+%= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
+\end{equation}
+
+To exemplify with a simple case, let the pulse shape be rectangular with period $T_s$, such as:
+
+\begin{equation*}
+	a(t) = \begin{cases}
+		A               & 0 \le t \le T_s\\
+		0               & t > T_s\\
+	\end{cases}
+\end{equation*}
+
+The energy of a pulse at the receptor input will be given by:
+
+\begin{equation}
+E_p = \int_{0}^{T_s} {a(t)^2cos^2(\omega_0 t)} dt 
+\end{equation}
+
+If $\omega_0$ is such that $\omega_0 T_s \gg 1$, as it typically is when modulating optical signals, $cos^2(\omega_0 t) \doteq 1/2$. Then:
+
+\begin{equation}\label{eq:rectSigEn}
+E_p \doteq \frac{1}{2}\int_{0}^{T_s} a(t)^2 dt = \frac{1}{2}\int_{0}^{T_s} A^2 p(t)^2 dt=\frac{1}{2} A^2 \int_{0}^{T_s} p(t)^2 dt= \frac{A^2 T_s}{2}
+\end{equation}
+
+Substituting from equations~\ref{eq:noiseBw} and~\ref{eq:rectSigEn} into Equation~\ref{eq:berMQAMmf}, the BER expression becomes:
+
+\begin{equation}\label{eq:berMod}
+P_{be} = \frac{1}{2} \text{erfc}\left(\sqrt{\frac{A^2 T_s / 2}{ N / B}}\right) = 
+\frac{1}{2} \text{erfc}\left(\frac{A}{\sqrt{2N}} \sqrt{\frac{T_s}{B}}\right) 
+%= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{n_0}}}\right)
+\end{equation}
+
+%Similarly, let the signal be shaped using a root-raised-filter, defined as the square root of a raised-cosine in the frequency domain. It ca defined as:
+
+%\begin{equation}
+%	RRC(f) = \begin{cases}
+%	1              & |f| \le \frac{1-\beta}{2T_s}\\
+%	1 cos\left[\frac{\pi T_s}{2 \beta}\left( |f| - \frac{1-\beta}{2T_s}\right)\right]               & \frac{1-\beta}{2T_s} \le |f| \le \frac{1+\beta}{2T_s}\\
+%	0						   & |f|  \ge \frac{1+\beta}{2T_s}
+%	\end{cases}
+%\end{equation}
+%
+%The energy of a signal
+
+%In the case of QPSK with m=4, both the quadrature and in-phase components have $a(t) = \pm A$. The values that replace $A$ and $N_0$ in Equation~\ref{eq:berMQAM} become:
+
+%\begin{eqnarray}
+%%&A_{mf} &= \frac{A T}{2} = \frac{G_{ele} T_s B \sqrt{P_L P_S}}{2}\\
+%%&N_{mf} &= N \frac{T_s B}{2}
+%%&A_{mf} &= \frac{A T}{2} = \frac{G_{ele} T \sqrt{P_L P_S}}{2}\\
+%%&N_{mf} &= N \frac{T}{2}
+%\end{eqnarray}
+
+%Here, $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier, $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A_mf$ is the average amplitude at the sampling points of the signal after amplification without noise, $\sigma_o^2$ is the variance of the noise component of the matched filter output, the and $n_0$ is the noise spectral density.
+%
+%
+%The optimal BER that can be obtained by using matched filtering is then given by:
+
+%%\begin{eqnarray}\label{eq:berBPSK}
+%&P_{be} &= Q\left({\frac{A_{mf}}{\sqrt{N_{mf}}}}\right)\nonumber\\
+%&		&= \frac{1}{2} \text{erfc}\left({\frac{A_{o}}{\sqrt{2 N_{o}}}}\right)\nonumber\\
+%%&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T_s B}{2}}}\right)\\
+%&	    &= \frac{1}{2} \text{erfc}\left({\frac{A}{\sqrt{N}}\sqrt{\frac{T}{2}}}\right)\\
+%%&	    &= \frac{1}{2} \text{erfc}\left(\sqrt{{\frac{E_b}{n_0}}}\right)\nonumber
+%\end{eqnarray}
+
+%with
+%
+%\begin{eqnarray}
+%&A &= G_{ele} \sqrt{P_L P_S}
+%%&m_{mf} &= \frac{1}{2} T G_{ele} \sqrt{P_L P_S} \\
+%%&E_b &= \frac{A^2 T}{2} \\
+%\end{eqnarray}
+
+
+%\noindent where $T_s$ is the symbol period, $B$ is the bandwidth of the system, $A$ is as defined in Equation~\ref{eq:bpskamplitude}, the peak amplitude of the signal without noise prior to filtering.
+%%and $B_e$ is the energy of a single received bit.
+
+Note that $N$ here is the noise power at the input of the matched filter, as is the bandwidth $B$ and the peak amplitude $A$. The expressions for the Bit-Error-Rate in the cases with and without matched filtering:
 
 \begin{table}[H]
 	\centering
 	\begin{tabulary}{1.0\textwidth}{|c|c|}
 		\hline
 		\textbf{Without matched filter} 								& \textbf{With Matched Filter} \\ \hline
-		$ \frac{1}{2} \text{erfc} \left( \frac{A}{\sqrt{n_0}} \right) $	& $ \frac{1}{2} \text{erfc} \left( \frac{A}{\sqrt{n_0}} \sqrt{\frac{T}{2}} \right) $ \\ \hline
+		$ \frac{1}{2} \text{erfc} \left( \frac{A}{\sqrt{2N}} \right) $	& $ \frac{1}{2} \text{erfc}\left(\frac{A}{\sqrt{2N}} \sqrt{\frac{T_s}{B}}\right)  $ \\ \hline
 	\end{tabulary}
 	
 	\caption{Comparison between the BER equations for the cases with and without matched filtering.\label{tab:ber_qpsk}}
 \end{table}
 
-Figure~\ref{fig:QPSK_th_curves} show the curves for both these equations, in the case where  $n_0=10^{-6}$~$V^2.Hz^{-1}$, $P_L = 0$~dBm and $G_{ele} = 10^3$.
+Figure~\ref{fig:QPSK_th_curves} show the curves for both these equations, with the parameters listed in Table~\ref{tab:thCurves}.
 %Here, $T$ is the symbol period.
 
-\begin{figure}
-\begin{minipage}[b]{0.4\linewidth}
 \begin{table}[H]
 	\centering
-	\footnotesize
 	\begin{tabular}{|l|l|}
 		\hline
 		\multicolumn{2}{|c|}{ \textbf{Curve Parameters} } \\
 		\hline
 		\textbf{Parameter}     & \textbf{Default Value}                                     \\\hline
-%		numberOfBitsGenerated  & $40000$	                                                \\\hline
-		bandwidth              & 															\\\hline
-		symbolRate		       &                                                     		\\\hline
-%		samplesPerSymbol       & $16$                                                       \\\hline
-%		symbolRate		       &                                                     		\\\hline
-%		pLength                & $5$                                                        \\\hline
-%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
+		%		numberOfBitsGenerated  & $40000$	                                                \\\hline
+		bandwidth              & 64 GHz															\\\hline
+		symbolRate		       & 4 GHz                                                    		\\\hline
+		%		samplesPerSymbol       & $16$                                                       \\\hline
+		%		symbolRate		       &                                                     		\\\hline
+		%		pLength                & $5$                                                        \\\hline
+		%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
 		outputOpticalPower     & Variable                                                   \\ \hline
 		localOscillatorPower   & $0$~dBm                                                    \\ \hline
-%		localOscillatorPhase   & $0$                                                        \\ \hline
-%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
+		%		localOscillatorPhase   & $0$                                                        \\ \hline
+		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^6$~V$^2$                             \\ \hline
+		noisePower			   & $10^{-6}$~V$^2$                             					\\ \hline
 		confidence             & $0.95$                                                     \\ \hline
-%		midReportSize          & $0$                                                        \\ \hline
+		theoreticalSNR (before matched filter) &	0 dB								    \\ \hline
+		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
+	\caption{Parameters for the theoretical curves in Figure~\ref{fig:QPSK_th_curves}.\label{tab:thCurves}}
 \end{table}
-\end{minipage}
-\begin{minipage}[b]{0.6\linewidth}
-		\centering
-		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/teor_BER_curves.pdf}
-%			
-\end{minipage}
-\caption{QPSK theoretical BER values as a function of the output optical power in dBm.\label{fig:QPSK_th_curves}}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/teor_BER_curves.pdf}
+	\caption{QPSK theoretical BER values as a function of the output optical power in dBm.\label{fig:QPSK_th_curves}}
 \end{figure}
 
 
@@ -488,7 +573,7 @@ The files used are summarized in tables~\ref{tab:sources} and~\ref{tab:headers}.
 		localOscillatorPower\_dBm & t\_real & Power of the local oscillator &    \\ \cline{1-3}
 		responsivity & t\_real & Responsivity of the photodiodes (1 corresponds to having all optical power transformed into electrical current) &    \\ \cline{1-3}
 		amplification & t\_real & Amplification provided by the ideal amplifier &    \\ \cline{1-3}
-		noiseAmplitude & t\_real & Amplitude of the white noise &    \\ \cline{1-3}
+		noisePower & t\_real & Average power (and variance) of the white noise &    \\ \cline{1-3}
 		samplesToSkip & t\_integer & Number of samples to be skipped by the \textit{sampler} block &    \\ \cline{1-3}
 		confidence & t\_real & Determines the confidence limits for the BER estimation &    \\ \cline{1-3}
 		midReportSize & t\_integer &  &    \\ \cline{1-3}
@@ -544,7 +629,7 @@ be seen that no inter-symbol interference is present.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 %		responsivity           & $1$                                                        \\ \hline
 %		amplification          & $10^3$                                                     \\ \hline
-%		noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+%		noisePower   & $0$~V$^2$                             					\\ \hline
 %		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 		
@@ -603,7 +688,7 @@ captured after the second filter.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 				responsivity           & $1$                                                        \\ \hline
 				amplification          & $10^3$                                                     \\ \hline
-				noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+				noisePower   & $0$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -673,7 +758,7 @@ pulse-shaper. Thus, it shows no sign of inter-symbol interference.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+		noisePower   & $0$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -738,7 +823,7 @@ raised-cosine-filter.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+		noisePower   & $0$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -797,7 +882,7 @@ raised-cosine-filter.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $0$~V$^2$                             					\\ \hline
+		noisePower   & $0$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
@@ -851,7 +936,7 @@ root-raised-cosine filter will be used at the pulse-shaper and the receiver.
 
 Figures \ref{fig:eyes_n_rc_45_09}-\ref{fig:eyes_n_rrc_45_09} show the eye
 diagrams for both these cases. The optical power used was $-45~dBm$, the
-noise spectral density was set at $10^6 W/Hz$, and the roll-off factor was set
+noise power was set at $10^{-6} V^2$, and the roll-off factor was set
 to $0.9$ in both cases. In both cases, its is still possible to visibly see the
 approximate shape of the signal after noise is added, even without matched
 filtering. However, it can be seen that the output signal in the case with
@@ -882,14 +967,18 @@ the receiver is rather effective at filtering the noise.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
+		theoreticalSNR  	   & $15~dB$                             					\\ \hline
+		numericalSNR 		   & $13.9182~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $13.9624~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $13.8737~dB$                             					\\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Raised-Cosine Signal (roll-off=0.9) with Added Noise, SNR = 15}
+	\textbf{Raised-Cosine Signal (roll-off=0.9) with Added Noise, SNR = 15 dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -937,19 +1026,23 @@ the receiver is rather effective at filtering the noise.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+		theoreticalSNR  	   & $15~dB$                             					\\ \hline
+		numericalSNR 		     & $14.9902~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $15.0408~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $14.9391~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 	\centering
-\textbf{Root-Raised-Cosine Signal (roll-off=0.9) with Added Noise and Matched Filtering, SNR = 15}
+\textbf{Root-Raised-Cosine Signal (roll-off=0.9) with Added Noise and Matched Filtering,\\SNR = 15}
 \begin{minipage}{\linewidth}
 	\centering
 	\begin{subfigure}{.45\textwidth}
 		\centering
-		\includegraphics[clip, trim=5cm 4cm 5cm 4cm, width=\textwidth]{./sdf/m_qam_system/figures/eyes/if_p_45_09.pdf}
+			\includegraphics[clip, trim=5cm 4cm 5cm 4cm, width=\textwidth]{./sdf/m_qam_system/figures/eyes/if_p_45_09.pdf}
 	\end{subfigure}
 	\begin{subfigure}{.45\textwidth}
 		\centering
@@ -998,14 +1091,18 @@ the case is in all aspects similar to the one presented above.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+		theoreticalSNR  	   & $15~dB$                             					\\ \hline
+				numericalSNR 		     & $14.6827~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $14.7321~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $14.6327~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Raised-Cosine Signal (roll-off=0.3) with Added Noise, SNR = 15}
+	\textbf{Raised-Cosine Signal (roll-off=0.3) with Added Noise, SNR = 15 dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1053,14 +1150,18 @@ the case is in all aspects similar to the one presented above.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+		theoreticalSNR  	   & $15~dB$                             					\\ \hline
+		numericalSNR 		     & $14.9696~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $15.006~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $14.9329~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Root-Raised-Cosine Signal (roll-off=0.3) with Added Noise and Matched Filtering, SNR = }
+	\textbf{Root-Raised-Cosine Signal (roll-off=0.3) with Added Noise and Matched Filtering, SNR = 15 dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1090,7 +1191,7 @@ the case is in all aspects similar to the one presented above.
 \subsubsection*{Signals with AWGN and low SNR}
 Figures \ref{fig:eyes_n_rrc_60_03}-\ref{fig:eyes_n_rc_60_09} show eye
 diagrams similar to the previous section, but with a lower optical power ($-60~dBm$),
-comparable to the spectral density of the noise ($10^{-6}$).
+comparable to the average noise power ($10^{-6} V^2$).
 
 
 
@@ -1117,21 +1218,25 @@ without it the signal visually appears to be random noise.
 		%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
 		outputOpticalPower     & $-60$~dBm 													\\ \hline
 		shaperFilter	       & RaisedCosine												\\ \hline
-		outputFilter		   &                												\\ \hline
+		outputFilter		   &                											\\ \hline
 		rollOffFactor		   & 0.9														\\ \hline
 		localOscillatorPower   & $0$~dBm                                                    \\ \hline
 		localOscillatorPhase   & $0$                                                        \\ \hline
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+		theoreticalSNR  	   & $0~dB$                             					\\ \hline
+		numericalSNR 		     & $-1.07702~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $-1.0038~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $-1.1515~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Raised-Cosine Signal (roll-off=0.9) with Added Noise, SNR = 1}
+	\textbf{Raised-Cosine Signal (roll-off=0.9) with Added Noise, SNR = 0~dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1180,14 +1285,18 @@ without it the signal visually appears to be random noise.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+				theoreticalSNR  	   & $0~dB$                             					\\ \hline
+		numericalSNR 		     & $0.0290907~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $0.120973~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $-0.064778~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Root-Raised-Cosine Signal (roll-off=0.9) with Added  and Matched Filtering, SNR = 1}
+	\textbf{Root-Raised-Cosine Signal (roll-off=0.9) with Added  and Matched Filtering, SNR = 0~dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1236,14 +1345,18 @@ case but using a roll-off factor of 0.3.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+						theoreticalSNR  	   & $0~dB$                             					\\ \hline
+		numericalSNR 		     & $-0.306456~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $-0.233164~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $-0.381006~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Raised-Cosine Signal (roll-off=0.3) with Added Noise, SNR = 1}
+	\textbf{Raised-Cosine Signal (roll-off=0.3) with Added Noise, SNR = 0~dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1290,14 +1403,18 @@ case but using a roll-off factor of 0.3.
 		%		transferMatrix         & $\lbrace~\lbrace \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
 		responsivity           & $1$                                                        \\ \hline
 		amplification          & $10^3$                                                     \\ \hline
-		noiseSpectralDensity   & $10^{-6}$~V$^2$                             					\\ \hline
+		noisePower   & $10^{-6}$~V$^2$                             					\\ \hline
+								theoreticalSNR  	   & $0~dB$                             					\\ \hline
+		numericalSNR 		     & $0.0368278~dB$                             					\\ \hline
+		numericalSNR Upper Bound (95\% confidence) & $0.09153~dB$                             					\\ \hline
+		numericalSNR Lower Bound (95\% confidence) & $-0.0185722~dB$                             					\\ \hline
 		%		confidence             & $0.95$                                                     \\ \hline
 		%		midReportSize          & $0$                                                        \\ \hline
 	\end{tabular}
 \end{table}
 \begin{figure}[H]
 		\centering
-	\textbf{Root-Raised-Cosine Signal (roll-off=0.3) with Added Noise and Matched Filtering,\\ SNR = 1}
+	\textbf{Root-Raised-Cosine Signal (roll-off=0.3) with Added Noise and Matched Filtering,\\ SNR = 0~dB}
 	\begin{minipage}{\linewidth}
 		\centering
 	\begin{subfigure}{.45\textwidth}
@@ -1324,46 +1441,60 @@ case but using a roll-off factor of 0.3.
 
 
 
-\subsection{BER Curves}
+\subsection*{BER Curves}
 
 The simulated results show agreement with the theoretical curves, as can be seen in Figure~\ref{fig:ber_pseudorandom}.
-\begin{figure}[H]
-\begin{minipage}[b]{0.5\linewidth}
-	\begin{table}[H]
-		\centering
-		\footnotesize
-		\begin{tabulary}{1.0\textwidth}{|p{3.5cm}|p{3.5cm}|}
-			\hline
-			\multicolumn{2}{|l|}{ \textbf{Simulation and Curve Parameters} } \\
-			\hline
-			\textbf{Parameter}     & \textbf{Default Value}                                     \\\hline
-			numberOfBitsGenerated  & $40000$	                                                \\\hline
-			samplingRate           & 															\\\hline
-			symbolRate		       &                                                     		\\\hline
-			shaperFilter		   & Red Curve: RootRaisedCosine; Blue Curve: RaisedCosine	    \\\hline
-			receiverFilter		   & Red Curve: RootRaisedCosine; Blue Curve: no filter 		\\\hline
-			%		samplesPerSymbol       & $16$                                                       \\\hline
-			%		pLength                & $5$                                                        \\\hline
-			%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
-			outputOpticalPower     & Variable                                                   \\ \hline
-			localOscillatorPower   & $0$~dBm                                                    \\ \hline
-			%		localOscillatorPhase   & $0$                                                        \\ \hline
-			%		transferMatrix         & $\lbrace~\lbrace	 \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
-			responsivity           & $1$                                                        \\ \hline
-			amplification          & $10^3$                                                     \\ \hline
-			noiseSpectralDensity   & $10^6$~V$^2$                             \\ \hline
-			confidence             & $0.95$                                                     \\ \hline
-%			midReportSize          & $0$                                                        \\ \hline
-		\end{tabulary}
-	\end{table}
-\end{minipage}
-\begin{minipage}[b]{0.5\linewidth}
+
+\begin{table}[H]
 	\centering
-	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.9\textwidth]{./sdf/m_qam_system/figures/teor_vs_simul.pdf}
+	\begin{tabular}{|l|l|}
+	\hline
+	\multicolumn{2}{|c|}{ \textbf{Simulation and Curve Parameters} } \\
+		\hline
+		\textbf{Parameter}     & \textbf{Default Value}                                     \\\hline
+		numberOfBitsGenerated  & $40000$	                                                \\\hline
+		samplingRate           & 64 GHz															\\\hline
+		symbolRate		       & 4 GHz                                                    		\\\hline
+		shaperFilter		   & Red Curve: RootRaisedCosine; Blue Curve: RaisedCosine	    \\\hline
+		receiverFilter		   & Red Curve: RootRaisedCosine; Blue Curve: no filter 		\\\hline
+		rollOff				   & 0.3														\\\hline
+		%		samplesPerSymbol       & $16$                                                       \\\hline
+		%		pLength                & $5$                                                        \\\hline
+		%		iqAmplitudesValues     & $\lbrace~\lbrace-1,~0\rbrace~,~\lbrace1,~0\rbrace~\rbrace$ \\\hline
+		outputOpticalPower     & Variable                                                   \\ \hline
+		localOscillatorPower   & $0$~dBm                                                    \\ \hline
+		%		localOscillatorPhase   & $0$                                                        \\ \hline
+		%		transferMatrix         & $\lbrace~\lbrace	 \frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{1}{\sqrt{2}},~\frac{-1}{\sqrt{2}} \rbrace~\rbrace$ & \\ \hline
+		responsivity           & $1$                                                        \\ \hline
+		amplification          & $10^3$                                                     \\ \hline
+		noisePower			   & $10^{-6}$~V$^2$                             					\\ \hline
+		confidence             & $0.95$                                                     \\ \hline
+		%			midReportSize          & $0$                                                        \\ \hline
+	\end{tabular}
+	\caption{Parameters for the theoretical curves and simulation results shown in Figure~\ref{fig:ber_pseudorandom}.\label{tab:ber_pseudorandom}}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/teor_vs_simul.pdf}
 	%			
-\end{minipage}
 \caption{QPSK theoretical BER values as a function of the output optical power in dBm.\label{fig:ber_pseudorandom}}
 \end{figure}
+
+%\subsection*{Comparative Analysis}
+
+In this section we show the simulation results and compared them with the theoretical predictions for an M-QAM system with $M=4$. Figure \ref{fig:ber_pseudorandom} shows the variation of the BER with the optical power of the signal, using $40000$ bits produced by a random number generator. The noise power was set at $10^{-6}~V^2$, the local oscillator at $0~dBm$ and the amplification at the transimpedance amplifier was set at $10^3$.
+The red and blue lines represents the theoretical curve, with and without matched filters, respectively. The the red and purple points represent the simulated values for the same situation with the respective confidence margins. The simulation agrees closely with the theoretical values.
+
+
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_mf_20180205.pdf}
+%	\caption{Simulation result using root-raised cosine matched filtering for a random binary sequence with $40000$ bits, a noise power of $10^{-6}$ and an amplification of $10^3$.}
+%	\label{fig:ber_pseudorandom_mf}
+%\end{figure}%
+
 
 %\begin{figure}[H]
 %	\centering
@@ -1374,7 +1505,7 @@ The simulated results show agreement with the theoretical curves, as can be seen
 \subsubsection*{Conclusions}
 The use of a root-raised-cosine filters for shaping and filtering the signal provides the best results, due to reducing noise while creating no inter-symbol interference. The experimental BER curves agree with the theoretical values and show the advantages of matched filtering.
 
-\subsection*{Experimental Analysis}
+\subsection{Experimental Analysis}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{./sdf/m_qam_system/figures/mqamExperimental20180321.pdf}
@@ -1414,19 +1545,19 @@ The setup shown in Figure~\ref{fig:experimental_mqam_setup} was used to obtain e
 Figure~\ref{fig:qamTxSig} to~\ref{fig:rxFinal} show the waveforms of the signal and the constellations at different points during the course of processing the received signal. All the waveforms shown correspond to the first 3 nanoseconds of the signal. The constellations assume that the signal has been sampled at the appropriate times unless otherwise noted.
 
 Figure~\ref{fig:qamTxSig} shows the beginning of the signal generated by the AWG that was then sent to the IQ modulator.
-The beginning of the signal received at the oscilloscope is shown in Figure~\ref{fig:qamRxSig}. Its worth noting that they are not synchronized, requiring that to be accomplished while processing after the aquisition.
+The beginning of the signal received at the oscilloscope is shown in Figure~\ref{fig:qamRxSig}. Its worth noting that they are not synchronized, requiring that to be accomplished while processing after the aquisition. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/exp/TX_03.pdf}
-	\caption{Signal sent to the IQ Modulator.}
+	\caption{Signal sent to the IQ Modulator (Elec1).}
 	\label{fig:qamTxSig}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/exp/RX_03.pdf}
-\caption{Signal received at the Oscilloscope}
+\caption{Signal received at the Oscilloscope (Elec2).}
 \label{fig:qamRxSig}
 \end{figure}
 
@@ -1477,22 +1608,9 @@ Frequency offset correction was done resorting to a a MATLAB function in the Com
 	\label{fig:rxFinal}
 \end{figure}
 
-As can be seen, the constellation is not properly aligned. Also, the noise seen is far greater than it should be. These issues need to be dealt with before a proper BER curve can be obtained. However, the process so far is somewhat validated by the error rate measurements, which even though they are not proper, are still far from completely wrong or random. The error rates for the shown constellation is around $2 \times 10^{-3}$ for the in-phase component, and around $6 \times 10^{-3}$ for the quadrature component.
+As can be seen, the constellation is not properly aligned. Also, the noise seen is far greater than it should be. These issues need to be dealt with before a proper BER curve can be obtained. However, the process so far is somewhat validated by the error rate measurements, which even though they are not proper, are still far from completely wrong or random. The error rate for the shown constellation is around $2 \times 10^{-3}$ for the in-phase component, and around $6 \times 10^{-3}$ for the quadrature component.
 
-\subsection{Comparative Analysis}
-
-In this section we show the simulation results and compared them with the theoretical predictions for an M-QAM system with $M=4$. Figure \ref{fig:ber_pseudorandom} shows the variation of the BER with the optical power of the signal, using $40000$ bits produced by a random number generator. The noise power was set at $10^{-6}$, the local oscillator at $0~dBm$ and the amplification at the transimpedance amplifier was set at $10^3$.
-The blue line represents the theoretical curve, while the orange points represent the simulated values with the respective confidence margins. The simulation agrees closely with the theoretical values.
-
-
-
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[clip, trim=4cm 8cm 4cm 8cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_sim_mf_20180205.pdf}
-%	\caption{Simulation result using root-raised cosine matched filtering for a random binary sequence with $40000$ bits, a noise power of $10^{-6}$ and an amplification of $10^3$.}
-%	\label{fig:ber_pseudorandom_mf}
-%\end{figure}%
-
+\subsection{DSP}
 
 \subsection{Open Issues}
 
