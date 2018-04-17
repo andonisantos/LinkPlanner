@@ -91,16 +91,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="141.53158"
-     inkscape:cy="173.27198"
+     inkscape:zoom="1.979899"
+     inkscape:cx="182.03976"
+     inkscape:cy="169.17684"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:snap-object-midpoints="true"
-     inkscape:snap-grids="true"
+     inkscape:snap-object-midpoints="false"
+     inkscape:snap-grids="false"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
      inkscape:window-x="-8"
@@ -109,7 +109,19 @@
      fit-margin-top="0.3"
      fit-margin-bottom="0.3"
      fit-margin-right="0.3"
-     fit-margin-left="0.3">
+     fit-margin-left="0.3"
+     inkscape:snap-center="false"
+     inkscape:snap-text-baseline="false"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:bbox-nodes="false"
+     inkscape:bbox-paths="false"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-others="false"
+     inkscape:object-nodes="false"
+     inkscape:snap-nodes="false"
+     inkscape:snap-global="true"
+     inkscape:snap-to-guides="true">
     <sodipodi:guide
        position="43.516295,43.516292"
        orientation="1,0"
@@ -156,7 +168,7 @@
        id="guide1826"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="66.005871,66.005883"
+       position="72.620455,72.620455"
        orientation="1,0"
        id="guide1828"
        inkscape:locked="false" />
@@ -169,6 +181,56 @@
        position="14.412126,14.412126"
        orientation="0,1"
        id="guide4561"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="10.443376,34.255871"
+       orientation="0,1"
+       id="guide985"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="10.443376,34.255871"
+       orientation="1,0"
+       id="guide987"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="22.111608,36.723772"
+       orientation="0,1"
+       id="guide989"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="9.982418,36.217595"
+       orientation="0,1"
+       id="guide991"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="9.9824179,32.411454"
+       orientation="0,1"
+       id="guide993"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="30.248421,21.722798"
+       orientation="0,1"
+       id="guide1007"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="33.741597,21.026712"
+       orientation="0,1"
+       id="guide1009"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="42.193376,72.620463"
+       orientation="1,0"
+       id="guide1023"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="15.969494,38.175596"
+       orientation="0,1"
+       id="guide1025"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="58.090219,72.618678"
+       orientation="1,0"
+       id="guide1081"
        inkscape:locked="false" />
   </sodipodi:namedview>
   <metadata
@@ -298,19 +360,7 @@
            x="-265.52896"
            y="-105.52899"
            style="fill:#000000;fill-opacity:0;" /></flowRegion><flowPara
-         id="flowPara1896" /></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot1898"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(0.26458333,0,0,0.26458333,54.37954,97.379541)"><flowRegion
-         id="flowRegion1900"><rect
-           id="rect1902"
-           width="79.999985"
-           height="220"
-           x="-325.52896"
-           y="-85.528992" /></flowRegion><flowPara
-         id="flowPara1904"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:192px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">}</flowPara></flowRoot>    <text
+         id="flowPara1896" /></flowRoot>    <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444444px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
        x="99.592789"
@@ -335,5 +385,189 @@
            y="104.47102"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.33333397px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
          id="flowPara876"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.33333397px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">I</flowPara></flowRoot>  </g>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.33333397px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start">I</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 127,140.89583 v 1.32292 0 0"
+       id="path886"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g914"
+       transform="translate(-6.3443728,1.8778497)">
+      <g
+         id="g1021"
+         transform="translate(-1.0646481e-8,-0.27167039)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="131.09273"
+           y="144.62932"
+           id="text1834-3-3"><tspan
+             sodipodi:role="line"
+             id="tspan1832-6-1"
+             x="131.09273"
+             y="144.62932"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">A</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11666667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:'Calibri, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+           x="135.26553"
+           y="145.13084"
+           id="text908"><tspan
+             sodipodi:role="line"
+             id="tspan906"
+             x="135.26553"
+             y="145.13084"
+             style="stroke-width:0.26458332;-inkscape-font-specification:'Calibri, Bold';font-family:Calibri;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:2.11666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">I</tspan></text>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:0.79499996,0.79499996;stroke-dashoffset:0"
+           d="m 104.26204,139.31505 28.98605,-29.00967 0.0709,-0.0945"
+           id="path1027"
+           inkscape:connector-curvature="0" />
+        <g
+           id="g1069"
+           transform="translate(-5.8263749,-9.6061368)">
+          <rect
+             style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.42279607;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.26838826, 1.26838826;stroke-dashoffset:0;stroke-opacity:0.91959797;paint-order:markers fill stroke"
+             id="rect1079"
+             width="5.5700579"
+             height="5.5700922"
+             x="122.20984"
+             y="131.18248"
+             ry="1.5457623"
+             rx="0" />
+          <g
+             style="fill:#000000;fill-opacity:1"
+             transform="translate(2.5272406,11.754081)"
+             id="g1057">
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="119.83758"
+               y="123.85488"
+               id="text1834-3-3-3"><tspan
+                 sodipodi:role="line"
+                 id="tspan1832-6-1-1"
+                 x="119.83758"
+                 y="123.85488"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11666656px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:'Calibri, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+               x="124.01038"
+               y="124.35641"
+               id="text908-0"><tspan
+                 sodipodi:role="line"
+                 id="tspan906-4"
+                 x="124.01038"
+                 y="124.35641"
+                 style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11666656px;font-family:Calibri;-inkscape-font-specification:'Calibri, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 97.895833,111.79167 H 96.572916"
+       id="path916"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 97.895833,169.99999 H 96.572916"
+       id="path918"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 68.791665,140.89583 v 1.32292"
+       id="path928"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g914-0"
+       transform="translate(-8.755526,49.921453)">
+      <g
+         id="g1005">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="98.499458"
+           y="121.63357"
+           id="text1834-3-3-1"><tspan
+             sodipodi:role="line"
+             id="tspan1832-6-1-8"
+             x="98.499458"
+             y="121.63357"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">-A</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11666667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:'Calibri, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+           x="104.17704"
+           y="122.14827"
+           id="text908-5"><tspan
+             sodipodi:role="line"
+             id="tspan906-7"
+             x="104.17704"
+             y="122.14827"
+             style="stroke-width:0.26458332;-inkscape-font-specification:'Calibri, Bold';font-family:Calibri;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:2.11666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">Q</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g914-4"
+       transform="translate(-30.582703,-25.555555)">
+      <g
+         id="g1015"
+         transform="translate(3.2600446,-8.7269297)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="118.86733"
+           y="147.62917"
+           id="text1834-3-3-8"><tspan
+             sodipodi:role="line"
+             id="tspan1832-6-1-3"
+             x="118.86733"
+             y="147.62917"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">A</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11666667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:'Calibri, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+           x="122.77"
+           y="148.14388"
+           id="text908-4"><tspan
+             sodipodi:role="line"
+             id="tspan906-3"
+             x="122.77"
+             y="148.14388"
+             style="stroke-width:0.26458332;-inkscape-font-specification:'Calibri, Bold';font-family:Calibri;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:2.11666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">Q</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g914-2"
+       transform="translate(-61.229664,4.7012641)">
+      <g
+         id="g999"
+         transform="translate(4.6036111,-4.9964283)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="122.13806"
+           y="146.53239"
+           id="text1834-3-3-10"><tspan
+             sodipodi:role="line"
+             id="tspan1832-6-1-0"
+             x="122.13806"
+             y="146.53239"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">-A</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11666667px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:'Calibri, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+           x="128.08578"
+           y="147.03392"
+           id="text908-8"><tspan
+             sodipodi:role="line"
+             id="tspan906-36"
+             x="128.08578"
+             y="147.03392"
+             style="stroke-width:0.26458332;-inkscape-font-specification:'Calibri, Bold';font-family:Calibri;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:2.11666667px;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;">I</tspan></text>
+      </g>
+    </g>
+  </g>
 </svg>
