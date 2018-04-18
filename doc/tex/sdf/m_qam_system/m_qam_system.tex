@@ -15,7 +15,7 @@
 The goal of this project is to simulate a Quadrature Amplitude Modulation transmission system with M points in the constellation diagram (M-QAM) and to perform a Bit Error Rate (BER) measurement that can be compared with theoretical and experimental values.
 
 M-QAM systems can encode $\log_2 M$ bits per symbol which means they can transmit higher data rates keeping the same bandwidth when compared, for example, to PSK systems. However, because the states are closer together, these systems require a higher signal-to-noise ratio.
-The Bit Error Rate (BER) is a measurement of how a bit stream is altered by a transmission system due to noise (among other factors). To study this effect we introduced Additive White Gaussian Noise (AWGN) to model thermal noise at the receiver.
+The Bit Error Rate (BER) is a measurement of how a bit stream is altered by a transmission system due to noise (among other factors). To study this effect w	e introduced Additive White Gaussian Noise (AWGN) to model thermal noise at the receiver.
 
 For $M=4$ the M-QAM system can be reduced to a Quadrature Phase Shift Keying system (QPSK) system that uses four equispaced points in the constellation diagram (see figure \ref{fig:const}).
 
@@ -39,14 +39,14 @@ M-QAM is a modulation scheme that takes advantage of two sinusoidal carriers wit
 which means that any sinusoidal wave can be decomposed in its I and Q components:
 
 \begin{align}
-	A\cos(\omega~t+\phi)&=A\left(\cos(\omega~t)\cos(\phi)-\sin(\omega~t)\sin(\phi)\right) \\
-	&=I\cos(\omega~t)-Q\sin(\omega~t),
+	A_c\cos(\omega~t+\phi)&=A\left(\cos(\omega~t)\cos(\phi)-\sin(\omega~t)\sin(\phi)\right) \\
+	&=A_I\cos(\omega~t)-A_Q\sin(\omega~t),
 \end{align}
-where we have used the expression for the cosine of a sum and the definitions of I and Q.
+where we have used the expression for the cosine of a sum and the definitions of $A_I$ and $A_Q$.
 
 
 
-For the particular case of $M=4$, considering there is no crosstalk or interference between the Q and I components, the signal can be treated as a pair of independent BPSK systems, one for the in-phase component and another for the quadrature component.
+For the particular case of $M=4$, it can be considered that $A=A_I=A_Q$. If it is assumed there is no crosstalk or interference between the Q and I components, the signal can be treated as a pair of independent BPSK systems, one for the in-phase component and another for the quadrature component.
 Using Gray coding, adjacent symbols differ by only one bit. As such, an error in a single component leads to a single bit error.
 This means that the probability of an error in bit detection is independent among components, as there is no crosstalk or interference. That being the case, the bit error rate can be calculated for the BPSK case.
 
@@ -61,7 +61,7 @@ s(t) = a(t) + n(t)
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{./sdf/m_qam_system/figures/constellation_d.pdf}
-	\caption{The relation between $m$ and the distance between constellation points.\label{fig:const_2m}}
+	\caption{The relation between $A$ and the distance between constellation points.\label{fig:const_2m}}
 \end{figure}
 
 In this case, assuming the absence of inter-symbol interference, $s(t)$ at the time of sampling will be a Gaussian random variable with average value of $\pm A$, depending on what signal was transmitted, and variance equal to $N$, the noise power. In this case, using the constellation from Figure~\ref{fig:const_2m}, with a decision boundary halfway between $A$ and $-A$, an error occurs in two situations: when the a 0 is transmitted but a 1 is identified, or a 1 is transmitted and a 0 is identified. These errors happen when the perturbation in the signal due to noise is enough to push the value beyond the decision boundary. This is illustrated in Figures~\ref{fig:gauss} and~\ref{fig:gausserr}, where the probability of error is shown by the colored area under the curve~\cite{mischasch}.
@@ -119,15 +119,16 @@ with
 
 
 \begin{eqnarray}
-&A &= G_{ele} \sqrt{P_L P_S}\label{eq:bpskamplitude}\\
+&A &= K_{ele} \sqrt{P_L P_S}\label{eq:bpskamplitude}\\
 %&N &\propto n_0 B
 &N & = n_0 B\label{eq:noiseBw}
+%&N & = 2 \frac{n_0}{2} B\label{eq:noiseBw}
 \end{eqnarray}
 %\begin{equation}\label{eq:berBPSK}
 %BER= Q\left({G_{ele}\sqrt{\frac{2 P_L P_S}{n_0}}}\right) = \frac{1}{2} \text{erfc}\left({G_{ele}\sqrt{\frac{P_L P_S}{n_0}}}\right).
 %\end{equation}
 
-\noindent where $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $G_{ele}$ is the gain in the transimpedance amplifier, $n_0/2$ is the noise spectral density and $B$ is the channel bandwidth. $A$ is the magnitude of the signal at sampling time and $\sqrt{N}$ is the RMS noise. Figure~\ref{fig:const_2m} shows the relation between the constellation points and $A$.
+\noindent where $P_L$ is the local oscillator power, $P_S$ is the average optical power of the laser source on which the signal is modulated, $K_{ele}$ is the gain in the transimpedance amplifier, $n_0/2$ is the noise spectral density and $B$ is the channel bandwidth. $A$ is the magnitude of the signal at sampling time and $\sqrt{N}$ is the RMS noise. Figure~\ref{fig:const_2m} shows the relation between the constellation points and $A$.
 
 The symbol error rate depends on both bits being correctly detected. This probability is:
 
@@ -145,7 +146,7 @@ From this, the probability of symbol error is:
 
 
 %$N_0$ will be the standard deviation of the sampled values.
-The peak power signal-to-noise ratio, defined as the ratio between the instantaneous peak signal power to mean noise power, is given by:
+The peak power signal-to-noise ratio, defined as the ratio between the instantaneous peak signal power to mean noise power, is given by~\cite{mischasch}:
 
 \begin{equation}
 	\text{SNR} = \frac{A^2}{{N}}
@@ -157,52 +158,9 @@ The peak power signal-to-noise ratio, defined as the ratio between the instantan
 \text{SNR}_{RMS} = \frac{A}{\sqrt{N}}
 \end{equation}
 
-Here, A is the peak signal amplitude and $\sqrt{N}$ is the RMS noise in the absence of a signal.
+Here, A is the peak signal amplitude and $\sqrt{N}$ is the RMS noise in the absence of a signal. Here it is assumed that the electric filter's bandwidth is large enough for the signal not to be affected. This way it only limits the noise power.
 
-
-%The bit error rate is then equal to the probability of the phase falling outside the correct detection range in a given component due to noise,
-
-
-%Exact solutions for the probability of symbol and bit errors exist only for $M=4$.
-
-%As previously mentioned, for $M=4$ the system is reduced to a QPSK system. Knowing that the AWGN is independent
-
-%For the cases of $M>4$, an aproximation can be used.
-%The probability of symbol error, $P_s$, in coherent M-PSK demodulation with AWGN can be aproximated by
-%
-%\begin{equation}
-%	P_s=2~Q\left(\sqrt{2~\log_2 M \left(\frac{E_b}{n_0}\right)\sin^2\frac{\pi}{M}}\right)
-%\end{equation}
-%where $E_b$ is the energy of one bit, $n_0$ is the noise power and the function $Q$ is defined as
-%\begin{equation}
-%	Q(x)=\frac{1}{2} erfc\left(\frac{x}{\sqrt{2}}\right).
-%	\label{eq:Ps}
-%\end{equation}
-%
-%It is worth noting that this aproximation is only valid for high SNR values. The probability of bit errors for $M>4$ can now be estimated, as it is related to $P_s$ by
-%
-%\begin{equation}
-%	P_b=\frac{1}{\log_2 M}P_s.
-%	\label{eq:Pb}
-%\end{equation}
-%
-%For QPSK we get, using $M=4$ in equations \ref{eq:Ps} and \ref{eq:Pb},
-%\begin{equation}
-%	P_b= 2 Q\left(\sqrt{\frac{2~E_b}{n_0}}\right) = erfc\left(\sqrt{\frac{E_b}{n_0}}\right).
-%\end{equation}
-%
-%The exact probability bit error for $M=4$ are
-
-%The Bit Error Rate curve given by~\eqref{eq:berBPSK} is plotted in figure \ref{fig:QPSK_th_curve} as a function of the optical signal power for $N_0=10^{-6}$, $P_L = 0~dBm$ and $G_{ele} = 10^3$.
-
-%\begin{figure}[h]
-%		\centering
-%		\includegraphics[clip, trim=2cm 6cm 2cm 6cm, width=0.7\textwidth]{./sdf/m_qam_system/figures/BER_QPSK_theory_20180119.pdf}
-%		\caption{QPSK theoretical BER values as a function of the output optical power in dBm.}
-%		\label{fig:QPSK_th_curve}
-%\end{figure}
-
-It is possible to further decrease the error rate by using a matched filter before sampling the signal. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and a similar one at the receiver, before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
+It is possible to decrease the SNR and, consequently, the error rate reducing the filter's bandwidth and finding an optimum filter. This filter is called a matched filter. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and a similar one at the receiver, before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
 
 %As the constellation remains the same, the expression to calculate the BER is similar, but replacing the values of $m$ and $N_0$ of Equation~\eqref{eq:berMQAM} by those corresponding to the signal at the output of the filter, which can be calculated as:
 Considering a pulse with composition similar to the signal described by Equation~\ref{eq:sigAmpNoise}, let $ a(t) = A_p~p(t) $, where $A_p$ is the peak amplitude of the signal and $p(t)$ is the shape of the pulse, and $n(t)$ be AWGN of spectral density $G_n(f) = \frac{n_0}{2}$. Also, let $H(f)$ be the frequency domain response of the filter at the receiver.
