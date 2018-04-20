@@ -37,10 +37,18 @@ public:
 	void initialize(void);
 	bool runBlock(void);
 
-	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; };
+	void setSamplingPeriod(double sPeriod) {
+		samplingPeriod = sPeriod;
+		noisePower = spectralDensity * (2 / samplingPeriod); // Update noise power when spectral density changes
+	};
+
 	double getSamplingPeriod(void) { return samplingPeriod; };
 
-	void setNoiseSpectralDensity(double SpectralDensity) { spectralDensity = SpectralDensity; }
+	void setNoiseSpectralDensity(double SpectralDensity) {
+		spectralDensity = SpectralDensity;
+		noisePower = spectralDensity * (2 / samplingPeriod); // Update noise power when sampling period changes
+	}
+
 	double const getNoiseSpectralDensity(void){ return spectralDensity; }
 
 	void setSeedType(SeedType sType){ seedType = sType; };

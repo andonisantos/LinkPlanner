@@ -12,7 +12,7 @@ void WhiteNoise::initialize(void){
 
 	firstTime = false;
 	outputSignals[0]->setSamplingPeriod(samplingPeriod);
-	noisePower = spectralDensity * (1 / samplingPeriod); // One sided spectral density	 
+		 
 	
 	switch (getSeedType()) {
 		case RandomDevice:
