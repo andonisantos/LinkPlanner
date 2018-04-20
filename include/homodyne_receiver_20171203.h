@@ -141,7 +141,8 @@ public:
 
 	void setAmplification(t_real Amplification) { B5.setGain(Amplification); B6.setGain(Amplification); };
 	
-	void setNoiseAmplitude(t_real NoiseAmplitude) { B7.setNoiseSpectralDensity(NoiseAmplitude); B8.setNoiseSpectralDensity(NoiseAmplitude);};
+	void setNoiseSpectralDensity(t_real NoiseSpectralDensity) { B7.setNoiseSpectralDensity(NoiseSpectralDensity); B8.setNoiseSpectralDensity(NoiseSpectralDensity);};
+	void setNoiseSamplingPeriod(t_real SamplingPeriod) { B7.setSamplingPeriod(SamplingPeriod); B8.setSamplingPeriod(SamplingPeriod); };
 	void setSeeds(array<int,2> noiseSeeds) { B7.setSeed(noiseSeeds[0]); B8.setSeed(noiseSeeds[1]); };
 	void setSeedType(SeedType seedType) { B7.setSeedType(seedType); B8.setSeedType(seedType); };
 

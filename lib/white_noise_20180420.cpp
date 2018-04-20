@@ -11,9 +11,10 @@
 void WhiteNoise::initialize(void){
 
 	firstTime = false;
+	outputSignals[0]->setSamplingPeriod(samplingPeriod);
+	noisePower = spectralDensity * (1 / samplingPeriod); // One sided spectral density	 
 	
 	switch (getSeedType()) {
-
 		case RandomDevice:
 		{
 			// Resorts to 624 32-bit random ints from a random device to
@@ -89,10 +90,8 @@ void WhiteNoise::initialize(void){
 
 bool WhiteNoise::runBlock(void){
 
-
-
 	int space = outputSignals[0]->space();
-
+	
 	int process = space;
 
 	if (process == 0) return false;
@@ -106,10 +105,10 @@ bool WhiteNoise::runBlock(void){
 					  for (int i = 0; i < process; i++)
 					  {
 						  t_real output = 0;
-						  if (spectralDensity!=0)
+						  if (noisePower!=0)
 						  {
 							  t_real noise = distributionNoise(generator1);
-							  output = noise*sqrt(spectralDensity);
+							  output = noise*sqrt(noisePower);
 						  }
 						  outputSignals[0]->bufferPut(output);
 					  }
@@ -123,11 +122,11 @@ bool WhiteNoise::runBlock(void){
 
 							 t_complex output(0, 0);
 
-							 if (spectralDensity != 0)
+							 if (noisePower != 0)
 							 {
 								 t_real noiseI = distributionNoiseI(generator1);
 								 t_real noiseQ = distributionNoiseQ(generator2);
-								 output = (noiseI*sqrt(spectralDensity / 2), noiseQ*sqrt(spectralDensity / 2));
+								 output = (noiseI*sqrt(noisePower / 2), noiseQ*sqrt(noisePower / 2));
 							 }
 
 							 outputSignals[0]->bufferPut(output);
@@ -146,14 +145,14 @@ bool WhiteNoise::runBlock(void){
 
 							   t_complex_xy output = { 0, 0 };
 
-							   if (spectralDensity != 0)
+							   if (noisePower != 0)
 							   {
 								   t_real noiseIX = distributionNoiseIX(generator1);
 								   t_real noiseQX = distributionNoiseQX(generator2);
-								   output.x = (noiseIX*sqrt(spectralDensity / 2), noiseQX*sqrt(spectralDensity / 2));
+								   output.x = (noiseIX*sqrt(noisePower / 2), noiseQX*sqrt(noisePower / 2));
 								   t_real noiseIY = distributionNoiseIY(generator3);
 								   t_real noiseQY = distributionNoiseQY(generator4);
-								   output.y = (noiseIY*sqrt(spectralDensity / 2), noiseQY*sqrt(spectralDensity / 2));
+								   output.y = (noiseIY*sqrt(noisePower / 2), noiseQY*sqrt(noisePower / 2));
 
 							   }
 

@@ -60,7 +60,7 @@ int main(){
 	//array<t_complex, 4> transferMatrix = { { 1 / sqrt(2), 1 / sqrt(2), 1 / sqrt(2), -1 / sqrt(2)} };
 	t_real responsivity = 1;
 	t_real amplification = 1e3;
-	t_real noiseAmplitude = 1e-6;
+	t_real noiseSpectralDensity = 1e-6 / samplingRate;
 	SeedType seedType = RandomDevice;
 	array<int, 2> seedArray = { 1, 2 };
 
@@ -128,7 +128,8 @@ int main(){
 	//B2.setTransferMatrix(transferMatrix);
 	B2.setResponsivity(responsivity);
 	B2.setAmplification(amplification);
-	B2.setNoiseAmplitude(noiseAmplitude);
+	B2.setNoiseSpectralDensity(noiseSpectralDensity);
+	B2.setNoiseSamplingPeriod(symbolPeriod / samplesPerSymbol);
 	B2.setSeedType(seedType);
 	B2.setSeeds(seedArray);
 	B2.setSamplesToSkip(samplesToSkip);

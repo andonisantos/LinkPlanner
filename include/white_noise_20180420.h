@@ -13,8 +13,6 @@ class WhiteNoise : public Block {
 private:
 	bool firstTime{ true };
 
-	double spectralDensity = 1e-4;
-
 	SeedType seedType{ RandomDevice };
 
 	random_device randomDevice;
@@ -28,12 +26,19 @@ private:
 
 	int seed = 1;
 
+	double spectralDensity = 1.5e-17;
+	double samplingPeriod = 1.0;
+	double noisePower = spectralDensity * 2 / samplingPeriod;
+
 public:
 	WhiteNoise() {};
 	WhiteNoise(vector<Signal *> &InputSig, vector<Signal *> &OutputSig) :Block(InputSig, OutputSig){};
 	
 	void initialize(void);
 	bool runBlock(void);
+
+	void setSamplingPeriod(double sPeriod) { samplingPeriod = sPeriod; };
+	double getSamplingPeriod(void) { return samplingPeriod; };
 
 	void setNoiseSpectralDensity(double SpectralDensity) { spectralDensity = SpectralDensity; }
 	double const getNoiseSpectralDensity(void){ return spectralDensity; }
