@@ -40,17 +40,26 @@
 
 \subsection*{Functional Description}
 
-This block accepts one OpticalSignal or TimeContinuousAmplitudeContinousReal signal, estimates the signal-to-noise ratio for a given signal interval and outputs the estimated value. It also writes a \textit{.txt} file reporting the estimated signal-to-noise ratio, a count of the number of measurements and the corresponding bounds for a given confidence level.
+This block accepts one OpticalSignal or TimeContinuousAmplitudeContinousReal signal, estimates the signal-to-noise ratio for a given time interval and outputs an exact copy of the input signal. The estimated SNR value is printed to \textit{cout} after each calculation.  The block also writes a \textit{.txt} file reporting the estimated signal-to-noise ratio, a count of the number of measurements and the corresponding bounds for a given confidence level.
 
 \subsection*{Theoretical Description}\label{snrcalc}
-The SNR is calculated multiples times through the power spectral density of the signal over a given time interval. The multiple SNR measurements are then averaged and the confidence interval is established based on the observations.
+The SNR is calculated multiple times through the power spectral density of the signal over a given time interval. The multiple SNR measurements are then averaged and the confidence interval is established based on the observations.
 
-The power spectrum is estimated through Welch's periodogram over a predefined interval size~\cite{john2007digital}. Using the power spectrum obtained from this sequence, the frequency interval containing the signal is identified, estimated from the sampling rate, symbol rate and modulation type. This interval is considered to contain both the signal and white noise.
+The power spectrum is estimated through Welch's periodogram over a predefined interval size~\cite{john2007digital}. Using the power spectrum obtained from this sequence, the frequency interval containing the signal is estimated from the sampling rate, symbol rate and modulation type. This interval contains the power of both the signal and some of the white noise.
 
-White noise is assumed to be present with constant spectral density. Therefore, the noise superimposed with the signal is considered to be similar to the rest of the spectrum. The noise power is estimated from the integral of the spectrum in area without signal, extrapolating for the total noise power in the spectrum. The signal power is obtained by integrating the spectrum within the signal's frequency interval, minus the corresponding superimposed noise, according to what was previously estimated. The power SNR is the ratio between these two values.
+The power of a signal can be calculated from its power spectrum~\cite{john2007digital}:
 
-This value is saved and the process is repeated for every sequence of samples. In the end the confidence interval is calculated based on the obtained values~\cite{tranter2004principles}. The SNR value and confidence interval is saved to a text file.
-This block output signal is exactly equal to the input signal, to estimate SNR at any point in a given simulated system without interfering with it.
+\begin{equation}
+P = \frac{1}{N} \sum_{n=0}^{N-1} {|x(n)|}^2 = \frac{1}{N^2} \sum_{k=0}^{N-1} {|X(k)|}^2
+\end{equation}
+
+
+By default, the noise is assumed to be AWGN with a given constant spectral density. Therefore, the power of the noise within the signal frequencies can be estimated from the rest of the noise spectrum.
+The noise power is estimated from the integral of the spectrum in the area without signal, extrapolating for the total noise power in the spectrum. The signal power is obtained by integrating the spectrum within the signal's frequency interval, minus the corresponding superimposed noise, according to what was previously estimated. The power SNR is the ratio between these two values.
+
+This value is saved and the process is repeated for every sequence of samples. The confidence interval is calculated based on the all the obtained SNR values~\cite{tranter2004principles}. The SNR value and confidence interval is saved to a text file.
+
+%This block output signal is exactly equal to the input signal, to estimate SNR at any point in a given simulated system without interfering with it.
 
 %The $\widehat{\text{BER}}$ is obtained by counting both the total number received bits, $N_T$, and the number of coincidences, $K$, and calculating their relative ratio:
 %\begin{equation}

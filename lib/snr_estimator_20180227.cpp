@@ -22,6 +22,7 @@ bool SNREstimator::runBlock(void) {
 	t_real inValue;
 	double samplingPeriod = inputSignals[0]->getSamplingPeriod();
 	double symbolPeriod = inputSignals[0]->getSymbolPeriod();
+	int sps = inputSignals[0]->getSamplesPerSymbol();
 	vector<double> segment;
 	vector <double> im(segmentSize);
 	vector <complex<double>> segmentComplex(segmentSize);
@@ -81,136 +82,156 @@ bool SNREstimator::runBlock(void) {
 	}
 	
 	if (measuredInterval.size() == measuredIntervalSize) {
-
-		// Get Welch's PSD estimate
-		int start = 0;
-		int finish = start + segmentSize;
-		int summed = 0;
-		vector<double> periodogramSum;
-		vector<double> periodogramTmp(segmentSize);
-		
-
-		while (finish < (int)measuredInterval.size()) {
-			// Create segment from full interval
-			segment.assign(measuredInterval.begin() + start, measuredInterval.begin() + finish);
-			
-
-			// Multiply by window (in time domain)
-			for (long int i = 0; i < segmentSize; i++) {
-				segment[i] *= window[i];
-			}
-
-			// Create imaginary vector and generate complex segment
-			for (unsigned int i = 0; i < segment.size(); i++)
+		switch (method) {
+			case powerSpectrum:
 			{
-				// Imaginary data of the signal
-				im[i] = 0;
-			}
-			segmentComplex = ReImVect2ComplexVector(segment, im);
-			
-			// Get the FFT
-			fourierTransformed = fft(segmentComplex);
-			fourierTransformed = fftshift(fourierTransformed);
-			double absFFTi = 0;
-			for (unsigned int i = 0; i < fourierTransformed.size(); i++) {
-				absFFTi = abs(fourierTransformed[i]);
-				periodogramTmp[i] = pow(absFFTi, 2) / (U*segmentSize);
-			}
-
-			// Add to summing vector
-			if (periodogramSum.empty()) {
-				periodogramSum = periodogramTmp;
-			} else {
-				for (unsigned int i = 0; i < periodogramTmp.size(); i++) {
-					periodogramSum[i] += periodogramTmp[i];
-				}
-			}
-			summed += 1;
-			segment.clear();
-			//periodogramTmp.clear();
-			fourierTransformed.clear();
-			segmentComplex.clear();
-			start += segmentSize - overlapCount;
-			finish += segmentSize - overlapCount;
-		}
-
-		vector<double> signalPsd;
-		vector<double> noisePsd;
+				// Get Welch's PSD estimate
+				int start = 0;
+				int finish = start + segmentSize;
+				int summed = 0;
+				vector<double> periodogramSum;
+				vector<double> periodogramTmp(segmentSize);
 		
-		// Divide by number of segments used, and separate the signal frequencies from the rest
-		for (unsigned int i = 0; i < periodogramTmp.size(); i++) {
-			periodogramSum[i] = periodogramSum[i] / summed;
-			if ((frequencies[i] < 1 / symbolPeriod) && (frequencies[i] > -1 / symbolPeriod)) {
-				signalPsd.insert(signalPsd.end(), periodogramSum[i]);
-			} else {
-				noisePsd.insert(noisePsd.end(), periodogramSum[i]);
-			}
-		}
 
-		// Calculate overall noise and signal power
-		// Assume that noise is uniformly distributed and that there is noise all over the spectrum
-		for (unsigned int i = 1; i < noisePsd.size(); i++) {
-			noisePower += (noisePsd[i - 1] + noisePsd[i]) / 2;
-		}
-
-		for (unsigned int i = 1; i < signalPsd.size(); i++) {
-			signalPower += (signalPsd[i - 1] + signalPsd[i]) / 2;
-		}
-		signalPower = signalPower - noisePower * signalPsd.size() / noisePsd.size();
-		noisePower = noisePower * periodogramSum.size() / noisePsd.size();
-		if (signalPower <= 0) {
-			cout << "ERROR: SNR too low, cannot identify the signal within the noise" << "\n";
-		} else {
-			allSNR.insert(allSNR.end(), signalPower / noisePower);
-			cout << "SNR: " << 10 * (log10(signalPower) - log10(noisePower)) << "\n";
-		}
-
-		/* Calculating average SNR and bounds */
-		if (!allSNR.empty()) {
+				while (finish < (int)measuredInterval.size()) {
+					// Create segment from full interval
+					segment.assign(measuredInterval.begin() + start, measuredInterval.begin() + finish);
 			
 
-			for (unsigned int i = 0; i < allSNR.size(); i++) {
-				SNR += allSNR[i];
-			}
-			SNR = SNR/allSNR.size();
-			for (unsigned int i = 0; i < allSNR.size(); i++) {
-				stdSNR += pow((SNR - allSNR[i]), 2);
-			}
-			if (allSNR.size() > 1) {
-				stdSNR = sqrt(stdSNR / (allSNR.size() - 1));
-			}
-			else {
-				stdSNR = 0;
-			}
-			
-			if (allSNR.size() > 1) {
-				LowerBound = 10 * log10(SNR - z * stdSNR / sqrt(allSNR.size()));
-				UpperBound = 10 * log10(SNR + z * stdSNR / sqrt(allSNR.size()));
-			} else {
-				LowerBound = 0;
-				UpperBound = 0;
-			}
-			SNR = 10 * log10(SNR);
-//			if (LowerBound<lowestMinorant) {
-//					LowerBound = lowestMinorant;
-//				}
+					// Multiply by window (in time domain)
+					for (long int i = 0; i < segmentSize; i++) {
+						segment[i] *= window[i];
+					}
 
-		/* Outputting a .txt report*/
-			ofstream myfile;
-			myfile.open(filename);
-//			myfile.open("SNR.txt", std::ios_base::app);
-			myfile << "SNR= " << SNR << "\n";
-			myfile << "Upper and lower confidence bounds for " << (1 - alpha) * 100 << "% confidence level \n";
-			myfile << "Upper Bound= " << UpperBound << "\n";
-			myfile << "Lower Bound= " << LowerBound << "\n";
-			myfile << "Number of measurements= " << allSNR.size() << "\n";
-			myfile.close();
-		}
-		measuredInterval.clear();
-		noisePower = 0;
-		signalPower = 0;
+					// Create imaginary vector and generate complex segment
+					for (unsigned int i = 0; i < segment.size(); i++)
+					{
+						// Imaginary data of the signal
+						im[i] = 0;
+					}
+					segmentComplex = ReImVect2ComplexVector(segment, im);
+			
+					// Get the FFT
+					fourierTransformed = fft(segmentComplex);
+					fourierTransformed = fftshift(fourierTransformed);
+					double absFFTi = 0;
+					for (unsigned int i = 0; i < fourierTransformed.size(); i++) {
+						absFFTi = abs(fourierTransformed[i]);
+						periodogramTmp[i] = pow(absFFTi, 2) / (U*segmentSize);
+					}
+
+					// Add to summing vector
+					if (periodogramSum.empty()) {
+						periodogramSum = periodogramTmp;
+					} else {
+						for (unsigned int i = 0; i < periodogramTmp.size(); i++) {
+							periodogramSum[i] += periodogramTmp[i];
+						}
+					}
+					summed += 1;
+					segment.clear();
+					//periodogramTmp.clear();
+					fourierTransformed.clear();
+					segmentComplex.clear();
+					start += segmentSize - overlapCount;
+					finish += segmentSize - overlapCount;
+				}
+
+				vector<double> signalPsd;
+				vector<double> noisePsd;
+		
+				// Divide by number of segments used, and separate the signal frequencies from the rest
+				for (unsigned int i = 0; i < periodogramTmp.size(); i++) {
+					periodogramSum[i] = periodogramSum[i] / summed;
+					if ((frequencies[i] < 1 / symbolPeriod) && (frequencies[i] > -1 / symbolPeriod)) {
+						signalPsd.insert(signalPsd.end(), periodogramSum[i]);
+					} else {
+						noisePsd.insert(noisePsd.end(), periodogramSum[i]);
+					}
+				}
+
+				// Calculate overall noise and signal power
+				// Assume that noise is uniformly distributed and that there is noise all over the spectrum
+				for (unsigned int i = 1; i < noisePsd.size(); i++) {
+					noisePower += (noisePsd[i - 1] + noisePsd[i]) / 2;
+				}
+
+				for (unsigned int i = 1; i < signalPsd.size(); i++) {
+					signalPower += (signalPsd[i - 1] + signalPsd[i]) / 2;
+				}
+				signalPower = signalPower - noisePower * signalPsd.size() / noisePsd.size();
+				noisePower = noisePower * periodogramSum.size() / noisePsd.size();
+				if (signalPower <= 0) {
+					cout << "ERROR: SNR too low, cannot identify the signal within the noise" << "\n";
+				} else {
+					allSNR.insert(allSNR.end(), signalPower / noisePower);
+					cout << "SNR: " << 10 * (log10(signalPower) - log10(noisePower)) << "\n";
+				}
+
+				/* Calculating average SNR and bounds */
+				if (!allSNR.empty()) {
+			
+
+					for (unsigned int i = 0; i < allSNR.size(); i++) {
+						SNR += allSNR[i];
+					}
+					SNR = SNR/allSNR.size();
+					for (unsigned int i = 0; i < allSNR.size(); i++) {
+						stdSNR += pow((SNR - allSNR[i]), 2);
+					}
+					if (allSNR.size() > 1) {
+						stdSNR = sqrt(stdSNR / (allSNR.size() - 1));
+					}
+					else {
+						stdSNR = 0;
+					}
+			
+					if (allSNR.size() > 1) {
+						LowerBound = 10 * log10(SNR - z * stdSNR / sqrt(allSNR.size()));
+						UpperBound = 10 * log10(SNR + z * stdSNR / sqrt(allSNR.size()));
+					} else {
+						LowerBound = 0;
+						UpperBound = 0;
+					}
+					SNR = 10 * log10(SNR);
+		//			if (LowerBound<lowestMinorant) {
+		//					LowerBound = lowestMinorant;
+		//				}
+
+				/* Outputting a .txt report*/
+					ofstream myfile;
+					myfile.open(filename);
+		//			myfile.open("SNR.txt", std::ios_base::app);
+					myfile << "SNR= " << SNR << "\n";
+					myfile << "Upper and lower confidence bounds for " << (1 - alpha) * 100 << "% confidence level \n";
+					myfile << "Upper Bound= " << UpperBound << "\n";
+					myfile << "Lower Bound= " << LowerBound << "\n";
+					myfile << "Number of measurements= " << allSNR.size() << "\n";
+					myfile.close();
+				}
+				measuredInterval.clear();
+				noisePower = 0;
+				signalPower = 0;
+				break;
+			}
+			case constantAmplitudeMoments:
+			{
+				// Identify the symbols (points of constant amplitude)
+				
+				// Get the average of the absolute value (square root of signal power)
+
+				// Get noise power by subtracting to average signal power (signal variance)
+
+				// Divide signal power by noise power, get log and do stuff for interval
+				break;
+			}
+			case m2m4: 
+			{
+				// I think it requires complex signal
+				break;
+			}
+			}
 	}
-	
 	
 	return true;
 }
@@ -234,8 +255,6 @@ vector<double> SNREstimator::getWindow(WindowType windowType, int windowSize) {
 	}
 	return wn;
 }
-
-
 
 // NOT YET INCLUDED IN THE FFT ".CPP". REMOVE WHEN IT ARRIVES
 vector<complex<double>> SNREstimator::fftshift(vector<complex<double>> &vec)

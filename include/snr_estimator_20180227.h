@@ -6,6 +6,8 @@
 # include <vector>
 
 enum WindowType{ Hanning, Hamming };
+// Currently only powerSpectrum is implemented
+enum EstimatorMethod{ powerSpectrum, m2m4, constantAmplitudeMoments};
 
 // Estimates the SNR of a signal
 class SNREstimator : public Block {
@@ -55,6 +57,7 @@ private:
 	double z;
 	double U;
 	string filename = "SNR.txt";
+	EstimatorMethod method = powerSpectrum;
 };
 
 
