@@ -1,0 +1,1600 @@
+2018-04-20 14:12:30
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=512
+0.233
+
+2018-04-20 14:12:30
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.262
+
+2018-04-20 14:12:30
+BitErrorRate|S2|ready=224
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:30
+Sink|S3|ready=224
+0
+
+2018-04-20 14:12:30
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=224
+0.005
+
+2018-04-20 14:12:30
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.243
+
+2018-04-20 14:12:30
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.002
+
+2018-04-20 14:12:30
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:30
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.117
+
+2018-04-20 14:12:31
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.24
+
+2018-04-20 14:12:31
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.009
+
+2018-04-20 14:12:31
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:31
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.007
+
+2018-04-20 14:12:31
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.237
+
+2018-04-20 14:12:31
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:31
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:31
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.131
+
+2018-04-20 14:12:31
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.179
+
+2018-04-20 14:12:31
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:31
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:31
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.006
+
+2018-04-20 14:12:31
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.172
+
+2018-04-20 14:12:32
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:32
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:32
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.129
+
+2018-04-20 14:12:32
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.17
+
+2018-04-20 14:12:32
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.009
+
+2018-04-20 14:12:32
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:32
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.011
+
+2018-04-20 14:12:32
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.139
+
+2018-04-20 14:12:32
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:32
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:32
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.147
+
+2018-04-20 14:12:32
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.166
+
+2018-04-20 14:12:32
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.009
+
+2018-04-20 14:12:32
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:32
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.01
+
+2018-04-20 14:12:32
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.142
+
+2018-04-20 14:12:33
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.005
+
+2018-04-20 14:12:33
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:33
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.137
+
+2018-04-20 14:12:33
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.156
+
+2018-04-20 14:12:33
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.007
+
+2018-04-20 14:12:33
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:33
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.01
+
+2018-04-20 14:12:33
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.357
+
+2018-04-20 14:12:33
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:33
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:33
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.141
+
+2018-04-20 14:12:33
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.15
+
+2018-04-20 14:12:34
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.011
+
+2018-04-20 14:12:34
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:34
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.011
+
+2018-04-20 14:12:34
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.14
+
+2018-04-20 14:12:34
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:34
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:34
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.141
+
+2018-04-20 14:12:34
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.148
+
+2018-04-20 14:12:34
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.008
+
+2018-04-20 14:12:34
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:34
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.01
+
+2018-04-20 14:12:34
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.132
+
+2018-04-20 14:12:34
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.006
+
+2018-04-20 14:12:34
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:34
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.158
+
+2018-04-20 14:12:34
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.157
+
+2018-04-20 14:12:34
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:34
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:34
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.011
+
+2018-04-20 14:12:34
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.131
+
+2018-04-20 14:12:35
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:35
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:35
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.139
+
+2018-04-20 14:12:35
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.146
+
+2018-04-20 14:12:35
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:35
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:35
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.01
+
+2018-04-20 14:12:35
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.13
+
+2018-04-20 14:12:35
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:35
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:35
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.146
+
+2018-04-20 14:12:35
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.16
+
+2018-04-20 14:12:35
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:35
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:35
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.011
+
+2018-04-20 14:12:35
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.126
+
+2018-04-20 14:12:35
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.001
+
+2018-04-20 14:12:35
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:35
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.143
+
+2018-04-20 14:12:36
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.143
+
+2018-04-20 14:12:36
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.009
+
+2018-04-20 14:12:36
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:36
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.011
+
+2018-04-20 14:12:36
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.136
+
+2018-04-20 14:12:36
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.005
+
+2018-04-20 14:12:36
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:36
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.151
+
+2018-04-20 14:12:36
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.157
+
+2018-04-20 14:12:36
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:36
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:36
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:36
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.14
+
+2018-04-20 14:12:36
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:36
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:36
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.138
+
+2018-04-20 14:12:37
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.145
+
+2018-04-20 14:12:37
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.009
+
+2018-04-20 14:12:37
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:37
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:37
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.134
+
+2018-04-20 14:12:37
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.007
+
+2018-04-20 14:12:37
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:37
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.157
+
+2018-04-20 14:12:37
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.154
+
+2018-04-20 14:12:37
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:37
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:37
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.011
+
+2018-04-20 14:12:37
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.13
+
+2018-04-20 14:12:37
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:37
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:37
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.146
+
+2018-04-20 14:12:37
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.138
+
+2018-04-20 14:12:38
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.009
+
+2018-04-20 14:12:38
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:38
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.011
+
+2018-04-20 14:12:38
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.125
+
+2018-04-20 14:12:38
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:38
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:38
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.153
+
+2018-04-20 14:12:38
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.157
+
+2018-04-20 14:12:38
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.008
+
+2018-04-20 14:12:38
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:38
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:38
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.132
+
+2018-04-20 14:12:38
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.007
+
+2018-04-20 14:12:38
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:38
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.142
+
+2018-04-20 14:12:38
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.152
+
+2018-04-20 14:12:39
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.011
+
+2018-04-20 14:12:39
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:39
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:39
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.131
+
+2018-04-20 14:12:39
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.005
+
+2018-04-20 14:12:39
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:39
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.154
+
+2018-04-20 14:12:39
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.163
+
+2018-04-20 14:12:39
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.012
+
+2018-04-20 14:12:39
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:39
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:39
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.132
+
+2018-04-20 14:12:39
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:39
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:39
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.141
+
+2018-04-20 14:12:39
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.145
+
+2018-04-20 14:12:39
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.014
+
+2018-04-20 14:12:39
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:39
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.015
+
+2018-04-20 14:12:39
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.138
+
+2018-04-20 14:12:40
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:40
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:40
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.152
+
+2018-04-20 14:12:40
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.154
+
+2018-04-20 14:12:40
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.011
+
+2018-04-20 14:12:40
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:40
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.013
+
+2018-04-20 14:12:40
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.136
+
+2018-04-20 14:12:40
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:40
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:40
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.142
+
+2018-04-20 14:12:40
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.139
+
+2018-04-20 14:12:40
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:40
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:40
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:40
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.139
+
+2018-04-20 14:12:41
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.002
+
+2018-04-20 14:12:41
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:41
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.161
+
+2018-04-20 14:12:41
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.162
+
+2018-04-20 14:12:41
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.014
+
+2018-04-20 14:12:41
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:41
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.013
+
+2018-04-20 14:12:41
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.13
+
+2018-04-20 14:12:41
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.001
+
+2018-04-20 14:12:41
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:41
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.154
+
+2018-04-20 14:12:41
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.152
+
+2018-04-20 14:12:41
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.012
+
+2018-04-20 14:12:41
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:41
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.013
+
+2018-04-20 14:12:41
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.146
+
+2018-04-20 14:12:41
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:41
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:41
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.17
+
+2018-04-20 14:12:42
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.161
+
+2018-04-20 14:12:42
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.013
+
+2018-04-20 14:12:42
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:42
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:42
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.13
+
+2018-04-20 14:12:42
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.005
+
+2018-04-20 14:12:42
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:42
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.152
+
+2018-04-20 14:12:42
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.142
+
+2018-04-20 14:12:42
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:42
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:42
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.013
+
+2018-04-20 14:12:42
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.13
+
+2018-04-20 14:12:42
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.005
+
+2018-04-20 14:12:42
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:42
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.152
+
+2018-04-20 14:12:43
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.162
+
+2018-04-20 14:12:43
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.013
+
+2018-04-20 14:12:43
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:43
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:43
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.131
+
+2018-04-20 14:12:43
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:43
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:43
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.14
+
+2018-04-20 14:12:43
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.148
+
+2018-04-20 14:12:43
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.009
+
+2018-04-20 14:12:43
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:43
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:43
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.133
+
+2018-04-20 14:12:43
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:43
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:43
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.157
+
+2018-04-20 14:12:44
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.156
+
+2018-04-20 14:12:44
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.015
+
+2018-04-20 14:12:44
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:44
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.014
+
+2018-04-20 14:12:44
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.128
+
+2018-04-20 14:12:44
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:44
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:44
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.142
+
+2018-04-20 14:12:44
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.141
+
+2018-04-20 14:12:44
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.011
+
+2018-04-20 14:12:44
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:44
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.013
+
+2018-04-20 14:12:44
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.137
+
+2018-04-20 14:12:44
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.007
+
+2018-04-20 14:12:44
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:44
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.161
+
+2018-04-20 14:12:44
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.16
+
+2018-04-20 14:12:45
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.011
+
+2018-04-20 14:12:45
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:45
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.012
+
+2018-04-20 14:12:45
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.14
+
+2018-04-20 14:12:45
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:45
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:45
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.148
+
+2018-04-20 14:12:45
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.129
+
+2018-04-20 14:12:45
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.014
+
+2018-04-20 14:12:45
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:45
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.013
+
+2018-04-20 14:12:45
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.125
+
+2018-04-20 14:12:45
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.006
+
+2018-04-20 14:12:45
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:45
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.166
+
+2018-04-20 14:12:45
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.143
+
+2018-04-20 14:12:46
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.012
+
+2018-04-20 14:12:46
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:46
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.013
+
+2018-04-20 14:12:46
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.114
+
+2018-04-20 14:12:46
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.002
+
+2018-04-20 14:12:46
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:46
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.149
+
+2018-04-20 14:12:46
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.131
+
+2018-04-20 14:12:46
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.013
+
+2018-04-20 14:12:46
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:46
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.016
+
+2018-04-20 14:12:46
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.119
+
+2018-04-20 14:12:46
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.002
+
+2018-04-20 14:12:46
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:46
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.165
+
+2018-04-20 14:12:46
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.154
+
+2018-04-20 14:12:46
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.011
+
+2018-04-20 14:12:46
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:46
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.014
+
+2018-04-20 14:12:46
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.12
+
+2018-04-20 14:12:47
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:47
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:47
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.141
+
+2018-04-20 14:12:47
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.14
+
+2018-04-20 14:12:47
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.01
+
+2018-04-20 14:12:47
+Sink|S3|ready=256
+0.001
+
+2018-04-20 14:12:47
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.015
+
+2018-04-20 14:12:47
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.123
+
+2018-04-20 14:12:47
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.005
+
+2018-04-20 14:12:47
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:47
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.165
+
+2018-04-20 14:12:47
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.145
+
+2018-04-20 14:12:47
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.014
+
+2018-04-20 14:12:47
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:47
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.015
+
+2018-04-20 14:12:47
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.126
+
+2018-04-20 14:12:47
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.004
+
+2018-04-20 14:12:47
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:47
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.129
+
+2018-04-20 14:12:48
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.129
+
+2018-04-20 14:12:48
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.013
+
+2018-04-20 14:12:48
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:48
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.014
+
+2018-04-20 14:12:48
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.118
+
+2018-04-20 14:12:48
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.005
+
+2018-04-20 14:12:48
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:48
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.034
+
+2018-04-20 14:12:48
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.155
+
+2018-04-20 14:12:48
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=512
+BitErrorRate|S3|space=512
+0.013
+
+2018-04-20 14:12:48
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:48
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=256
+0.014
+
+2018-04-20 14:12:48
+HomodyneReceiver|S1|ready=512
+HomodyneReceiver|S2|space=512
+0.122
+
+2018-04-20 14:12:48
+BitErrorRate|S2|ready=256
+BitErrorRate|S0|ready=320
+BitErrorRate|S3|space=512
+0.003
+
+2018-04-20 14:12:48
+Sink|S3|ready=256
+0
+
+2018-04-20 14:12:48
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=448
+0
+
+2018-04-20 14:12:48
+HomodyneReceiver|S1|ready=64
+HomodyneReceiver|S2|space=512
+0.023
+
+2018-04-20 14:12:48
+BitErrorRate|S2|ready=32
+BitErrorRate|S0|ready=64
+BitErrorRate|S3|space=512
+0.009
+
+2018-04-20 14:12:48
+Sink|S3|ready=32
+0
+
+2018-04-20 14:12:48
+MQamTransmitter|S1|space=512
+MQamTransmitter|S0|space=480
+0
+
+2018-04-20 14:12:48
+HomodyneReceiver|S1|ready=0
+HomodyneReceiver|S2|space=512
+0
+
+2018-04-20 14:12:48
+BitErrorRate|S2|ready=0
+BitErrorRate|S0|ready=32
+BitErrorRate|S3|space=512
+0.002
+
+2018-04-20 14:12:48
+Sink|S3|ready=0
+0
+

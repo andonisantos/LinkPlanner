@@ -11,7 +11,7 @@
 # include "sampler_20171119.h"
 # include "super_block_interface_20180118.h"
 # include "pulse_shaper_20180118.h"
-# include "white_noise_20180118.h"
+# include "white_noise_20180420.h"
 # include "add_20171116.h"
 
 

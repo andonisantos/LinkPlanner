@@ -93,7 +93,7 @@
     <ClCompile Include="..\..\lib\sink_20180118.cpp" />
     <ClCompile Include="..\..\lib\snr_estimator_20180227.cpp" />
     <ClCompile Include="..\..\lib\super_block_interface_20180118.cpp" />
-    <ClCompile Include="..\..\lib\white_noise_20180118.cpp" />
+    <ClCompile Include="..\..\lib\white_noise_20180420.cpp" />
     <ClCompile Include="m_qam_system_sdf.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -117,7 +117,7 @@
     <ClInclude Include="..\..\include\sink_20180118.h" />
     <ClInclude Include="..\..\include\snr_estimator_20180227.h" />
     <ClInclude Include="..\..\include\super_block_interface_20180118.h" />
-    <ClInclude Include="..\..\include\white_noise_20180118.h" />
+    <ClInclude Include="..\..\include\white_noise_20180420.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
