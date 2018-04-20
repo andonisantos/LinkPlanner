@@ -4,8 +4,8 @@
 
 \begin{tcolorbox}	
 	\begin{tabular}{p{2.75cm} p{0.2cm} p{10.5cm}} 	
-		\textbf{Header File}   &:& white\_noise\_20180118.h \\
-		\textbf{Source File}   &:& white\_noise\_20180118.cpp \\
+		\textbf{Header File}   &:& white\_noise\_20180420.h \\
+		\textbf{Source File}   &:& white\_noise\_20180420.cpp \\
 	\end{tabular}
 \end{tcolorbox}
 
@@ -27,9 +27,10 @@ This block does not accept any input signal. It produces can produce a real or c
 	\begin{tabular}{|c|c|c|c|c}
 		\cline{1-4}
 		\textbf{Parameter} & \textbf{Type} &\textbf{Values} &   \textbf{Default}& \\ \cline{1-4}
-		seedType 		 & enum & DefaultDeterministic, RandomDevice, Selected & RandomDevice \\ \cline{1-4}
-		spectralDensity  & real & > 0  			& $10^{-4}$ \\ \cline{1-4}
-		seed 	   		 & int & $\in$ [1, $2^{32}-1$] 	& 1 \\ \cline{1-4} \cline{1-4}
+		seedType 		 & enum 	& DefaultDeterministic, RandomDevice, Selected & RandomDevice \\ \cline{1-4}
+		spectralDensity  & real 	& > 0  			& $1.5e-17$ \\ \cline{1-4}
+		seed 	   		 & int 		& $\in$ [1, $2^{32}-1$] 	& 1 \\ \cline{1-4}
+		samplingPeriod	 & double 	& > 0 & 1.0 \\ \cline{1-4} \cline{1-4}
 	\end{tabular}
 	\caption{White noise input parameters}
 	\label{table:noise_in_par}
@@ -66,7 +67,13 @@ The \textit{seedType} parameter allows the user to select between one of the thr
 
 \textbf{SingleSelected}: Uses one user selected seed to initialize the PRNGs. The selected seed is passed through the variable \textit{seed}. If more than one generator is used, additional seeds are created by choosing the next sequential integers. For instance, if the user selected seed is $10$, and all the four PRNGs are used, the used seeds will be $[10, 11, 12, 13]$.
 
-The noise is then obtained from a gaussian distribution with variance equal to the spectral density. If the signal is complex, the noise is calculated independently for the real and imaginary parts, with half the spectral density in each.
+The noise is then obtained from a gaussian distribution with variance equal to the noise power. This noise power is calculated from the spectral density $n_0$ and the signal's bandwidth $B$, which is obtained from the defined sampling time $T$.
+
+\begin{equation}
+N = n_0 B = n_0 \frac{2}{T}
+\end{equation}
+
+If the signal is complex, the noise is calculated independently for the real and imaginary parts, and the spectral density value is divided by two, to account for the two-sided noise spectral density.
 
 
 %\subparagraph*{AllSelected}
