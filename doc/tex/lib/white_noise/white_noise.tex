@@ -67,7 +67,7 @@ The \textit{seedType} parameter allows the user to select between one of the thr
 
 \textbf{SingleSelected}: Uses one user selected seed to initialize the PRNGs. The selected seed is passed through the variable \textit{seed}. If more than one generator is used, additional seeds are created by choosing the next sequential integers. For instance, if the user selected seed is $10$, and all the four PRNGs are used, the used seeds will be $[10, 11, 12, 13]$.
 
-The noise is then obtained from a gaussian distribution with variance equal to the noise power. This noise power is calculated from the spectral density $n_0$ and the signal's bandwidth $B$, which is obtained from the defined sampling time $T$.
+The noise is obtained from a gaussian distribution with zero mean and a given variance. The variance is equal to the noise power, which can be calculated from the spectral density $n_0$ and the signal's bandwidth $B$, where the bandwidth is obtained from the defined sampling time $T$.
 
 \begin{equation}
 N = n_0 B = n_0 \frac{2}{T}
