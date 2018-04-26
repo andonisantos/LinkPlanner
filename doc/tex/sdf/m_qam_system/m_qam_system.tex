@@ -140,8 +140,8 @@ From this, the probability of symbol error is:
 
 \begin{eqnarray}
 &P_s &= 1-P_C \nonumber\\
-&	   &= 1 - \left(1 - Q \left({\frac{A}{\sqrt{N}}}\right)\right)^2 \nonumber \\
-&	   &= 2 Q\left({\frac{A}{\sqrt{N}}}\right)\left[1-\frac{1}{2} Q \left({\frac{A}{\sqrt{N}}}\right)\right]
+&	   &= 1 - \left(1 - Q \left({\frac{A}{\sqrt{2N}}}\right)\right)^2 \nonumber \\
+&	   &= 2 Q\left({\frac{A}{\sqrt{2N}}}\right)\left[1-\frac{1}{2} Q \left({\frac{A}{\sqrt{2N}}}\right)\right]
 \end{eqnarray}
 
 
@@ -158,7 +158,17 @@ The peak power signal-to-noise ratio, defined as the ratio between the instantan
 \text{SNR}_{RMS} = \frac{A}{\sqrt{N}}
 \end{equation}
 
-Here, A is the peak signal amplitude and $\sqrt{N}$ is the RMS noise in the absence of a signal. Here it is assumed that the electric filter's bandwidth is large enough for the signal not to be affected. This way it only limits the noise power.
+Here, A is the peak signal amplitude and $\sqrt{N}$ is the RMS noise in the absence of a signal. Here it is assumed that the electric filter's bandwidth is large enough for the signal not to be affected, thus limiting only the noise power.
+
+It's worth noting that optical noise is being ignored in this analysis. The conditions considered here assume only the presence of electrical noise appearing at the receiver, as shown if figure~\ref{fig:lodiagram}. In these conditions, the noise is considered to be independent from the local oscillator. If there was a noise source in the optical domain, this would not be so.
+
+\begin{figure}[H]
+	\centering
+	\centering
+	\includegraphics[ width=0.8\textwidth]{./sdf/m_qam_system/figures/LOdiagram.pdf}
+	\caption{Local oscillator and receiver filters diagram.}
+	\label{fig:lodiagram}
+\end{figure}
 
 It is possible to decrease the SNR and, consequently, the error rate reducing the filter's bandwidth and finding an optimum filter. This filter is called a matched filter. The resulting signal will still have Gaussian noise, but the signal-to-noise ratio will be greatly improved. This can be achieved by using a root-raised cosine filter at the pulse shaper and a similar one at the receiver, before the sampler. Inter-symbol interference will still be null as it is equivalent to a raised cosine filter, where half the filtering is done on the transmitter side (while pulse-shaping) and the other half is done on the receiver side, before sampling.
 
